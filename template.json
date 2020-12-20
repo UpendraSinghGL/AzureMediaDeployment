@@ -3,16 +3,37 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "logicAppApiVersion": {
+            "defaultValue":"2016-06-01",
             "type": "String"
         },
         "workflowName": {
-            "type": "String"
+            "type": "String",
+            "defaultValue":"getAccounts"
         },
         "workflowLocation": {
-            "type": "String"
+            "type": "String",
+            "allowedValues": [
+            "[resourceGroup().location]",
+            "australiaeast",
+            "australiasoutheast",
+            "brazilsouth",
+            "centralus",
+            "eastasia",
+            "eastus",
+            "eastus2",
+            "japaneast",
+            "japanwest",
+            "northcentralus",
+            "northeurope",
+            "southcentralus",
+            "southeastasia",
+            "westeurope",
+            "westus"
+        ]
         },
         "workflowSchema": {
-            "type": "String"
+            "type": "String",
+            "defaultValue":"https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json"
         },
         "logicAppState": {
             "defaultValue": "Enabled",
