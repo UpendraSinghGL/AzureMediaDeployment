@@ -62,7 +62,7 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Logic/workflows','generateSASToken')]"
+                "[resourceId('Microsoft.Resources/deployments', 'storage')]"
             ]
         }
     ],
