@@ -6,9 +6,13 @@
     "variables": {},
     "resources": [],
     "outputs": {
+        "basepath": {
+            "value":"[uri(deployment().properties.templateLink.uri,'')]",
+            "type": "string"
+        },
         "filepath": {
-            "value":"[deployment().properties]",
-            "type": "object"
+            "value":"[uri(deployment().properties.templateLink.uri,'a.json')]",
+            "type": "string"
         }
     }
 }
