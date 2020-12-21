@@ -13,11 +13,11 @@
     "variables": {},
     "resources": [
         {
-            "name": "durinmediastorage",
+            "name": "durinstorage",
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2019-06-01",
             "tags": {
-                "displayName": "durinmediastorage"
+                "displayName": "durinstorage"
             },
             "location": "[resourceGroup().location]",
             "kind": "StorageV2",
@@ -40,7 +40,7 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', 'durinmediastorage')]"
+                "[resourceId('Microsoft.Storage/storageAccounts', 'durinstorage')]"
             ]
         }
     ],
