@@ -33,7 +33,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(parameters('baseTemplatePath'), '/logicapps/generatesastoken.json')]",
+                    "uri": "[uri(parameters('baseTemplatePath'), '/logicapps/generatesastoken.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {

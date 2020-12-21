@@ -38,7 +38,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[concat(variables('baseTemplatePath'), '/storageaccount/template.json')]",
+                    "uri": "[uri(variables('baseTemplatePath'), '/storageaccount/template.json')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
