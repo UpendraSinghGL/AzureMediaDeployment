@@ -46,9 +46,5 @@
         }
     ],
     "outputs": {
-        "generateSASToken":{
-           "type": "string",
-           "value":"[listCallbackUrl(concat(resourceId('Microsoft.Logic/workflows','generateSASToken'),'/triggers/manual'),'2017-07-01').value]"
-        }
     }
 }
