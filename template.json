@@ -8,7 +8,7 @@
     "outputs": {
         "filepath": {
             "value":"[deployment().properties]",
-            "type": "string"
+            "type": "object"
         }
     }
 }
