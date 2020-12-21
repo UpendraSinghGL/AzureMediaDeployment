@@ -1,18 +1,55 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {},
-    "functions": [],
-    "variables": {},
-    "resources": [],
-    "outputs": {
-        "basepath": {
-            "value":"[uri(deployment().properties.templateLink.uri,'')]",
-            "type": "string"
-        },
-        "filepath": {
-            "value":"[uri(deployment().properties.templateLink.uri,'a.json')]",
+    "parameters": {
+        "crmUser": {
             "type": "string"
         }
+    },
+    "functions": [],
+    "variables": {
+        "baseTemplatePath": "[deployment().properties.templateLink.uri]"
+    },
+    "resources": [
+        {
+            "name": "commondataservice",
+            "type": "Microsoft.Web/connections",
+            "apiVersion": "2016-06-01",
+            "location": "[resourceGroup().location]",
+            "tags": {
+            },
+            "properties": {
+                "displayName": "[parameters('crmUser')]",
+                "parameterValues": {
+                },
+                "customParameterValues": {
+                },
+                "nonSecretParameterValues": {
+                },
+                "api": {
+                    "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/commondataserviceApi')]"
+                }
+            }
+        },
+        {
+            "name": "storage",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-10-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[concat(variables('baseTemplatePath'), '/storageaccount/template.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "baseTemplatePath":"[variables('baseTemplatePath')]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/connections', 'commondataservice')]"
+            ]
+        }
+    ],
+    "outputs": {
     }
 }
