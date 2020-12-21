@@ -1,68 +1,101 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "logicAppApiVersion": {
-            "defaultValue":"2016-06-01",
+        "workflows_getAllAccounts_name": {
+            "defaultValue": "getAllAccounts",
             "type": "String"
         },
-        "workflowName": {
-            "type": "String",
-            "defaultValue":"getAccounts"
-        },
-        "workflowLocation": {
-            "type": "String",
-            "allowedValues": [
-            "[resourceGroup().location]",
-            "australiaeast",
-            "australiasoutheast",
-            "brazilsouth",
-            "centralus",
-            "eastasia",
-            "eastus",
-            "eastus2",
-            "japaneast",
-            "japanwest",
-            "northcentralus",
-            "northeurope",
-            "southcentralus",
-            "southeastasia",
-            "westeurope",
-            "westus"
-        ]
-        },
-        "workflowSchema": {
-            "type": "String",
-            "defaultValue":"https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json"
-        },
-        "logicAppState": {
-            "defaultValue": "Enabled",
+        "connections_commondataservice_name": {
+            "defaultValue": "commondataservice",
             "type": "String"
-        },
-        "definition": {
-            "defaultValue": "[concat('{\"contentVersion\":\"1.0.0.0\",\"parameters\":{},\"actions\":{},\"triggers\":{},\"outputs\":{},\"$schema\":\"', parameters('workflowSchema'), '\"}')]",
-            "type": "String"
-        },
-        "parameters": {
-            "defaultValue": {},
-            "type": "Object"
-        },
-        "tags": {
-            "defaultValue": {},
-            "type": "Object"
         }
     },
+    "variables": {},
     "resources": [
         {
-            "type": "Microsoft.Logic/workflows",
-            "apiVersion": "[parameters('logicAppApiVersion')]",
-            "name": "[parameters('workflowName')]",
-            "location": "[parameters('workflowLocation')]",
-            "tags": "[parameters('tags')]",
+            "type": "Microsoft.Web/connections",
+            "apiVersion": "2016-06-01",
+            "name": "[parameters('connections_commondataservice_name')]",
+            "location": "eastus",
+            "kind": "V1",
             "properties": {
-                "definition": "[json(parameters('definition'))]",
-                "parameters": "[parameters('parameters')]",
-                "state": "[parameters('logicAppState')]"
+                "displayName": "admin@CRM658754.onmicrosoft.com",
+                "customParameterValues": {},
+                "api": {
+                    "id": "[concat('/subscriptions/6ea8ecbe-a178-422c-b3c3-ed034a2729fb/providers/Microsoft.Web/locations/eastus/managedApis/', parameters('connections_commondataservice_name'))]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2017-07-01",
+            "name": "[parameters('workflows_getAllAccounts_name')]",
+            "location": "eastus",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/connections', parameters('connections_commondataservice_name'))]"
+            ],
+            "properties": {
+                "state": "Enabled",
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "$connections": {
+                            "defaultValue": {},
+                            "type": "Object"
+                        }
+                    },
+                    "triggers": {
+                        "manual": {
+                            "type": "Request",
+                            "kind": "Http",
+                            "inputs": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "actions": {
+                        "List_records": {
+                            "runAfter": {},
+                            "type": "ApiConnection",
+                            "inputs": {
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                    }
+                                },
+                                "method": "get",
+                                "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('cf75191d669148c2b5437e89f93741e0.crm'))}/tables/@{encodeURIComponent(encodeURIComponent('accounts'))}/items"
+                            }
+                        },
+                        "Response": {
+                            "runAfter": {
+                                "List_records": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "Response",
+                            "kind": "Http",
+                            "inputs": {
+                                "body": "@body('List_records')",
+                                "statusCode": 200
+                            }
+                        }
+                    },
+                    "outputs": {}
+                },
+                "parameters": {
+                    "$connections": {
+                        "value": {
+                            "commondataservice": {
+                                "connectionId": "[resourceId('Microsoft.Web/connections', parameters('connections_commondataservice_name'))]",
+                                "connectionName": "commondataservice",
+                                "id": "/subscriptions/6ea8ecbe-a178-422c-b3c3-ed034a2729fb/providers/Microsoft.Web/locations/eastus/managedApis/commondataservice"
+                            }
+                        }
+                    }
+                }
             }
         }
     ]

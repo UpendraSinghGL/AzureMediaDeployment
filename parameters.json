@@ -2,53 +2,11 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "logicAppApiVersion": {
-            "value": {
-                "type": "String",
-                "value": "2016-10-01"
-            }
+        "workflows_getAllAccounts_name": {
+            "value": null
         },
-        "workflowName": {
-            "value": {
-                "type": "String",
-                "value": "getAccounts"
-            }
-        },
-        "workflowLocation": {
-            "value": {
-                "type": "String",
-                "value": "eastus"
-            }
-        },
-        "workflowSchema": {
-            "value": {
-                "type": "String",
-                "value": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#"
-            }
-        },
-        "logicAppState": {
-            "value": {
-                "type": "String",
-                "value": "Enabled"
-            }
-        },
-        "definition": {
-            "value": {
-                "type": "String",
-                "value": "{\"contentVersion\":\"1.0.0.0\",\"parameters\":{},\"actions\":{},\"triggers\":{},\"outputs\":{},\"$schema\":\"https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#\"}"
-            }
-        },
-        "parameters": {
-            "value": {
-                "type": "Object",
-                "value": {}
-            }
-        },
-        "tags": {
-            "value": {
-                "type": "Object",
-                "value": {}
-            }
+        "connections_commondataservice_name": {
+            "value": null
         }
     }
 }
