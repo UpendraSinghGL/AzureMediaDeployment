@@ -42,7 +42,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "baseTemplatePath":"[variables('baseTemplatePath')]"
+                    "baseTemplatePath":{"value":"[variables('baseTemplatePath')]"} 
                 }
             },
             "dependsOn": [
