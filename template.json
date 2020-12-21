@@ -48,14 +48,24 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Web/connections', 'commondataservice')]"
             ]
+        },{
+            "name": "logiapp-output",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-10-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[uri(variables('baseTemplatePath'), '/logicapps/index.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Logic/workflows','generateSASToken')]"
+            ]
         }
     ],
     "outputs": {
-        "ConnectionConfig": {
-            "type": "object",
-            "value": {
-                "generateSASToken":"[listCallbackUrl(concat(resourceId('Microsoft.Logic/workflows','generateSASToken'),'/triggers/manual'),'2017-07-01').value]"
-            }
-        }
     }
 }
