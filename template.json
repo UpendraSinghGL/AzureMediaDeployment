@@ -28,7 +28,7 @@
             "name": "[variables('workflows_getAllAccounts_name')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/connections', variables('connections_commondataservice_name'))]"
+                "[resourceId('Microsoft.Web/connections', 'commondataservice')]"
             ],
             "properties": {
                 "state": "Enabled",
