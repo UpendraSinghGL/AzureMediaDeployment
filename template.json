@@ -27,7 +27,7 @@
                 "nonSecretParameterValues": {
                 },
                 "api": {
-                    "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/commondataserviceApi')]"
+                    "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/commondataservice')]"
                 }
             }
         },
