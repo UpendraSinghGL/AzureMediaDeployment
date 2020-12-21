@@ -18,7 +18,7 @@
                 "displayName": "admin@CRM658754.onmicrosoft.com",
                 "customParameterValues": {},
                 "api": {
-                    "id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/eastus/managedApis/', variables('connections_commondataservice_name'))]"
+                    "id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/',resourceGroup().location,'/managedApis/', variables('connections_commondataservice_name'))]"
                 }
             }
         },
