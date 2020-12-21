@@ -10,14 +10,16 @@
         }
     },
     "functions": [],
-    "variables": {},
+    "variables": {
+        "storageName": "durinstorage"
+    },
     "resources": [
         {
-            "name": "durinstorage",
+            "name": "[variables('storageName')]",
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2019-06-01",
             "tags": {
-                "displayName": "durinstorage"
+                "displayName": "[variables('storageName')]"
             },
             "location": "[resourceGroup().location]",
             "kind": "StorageV2",
@@ -25,6 +27,31 @@
                 "name": "Standard_LRS",
                 "tier": "Standard"
             }
+        },
+        {
+            "name": "azureblob",
+            "type": "Microsoft.Web/connections",
+            "apiVersion": "2016-06-01",
+            "location": "[resourceGroup().location]",
+            "tags": {
+            },
+            "properties": {
+                "displayName": "duringstorageconnection",
+                "parameterValues": {
+                    "accountName": "[variables('storageName')]",
+                    "accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts',variables('storageName')) ,'2016-06-01').key1]"
+                },
+                "customParameterValues": {
+                },
+                "nonSecretParameterValues": {
+                },
+                "api": {
+                    "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/azureblob')]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageName'))]"
+            ]
         },
         {
             "name": "logicapp-generatesastoken-deployment",
@@ -40,7 +67,7 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', 'durinstorage')]"
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageName'))]"
             ]
         }
     ],
