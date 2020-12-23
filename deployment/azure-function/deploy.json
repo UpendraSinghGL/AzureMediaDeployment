@@ -192,13 +192,5 @@
     }
   ],
   "outputs": {
-    "funtions": {
-      "type": "object",
-      "value": {
-        "CreateShowContainer":"[listSecrets(resourceId('Microsoft.Web/sites/functions',variables('functionAppName') ,'CreateShowContainer'),'2018-11-01').trigger_url]",
-        "GetCheckSumValue":"[listSecrets(resourceId('Microsoft.Web/sites/functions',variables('functionAppName') ,'GetCheckSumValue'),'2018-11-01').trigger_url]",
-        "MediaInfoFunction":"[listSecrets(resourceId('Microsoft.Web/sites/functions',variables('functionAppName') ,'MediaInfoFunction'),'2018-11-01').trigger_url]"
-      }
-    }
   }
 }
