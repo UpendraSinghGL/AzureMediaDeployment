@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DurinMedia.FunctionApp", "Sample.MediaInfo.FxnApp\DurinMedia.FunctionApp.csproj", "{96FEAB87-1E38-451C-9C1D-041CE9861A26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DurinMedia.FunctionApp", "DurinMedia.FunctionApp\DurinMedia.FunctionApp.csproj", "{96FEAB87-1E38-451C-9C1D-041CE9861A26}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.MediaInfo.Core", "Sample.MediaInfo.Core\Sample.MediaInfo.Core.csproj", "{1F89AF21-A61F-4D68-AAB9-9072614F0B3B}"
 EndProject
