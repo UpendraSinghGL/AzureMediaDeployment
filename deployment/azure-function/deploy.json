@@ -81,6 +81,10 @@
             {
               "name": "project",
               "value": "azure-function/DurinMedia.FunctionApp/DurinMedia.FunctionApp.csproj"
+            },
+            {
+              "name": "AZURE_STORAGE_CONNECTION_STRING",
+              "value": "sonu"
             }
           ]
         },
@@ -186,5 +190,15 @@
         "principalId": "[reference(resourceId('Microsoft.Web/sites', variables('functionAppName')), '2019-08-01', 'Full').identity.principalId]"
       }
     }
-  ]
+  ],
+  "outputs": {
+    "funtions": {
+      "type": "object",
+      "value": {
+        "CreateShowContainer":"[listSecrets(resourceId('Microsoft.Web/sites/functions',variables('functionAppName') ,'CreateShowContainer'),'2018-11-01').trigger_url]",
+        "GetCheckSumValue":"[listSecrets(resourceId('Microsoft.Web/sites/functions',variables('functionAppName') ,'GetCheckSumValue'),'2018-11-01').trigger_url]",
+        "MediaInfoFunction":"[listSecrets(resourceId('Microsoft.Web/sites/functions',variables('functionAppName') ,'MediaInfoFunction'),'2018-11-01').trigger_url]"
+      }
+    }
+  }
 }
