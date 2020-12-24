@@ -1,17 +1,34 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {},
+    "parameters": {
+        "baseTemplatePath": {
+            "type": "string",
+            "metadata": {
+                "description": "description"
+            }
+        }
+    },
     "functions": [],
     "variables": {},
     "resources": [
-    ],
-    "outputs": {
-        "ConnectionConfig": {
-            "type": "object",
-            "value": {
-                "generateSASToken":"[listCallbackUrl(concat(resourceId('Microsoft.Logic/workflows','generateSASToken'),'/triggers/manual'),'2017-07-01').value]"
-            }
+        {
+            "name": "logicapp-generatesastoken-deployment",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-10-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/generatesastoken.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                }
+            },
+            "dependsOn": [
+            ]
         }
+    ],
+    "outputs": {        
     }
 }

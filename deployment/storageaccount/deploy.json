@@ -2,12 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "baseTemplatePath": {
-            "type": "string",
-            "metadata": {
-                "description": "description"
-            }
-        }
+        
     },
     "functions": [],
     "variables": {
@@ -51,24 +46,6 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageName'))]"
-            ]
-        },
-        {
-            "name": "logicapp-generatesastoken-deployment",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-10-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/generatesastoken.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageName'))]",
-                "[resourceId('Microsoft.Web/connections', 'azureblob')]"
             ]
         }
     ],
