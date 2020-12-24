@@ -65,24 +65,6 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Resources/deployments', 'storage')]"
             ]
-        },
-        {
-            "name": "logiapps-deployment",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-10-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[uri(variables('baseTemplatePath'), 'logicapps/deploy.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                     "baseTemplatePath":{"value":"[variables('baseTemplatePath')]"} 
-                }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Resources/deployments', 'storage')]"
-            ]
         }
     ],
     "outputs": {
