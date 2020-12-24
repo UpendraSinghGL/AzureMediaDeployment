@@ -188,7 +188,7 @@
       "properties": {
         "roleDefinitionId": "[variables('storageBlobDataContributorRoleId')]",
         "principalId": "[reference(resourceId('Microsoft.Web/sites', variables('functionAppName')), '2019-08-01', 'Full').identity.principalId]"
-      }
+      }      
     }
   ],
   "outputs": {

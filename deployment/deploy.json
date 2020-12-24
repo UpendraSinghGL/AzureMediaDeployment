@@ -1,0 +1,71 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "crmUser": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {
+        "baseTemplatePath": "[deployment().properties.templateLink.uri]"
+    },
+    "resources": [
+        {
+            "name": "commondataservice",
+            "type": "Microsoft.Web/connections",
+            "apiVersion": "2016-06-01",
+            "location": "[resourceGroup().location]",
+            "tags": {
+            },
+            "properties": {
+                "displayName": "[parameters('crmUser')]",
+                "parameterValues": {
+                },
+                "customParameterValues": {
+                },
+                "nonSecretParameterValues": {
+                },
+                "api": {
+                    "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/commondataservice')]"
+                }
+            }
+        },
+        {
+            "name": "storage",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-10-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[uri(variables('baseTemplatePath'), 'storageaccount/deploy.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "baseTemplatePath":{"value":"[variables('baseTemplatePath')]"} 
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/connections', 'commondataservice')]"
+            ]
+        },{
+            "name": "logiapp-output",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-10-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[uri(variables('baseTemplatePath'), 'logicapps/deploy.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', 'storage')]"
+            ]
+        }
+    ],
+    "outputs": {
+    }
+}
