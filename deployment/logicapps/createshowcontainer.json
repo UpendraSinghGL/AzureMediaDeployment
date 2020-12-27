@@ -7,14 +7,12 @@
            "defaultValue":"[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/commondataservice')]"
         },
         "sites_MediaLakeFunction": {
-            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/sites/',variables('medialakefunctionname'))]",
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/sites/',toLower(take(concat('func-', concat('durinmedia',uniqueString(resourceGroup().id))), 60)))]",
             "type": "String"
         }
     },
     "functions": [],
     "variables": {
-         "uniqueName": "[concat('durinmedia',uniqueString(resourceGroup().id))]",
-        "medialakefunctionname": "[toLower(take(concat('func-', variables('uniqueName')), 60))]"
     },
     "resources": [
         {
