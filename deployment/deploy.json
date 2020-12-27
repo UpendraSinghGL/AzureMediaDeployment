@@ -128,7 +128,8 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Resources/deployments', 'storage')]"
+                "[resourceId('Microsoft.Resources/deployments', 'storage')]",
+                "[resourceId('Microsoft.Resources/deployments', 'azurefunctiondeployment')]"
             ]
         }
     ],
