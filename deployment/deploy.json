@@ -4,6 +4,12 @@
     "parameters": {
         "crmUser": {
             "type": "string"
+        },
+        "virusTotalApiKey": {
+            "type": "string",
+            "metadata": {
+                "description": "virus total api key"
+            }
         }
     },
     "functions": [],
@@ -31,6 +37,48 @@
                 }
             }
         },
+        {
+            "name": "virustotal",
+            "type": "Microsoft.Web/connections",
+            "apiVersion": "2016-06-01",
+            "location": "[resourceGroup().location]",
+            "tags": {
+            },
+            "properties": {
+                "displayName": "virustotal",
+                "parameterValues": {
+                    "x-api_key":"[parameters('virusTotalApiKey')]"
+                },
+                "customParameterValues": {
+                },
+                "nonSecretParameterValues": {
+                },
+                "api": {
+                    "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/virustotal')]"
+                }
+            }
+        },
+        {
+            "name": "office365",
+            "type": "Microsoft.Web/connections",
+            "apiVersion": "2016-06-01",
+            "location": "[resourceGroup().location]",
+            "tags": {
+            },
+            "properties": {
+                "displayName": "office365",
+                "parameterValues": {
+                },
+                "customParameterValues": {
+                },
+                "nonSecretParameterValues": {
+                },
+                "api": {
+                    "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/office365')]"
+                }
+            }
+        }
+        ,
         {
             "name": "storage",
             "type": "Microsoft.Resources/deployments",
