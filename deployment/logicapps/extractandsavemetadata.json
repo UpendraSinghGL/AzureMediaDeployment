@@ -4,11 +4,18 @@
     "parameters": {
         "connection_commondataservice": {
             "type": "string",
-           "defaultValue":"[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/commondataservice')]"
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/commondataservice')]"
+        },
+        "sites_MediaLakeFunction": {
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/sites/',variables('medialakefunctionname'))]",
+            "type": "String"
         }
     },
     "functions": [],
-    "variables": {},
+    "variables": {
+        "uniqueName": "[concat('durinmedia',uniqueString(resourceGroup().id))]",
+        "medialakefunctionname": "[toLower(take(concat('func-', variables('uniqueName')), 60))]"
+    },
     "resources": [
         {
             "name": "Logic-ExtractAndSaveMetadata",
@@ -137,7 +144,7 @@
                                                     "blobUri": "@body('Parse_Request_Body_JSON')?['BlobUri']"
                                                 },
                                                 "function": {
-                                                    "id": "[concat(parameters('sites_func_metadataextractionyj6niycfpc2zs_externalid'), '/functions/MediaInfo')]"
+                                                    "id": "[concat(parameters('sites_MediaLakeFunction'), '/functions/MediaInfo')]"
                                                 },
                                                 "method": "POST"
                                             }

@@ -7,12 +7,15 @@
             "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/commondataservice')]"
         },
         "sites_MediaLakeFunction": {
-            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/sites/MediaLakeFunction')]",
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/sites/',variables('medialakefunctionname'))]",
             "type": "String"
         }
     },
     "functions": [],
-    "variables": {},
+    "variables": {
+        "uniqueName": "[concat('durinmedia',uniqueString(resourceGroup().id))]",
+        "medialakefunctionname": "[toLower(take(concat('func-', variables('uniqueName')), 60))]"
+    },
     "resources": [
         {
             "name": "Logic-CompareCheckSum",
