@@ -47,9 +47,9 @@
             "properties": {
                 "displayName": "virustotal",
                 "parameterValues": {
-                    "x-api_key":"[parameters('virusTotalApiKey')]"
                 },
                 "customParameterValues": {
+                    "x-api_key":"[parameters('virusTotalApiKey')]"
                 },
                 "nonSecretParameterValues": {
                 },
