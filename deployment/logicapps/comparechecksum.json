@@ -94,7 +94,7 @@
                                                     }
                                                 },
                                                 "method": "post",
-                                                "path":  "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items',variables('org'),durin.wrapInQuote('media_asseterrorlogs'))]"
+                                                "path":  "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
                                             }
                                         },
                                         "Response_failure": {
@@ -180,7 +180,7 @@
                                                                             }
                                                                         },
                                                                         "method": "patch",
-                                                                        "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[{2}]))}',variables('org'),durin.wrapInQuote('media_assetfileses'),durin.wrapInQuote('RecordId'))]"
+                                                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('RecordId'),']))}')]"
                                                                     }
                                                                 }
                                                             },
@@ -217,7 +217,7 @@
                                                                                 }
                                                                             },
                                                                             "method": "patch",
-                                                                            "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[{2}]))}',variables('org'),durin.wrapInQuote('media_assetfileses'),durin.wrapInQuote('RecordId'))]"
+                                                                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('RecordId'),']))}')]"
                                                                         }
                                                                     }
                                                                 }
@@ -292,7 +292,7 @@
                                                                         }
                                                                     },
                                                                     "method": "patch",
-                                                                    "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[{2}]))}',variables('org'),durin.wrapInQuote('media_assetfileses'),durin.wrapInQuote('RecordId'))]"
+                                                                    "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('RecordId'),']))}')]"
                                                                 }
                                                             }
                                                         }
@@ -378,7 +378,7 @@
                                                     }
                                                 },
                                                 "method": "get",
-                                                "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items',variables('org'),durin.wrapInQuote('media_assetfileses'))]",
+                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items')]",
                                                 "queries": {
                                                     "$expand": "media_Asset($select=media_name;$expand=media_AssetContainer($select=media_enablechecksumcheck))",
                                                     "$filter": "media_assetfilesid eq '@{triggerBody()?['RecordId']}'"
