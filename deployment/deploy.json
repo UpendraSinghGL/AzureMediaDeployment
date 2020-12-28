@@ -2,9 +2,6 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "crmUser": {
-            "type": "string"
-        },
         "virusTotalApiKey": {
             "type": "string",
             "metadata": {
@@ -31,7 +28,7 @@
             "tags": {
             },
             "properties": {
-                "displayName": "[parameters('crmUser')]",
+                "displayName": "example@microsoft.com",
                 "parameterValues": {
                 },
                 "customParameterValues": {
