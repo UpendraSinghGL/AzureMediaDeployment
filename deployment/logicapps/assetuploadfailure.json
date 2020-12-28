@@ -116,7 +116,7 @@
                                             }
                                         },
                                         "method": "post",
-                                        "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items',variables('org'), durin.wrapInQuote('media_asseterrorlogs'))]"
+                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
                                     }
                                 }
                             },
@@ -228,7 +228,7 @@
                                                             }
                                                         },
                                                         "method": "patch",
-                                                        "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items/@{encodeURIComponent(encodeURIComponent(variables({2})))}',variables('org'), durin.wrapInQuote('media_assets'),durin.wrapInQuote('AssetId'))]"
+                                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(variables(',durin.wrapInQuote('AssetId'),')))}')]"
                                                     }
                                                 }
                                             },
@@ -265,7 +265,7 @@
                                                                 }
                                                             },
                                                             "method": "patch",
-                                                            "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items/@{encodeURIComponent(encodeURIComponent(variables({2})))}',variables('org'),durin.wrapInQuote('media_assets'),durin.wrapInQuote('AssetId'))]"
+                                                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(variables(',durin.wrapInQuote('AssetId'),')))}')]"
                                                         }
                                                     }
                                                 }
@@ -350,7 +350,7 @@
                                             }
                                         },
                                         "method": "get",
-                                        "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items',variables('org'),durin.wrapInQuote('media_assets'))]",
+                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items')]",
                                         "queries": {
                                             "$filter": "media_shootday eq '@{triggerBody()?['shootDay']}' and media_unit eq '@{triggerBody()?['unit']}' and media_batch eq '@{triggerBody()?['batch']}' and _media_episode_value eq '@{triggerBody()?['episodeId']}' "
                                         }
