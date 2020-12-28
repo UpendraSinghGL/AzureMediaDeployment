@@ -67,7 +67,7 @@
                                         "name": "@parameters('$connections')['commondataservice']['connectionId']"
                                     }
                                 },
-                                "path": "[format('/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/onnewitemswebhook',variables('org'),durin.wrapInQuote('media_asseterrorlogs'))]",
+                                "path": "[concat('/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/onnewitemswebhook')]",
                                 "queries": {
                                     "scope": "Organization"
                                 }
@@ -96,7 +96,7 @@
                                             }
                                         },
                                         "method": "get",
-                                        "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[{2}]))}',variables('org'),durin.wrapInQuote('media_assets'),durin.wrapInQuote('_media_asset_value'))]"
+                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('_media_asset_value'),']))}')]"
                                     }
                                 },
                                 "Set_variable_-_AssetNotificationEmail": {
