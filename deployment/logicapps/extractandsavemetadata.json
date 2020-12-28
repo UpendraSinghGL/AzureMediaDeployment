@@ -88,7 +88,7 @@
                                                     }
                                                 },
                                                 "method": "post",
-                                                "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items',variables('org'),durin.wrapInQuote('media_asseterrorlogs'))]"
+                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
                                             }
                                         },
                                         "Response_failure": {
@@ -116,7 +116,7 @@
                                                     }
                                                 },
                                                 "method": "patch",
-                                                "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items/@{encodeURIComponent(encodeURIComponent(body({2})?[{3}]))}',variables('org'),durin.wrapInQuote('media_assetfileses'),durin.wrapInQuote('Parse_Request_Body_JSON'),durin.wrapInQuote('RecordId'))]"
+                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(body(',durin.wrapInQuote('Parse_Request_Body_JSON'),')?[',durin.wrapInQuote('RecordId'),']))}')]"
                                             }
                                         }
                                     },
@@ -201,7 +201,7 @@
                                                             }
                                                         },
                                                         "method": "patch",
-                                                        "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items/@{encodeURIComponent(encodeURIComponent(body({2})?[{3}]))}',variables('org'),durin.wrapInQuote('media_assetfileses'),durin.wrapInQuote('Parse_Request_Body_JSON'),durin.wrapInQuote('RecordId'))]"
+                                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(body(',durin.wrapInQuote('Parse_Request_Body_JSON'),')?[',durin.wrapInQuote('RecordId'),']))}')]"
                                                     }
                                                 }
                                             },
@@ -225,7 +225,7 @@
                                                                 }
                                                             },
                                                             "method": "patch",
-                                                            "path": "[ format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items/@{encodeURIComponent(encodeURIComponent(body({2})?[{3}]))}',variables('org'),durin.wrapInQuote('media_assetfileses'),durin.wrapInQuote('Parse_Request_Body_JSON'),durin.wrapInQuote('RecordId'))]"
+                                                            "path": "[ concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(body(',durin.wrapInQuote('Parse_Request_Body_JSON'),')?[',durin.wrapInQuote('RecordId'),']))}')]"
                                                         }
                                                     }
                                                 }
