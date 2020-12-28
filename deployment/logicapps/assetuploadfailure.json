@@ -5,10 +5,36 @@
         "connection_commondataservice": {
             "type": "string",
            "defaultValue":"[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/commondataservice')]"
+        },
+        "crmOrgName": {
+            "type": "string",
+            "metadata": {
+                "description": "description"
+            }
         }
     },
-    "functions": [],
-    "variables": {},
+    "functions": [
+        {
+            "namespace": "durin",
+            "members": {
+                "wrapInQuote": {
+                    "parameters": [
+                        {
+                            "name": "text",
+                            "type": "string"
+                        }
+                    ],
+                    "output": {
+                        "value": "[concat('''', parameters('text'),'''')]",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    ],
+    "variables": {
+         "org": "[durin.wrapInQuote(concat(parameters('crmOrgName'),'.crm'))]"
+    },
     "resources": [
         {
             "name": "Logic-AssetUploadFailure",
@@ -90,7 +116,7 @@
                                             }
                                         },
                                         "method": "post",
-                                        "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('org5bf00bc1.crm'))}/tables/@{encodeURIComponent(encodeURIComponent('media_asseterrorlogs'))}/items"
+                                        "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items',variables('org'), durin.wrapInQuote('media_asseterrorlogs'))]"
                                     }
                                 }
                             },
@@ -202,7 +228,7 @@
                                                             }
                                                         },
                                                         "method": "patch",
-                                                        "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('org5bf00bc1.crm'))}/tables/@{encodeURIComponent(encodeURIComponent('media_assets'))}/items/@{encodeURIComponent(encodeURIComponent(variables('AssetId')))}"
+                                                        "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items/@{encodeURIComponent(encodeURIComponent(variables({2})))}',variables('org'), durin.wrapInQuote('media_assets'),durin.wrapInQuote('AssetId'))]"
                                                     }
                                                 }
                                             },
@@ -239,7 +265,7 @@
                                                                 }
                                                             },
                                                             "method": "patch",
-                                                            "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('org5bf00bc1.crm'))}/tables/@{encodeURIComponent(encodeURIComponent('media_assets'))}/items/@{encodeURIComponent(encodeURIComponent(variables('AssetId')))}"
+                                                            "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items/@{encodeURIComponent(encodeURIComponent(variables({2})))}',variables('org'),durin.wrapInQuote('media_assets'),durin.wrapInQuote('AssetId'))]"
                                                         }
                                                     }
                                                 }
@@ -324,7 +350,7 @@
                                             }
                                         },
                                         "method": "get",
-                                        "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('org5bf00bc1.crm'))}/tables/@{encodeURIComponent(encodeURIComponent('media_assets'))}/items",
+                                        "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items',variables('org'),durin.wrapInQuote('media_assets'))]",
                                         "queries": {
                                             "$filter": "media_shootday eq '@{triggerBody()?['shootDay']}' and media_unit eq '@{triggerBody()?['unit']}' and media_batch eq '@{triggerBody()?['batch']}' and _media_episode_value eq '@{triggerBody()?['episodeId']}' "
                                         }

@@ -29,6 +29,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "crmOrgName": { "value": "[parameters('crmOrgName')]" }
                 }
             },
             "dependsOn": [
@@ -45,9 +46,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "parameters": {
-                    "crmOrgName":{"value":"[parameters('crmOrgName')]"}
-                }
+                    "crmOrgName": { "value": "[parameters('crmOrgName')]" }
                 }
             }
         },
@@ -76,6 +75,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                     "crmOrgName": { "value": "[parameters('crmOrgName')]" }
                 }
             },
             "dependsOn": [
@@ -93,6 +93,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "crmOrgName": { "value": "[parameters('crmOrgName')]" }
                 }
             },
             "dependsOn": [
@@ -110,7 +111,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "crmOrgName":{"value":"[parameters('crmOrgName')]"}
+                    "crmOrgName": { "value": "[parameters('crmOrgName')]" }
                 }
             }
         },
@@ -125,6 +126,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "crmOrgName": { "value": "[parameters('crmOrgName')]" }
                 }
             }
         },
@@ -139,6 +141,22 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+                }
+            }
+        },
+        {
+            "name": "logicapp-comparechecksum-deployment",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-10-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/comparechecksum.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "crmOrgName": { "value": "[parameters('crmOrgName')]" }
                 }
             }
         }

@@ -9,10 +9,36 @@
          "workflows_Logic_SendEmail": {
             "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Logic/workflows/Logic-SendEmail')]",
             "type": "String"
+        },
+        "crmOrgName": {
+            "type": "string",
+            "metadata": {
+                "description": "description"
+            }
         }
     },
-    "functions": [],
-    "variables": {},
+    "functions": [
+        {
+            "namespace": "durin",
+            "members": {
+                "wrapInQuote": {
+                    "parameters": [
+                        {
+                            "name": "text",
+                            "type": "string"
+                        }
+                    ],
+                    "output": {
+                        "value": "[concat('''', parameters('text'),'''')]",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    ],
+    "variables": {
+         "org": "[durin.wrapInQuote(concat(parameters('crmOrgName'),'.crm'))]"
+    },
     "resources": [
         {
             "name": "Logic-ErrorLogNotification",
@@ -41,7 +67,7 @@
                                         "name": "@parameters('$connections')['commondataservice']['connectionId']"
                                     }
                                 },
-                                "path": "/datasets/@{encodeURIComponent(encodeURIComponent('org5bf00bc1.crm'))}/tables/@{encodeURIComponent(encodeURIComponent('media_asseterrorlogs'))}/onnewitemswebhook",
+                                "path": "[format('/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/onnewitemswebhook',variables('org'),durin.wrapInQuote('media_asseterrorlogs'))]",
                                 "queries": {
                                     "scope": "Organization"
                                 }
@@ -70,7 +96,7 @@
                                             }
                                         },
                                         "method": "get",
-                                        "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('org5bf00bc1.crm'))}/tables/@{encodeURIComponent(encodeURIComponent('media_assets'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?['_media_asset_value']))}"
+                                        "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[{2}]))}',variables('org'),durin.wrapInQuote('media_assets'),durin.wrapInQuote('_media_asset_value'))]"
                                     }
                                 },
                                 "Set_variable_-_AssetNotificationEmail": {

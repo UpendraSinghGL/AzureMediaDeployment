@@ -9,10 +9,36 @@
         "connection_commondataservice": {
             "type": "string",
            "defaultValue":"[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/commondataservice')]"
+        },
+        "crmOrgName": {
+            "type": "string",
+            "metadata": {
+                "description": "description"
+            }
         }
     },
-    "functions": [],
-    "variables": {},
+    "functions": [
+        {
+            "namespace": "durin",
+            "members": {
+                "wrapInQuote": {
+                    "parameters": [
+                        {
+                            "name": "text",
+                            "type": "string"
+                        }
+                    ],
+                    "output": {
+                        "value": "[concat('''', parameters('text'),'''')]",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    ],
+    "variables": {
+        "org": "[durin.wrapInQuote(concat(parameters('crmOrgName'),'.crm'))]"
+    },
     "resources": [
         {
             "name": "generateSASToken",
@@ -67,7 +93,7 @@
                                                     }
                                                 },
                                                 "method": "post",
-                                                "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('org5bf00bc1.crm'))}/tables/@{encodeURIComponent(encodeURIComponent('media_asseterrorlogs'))}/items"
+                                                "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items',variables('org'),durin.wrapInQuote('media_asseterrorlogs'))]"
                                             }
                                         },
                                         "Response_failure": {
@@ -127,7 +153,7 @@
                                                     }
                                                 },
                                                 "method": "get",
-                                                "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('org5bf00bc1.crm'))}/tables/@{encodeURIComponent(encodeURIComponent('media_assetcontainers'))}/items",
+                                                "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items',variables('org'),durin.wrapInQuote('media_assetcontainers'))]",
                                                 "queries": {
                                                     "$filter": "media_AssetContainer_SystemUser_SystemUse/any(o:o/azureactivedirectoryobjectid eq '@{triggerBody()?['userId']}') and media_assetcontainerid eq '@{triggerBody()?['showId']}'"
                                                 }
