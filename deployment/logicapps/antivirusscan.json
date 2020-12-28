@@ -9,10 +9,36 @@
         "connection_virustotal": {
             "type": "string",
             "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/virustotal')]"
+        },
+        "crmOrgName": {
+            "type": "string",
+            "metadata": {
+                "description": "description"
+            }
         }
     },
-    "functions": [],
-    "variables": {},
+    "functions": [
+        {
+            "namespace": "durin",
+            "members": {
+                "wrapInQuote": {
+                    "parameters": [
+                        {
+                            "name": "text",
+                            "type": "string"
+                        }
+                    ],
+                    "output": {
+                        "value": "[concat('''', parameters('text'),'''')]",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    ],
+    "variables": {
+         "org": "[durin.wrapInQuote(concat(parameters('crmOrgName'),'.crm'))]"
+    },
     "resources": [
         {
             "name": "Logic-AntiVirusScan",
@@ -73,7 +99,7 @@
                                                     }
                                                 },
                                                 "method": "post",
-                                                "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('org5bf00bc1.crm'))}/tables/@{encodeURIComponent(encodeURIComponent('media_asseterrorlogs'))}/items"
+                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
                                             }
                                         },
                                         "Response_failure": {
@@ -105,7 +131,7 @@
                                                     }
                                                 },
                                                 "method": "patch",
-                                                "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('org5bf00bc1.crm'))}/tables/@{encodeURIComponent(encodeURIComponent('media_assetfileses'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?['RecordId']))}"
+                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('RecordId'),']))}')]"
                                             }
                                         }
                                     },
@@ -196,7 +222,7 @@
                                                             }
                                                         },
                                                         "method": "patch",
-                                                        "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('org5bf00bc1.crm'))}/tables/@{encodeURIComponent(encodeURIComponent('media_assetfileses'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?['RecordId']))}"
+                                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('RecordId'),']))}')]"
                                                     }
                                                 }
                                             },
@@ -233,7 +259,7 @@
                                                                 }
                                                             },
                                                             "method": "patch",
-                                                            "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('org5bf00bc1.crm'))}/tables/@{encodeURIComponent(encodeURIComponent('media_assetfileses'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?['RecordId']))}"
+                                                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('RecordId'),']))}')]"
                                                         }
                                                     }
                                                 }

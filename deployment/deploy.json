@@ -10,6 +10,12 @@
             "metadata": {
                 "description": "virus total api key"
             }
+        },
+        "cdsOrgUniqueName": {
+            "type": "string",
+            "metadata": {
+                "description": "Enter cds org unique name"
+            }
         }
     },
     "functions": [],
@@ -124,7 +130,8 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                     "baseTemplatePath":{"value":"[variables('baseTemplatePath')]"} 
+                     "baseTemplatePath":{"value":"[variables('baseTemplatePath')]"},
+                     "crmOrgName":{"value":"[parameters('cdsOrgUniqueName')]"} 
                 }
             },
             "dependsOn": [

@@ -7,6 +7,12 @@
             "metadata": {
                 "description": "description"
             }
+        },
+        "crmOrgName": {
+            "type": "string",
+            "metadata": {
+                "description": "cds org unique name"
+            }
         }
     },
     "functions": [],
@@ -39,6 +45,9 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "parameters": {
+                    "crmOrgName":{"value":"[parameters('crmOrgName')]"}
+                }
                 }
             }
         },
@@ -101,6 +110,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "crmOrgName":{"value":"[parameters('crmOrgName')]"}
                 }
             }
         },
