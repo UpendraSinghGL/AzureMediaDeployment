@@ -1,0 +1,25 @@
+E:\MS Project\Durin POC\Code\DurinMediaLake\DurinMediaLake\bin\Debug\Microsoft.Media.DurinMediaLake.dll
+E:\MS Project\Durin POC\Code\DurinMediaLake\DurinMediaLake\bin\Debug\Microsoft.Media.DurinMediaLake.pdb
+E:\MS Project\Durin POC\Code\DurinMediaLake\DurinMediaLake\bin\Debug\Microsoft.Crm.Sdk.Proxy.dll
+E:\MS Project\Durin POC\Code\DurinMediaLake\DurinMediaLake\bin\Debug\Microsoft.Xrm.Sdk.dll
+E:\MS Project\Durin POC\Code\DurinMediaLake\DurinMediaLake\bin\Debug\Newtonsoft.Json.dll
+E:\MS Project\Durin POC\Code\DurinMediaLake\DurinMediaLake\bin\Debug\Microsoft.Crm.Sdk.Proxy.xml
+E:\MS Project\Durin POC\Code\DurinMediaLake\DurinMediaLake\bin\Debug\Microsoft.Xrm.Sdk.xml
+E:\MS Project\Durin POC\Code\DurinMediaLake\DurinMediaLake\bin\Debug\Newtonsoft.Json.xml
+E:\MS Project\Durin POC\Code\DurinMediaLake\DurinMediaLake\obj\Debug\DurinMediaLake.csproj.CoreCompileInputs.cache
+E:\MS Project\Durin POC\Code\DurinMediaLake\DurinMediaLake\obj\Debug\DurinMediaLake.csproj.CopyComplete
+E:\MS Project\Durin POC\Code\DurinMediaLake\DurinMediaLake\obj\Debug\Microsoft.Media.DurinMediaLake.dll
+E:\MS Project\Durin POC\Code\DurinMediaLake\DurinMediaLake\obj\Debug\Microsoft.Media.DurinMediaLake.pdb
+E:\MS Project\Durin POC\Code\DurinMediaLake\DurinMediaLake\obj\Debug\DurinMediaLake.csprojAssemblyReference.cache
+E:\DruinMediaLake\DurinMediaLake\DurinMediaLake\bin\Debug\Microsoft.Media.DurinMediaLake.dll
+E:\DruinMediaLake\DurinMediaLake\DurinMediaLake\bin\Debug\Microsoft.Media.DurinMediaLake.pdb
+E:\DruinMediaLake\DurinMediaLake\DurinMediaLake\bin\Debug\Microsoft.Crm.Sdk.Proxy.dll
+E:\DruinMediaLake\DurinMediaLake\DurinMediaLake\bin\Debug\Microsoft.Xrm.Sdk.dll
+E:\DruinMediaLake\DurinMediaLake\DurinMediaLake\bin\Debug\Newtonsoft.Json.dll
+E:\DruinMediaLake\DurinMediaLake\DurinMediaLake\bin\Debug\Microsoft.Crm.Sdk.Proxy.xml
+E:\DruinMediaLake\DurinMediaLake\DurinMediaLake\bin\Debug\Microsoft.Xrm.Sdk.xml
+E:\DruinMediaLake\DurinMediaLake\DurinMediaLake\bin\Debug\Newtonsoft.Json.xml
+E:\DruinMediaLake\DurinMediaLake\DurinMediaLake\obj\Debug\DurinMediaLake.csproj.CoreCompileInputs.cache
+E:\DruinMediaLake\DurinMediaLake\DurinMediaLake\obj\Debug\DurinMediaLake.csproj.CopyComplete
+E:\DruinMediaLake\DurinMediaLake\DurinMediaLake\obj\Debug\Microsoft.Media.DurinMediaLake.dll
+E:\DruinMediaLake\DurinMediaLake\DurinMediaLake\obj\Debug\Microsoft.Media.DurinMediaLake.pdb
