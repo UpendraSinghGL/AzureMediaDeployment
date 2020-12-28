@@ -93,7 +93,7 @@
                                                     }
                                                 },
                                                 "method": "post",
-                                                "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items',variables('org'),durin.wrapInQuote('media_asseterrorlogs'))]"
+                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
                                             }
                                         },
                                         "Response_failure": {
@@ -153,7 +153,7 @@
                                                     }
                                                 },
                                                 "method": "get",
-                                                "path": "[format('/v2/datasets/@{encodeURIComponent(encodeURIComponent({0}))}/tables/@{encodeURIComponent(encodeURIComponent({1}))}/items',variables('org'),durin.wrapInQuote('media_assetcontainers'))]",
+                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetcontainers'),'))}/items')]",
                                                 "queries": {
                                                     "$filter": "media_AssetContainer_SystemUser_SystemUse/any(o:o/azureactivedirectoryobjectid eq '@{triggerBody()?['userId']}') and media_assetcontainerid eq '@{triggerBody()?['showId']}'"
                                                 }
