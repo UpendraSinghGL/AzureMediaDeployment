@@ -1,19 +1,24 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {     
+    "parameters": {
+        "storagename": {
+            "type": "string",
+            "metadata": {
+                "description": "description"
+            }
+        }     
     },
     "functions": [],
     "variables": {
-        "storageName": "durinstorage"
     },
     "resources": [
         {
-            "name": "[variables('storageName')]",
+            "name": "[parameters('storagename')]",
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2019-06-01",
             "tags": {
-                "displayName": "[variables('storageName')]"
+                "displayName": "[parameters('storagename')]"
             },
             "location": "[resourceGroup().location]",
             "kind": "StorageV2",
@@ -32,8 +37,8 @@
             "properties": {
                 "displayName": "duringstorageconnection",
                 "parameterValues": {
-                    "accountName": "[variables('storageName')]",
-                    "accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts',variables('storageName')) ,'2019-06-01').keys[0]]"
+                    "accountName": "[parameters('storagename')]",
+                    "accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts',parameters('storagename')) ,'2019-06-01').keys[0]]"
                 },
                 "customParameterValues": {
                 },
@@ -44,7 +49,7 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', variables('storageName'))]"
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storagename'))]"
             ]
         }
     ],

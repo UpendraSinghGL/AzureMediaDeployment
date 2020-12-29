@@ -17,7 +17,8 @@
     },
     "functions": [],
     "variables": {
-        "baseTemplatePath": "[deployment().properties.templateLink.uri]"
+        "baseTemplatePath": "[deployment().properties.templateLink.uri]",
+        "blobStorageAccount": "[take(concat('durinstorage',uniqueString(resourceGroup().id)),24)]"
     },
     "resources": [
         {
@@ -93,6 +94,9 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "storagename":{
+                        "value":"[variables('blobStorageAccount')]"
+                    }
                 }
             },
             "dependsOn": [
@@ -110,6 +114,9 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
+                    "blobStorageName":{
+                        "value":"[variables('blobStorageAccount')]"
+                    }
                 }
             },
             "dependsOn": [

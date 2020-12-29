@@ -16,6 +16,12 @@
       "metadata": {
         "description": "The branch of the GitHub repository to use."
       }
+    },
+    "blobStorageName": {
+      "type": "string",
+      "metadata": {
+        "description": "blob storage name media storage"
+      }
     }
   },
   "variables": {
@@ -84,7 +90,7 @@
             },
             {
               "name": "AZURE_STORAGE_CONNECTION_STRING",
-              "value": "sonu"
+              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('blobStorageName'), ';EndpointSuffix=', environment().suffixes.storage, ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('blobStorageName')),'2019-06-01').keys[0].value)]"
             }
           ]
         },
