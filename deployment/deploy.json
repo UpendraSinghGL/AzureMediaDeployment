@@ -19,7 +19,7 @@
     "variables": {
         "baseTemplatePath": "[deployment().properties.templateLink.uri]",
         "blobStorageAccount": "[take(concat('durinstorage',uniqueString(resourceGroup().id)),24)]",
-        "durinTopicWebhookAppName": "[take(concat('durintopic-webhook',uniqueString(resourceGroup().id)),60)]"
+        "durinTopicWebhookAppName": "[take(concat('durintopicwebhook',uniqueString(resourceGroup().id)),60)]"
     },
     "resources": [
         {
