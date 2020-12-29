@@ -18,7 +18,8 @@
     "functions": [],
     "variables": {
         "baseTemplatePath": "[deployment().properties.templateLink.uri]",
-        "blobStorageAccount": "[take(concat('durinstorage',uniqueString(resourceGroup().id)),24)]"
+        "blobStorageAccount": "[take(concat('durinstorage',uniqueString(resourceGroup().id)),24)]",
+        "durinTopicWebhookAppName": "[take(concat('durintopic-webhook',uniqueString(resourceGroup().id)),60)]"
     },
     "resources": [
         {
@@ -115,6 +116,9 @@
                 "parameters": {
                     "blobStorageName": {
                         "value": "[variables('blobStorageAccount')]"
+                    },
+                    "durinTopicWebhookAppName":{
+                        "value":"[variables('durinTopicWebhookAppName')]"
                     }
                 }
             },
@@ -135,6 +139,9 @@
                 "parameters": {
                     "storagename": {
                         "value": "[variables('blobStorageAccount')]"
+                    },
+                    "durinTopicWebhookAppName":{
+                        "value":"[variables('durinTopicWebhookAppName')]"
                     }
                 }
             },

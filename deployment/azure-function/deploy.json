@@ -22,6 +22,12 @@
       "metadata": {
         "description": "blob storage name media storage"
       }
+    },
+    "durinTopicWebhookAppName": {
+      "type": "string",
+      "metadata": {
+        "description": "description"
+      }
     }
   },
   "variables": {
@@ -37,14 +43,13 @@
     "storageAccountName": "[toLower(take(concat('st', 'func' ,variables('uniqueName')), 24))]",
 
     "readerAndDataAccessRoleId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'c12c1c16-33a1-487b-954d-41c89c60f349')]",
-    "storageBlobDataContributorRoleId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')]",
-    "topicWebhookName": "[take(concat('durintopic-webhook',uniqueString(resourceGroup().id)),60)]"
+    "storageBlobDataContributorRoleId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')]"
 
   },
   "resources": [
     {
       "apiVersion": "2015-08-01",
-      "name": "[variables('topicWebhookName')]",
+      "name": "[parameters('durinTopicWebhookAppName')]",
       "type": "Microsoft.Web/sites",
       "identity": {
         "type": "SystemAssigned"
@@ -66,7 +71,7 @@
           "name": "web",
           "type": "sourcecontrols",
           "dependsOn": [
-            "[resourceId('Microsoft.Web/Sites', variables('topicWebhookName'))]"
+            "[resourceId('Microsoft.Web/Sites', parameters('durinTopicWebhookAppName'))]"
           ],
           "properties": {
             "RepoUrl": "https://github.com/Azure-Samples/azure-event-grid-viewer.git",
