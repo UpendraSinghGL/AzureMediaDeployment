@@ -42,40 +42,40 @@
 
   },
   "resources": [
-          {
-        "apiVersion": "2015-08-01",
-        "name": "[variables('topicWebhookName')]",
-        "type": "Microsoft.Web/sites",
-        "identity": {
-          "type": "SystemAssigned"
-        },
-        "location": "[variables('deploymentLocation')]",
-        "dependsOn": [
-          "[concat('Microsoft.Web/serverfarms/', variables('functionHostingPlanName'))]"
-        ],
-        "properties": {
-         "serverFarmId": "[variables('functionServerFarmId')]",
-          "siteConfig": {
-            "webSocketsEnabled": true         
-          },
-          "httpsOnly":true
-        },
-        "resources": [
-          {
-            "apiVersion": "2015-08-01",
-            "name": "web",
-            "type": "sourcecontrols",
-            "dependsOn": [
-              "[resourceId('Microsoft.Web/Sites', variables('topicWebhookName'))]"
-            ],
-            "properties": {
-              "RepoUrl": "https://github.com/Azure-Samples/azure-event-grid-viewer.git",
-              "branch": "main",
-              "IsManualIntegration": true
-            }
-          }
-        ]
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[variables('topicWebhookName')]",
+      "type": "Microsoft.Web/sites",
+      "identity": {
+        "type": "SystemAssigned"
       },
+      "location": "[variables('deploymentLocation')]",
+      "dependsOn": [
+        "[concat('Microsoft.Web/serverfarms/', variables('functionHostingPlanName'))]"
+      ],
+      "properties": {
+        "serverFarmId": "[variables('functionServerFarmId')]",
+        "siteConfig": {
+          "webSocketsEnabled": true
+        },
+        "httpsOnly": true
+      },
+      "resources": [
+        {
+          "apiVersion": "2015-08-01",
+          "name": "web",
+          "type": "sourcecontrols",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/Sites', variables('topicWebhookName'))]"
+          ],
+          "properties": {
+            "RepoUrl": "https://github.com/Azure-Samples/azure-event-grid-viewer.git",
+            "branch": "main",
+            "IsManualIntegration": true
+          }
+        }
+      ]
+    },
     {
       "apiVersion": "2018-11-01",
       "name": "[variables('functionAppName')]",
@@ -229,7 +229,7 @@
       "properties": {
         "roleDefinitionId": "[variables('storageBlobDataContributorRoleId')]",
         "principalId": "[reference(resourceId('Microsoft.Web/sites', variables('functionAppName')), '2019-08-01', 'Full').identity.principalId]"
-      }      
+      }
     }
   ],
   "outputs": {
