@@ -74,7 +74,7 @@
             },
             {
               "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
-              "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('functionStorageAccountName'), ';EndpointSuffix=', environment().suffixes.storage, ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('functionStorageAccountName')),'2019-06-01').keys[0].value)]"
+              "value": "[reference(resourceId('microsoft.insights/components', variables('appInsightsName')), '2018-05-01-preview').ConnectionString]"
             },
             {
               "name": "AzureWebJobsStorage",
