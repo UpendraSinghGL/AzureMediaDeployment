@@ -59,7 +59,7 @@
             "name": "[variables('storageTopic')]",
             "location": "southeastasia",
             "properties": {
-                "source": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'providers/Microsoft.Storage/storageAccounts/',parameters('storagename'))]",
+                "source": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Storage/storageAccounts/',parameters('storagename'))]",
                 "topicType": "microsoft.storage.storageaccounts"
             }
         },
