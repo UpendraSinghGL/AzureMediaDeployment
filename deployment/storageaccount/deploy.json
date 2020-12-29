@@ -11,7 +11,6 @@
     },
     "functions": [],
     "variables": {
-        "storageTopic": "[concat(parameters('storagename'),'-topic')]"
     },
     "resources": [
         {
@@ -52,43 +51,6 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storagename'))]"
             ]
-        },
-        {
-            "type": "Microsoft.EventGrid/systemTopics",
-            "apiVersion": "2020-04-01-preview",
-            "name": "[variables('storageTopic')]",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "source": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Storage/storageAccounts/',parameters('storagename'))]",
-                "topicType": "microsoft.storage.storageaccounts"
-            }
-        },
-           {
-            "type": "Microsoft.EventGrid/systemTopics/eventSubscriptions",
-            "apiVersion": "2020-04-01-preview",
-            "name": "[concat(variables('storageTopic'),'/' ,'logicappsubscribe')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.EventGrid/systemTopics', variables('storageTopic'))]"
-            ],
-            "properties": {
-                "destination": {
-                    "properties": {
-                        "maxEventsPerBatch": 1,
-                        "preferredBatchSizeInKilobytes": 64
-                    },
-                    "endpointType": "WebHook"
-                },
-                "filter": {
-                    "includedEventTypes": [
-                        "Microsoft.Storage.BlobCreated"
-                    ]
-                },
-                "eventDeliverySchema": "EventGridSchema",
-                "retryPolicy": {
-                    "maxDeliveryAttempts": 30,
-                    "eventTimeToLiveInMinutes": 1440
-                }
-            }
         }
     ],
     "outputs": {}

@@ -53,7 +53,7 @@
                 "parameterValues": {
                 },
                 "customParameterValues": {
-                    "x-api_key":"[parameters('virusTotalApiKey')]"
+                    "x-api_key": "[parameters('virusTotalApiKey')]"
                 },
                 "nonSecretParameterValues": {
                 },
@@ -81,8 +81,7 @@
                     "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/office365')]"
                 }
             }
-        }
-        ,
+        },
         {
             "name": "storage",
             "type": "Microsoft.Resources/deployments",
@@ -94,8 +93,8 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "storagename":{
-                        "value":"[variables('blobStorageAccount')]"
+                    "storagename": {
+                        "value": "[variables('blobStorageAccount')]"
                     }
                 }
             },
@@ -114,13 +113,34 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                    "blobStorageName":{
-                        "value":"[variables('blobStorageAccount')]"
+                    "blobStorageName": {
+                        "value": "[variables('blobStorageAccount')]"
                     }
                 }
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Resources/deployments', 'storage')]"
+            ]
+        },
+        {
+            "name": "eventgrid-topic-deployments",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-10-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[uri(variables('baseTemplatePath'), 'storageaccount/eventgrid.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "storagename": {
+                        "value": "[variables('blobStorageAccount')]"
+                    }
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments', 'storage')]",
+                "[resourceId('Microsoft.Resources/deployments', 'azurefunctiondeployment')]"
             ]
         },
         {
@@ -134,9 +154,9 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                     "baseTemplatePath":{"value":"[variables('baseTemplatePath')]"},
-                     "crmOrgName":{"value":"[parameters('cdsOrgUniqueName')]"},
-                     "storageName":{"value":"[variables('blobStorageAccount')]"} 
+                    "baseTemplatePath": { "value": "[variables('baseTemplatePath')]" },
+                    "crmOrgName": { "value": "[parameters('cdsOrgUniqueName')]" },
+                    "storageName": { "value": "[variables('blobStorageAccount')]" }
                 }
             },
             "dependsOn": [
