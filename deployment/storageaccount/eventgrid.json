@@ -42,7 +42,7 @@
                     "properties": {
                         "maxEventsPerBatch": 1,
                         "preferredBatchSizeInKilobytes": 64,
-                        "endpointUrl":"[concat('https://',reference(resourceId('Microsoft.Web/sites', parameters('durinTopicWebhookAppName'))).hostNames[0],'/api/updates/')]"
+                        "endpointUrl":"[concat('https://', reference(parameters('durinTopicWebhookAppName')).defaultHostName, '/api/updates')]"
                     },
                     "endpointType": "WebHook"
                 },
