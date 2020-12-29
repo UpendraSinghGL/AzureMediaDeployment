@@ -57,7 +57,7 @@
             "type": "Microsoft.EventGrid/systemTopics",
             "apiVersion": "2020-04-01-preview",
             "name": "[variables('storageTopic')]",
-            "location": "southeastasia",
+            "location": "[resourceGroup().location]",
             "properties": {
                 "source": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Storage/storageAccounts/',parameters('storagename'))]",
                 "topicType": "microsoft.storage.storageaccounts"
