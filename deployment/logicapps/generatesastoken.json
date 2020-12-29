@@ -41,7 +41,7 @@
     },
     "resources": [
         {
-            "name": "generateSASToken",
+            "name": "Logic-GenerateSASToken",
             "type": "Microsoft.Logic/workflows",
             "apiVersion": "2017-07-01",
             "location": "[resourceGroup().location]",
