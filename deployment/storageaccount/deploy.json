@@ -66,7 +66,7 @@
            {
             "type": "Microsoft.EventGrid/systemTopics/eventSubscriptions",
             "apiVersion": "2020-04-01-preview",
-            "name": "[concat(variables('storageTopic'), '-logicappsubscribe')]",
+            "name": "[concat(variables('storageTopic'),'/' ,'logicappsubscribe')]",
             "dependsOn": [
                 "[resourceId('Microsoft.EventGrid/systemTopics', variables('storageTopic'))]"
             ],
