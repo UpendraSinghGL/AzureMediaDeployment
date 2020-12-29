@@ -135,7 +135,8 @@
                 },
                 "parameters": {
                      "baseTemplatePath":{"value":"[variables('baseTemplatePath')]"},
-                     "crmOrgName":{"value":"[parameters('cdsOrgUniqueName')]"} 
+                     "crmOrgName":{"value":"[parameters('cdsOrgUniqueName')]"},
+                     "storageName":{"value":"[variables('blobStorageAccount')]"} 
                 }
             },
             "dependsOn": [

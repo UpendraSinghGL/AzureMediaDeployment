@@ -13,6 +13,12 @@
             "metadata": {
                 "description": "cds org unique name"
             }
+        },
+        "storageName": {
+            "type": "string",
+            "metadata": {
+                "description": "description"
+            }
         }
     },
     "functions": [],
@@ -75,7 +81,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
-                     "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+                    "crmOrgName": { "value": "[parameters('crmOrgName')]" }
                 }
             },
             "dependsOn": [
@@ -172,6 +178,22 @@
                 },
                 "parameters": {
                     "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+                }
+            }
+        },
+        {
+            "name": "logicapp-onblobcreate-deployment",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-10-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/onblobcreate.json')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+                    "storageName": { "value": "[parameters('storageName')]" }
                 }
             }
         }
