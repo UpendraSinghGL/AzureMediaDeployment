@@ -284,7 +284,6 @@
           },
           "properties": {
             "displayName": "azureeventgrid",
-            "kind": "V1",
             "parameterValues": {
             },
             "customParameterValues": {
