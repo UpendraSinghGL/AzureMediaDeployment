@@ -12,121 +12,131 @@
     {
         public override void ExecutePlugin()
         {
-            // The InputParameters collection contains all the data passed in the message request.
-            if (this.PluginContext.InputParameters.Contains(PluginConstants.Target) &&
-                PluginContext.InputParameters[PluginConstants.Target] is Entity)
+            try
             {
-                // Obtain the target entity from the input parameters.
-                Entity fileEntity = (Entity)this.PluginContext.InputParameters[PluginConstants.Target];
-
-                // Verify that the target entity represents the media_assetfiles.
-                // If not, this plug-in was not registered correctly.
-                if (fileEntity.LogicalName != MediaAssetFileConstants.EntityLogicalName)
-                    return;
-
-                string rawMetadataJson = String.Empty;
-                MediaInfoMetadata mediaInfoMetadata = new MediaInfoMetadata();
-
-                if (fileEntity.Contains(MediaAssetFileConstants.MediaInfoMetadata))
+                // The InputParameters collection contains all the data passed in the message request.
+                if (this.PluginContext.InputParameters.Contains(PluginConstants.Target) &&
+                    PluginContext.InputParameters[PluginConstants.Target] is Entity)
                 {
-                    rawMetadataJson = fileEntity.GetAttributeValue<string>(MediaAssetFileConstants.MediaInfoMetadata).Replace("\"@type\":", "\"TrackType\":");
-                    mediaInfoMetadata = JsonConvert.DeserializeObject<MediaInfoMetadata>(rawMetadataJson);
-                }
+                    // Obtain the target entity from the input parameters.
+                    Entity fileEntity = (Entity)this.PluginContext.InputParameters[PluginConstants.Target];
 
-                if (mediaInfoMetadata.media.track.Length > 0)
-                {
-                    var mediaTracks = mediaInfoMetadata.media.track;
-                    int totalMetadataCount = 0;
-                    int failedMetadataCount = 0;
+                    // Verify that the target entity represents the media_assetfiles.
+                    // If not, this plug-in was not registered correctly.
+                    if (fileEntity.LogicalName != MediaAssetFileConstants.EntityLogicalName)
+                        return;
 
-                    foreach (Track track in mediaTracks)
+                    string rawMetadataJson = String.Empty;
+                    MediaInfoMetadata mediaInfoMetadata = new MediaInfoMetadata();
+
+                    this.TracingService.Trace("metadataPlugin: Run Started for Id - " + fileEntity.Id);
+
+                    if (fileEntity.Contains(MediaAssetFileConstants.MediaInfoMetadata))
                     {
-                        // Create an entry in mediatrack
-                        Entity mediaTrack = new Entity(MediaTrackConstants.EntityLogicalName);
+                        rawMetadataJson = fileEntity.GetAttributeValue<string>(MediaAssetFileConstants.MediaInfoMetadata).Replace("\"@type\":", "\"TrackType\":");
+                        mediaInfoMetadata = JsonConvert.DeserializeObject<MediaInfoMetadata>(rawMetadataJson);
 
-                        // Create an ExecuteMultipleRequest object.
-                        var requestWithResults = new ExecuteMultipleRequest()
+
+                        if (mediaInfoMetadata.media.track.Length > 0)
                         {
-                            // Assign settings that define execution behavior: continue on error, return responses. 
-                            Settings = new ExecuteMultipleSettings()
+                            var mediaTracks = mediaInfoMetadata.media.track;
+                            int totalMetadataCount = 0;
+                            int failedMetadataCount = 0;
+
+                            foreach (Track track in mediaTracks)
                             {
-                                ContinueOnError = true,
-                                ReturnResponses = true
-                            },
-                            // Create an empty organization request collection.
-                            Requests = new OrganizationRequestCollection()
-                        };
+                                // Create an entry in mediatrack
+                                Entity mediaTrack = new Entity(MediaTrackConstants.EntityLogicalName);
 
-                        mediaTrack[MediaTrackConstants.Type] = track.TrackType;
-                        mediaTrack[MediaTrackConstants.Format] = track.Format;
+                                // Create an ExecuteMultipleRequest object.
+                                var requestWithResults = new ExecuteMultipleRequest()
+                                {
+                                    // Assign settings that define execution behavior: continue on error, return responses. 
+                                    Settings = new ExecuteMultipleSettings()
+                                    {
+                                        ContinueOnError = true,
+                                        ReturnResponses = true
+                                    },
+                                    // Create an empty organization request collection.
+                                    Requests = new OrganizationRequestCollection()
+                                };
 
-                        // Reference to the asset file in the track record.
-                        if (this.PluginContext.PrimaryEntityId != Guid.Empty)
-                        {
-                            Guid regardingobjectid = new Guid(this.PluginContext.PrimaryEntityId.ToString());
-                            string regardingobjectidType = MediaAssetFileConstants.EntityLogicalName;
+                                mediaTrack[MediaTrackConstants.Type] = track.TrackType;
+                                mediaTrack[MediaTrackConstants.Format] = track.Format;
 
-                            mediaTrack[MediaTrackConstants.RefAssetFile] = new EntityReference(regardingobjectidType, regardingobjectid);
-                        }
+                                // Reference to the asset file in the track record.
+                                if (this.PluginContext.PrimaryEntityId != Guid.Empty)
+                                {
+                                    Guid regardingobjectid = new Guid(this.PluginContext.PrimaryEntityId.ToString());
+                                    string regardingobjectidType = MediaAssetFileConstants.EntityLogicalName;
 
-                        Guid mediaTrackId = this.OrganizationService.Create(mediaTrack);
+                                    mediaTrack[MediaTrackConstants.RefAssetFile] = new EntityReference(regardingobjectidType, regardingobjectid);
+                                }
 
-                        if (mediaTrackId != Guid.Empty)
-                        {
-                            totalMetadataCount += track.ExtensionData.Count;
+                                Guid mediaTrackId = this.OrganizationService.Create(mediaTrack);
 
-                            foreach (var data in track.ExtensionData)
-                            {
-                                // Create an entry in metadata
-                                Entity metadata = new Entity(MetadataConstants.EntityLogicalName);
+                                if (mediaTrackId != Guid.Empty)
+                                {
+                                    totalMetadataCount += track.ExtensionData.Count;
 
-                                metadata[MetadataConstants.KeyName] = data.Key;
-                                metadata[MetadataConstants.KeyValue] = (data.Value is string) ? data.Value : JsonConvert.SerializeObject(data.Value);
+                                    foreach (var data in track.ExtensionData)
+                                    {
+                                        // Create an entry in metadata
+                                        Entity metadata = new Entity(MetadataConstants.EntityLogicalName);
 
-                                // Reference to the track in the metadata record.
-                                Guid regardingobjectid = mediaTrackId;
-                                string regardingobjectidType = MetadataConstants.RefTrack;
+                                        metadata[MetadataConstants.KeyName] = data.Key;
+                                        metadata[MetadataConstants.KeyValue] = (data.Value is string) ? data.Value : JsonConvert.SerializeObject(data.Value);
 
-                                metadata[MetadataConstants.RefTrack] = new EntityReference(regardingobjectidType, regardingobjectid);
+                                        // Reference to the track in the metadata record.
+                                        Guid regardingobjectid = mediaTrackId;
+                                        string regardingobjectidType = MetadataConstants.RefTrack;
 
-                                //Guid media_metadata = OrganizationService.Create(metadata);
+                                        metadata[MetadataConstants.RefTrack] = new EntityReference(regardingobjectidType, regardingobjectid);
 
-                                #region Execute Multiple with Results
+                                        //Guid media_metadata = OrganizationService.Create(metadata);
 
-                                // Create several (local, in memory) entities in a collection. 
-                                EntityCollection input = new EntityCollection();
-                                input.Entities.Add(metadata);
+                                        #region Execute Multiple with Results
 
-                                CreateRequest createRequest = new CreateRequest { Target = input[0] };
-                                requestWithResults.Requests.Add(createRequest);
+                                        // Create several (local, in memory) entities in a collection. 
+                                        EntityCollection input = new EntityCollection();
+                                        input.Entities.Add(metadata);
 
-                                #endregion
+                                        CreateRequest createRequest = new CreateRequest { Target = input[0] };
+                                        requestWithResults.Requests.Add(createRequest);
+
+                                        #endregion
+                                    }
+
+                                    // Execute all the requests in the request collection using a single web method call.
+                                    ExecuteMultipleResponse responseWithResults =
+                                        (ExecuteMultipleResponse)this.OrganizationService.Execute(requestWithResults);
+
+                                    failedMetadataCount += responseWithResults.Responses.Where(x => x.Fault != null).Count();
+                                }
+                                else
+                                {
+                                    this.TracingService.Trace("metadataPlugin: mediaTrackId is empty.");
+                                }
                             }
 
-                            // Execute all the requests in the request collection using a single web method call.
-                            ExecuteMultipleResponse responseWithResults =
-                                (ExecuteMultipleResponse)this.OrganizationService.Execute(requestWithResults);
+                            //SetFileType(mediaTracks, fileEntity);
 
-                            failedMetadataCount += responseWithResults.Responses.Where(x => x.Fault != null).Count();
+                            this.TracingService.Trace(string.Format("metadataPlugin: Successfully created {0}/{1} metadata record related to asset file.", totalMetadataCount - failedMetadataCount, totalMetadataCount));
+                            this.TracingService.Trace(string.Format("metadataPlugin: {0} metadata record failed", failedMetadataCount));
                         }
                         else
                         {
-                            this.TracingService.Trace("metadataPlugin: mediaTrackId is empty.");
+                            this.TracingService.Trace("metadataPlugin: metadata extracted from media info don't have any track.");
                         }
+
+                        // Create the task in Microsoft Dynamics CRM.
+                        this.TracingService.Trace("metadataPlugin: Run Completed");
                     }
-
-                    //SetFileType(mediaTracks, fileEntity);
-
-                    this.TracingService.Trace(string.Format("metadataPlugin: Successfully created {0}/{1} metadata record related to asset file.", totalMetadataCount - failedMetadataCount, totalMetadataCount));
-                    this.TracingService.Trace(string.Format("metadataPlugin: {0} metadata record failed", failedMetadataCount));
                 }
-                else
-                {
-                    this.TracingService.Trace("metadataPlugin: metadata extracted from media info don't have any track.");
-                }
-
-                // Create the task in Microsoft Dynamics CRM.
-                this.TracingService.Trace("metadataPlugin: Run Completed");
+            }
+            catch (Exception ex)
+            {
+                this.TracingService.Trace("metadataPlugin: Run Failed | " + ex.Message);
             }
         }
 
