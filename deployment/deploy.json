@@ -168,7 +168,8 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Resources/deployments', 'storage')]",
-                "[resourceId('Microsoft.Resources/deployments', 'azurefunctiondeployment')]"
+                "[resourceId('Microsoft.Resources/deployments', 'azurefunctiondeployment')]",
+                "[resourceId('Microsoft.Resources/deployments', 'eventgrid-topic-deployments')]"
             ]
         }
     ],
