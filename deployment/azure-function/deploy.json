@@ -242,7 +242,7 @@
             "name": "[variables('storageTopic')]",
             "location": "[resourceGroup().location]",
             "properties": {
-                "source": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Storage/storageAccounts/',parameters('storagename'))]",
+                "source": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Storage/storageAccounts/',parameters('blobStorageName'))]",
                 "topicType": "microsoft.storage.storageaccounts"
             }
         },
