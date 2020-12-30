@@ -181,22 +181,52 @@
                 }
             }
         },
-        {
-            "name": "logicapp-onblobcreate-deployment",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-10-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/onblobcreate.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-                    "storageName": { "value": "[parameters('storageName')]" }
-                }
-            }
+      {
+        "name": "logicapp-onblobcreate-deployment",
+        "type": "Microsoft.Resources/deployments",
+        "apiVersion": "2019-10-01",
+        "properties": {
+          "mode": "Incremental",
+          "templateLink": {
+            "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/onblobcreate.json')]",
+            "contentVersion": "1.0.0.0"
+          },
+          "parameters": {
+            "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+            "storageName": { "value": "[parameters('storageName')]" }
+          }
         }
+      },
+      {
+        "name": "logicapp-createvendorcontainer-deployment",
+        "type": "Microsoft.Resources/deployments",
+        "apiVersion": "2019-10-01",
+        "properties": {
+          "mode": "Incremental",
+          "templateLink": {
+            "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/createvendorcontainer.json')]",
+            "contentVersion": "1.0.0.0"
+          },
+          "parameters": {
+            "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+          }
+        }
+      },
+      {
+        "name": "logicapp-copyblobtoanotherblobstorage-deployment",
+        "type": "Microsoft.Resources/deployments",
+        "apiVersion": "2019-10-01",
+        "properties": {
+          "mode": "Incremental",
+          "templateLink": {
+            "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/copyblobtoanotherblobstorage.json')]",
+            "contentVersion": "1.0.0.0"
+          },
+          "parameters": {
+            "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+          }
+        }
+      }
     ],
     "outputs": {
     }

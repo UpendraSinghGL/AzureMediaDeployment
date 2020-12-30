@@ -1,0 +1,361 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workflows_Logic_ReadAzureConfiguration": {
+			"defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Logic/workflows/Logic-ReadAzureConfiguration')]",
+			"type": "String"
+		},
+		"connection_commondataservice": {
+			"type": "string",
+			"defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/commondataservice')]"
+		},
+		"crmOrgName": {
+			"type": "string",
+			"metadata": {
+				"description": "description"
+			}
+		}
+	},
+	"functions": [
+		{
+			"namespace": "durin",
+			"members": {
+				"wrapInQuote": {
+					"parameters": [
+						{
+							"name": "text",
+							"type": "string"
+						}
+					],
+					"output": {
+						"value": "[concat('''', parameters('text'),'''')]",
+						"type": "string"
+					}
+				}
+			}
+		}
+	],
+	"variables": {
+		"org": "[durin.wrapInQuote(concat(parameters('crmOrgName'),'.crm'))]"
+	},
+	"resources": [
+		{
+			"type": "Microsoft.Logic/workflows",
+			"apiVersion": "2017-07-01",
+			"name": "Logic-CopyBlobToAnotherBlobStorage",
+			"location": "[resourceGroup().location]",
+			"properties": {
+				"definition": {
+					"$schema": "https://schema.management.azure.com/schemas/2016-06-01/Microsoft.Logic.json",
+					"contentVersion": "1.0.0.0",
+					"parameters": {
+						"$connections": {
+							"defaultValue": {},
+							"type": "Object"
+						}
+					},
+					"triggers": {
+						"manual": {
+							"type": "Request",
+							"kind": "Http",
+							"inputs": {
+								"schema": {
+									"properties": {
+										"assetId": {
+											"type": "string"
+										},
+										"containerName": {
+											"type": "string"
+										},
+										"fileName": {
+											"type": "string"
+										},
+										"folderPath": {
+											"type": "string"
+										},
+										"vendorContainer": {
+											"type": "string"
+										},
+										"vendorCopyStatusId": {
+											"type": "string"
+										}
+									},
+									"type": "object"
+								}
+							}
+						}
+					},
+					"actions": {
+						"HTTP_Get_Access_Token": {
+							"runAfter": {
+								"Initialize_variable_OutputDatasetName": [
+									"Succeeded"
+								]
+							},
+							"type": "Http",
+							"inputs": {
+								"body": "grant_type=client_credentials&client_id=@{variables('configurations')?['AadClientId']}&client_secret=@{variables('configurations')?['AadSecret']}&resource=https://management.core.windows.net/",
+								"headers": {
+									"Content-Type": "application/x-www-form-urlencoded",
+									"Keep-Alive": "true"
+								},
+								"method": "POST",
+								"uri": "@{concat('https://login.microsoftonline.com/', variables('configurations')?['AadTenantDomain'], '/oauth2/token')}"
+							}
+						},
+						"HTTP_create_input_dataset": {
+							"runAfter": {
+								"HTTP_Get_Access_Token": [
+									"Succeeded"
+								]
+							},
+							"type": "Http",
+							"inputs": {
+								"body": {
+									"name": "InputDataset",
+									"properties": {
+										"annotations": [],
+										"linkedServiceName": {
+											"referenceName": "@{string(variables('configurations')?['SourceBlobLinkedServiceName'])}",
+											"type": "LinkedServiceReference"
+										},
+										"type": "Binary",
+										"typeProperties": {
+											"location": {
+												"container": "@{triggerBody()?['containerName']}",
+												"fileName": "@{triggerBody()?['fileName']}",
+												"folderPath": "@{triggerBody()?['folderPath']}",
+												"type": "AzureBlobStorageLocation"
+											}
+										}
+									}
+								},
+								"headers": {
+									"Accept": "application/json",
+									"Authorization": "Bearer @{body('HTTP_Get_Access_Token')?['access_token']}",
+									"Content-Type": "application/json"
+								},
+								"method": "PUT",
+								"uri": "@{concat('https://management.azure.com/subscriptions/', variables('configurations')?['SubscriptionId'], '/resourceGroups/', variables('configurations')?['ResourceGroup'], '/providers/Microsoft.DataFactory/factories/', variables('configurations')?['FactoryName'], '/datasets/InputDataset', '?api-version=', variables('configurations')?['api-version'])}"
+							}
+						},
+						"HTTP_create_output_dataset": {
+							"runAfter": {
+								"HTTP_create_input_dataset": [
+									"Succeeded"
+								]
+							},
+							"type": "Http",
+							"inputs": {
+								"body": {
+									"name": "OutputDatasetBlob",
+									"properties": {
+										"annotations": [],
+										"linkedServiceName": {
+											"referenceName": "@{variables('configurations')?['DestinationBlobLinkedServiceName']}",
+											"type": "LinkedServiceReference"
+										},
+										"type": "Binary",
+										"typeProperties": {
+											"location": {
+												"container": "@{triggerBody()?['vendorContainer']}",
+												"folderPath": "@{concat(triggerBody()?['containerName'],'/',triggerBody()?['folderPath'])}",
+												"type": "AzureBlobStorageLocation"
+											}
+										}
+									}
+								},
+								"headers": {
+									"Accept": "application/json",
+									"Authorization": "Bearer @{body('HTTP_Get_Access_Token')?['access_token']}",
+									"Content-Type": "application/json"
+								},
+								"method": "PUT",
+								"uri": "@{concat('https://management.azure.com/subscriptions/', variables('configurations')?['SubscriptionId'], '/resourceGroups/', variables('configurations')?['ResourceGroup'], '/providers/Microsoft.DataFactory/factories/', variables('configurations')?['FactoryName'], '/datasets/', variables('OutputDatasetName'), '?api-version=', variables('configurations')?['api-version'])}"
+							}
+						},
+						"HTTP_create_pipeline": {
+							"runAfter": {
+								"HTTP_create_output_dataset": [
+									"Succeeded"
+								]
+							},
+							"type": "Http",
+							"inputs": {
+								"body": {
+									"name": "@{variables('PipelineName')}",
+									"properties": {
+										"activities": [
+											{
+												"dependsOn": [],
+												"inputs": [
+													{
+														"referenceName": "@{body('HTTP_create_input_dataset')?['name']}",
+														"type": "DatasetReference"
+													}
+												],
+												"name": "CopyFromBlobToFileSystem",
+												"outputs": [
+													{
+														"referenceName": "@{body('HTTP_create_output_dataset')?['name']}",
+														"type": "DatasetReference"
+													}
+												],
+												"policy": {
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureInput": false,
+													"secureOutput": false,
+													"timeout": "7.00:00:00"
+												},
+												"type": "Copy",
+												"typeProperties": {
+													"enableStaging": false,
+													"sink": {
+														"storeSettings": {
+															"type": "FileServerWriteSettings"
+														},
+														"type": "BinarySink"
+													},
+													"source": {
+														"storeSettings": {
+															"recursive": true,
+															"type": "AzureBlobStorageReadSettings"
+														},
+														"type": "BinarySource"
+													}
+												},
+												"userProperties": []
+											}
+										],
+										"annotations": []
+									}
+								},
+								"headers": {
+									"Accept": "application/json",
+									"Authorization": "Bearer @{body('HTTP_Get_Access_Token')?['access_token']}",
+									"Content-Type": "application/json"
+								},
+								"method": "PUT",
+								"uri": "@{concat('https://management.azure.com/subscriptions/', variables('configurations')?['SubscriptionId'], '/resourceGroups/', variables('configurations')?['ResourceGroup'], '/providers/Microsoft.DataFactory/factories/', variables('configurations')?['FactoryName'], '/pipelines/', variables('PipelineName'), '?api-version=', variables('configurations')?['api-version'])}"
+							}
+						},
+						"HTTP_run_pipeline": {
+							"runAfter": {
+								"HTTP_create_pipeline": [
+									"Succeeded"
+								]
+							},
+							"type": "Http",
+							"inputs": {
+								"headers": {
+									"Accept": "application/json",
+									"Authorization": "Bearer @{body('HTTP_Get_Access_Token')?['access_token']}",
+									"Content-Type": "application/json"
+								},
+								"method": "POST",
+								"uri": "@{concat('https://management.azure.com/subscriptions/', variables('configurations')?['SubscriptionId'], '/resourceGroups/', variables('configurations')?['ResourceGroup'], '/providers/Microsoft.DataFactory/factories/', variables('configurations')?['FactoryName'], '/pipelines/', body('HTTP_create_pipeline')?['name'], '/createRun?api-version=', variables('configurations')?['api-version'])}"
+							}
+						},
+						"Initialize_variable_OutputDatasetName": {
+							"runAfter": {
+								"Initialize_variable_PipelineName": [
+									"Succeeded"
+								]
+							},
+							"type": "InitializeVariable",
+							"inputs": {
+								"variables": [
+									{
+										"name": "OutputDatasetName",
+										"type": "string",
+										"value": "@{concat(triggerBody()?['vendorCopyStatusId'],'_','OutputDatasetBlob')}"
+									}
+								]
+							}
+						},
+						"Initialize_variable_PipelineName": {
+							"runAfter": {
+								"Initialize_variable_configurations": [
+									"Succeeded"
+								]
+							},
+							"type": "InitializeVariable",
+							"inputs": {
+								"variables": [
+									{
+										"name": "PipelineName",
+										"type": "string",
+										"value": "@{concat(triggerBody()?['vendorCopyStatusId'],'_',triggerBody()?['assetId'],'_','pipe',rand(1,100))}"
+									}
+								]
+							}
+						},
+						"Initialize_variable_configurations": {
+							"runAfter": {
+								"Logic-ReadAzureConfiguration": [
+									"Succeeded"
+								]
+							},
+							"type": "InitializeVariable",
+							"inputs": {
+								"variables": [
+									{
+										"name": "configurations",
+										"type": "object",
+										"value": "@body('Logic-ReadAzureConfiguration')"
+									}
+								]
+							}
+						},
+						"Logic-ReadAzureConfiguration": {
+							"runAfter": {},
+							"type": "Workflow",
+							"inputs": {
+								"host": {
+									"triggerName": "manual",
+									"workflow": {
+										"id": "[parameters('workflows_Logic_ReadAzureConfiguration')]"
+									}
+								}
+							}
+						},
+						"Update_a_record": {
+							"runAfter": {
+								"HTTP_run_pipeline": [
+									"Succeeded"
+								]
+							},
+							"type": "ApiConnection",
+							"inputs": {
+								"body": {
+									"media_copystatus": 207940000
+								},
+								"host": {
+									"connection": {
+										"name": "@parameters('$connections')['commondataservice']['connectionId']"
+									}
+								},
+								"method": "patch",
+								"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_vendorcopystatuses'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('vendorCopyStatusId'),']))')]",
+							}
+						}
+					},
+					"outputs": {}
+				},
+				"parameters": {
+					"$connections": {
+						"value": {
+							"commondataservice": {
+								"connectionId": "[parameters('connections_commondataservice_2_externalid')]",
+								"connectionName": "commondataservice-2",
+								"id": "/subscriptions/6ea8ecbe-a178-422c-b3c3-ed034a2729fb/providers/Microsoft.Web/locations/southeastasia/managedApis/commondataservice"
+							}
+						}
+					}
+				}
+			}
+		}
+	]
+}
