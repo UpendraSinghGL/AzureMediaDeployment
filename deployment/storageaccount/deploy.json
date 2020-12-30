@@ -38,7 +38,7 @@
                 "displayName": "duringstorageconnection",
                 "parameterValues": {
                     "accountName": "[parameters('storagename')]",
-                    "accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts',parameters('storagename')) ,'2019-06-01').keys[0]]"
+                    "accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts',parameters('storagename')) ,'2019-06-01').keys[0].value]"
                 },
                 "customParameterValues": {
                 },

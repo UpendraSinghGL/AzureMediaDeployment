@@ -274,6 +274,26 @@
                     "eventTimeToLiveInMinutes": 1440
                 }
             }
+        },
+        {
+          "name": "azureeventgrid",
+          "type": "Microsoft.Web/connections",
+          "apiVersion": "2016-06-01",
+          "location": "[resourceGroup().location]",
+          "tags": {
+          },
+          "properties": {
+            "displayName": "azureeventgrid",
+            "parameterValues": {
+            },
+            "customParameterValues": {
+            },
+            "nonSecretParameterValues": {
+            },
+            "api": {
+              "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/azureeventgrid')]"
+            }
+          }
         }
   ],
   "outputs": {

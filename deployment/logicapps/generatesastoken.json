@@ -183,7 +183,7 @@
                                                         },
                                                         "host": {
                                                             "connection": {
-                                                                "name": "@parameters('$connections')['azureblob_1']['connectionId']"
+                                                                "name": "@parameters('$connections')['azureblob']['connectionId']"
                                                             }
                                                         },
                                                         "method": "post",
