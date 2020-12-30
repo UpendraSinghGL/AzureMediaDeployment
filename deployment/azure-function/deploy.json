@@ -43,8 +43,7 @@
     "storageAccountName": "[toLower(take(concat('st', 'func' ,variables('uniqueName')), 24))]",
 
     "readerAndDataAccessRoleId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'c12c1c16-33a1-487b-954d-41c89c60f349')]",
-    "storageBlobDataContributorRoleId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')]",
-    "storageTopic": "[concat(parameters('blobStorageName'),'-topic')]"
+    "storageBlobDataContributorRoleId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')]"
   },
   "resources": [
     {
@@ -235,46 +234,8 @@
         "roleDefinitionId": "[variables('storageBlobDataContributorRoleId')]",
         "principalId": "[reference(resourceId('Microsoft.Web/sites', variables('functionAppName')), '2019-08-01', 'Full').identity.principalId]"
       }
-    },
-    {
-            "type": "Microsoft.EventGrid/systemTopics",
-            "apiVersion": "2020-04-01-preview",
-            "name": "[variables('storageTopic')]",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "source": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Storage/storageAccounts/',parameters('storagename'))]",
-                "topicType": "microsoft.storage.storageaccounts"
-            }
-        },
-        {
-            "type": "Microsoft.EventGrid/systemTopics/eventSubscriptions",
-            "apiVersion": "2020-04-01-preview",
-            "name": "[concat(variables('storageTopic'),'/' ,'logicappsubscribe')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.EventGrid/systemTopics', variables('storageTopic'))]",
-                "[resourceId('Microsoft.Web/sites/sourcecontrols', parameters('durinTopicWebhookAppName'), 'web')]"
-            ],
-            "properties": {
-                "destination": {
-                    "properties": {
-                        "maxEventsPerBatch": 1,
-                        "preferredBatchSizeInKilobytes": 64,
-                        "endpointUrl":"[concat('https://', reference(resourceId('Microsoft.Web/sites',parameters('durinTopicWebhookAppName'))).defaultHostName, '/api/updates')]"
-                    },
-                    "endpointType": "WebHook"
-                },
-                "filter": {
-                    "includedEventTypes": [
-                        "Microsoft.Storage.BlobCreated"
-                    ]
-                },
-                "eventDeliverySchema": "EventGridSchema",
-                "retryPolicy": {
-                    "maxDeliveryAttempts": 30,
-                    "eventTimeToLiveInMinutes": 1440
-                }
-            }
-        }
+    }
+        
   ],
   "outputs": {
   }
