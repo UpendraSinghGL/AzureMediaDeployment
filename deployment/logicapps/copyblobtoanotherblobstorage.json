@@ -348,9 +348,9 @@
 					"$connections": {
 						"value": {
 							"commondataservice": {
-								"connectionId": "[parameters('connections_commondataservice_2_externalid')]",
-								"connectionName": "commondataservice-2",
-								"id": "/subscriptions/6ea8ecbe-a178-422c-b3c3-ed034a2729fb/providers/Microsoft.Web/locations/southeastasia/managedApis/commondataservice"
+								"connectionId": "[parameters('connection_commondataservice')]",
+								"connectionName": "commondataservice",
+								"id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/commondataservice')]"
 							}
 						}
 					}
