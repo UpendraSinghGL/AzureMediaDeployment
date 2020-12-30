@@ -62,7 +62,9 @@
             }
         }
     ],
-    "variables": {},
+    "variables": {
+        "org": "[durin.wrapInQuote(concat(parameters('crmOrgName'),'.crm'))]"
+    },
     "resources": [
         {
             "name": "Logic-OnBlobCreate",
@@ -136,7 +138,7 @@
                                                     }
                                                 },
                                                 "method": "post",
-                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',parameters('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
+                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
                                             }
                                         }
                                     },
@@ -170,7 +172,7 @@
                                                     }
                                                 },
                                                 "method": "get",
-                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',parameters('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetcontainers'),'))}/items')]",
+                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetcontainers'),'))}/items')]",
                                                 "queries": {
                                                     "$filter": "media_containerpath eq '@{variables('ContainerName')}'"
                                                 }
@@ -220,7 +222,7 @@
                                                                             }
                                                                         },
                                                                         "method": "patch",
-                                                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',parameters('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_AssetId'),')))}')]"
+                                                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_AssetId'),')))}')]"
                                                                     }
                                                                 }
                                                             },
@@ -259,7 +261,7 @@
                                                                                 }
                                                                             },
                                                                             "method": "post",
-                                                                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',parameters('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items')]"
+                                                                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items')]"
                                                                         }
                                                                     }
                                                                 }
@@ -333,7 +335,7 @@
                                                                             }
                                                                         },
                                                                         "method": "post",
-                                                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',parameters('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items')]"
+                                                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items')]"
                                                                     }
                                                                 },
                                                                 "Filter_FileType": {
@@ -417,7 +419,7 @@
                                                                     }
                                                                 },
                                                                 "method": "get",
-                                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',parameters('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items')]",
+                                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items')]",
                                                                 "queries": {
                                                                     "$filter": "media_shootday eq '@{body('Parse_JSON')?['shootDay']}' and media_unit eq '@{body('Parse_JSON')?['unit']}' and media_batch eq '@{body('Parse_JSON')?['batch']}' and @{variables('FilterAttributes')}"
                                                                 }
@@ -582,7 +584,7 @@
                                                                         }
                                                                     },
                                                                     "method": "get",
-                                                                    "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',parameters('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items')]",
+                                                                    "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items')]",
                                                                     "queries": {
                                                                         "$expand": "media_Asset($select=media_name)",
                                                                         "$filter": "@{decodeUriComponent(concat('media_blobpath eq %27',outputs('Compose'),'%27'))}",
@@ -624,7 +626,7 @@
                                                                                 }
                                                                             },
                                                                             "method": "patch",
-                                                                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',parameters('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(items(',durin.wrapInQuote('Iterate_camera_raw_metadata'),')?[',durin.wrapInQuote('media_assetfilesid'),']))}')]"
+                                                                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(items(',durin.wrapInQuote('Iterate_camera_raw_metadata'),')?[',durin.wrapInQuote('media_assetfilesid'),']))}')]"
                                                                         }
                                                                     },
                                                                     "Update_Asset_camera_raw_metadata": {
@@ -640,7 +642,7 @@
                                                                                 }
                                                                             },
                                                                             "method": "patch",
-                                                                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',parameters('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(items(',durin.wrapInQuote('Iterate_camera_raw_metadata'),')?[',durin.wrapInQuote('_media_asset_value'),']))}')]"
+                                                                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(items(',durin.wrapInQuote('Iterate_camera_raw_metadata'),')?[',durin.wrapInQuote('_media_asset_value'),']))}')]"
                                                                         }
                                                                     }
                                                                 },
@@ -709,7 +711,7 @@
                                                                 }
                                                             },
                                                             "method": "get",
-                                                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',parameters('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items')]",
+                                                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items')]",
                                                             "queries": {
                                                                 "$filter": "@{decodeUriComponent(concat('media_blobpath eq %27',outputs('Compose'),'%27'))}"
                                                             }
@@ -804,7 +806,7 @@
                                                                         }
                                                                     },
                                                                     "method": "patch",
-                                                                    "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',parameters('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(items(',durin.wrapInQuote('Iterate_asset_files'),')?[',durin.wrapInQuote('media_assetfilesid'),']))}')]"
+                                                                    "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(items(',durin.wrapInQuote('Iterate_asset_files'),')?[',durin.wrapInQuote('media_assetfilesid'),']))}')]"
                                                                 }
                                                             }
                                                         },
