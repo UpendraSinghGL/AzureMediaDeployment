@@ -19,12 +19,23 @@ namespace DurinMedia.FunctionApp.Functions
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
-            string connectionString = Environment.GetEnvironmentVariable("AZURE_STORAGE_CONNECTION_STRING");
+            string connectionString = string.Empty;
             string name = req.Query["name"];
+            string type = req.Query["type"];
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
             name = name ?? data?.name;
+            type = type ?? data?.type;
+
+            if (!string.IsNullOrEmpty(type) && type.ToLower() == "vendor")
+            {
+                connectionString = Environment.GetEnvironmentVariable("AZURE_STORAGE_CONNECTION_STRING_VENDOR");
+            }
+            else
+            {
+                connectionString = Environment.GetEnvironmentVariable("AZURE_STORAGE_CONNECTION_STRING");
+            }
 
             //Create a unique name for the container
             string containerName = name;
