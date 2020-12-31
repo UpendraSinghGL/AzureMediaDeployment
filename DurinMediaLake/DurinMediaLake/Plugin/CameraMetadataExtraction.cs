@@ -12,7 +12,7 @@
             if (this.PluginContext.InputParameters.Contains("Target") && this.PluginContext.InputParameters["Target"] is Entity)
             {
                 var asset = this.PluginContext.InputParameters["Target"] as Entity;
-                if (asset != null)
+                if (asset != null && asset.Attributes!=null && asset.Attributes.ContainsKey("media_camerarawfilemetadata"))
                 {
                     var cameraFileMetatdata = Convert.ToString(asset.Attributes["media_camerarawfilemetadata"]);
                     var assetid = Convert.ToString(asset.Attributes["media_assetid"]);
