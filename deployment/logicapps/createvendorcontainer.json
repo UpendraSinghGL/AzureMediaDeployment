@@ -71,9 +71,31 @@
 						}
 					},
 					"actions": {
+						"Compose": {
+							"runAfter": {},
+							"type": "Compose",
+							"inputs": {
+								"name": "@{triggerBody()?['media_name']}",
+								"type": "vendor"
+							}
+						},
+						"CreateShowContainer": {
+							"runAfter": {
+								"Compose": [
+									"Succeeded"
+								]
+							},
+							"type": "Function",
+							"inputs": {
+								"body": "@outputs('Compose')",
+								"function": {
+									"id": "[concat(parameters('sites_MediaLakeFunction_externalid'), '/functions/CreateShowContainer')]"
+								}
+							}
+						},
 						"Create_error_log_record": {
 							"runAfter": {
-								"Scope": [
+								"CreateShowContainer": [
 									"Failed",
 									"TimedOut"
 								]
@@ -82,8 +104,8 @@
 							"inputs": {
 								"body": {
 									"_media_vendor_value": "@triggerBody()?['media_vendorid']",
-									"media_description": "@{result('Scope')}",
-									"media_name": "@variables('ErrorMessage')"
+									"media_description": "Failed to create Show container @{triggerBody()?['media_name']}",
+									"media_name": "Failed to create Show container @{triggerBody()?['media_name']}"
 								},
 								"host": {
 									"connection": {
@@ -91,66 +113,7 @@
 									}
 								},
 								"method": "post",
-								"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]",
-							}
-						},
-						"Initialize_variable_-_ErrorMessage": {
-							"runAfter": {
-								"Initialize_variable_configurations": [
-									"Succeeded"
-								]
-							},
-							"type": "InitializeVariable",
-							"inputs": {
-								"variables": [
-									{
-										"name": "ErrorMessage",
-										"type": "string"
-									}
-								]
-							}
-						},
-						"Initialize_variable_ContainerName": {
-							"runAfter": {
-								"Initialize_variable_-_ErrorMessage": [
-									"Succeeded"
-								]
-							},
-							"type": "InitializeVariable",
-							"inputs": {
-								"variables": [
-									{
-										"name": "ContainerName",
-										"type": "string",
-										"value": "@{trim(toLower(replace(triggerBody()?['media_name'],' ','-')))}"
-									}
-								]
-							}
-						},
-						"Initialize_variable_configurations": {
-							"runAfter": {},
-							"type": "InitializeVariable",
-							"inputs": {
-								"variables": [
-									{
-										"name": "AzureConfigurations",
-										"type": "object",
-										"value": {
-											"AadClientId": "92ea57a5-102d-40b7-aa5b-0bfa12be2765",
-											"AadSecret": "f.ICB5M2_Jk9-JiFwuv4Bh7okboTp.dwwv",
-											"AadTenantDomain": "microsoft.onmicrosoft.com",
-											"AadTenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
-											"AccountName": "durinmediavendorstorage",
-											"ArmAadAudience": "https://management.core.windows.net/",
-											"ArmEndpoint": "https://management.azure.com/",
-											"Location": "Southeast Asia, East Asia",
-											"ResourceGroup": "MediaAzureProject",
-											"StorageAccountName": "durinmediavendorstorage",
-											"SubscriptionId": "6ea8ecbe-a178-422c-b3c3-ed034a2729fb",
-											"api-version": "2019-06-01"
-										}
-									}
-								]
+								"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
 							}
 						},
 						"Response_failure": {
@@ -170,7 +133,7 @@
 						},
 						"Response_success": {
 							"runAfter": {
-								"Scope": [
+								"Update_vendor_path": [
 									"Succeeded"
 								]
 							},
@@ -183,92 +146,25 @@
 								"statusCode": 200
 							}
 						},
-						"Scope": {
-							"actions": {
-								"HTTP_-_Create_Container": {
-									"runAfter": {
-										"HTTP_-_Get_Azure_AD_Token_for_Service_Principal_Authentication": [
-											"Succeeded"
-										]
-									},
-									"type": "Http",
-									"inputs": {
-										"body": {},
-										"headers": {
-											"Authorization": "Bearer @{body('HTTP_-_Get_Azure_AD_Token_for_Service_Principal_Authentication')?['access_token']}",
-											"Content-Type": "application/json"
-										},
-										"method": "PUT",
-										"uri": "@{concat('https://management.azure.com/subscriptions/',variables('AzureConfigurations')?['SubscriptionId'],'/resourceGroups/',variables('AzureConfigurations')?['ResourceGroup'],'/providers/Microsoft.Storage/storageAccounts/',variables('AzureConfigurations')?['StorageAccountName'],'/blobServices/default/containers/',variables('ContainerName'),'?api-version=',variables('AzureConfigurations')?['api-version'])}"
-									}
-								},
-								"HTTP_-_Get_Azure_AD_Token_for_Service_Principal_Authentication": {
-									"runAfter": {},
-									"type": "Http",
-									"inputs": {
-										"body": "grant_type=client_credentials&client_id=@{variables('AzureConfigurations')?['AadClientId']}&client_secret=@{variables('AzureConfigurations')?['AadSecret']}&resource=https://management.core.windows.net/",
-										"headers": {
-											"Content-Type": "application/x-www-form-urlencoded",
-											"Keep-Alive": "true"
-										},
-										"method": "POST",
-										"uri": "@{concat('https://login.microsoftonline.com/',variables('AzureConfigurations')?['AadTenantDomain'],'/oauth2/token')}"
-									}
-								},
-								"Set_variable_-_HTTP_-_Get_Azure_AD_Token_-_ErrorMessage": {
-									"runAfter": {
-										"HTTP_-_Get_Azure_AD_Token_for_Service_Principal_Authentication": [
-											"Failed",
-											"TimedOut"
-										]
-									},
-									"type": "SetVariable",
-									"inputs": {
-										"name": "ErrorMessage",
-										"value": "Failed to fetch Azure AD Token for Service Principal Authentication"
-									}
-								},
-								"Set_variable_-_HTTP_Create_Container_-_ErrorMessage": {
-									"runAfter": {
-										"HTTP_-_Create_Container": [
-											"Failed",
-											"TimedOut"
-										]
-									},
-									"type": "SetVariable",
-									"inputs": {
-										"name": "ErrorMessage",
-										"value": "Failed to create Container of VendorID: @{triggerBody()?['media_vendorid']}"
-									}
-								},
-								"Update_a_record": {
-									"runAfter": {
-										"HTTP_-_Create_Container": [
-											"Succeeded"
-										]
-									},
-									"type": "ApiConnection",
-									"inputs": {
-										"body": {
-											"_ownerid_type": "",
-											"media_folderpath": "@{body('HTTP_-_Create_Container')?['name']}"
-										},
-										"host": {
-											"connection": {
-												"name": "@parameters('$connections')['commondataservice']['connectionId']"
-											}
-										},
-										"method": "patch",
-										"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_vendors'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('media_vendorid'),']))}')]",
-									}
-								}
-							},
+						"Update_vendor_path": {
 							"runAfter": {
-								"Initialize_variable_ContainerName": [
+								"CreateShowContainer": [
 									"Succeeded"
 								]
 							},
-							"type": "Scope"
+							"type": "ApiConnection",
+							"inputs": {
+								"body": {
+									"_ownerid_type": ""
+								},
+								"host": {
+									"connection": {
+										"name": "@parameters('$connections')['commondataservice']['connectionId']"
+									}
+								},
+								"method": "patch",
+								"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_vendors'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('media_vendorid'),']))}')]"
+							}
 						}
 					},
 					"outputs": {}
