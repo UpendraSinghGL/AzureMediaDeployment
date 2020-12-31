@@ -43,9 +43,13 @@
 		{
 			"type": "Microsoft.Logic/workflows",
 			"apiVersion": "2017-07-01",
-			"name": "Logic-CopyBlobToAnotherBlobStorage",
+			"name": "Logic_CopyBlobToOnprem",
 			"location": "[resourceGroup().location]",
+			"tags": {
+				"displayName": "LogicApp"
+			},
 			"properties": {
+				"state": "Enabled",
 				"definition": {
 					"$schema": "https://schema.management.azure.com/schemas/2016-06-01/Microsoft.Logic.json",
 					"contentVersion": "1.0.0.0",
@@ -72,12 +76,6 @@
 											"type": "string"
 										},
 										"folderPath": {
-											"type": "string"
-										},
-										"vendorContainer": {
-											"type": "string"
-										},
-										"vendorCopyStatusId": {
 											"type": "string"
 										}
 									},
@@ -117,7 +115,7 @@
 									"properties": {
 										"annotations": [],
 										"linkedServiceName": {
-											"referenceName": "@{string(variables('configurations')?['SourceBlobLinkedServiceName'])}",
+											"referenceName": "@{string(variables('configurations')?['BlobLinkedServiceName'])}",
 											"type": "LinkedServiceReference"
 										},
 										"type": "Binary",
@@ -149,19 +147,18 @@
 							"type": "Http",
 							"inputs": {
 								"body": {
-									"name": "OutputDatasetBlob",
+									"name": "OutputDatasetAurora",
 									"properties": {
 										"annotations": [],
 										"linkedServiceName": {
-											"referenceName": "@{variables('configurations')?['DestinationBlobLinkedServiceName']}",
+											"referenceName": "@{variables('configurations')?['OnPremLinkedServiceName']}",
 											"type": "LinkedServiceReference"
 										},
 										"type": "Binary",
 										"typeProperties": {
 											"location": {
-												"container": "@{triggerBody()?['vendorContainer']}",
 												"folderPath": "@{concat(triggerBody()?['containerName'],'/',triggerBody()?['folderPath'])}",
-												"type": "AzureBlobStorageLocation"
+												"type": "FileServerLocation"
 											}
 										}
 									}
@@ -172,7 +169,7 @@
 									"Content-Type": "application/json"
 								},
 								"method": "PUT",
-								"uri": "@{concat('https://management.azure.com/subscriptions/', variables('configurations')?['SubscriptionId'], '/resourceGroups/', variables('configurations')?['ResourceGroup'], '/providers/Microsoft.DataFactory/factories/', variables('configurations')?['FactoryName'], '/datasets/', variables('OutputDatasetName'), '?api-version=', variables('configurations')?['api-version'])}"
+								"uri": "@{concat('https://management.azure.com/subscriptions/', variables('configurations')?['SubscriptionId'], '/resourceGroups/', variables('configurations')?['ResourceGroup'], '/providers/Microsoft.DataFactory/factories/', variables('configurations')?['FactoryName'], '/datasets/',variables('OutputDatasetName'),'?api-version=', variables('configurations')?['api-version'])}"
 							}
 						},
 						"HTTP_create_pipeline": {
@@ -270,7 +267,7 @@
 									{
 										"name": "OutputDatasetName",
 										"type": "string",
-										"value": "@{concat(triggerBody()?['vendorCopyStatusId'],'_','OutputDatasetBlob')}"
+										"value": "@{concat(triggerBody()?['assetId'],'_','OutputDatasetOnPrem')}"
 									}
 								]
 							}
@@ -287,7 +284,7 @@
 									{
 										"name": "PipelineName",
 										"type": "string",
-										"value": "@{concat(triggerBody()?['vendorCopyStatusId'],'_',triggerBody()?['assetId'],'_','pipe',rand(1,100))}"
+										"value": "@{concat('0','_',triggerBody()?['assetId'],'_','httppipeline',rand(1,100))}"
 									}
 								]
 							}
@@ -338,7 +335,7 @@
 									}
 								},
 								"method": "patch",
-								"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_vendorcopystatuses'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('vendorCopyStatusId'),']))})]"
+								"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('assetId'),']))})]"
 							}
 						}
 					},

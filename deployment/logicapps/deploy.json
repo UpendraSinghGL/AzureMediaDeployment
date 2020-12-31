@@ -23,211 +23,256 @@
     },
     "functions": [],
     "variables": {},
-    "resources": [
-        {
-            "name": "logicapp-generatesastoken-deployment",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-10-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/generatesastoken.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "crmOrgName": { "value": "[parameters('crmOrgName')]" }
-                }
-            },
-            "dependsOn": [
-            ]
+  "resources": [
+    {
+      "name": "logicapp-generatesastoken-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/generatesastoken.json')]",
+          "contentVersion": "1.0.0.0"
         },
-        {
-            "name": "logicapp-antivirus-deployment",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-10-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/antivirusscan.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "crmOrgName": { "value": "[parameters('crmOrgName')]" }
-                }
-            }
-        },
-        {
-            "name": "logicapp-sendemail-deployment",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-10-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/sendemail.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                }
-            }
-        },
-        {
-            "name": "logicapp-assetuploadfailure-deployment",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-10-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/assetuploadfailure.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "crmOrgName": { "value": "[parameters('crmOrgName')]" }
-                }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Resources/deployments', 'logicapp-sendemail-deployment')]"
-            ]
-        },
-        {
-            "name": "logicapp-errorlognotification-deployment",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-10-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/errorlognotification.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "crmOrgName": { "value": "[parameters('crmOrgName')]" }
-                }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Resources/deployments', 'logicapp-sendemail-deployment')]"
-            ]
-        },
-        {
-            "name": "logicapp-createshowcontainer-deployment",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-10-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/createshowcontainer.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "crmOrgName": { "value": "[parameters('crmOrgName')]" }
-                }
-            }
-        },
-        {
-            "name": "logicapp-getshowforuser-deployment",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-10-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/getshowforuser.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "crmOrgName": { "value": "[parameters('crmOrgName')]" }
-                }
-            }
-        },
-        {
-            "name": "logicapp-extractanssavemetadata-deployment",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-10-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/extractandsavemetadata.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "crmOrgName": { "value": "[parameters('crmOrgName')]" }
-                }
-            }
-        },
-        {
-            "name": "logicapp-comparechecksum-deployment",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-10-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/comparechecksum.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "crmOrgName": { "value": "[parameters('crmOrgName')]" }
-                }
-            }
-        },
-        {
-            "name": "logicapp-getseasonepisodeforshow-deployment",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-10-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/getseasonepisodeforshow.json')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "crmOrgName": { "value": "[parameters('crmOrgName')]" }
-                }
-            }
-        },
-      {
-        "name": "logicapp-onblobcreate-deployment",
-        "type": "Microsoft.Resources/deployments",
-        "apiVersion": "2019-10-01",
-        "properties": {
-          "mode": "Incremental",
-          "templateLink": {
-            "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/onblobcreate.json')]",
-            "contentVersion": "1.0.0.0"
-          },
-          "parameters": {
-            "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-            "storageName": { "value": "[parameters('storageName')]" }
-          }
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
         }
       },
-      {
-        "name": "logicapp-createvendorcontainer-deployment",
-        "type": "Microsoft.Resources/deployments",
-        "apiVersion": "2019-10-01",
-        "properties": {
-          "mode": "Incremental",
-          "templateLink": {
-            "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/createvendorcontainer.json')]",
-            "contentVersion": "1.0.0.0"
-          },
-          "parameters": {
-            "crmOrgName": { "value": "[parameters('crmOrgName')]" }
-          }
-        }
-      },
-      {
-        "name": "logicapp-copyblobtoanotherblobstorage-deployment",
-        "type": "Microsoft.Resources/deployments",
-        "apiVersion": "2019-10-01",
-        "properties": {
-          "mode": "Incremental",
-          "templateLink": {
-            "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/copyblobtoanotherblobstorage.json')]",
-            "contentVersion": "1.0.0.0"
-          },
-          "parameters": {
-            "crmOrgName": { "value": "[parameters('crmOrgName')]" }
-          }
+      "dependsOn": [
+      ]
+    },
+    {
+      "name": "logicapp-antivirus-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/antivirusscan.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
         }
       }
-    ],
+    },
+    {
+      "name": "logicapp-sendemail-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/sendemail.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+        }
+      }
+    },
+    {
+      "name": "logicapp-assetuploadfailure-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/assetuploadfailure.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'logicapp-sendemail-deployment')]"
+      ]
+    },
+    {
+      "name": "logicapp-errorlognotification-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/errorlognotification.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'logicapp-sendemail-deployment')]"
+      ]
+    },
+    {
+      "name": "logicapp-createshowcontainer-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/createshowcontainer.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+        }
+      }
+    },
+    {
+      "name": "logicapp-getshowforuser-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/getshowforuser.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+        }
+      }
+    },
+    {
+      "name": "logicapp-extractanssavemetadata-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/extractandsavemetadata.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+        }
+      }
+    },
+    {
+      "name": "logicapp-comparechecksum-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/comparechecksum.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+        }
+      }
+    },
+    {
+      "name": "logicapp-getseasonepisodeforshow-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/getseasonepisodeforshow.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+        }
+      }
+    },
+    {
+      "name": "logicapp-onblobcreate-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/onblobcreate.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "storageName": { "value": "[parameters('storageName')]" }
+        }
+      }
+    },
+    {
+      "name": "logicapp-createvendorcontainer-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/createvendorcontainer.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+        }
+      }
+    },
+    {
+      "name": "logicapp-copyblobtoanotherblobstorage-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/copyblobtoanotherblobstorage.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+        }
+      }
+    },
+    {
+      "name": "logicapp-copyblobtoonprem-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/copyblobtoonprem.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+        }
+      }
+    },
+    {
+      "name": "logicapp-geteventonpipelinerun-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/geteventonpipelinerun.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+        }
+      }
+    },
+    {
+      "name": "logicapp-readazureconfiguration-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/readazureconfiguration.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+        }
+      }
+    }
+  ],
     "outputs": {
     }
 }
