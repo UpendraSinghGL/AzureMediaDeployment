@@ -335,7 +335,7 @@
 									}
 								},
 								"method": "patch",
-								"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('assetId'),']))})]"
+								"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('assetId'),']))}')]"
 							}
 						}
 					},

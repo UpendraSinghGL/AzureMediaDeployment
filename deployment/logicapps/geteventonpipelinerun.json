@@ -127,7 +127,7 @@
 											}
 										},
 										"method": "get",
-										"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_assetId'),')))})]"
+										"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_assetId'),')))}')]"
 									}
 								},
 								"Switch": {
@@ -173,7 +173,7 @@
 																	}
 																},
 																"method": "patch",
-																"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_assetId'),')))})]",
+																"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_assetId'),')))}')]",
 															}
 														}
 													},
@@ -193,7 +193,7 @@
 																		}
 																	},
 																	"method": "patch",
-																	"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_vendorcopystatuses'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_vendorCopyStatusId'),')))})]",
+																	"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_vendorcopystatuses'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_vendorCopyStatusId'),')))}')]"
 																}
 															}
 														}
@@ -353,7 +353,7 @@
 																	}
 																},
 																"method": "patch",
-																"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_assetId'),')))})]",
+																"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_assetId'),')))}')]"
 															}
 														}
 													},
@@ -377,7 +377,7 @@
 																		}
 																	},
 																	"method": "patch",
-																	"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_vendorcopystatuses'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_vendorCopyStatusId'),')))})]",
+																	"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_vendorcopystatuses'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_vendorCopyStatusId'),')))}')]"
 																}
 															}
 														}
@@ -413,7 +413,7 @@
 															}
 														},
 														"method": "post",
-														"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]",
+														"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
 													}
 												},
 												"HTTP_Delete_Pipeline": {
