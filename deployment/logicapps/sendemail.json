@@ -154,7 +154,7 @@
                 "parameters": {
                     "$connections": {
                         "value": {
-                            "commondataservice": {
+                            "office365": {
                                 "connectionId": "[parameters('connections_office365')]",
                                 "connectionName": "office365",
                                 "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/office365')]"
