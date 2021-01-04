@@ -72,12 +72,10 @@
       "tags": {
       },
       "properties": {
-        "displayName": "office365",
+        "displayName": "",
         "parameterValues": {
         },
         "customParameterValues": {
-        },
-        "nonSecretParameterValues": {
         },
         "api": {
           "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/office365')]"
