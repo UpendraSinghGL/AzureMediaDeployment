@@ -51,6 +51,20 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storagename'))]"
             ]
+        },
+         {
+            "name": "[take(concat('vendor', parameters('storagename')),24)]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2019-06-01",
+            "tags": {
+                "displayName": "[take(concat('vendor', parameters('storagename')),24)]"
+            },
+            "location": "[resourceGroup().location]",
+            "kind": "StorageV2",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            }
         }
     ],
     "outputs": {}
