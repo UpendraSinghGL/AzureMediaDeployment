@@ -159,7 +159,8 @@
 							"type": "ApiConnection",
 							"inputs": {
 								"body": {
-									"_ownerid_type": ""
+									"_ownerid_type": "",
+									"media_folderpath": "@{body('CreateShowContainer')}"
 								},
 								"host": {
 									"connection": {
