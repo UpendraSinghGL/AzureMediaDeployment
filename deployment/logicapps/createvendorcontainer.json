@@ -6,6 +6,10 @@
 			"type": "string",
 			"defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/commondataservice')]"
 		},
+		"sites_MediaLakeFunction": {
+			"defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/sites/',toLower(take(concat('func-', concat('durinmedia',uniqueString(resourceGroup().id))), 60)))]",
+			"type": "String"
+		},
 		"crmOrgName": {
 			"type": "string",
 			"metadata": {
@@ -89,7 +93,7 @@
 							"inputs": {
 								"body": "@outputs('Compose')",
 								"function": {
-									"id": "[concat(parameters('sites_MediaLakeFunction_externalid'), '/functions/CreateShowContainer')]"
+									"id": "[concat(parameters('sites_MediaLakeFunction'), '/functions/CreateShowContainer')]"
 								}
 							}
 						},
