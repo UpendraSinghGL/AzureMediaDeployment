@@ -225,7 +225,10 @@
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" }
         }
-      }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'logicapp-readazureconfiguration-deployment')]"
+      ]
     },
     {
       "name": "logicapp-copyblobtoonprem-deployment",
@@ -240,7 +243,10 @@
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" }
         }
-      }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'logicapp-readazureconfiguration-deployment')]"
+      ]
     },
     {
       "name": "logicapp-geteventonpipelinerun-deployment",
@@ -255,7 +261,11 @@
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" }
         }
-      }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'logicapp-sendemail-deployment')]",
+        "[resourceId('Microsoft.Resources/deployments', 'logicapp-readazureconfiguration-deployment')]"
+      ]
     },
     {
       "name": "logicapp-readazureconfiguration-deployment",
