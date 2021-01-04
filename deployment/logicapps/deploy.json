@@ -195,7 +195,10 @@
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
           "storageName": { "value": "[parameters('storageName')]" }
         }
-      }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'logicapp-antivirus-deployment')]"
+      ]
     },
     {
       "name": "logicapp-createvendorcontainer-deployment",
