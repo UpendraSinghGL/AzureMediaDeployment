@@ -162,13 +162,15 @@
         "parameters": {
           "baseTemplatePath": { "value": "[variables('baseTemplatePath')]" },
           "crmOrgName": { "value": "[parameters('cdsOrgUniqueName')]" },
-          "storageName": { "value": "[variables('blobStorageAccount')]" }
+          "storageName": { "value": "[variables('blobStorageAccount')]" },
+          "eventHubName": { "value": "[variables('eventHubName')]" }
         }
       },
       "dependsOn": [
         "[resourceId('Microsoft.Resources/deployments', 'storage')]",
         "[resourceId('Microsoft.Resources/deployments', 'azurefunctiondeployment')]",
-        "[resourceId('Microsoft.Resources/deployments', 'eventgrid-topic-deployments')]"
+        "[resourceId('Microsoft.Resources/deployments', 'eventgrid-topic-deployments')]",
+        "[resourceId('Microsoft.Resources/deployments', 'eventhub-deployment')]"
       ]
     },
     {

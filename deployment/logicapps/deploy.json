@@ -1,26 +1,32 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-        "baseTemplatePath": {
-            "type": "string",
-            "metadata": {
-                "description": "description"
-            }
-        },
-        "crmOrgName": {
-            "type": "string",
-            "metadata": {
-                "description": "cds org unique name"
-            }
-        },
-        "storageName": {
-            "type": "string",
-            "metadata": {
-                "description": "description"
-            }
-        }
+  "parameters": {
+    "baseTemplatePath": {
+      "type": "string",
+      "metadata": {
+        "description": "description"
+      }
     },
+    "crmOrgName": {
+      "type": "string",
+      "metadata": {
+        "description": "cds org unique name"
+      }
+    },
+    "storageName": {
+      "type": "string",
+      "metadata": {
+        "description": "description"
+      }
+    },
+    "eventHubName": {
+      "type": "string",
+      "metadata": {
+        "description": "description"
+      }
+    }
+  },
     "functions": [],
     "variables": {},
   "resources": [
@@ -262,7 +268,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "eventHubName": { "value": "[parameters('eventHubName')]" }
         }
       },
       "dependsOn": [
