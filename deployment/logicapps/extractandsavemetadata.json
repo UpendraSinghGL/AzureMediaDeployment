@@ -84,7 +84,7 @@
                                                 },
                                                 "host": {
                                                     "connection": {
-                                                        "name": "@parameters('$connections')['commondataservice_1']['connectionId']"
+                                                        "name": "@parameters('$connections')['commondataservice']['connectionId']"
                                                     }
                                                 },
                                                 "method": "post",
@@ -112,7 +112,7 @@
                                             "inputs": {
                                                 "host": {
                                                     "connection": {
-                                                        "name": "@parameters('$connections')['commondataservice_1']['connectionId']"
+                                                        "name": "@parameters('$connections')['commondataservice']['connectionId']"
                                                     }
                                                 },
                                                 "method": "patch",
@@ -197,7 +197,7 @@
                                                         },
                                                         "host": {
                                                             "connection": {
-                                                                "name": "@parameters('$connections')['commondataservice_1']['connectionId']"
+                                                                "name": "@parameters('$connections')['commondataservice']['connectionId']"
                                                             }
                                                         },
                                                         "method": "patch",
@@ -221,7 +221,7 @@
                                                             },
                                                             "host": {
                                                                 "connection": {
-                                                                    "name": "@parameters('$connections')['commondataservice_1']['connectionId']"
+                                                                    "name": "@parameters('$connections')['commondataservice']['connectionId']"
                                                                 }
                                                             },
                                                             "method": "patch",
