@@ -20,6 +20,12 @@
 				"description": "description"
 			}
 		},
+		"eventHubName": {
+			"type": "string",
+			"metadata": {
+				"description": "description"
+			}
+		},
 		"connections_eventhubs": {
 			"defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/eventhubs')]",
 			"type": "String"
@@ -78,7 +84,7 @@
 									}
 								},
 								"method": "get",
-								"path": "/@{encodeURIComponent('adfeventhub')}/events/batch/head",
+								"path": "[concat('/@{encodeURIComponent(',parameters('eventHubName'),')}/events/batch/head')]",
 								"queries": {
 									"consumerGroupName": "$Default",
 									"contentType": "application/json"
