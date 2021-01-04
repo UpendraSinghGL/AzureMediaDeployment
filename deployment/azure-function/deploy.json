@@ -22,12 +22,6 @@
       "metadata": {
         "description": "blob storage name media storage"
       }
-    },
-    "durinTopicWebhookAppName": {
-      "type": "string",
-      "metadata": {
-        "description": "description"
-      }
     }
   },
   "variables": {
@@ -43,46 +37,9 @@
     "storageAccountName": "[toLower(take(concat('st', 'func' ,variables('uniqueName')), 24))]",
 
     "readerAndDataAccessRoleId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'c12c1c16-33a1-487b-954d-41c89c60f349')]",
-    "storageBlobDataContributorRoleId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')]",
-    "storageTopic": "[concat(parameters('blobStorageName'),'-topic')]"
+    "storageBlobDataContributorRoleId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')]"
   },
-  "resources": [
-    {
-      "apiVersion": "2015-08-01",
-      "name": "[parameters('durinTopicWebhookAppName')]",
-      "type": "Microsoft.Web/sites",
-      "identity": {
-        "type": "SystemAssigned"
-      },
-      "location": "[variables('deploymentLocation')]",
-      "dependsOn": [
-        "[concat('Microsoft.Web/serverfarms/', variables('functionHostingPlanName'))]",
-        "[resourceId('Microsoft.Web/sites', variables('functionAppName'))]"
-      ],
-      "properties": {
-        "serverFarmId": "[variables('functionServerFarmId')]",
-        "siteConfig": {
-          "webSocketsEnabled": true
-        },
-        "httpsOnly": true
-      },
-      "resources": [
-        {
-          "apiVersion": "2015-08-01",
-          "name": "web",
-          "type": "sourcecontrols",
-          "dependsOn": [
-            "[resourceId('Microsoft.Web/Sites', parameters('durinTopicWebhookAppName'))]",
-            "[resourceId('Microsoft.Web/sites', variables('functionAppName'))]"
-          ],
-          "properties": {
-            "RepoUrl": "https://github.com/Azure-Samples/azure-event-grid-viewer.git",
-            "branch": "main",
-            "IsManualIntegration": true
-          }
-        }
-      ]
-    },
+  "resources": [    
     {
       "apiVersion": "2018-11-01",
       "name": "[variables('functionAppName')]",
@@ -237,66 +194,7 @@
         "roleDefinitionId": "[variables('storageBlobDataContributorRoleId')]",
         "principalId": "[reference(resourceId('Microsoft.Web/sites', variables('functionAppName')), '2019-08-01', 'Full').identity.principalId]"
       }
-    },
-    {
-            "type": "Microsoft.EventGrid/systemTopics",
-            "apiVersion": "2020-04-01-preview",
-            "name": "[variables('storageTopic')]",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "source": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Storage/storageAccounts/',parameters('blobStorageName'))]",
-                "topicType": "microsoft.storage.storageaccounts"
-            }
-        },
-        {
-            "type": "Microsoft.EventGrid/systemTopics/eventSubscriptions",
-            "apiVersion": "2020-04-01-preview",
-            "name": "[concat(variables('storageTopic'),'/' ,'logicappsubscribe')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.EventGrid/systemTopics', variables('storageTopic'))]",
-                "[resourceId('Microsoft.Web/sites/sourcecontrols', parameters('durinTopicWebhookAppName'), 'web')]"
-            ],
-            "properties": {
-                "destination": {
-                    "properties": {
-                        "maxEventsPerBatch": 1,
-                        "preferredBatchSizeInKilobytes": 64,
-                        "endpointUrl":"[concat('https://', reference(resourceId('Microsoft.Web/sites',parameters('durinTopicWebhookAppName'))).defaultHostName, '/api/updates')]"
-                    },
-                    "endpointType": "WebHook"
-                },
-                "filter": {
-                    "includedEventTypes": [
-                        "Microsoft.Storage.BlobCreated"
-                    ]
-                },
-                "eventDeliverySchema": "EventGridSchema",
-                "retryPolicy": {
-                    "maxDeliveryAttempts": 30,
-                    "eventTimeToLiveInMinutes": 1440
-                }
-            }
-        },
-        {
-          "name": "azureeventgrid",
-          "type": "Microsoft.Web/connections",
-          "apiVersion": "2016-06-01",
-          "location": "[resourceGroup().location]",
-          "tags": {
-          },
-          "properties": {
-            "displayName": "azureeventgrid",
-            "parameterValues": {
-            },
-            "customParameterValues": {
-            },
-            "nonSecretParameterValues": {
-            },
-            "api": {
-              "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/azureeventgrid')]"
-            }
-          }
-        }
+    }    
   ],
   "outputs": {
   }

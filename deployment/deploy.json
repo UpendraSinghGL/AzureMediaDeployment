@@ -115,14 +115,35 @@
         "parameters": {
           "blobStorageName": {
             "value": "[variables('blobStorageAccount')]"
+          }
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'storage')]"
+      ]
+    },
+    {
+      "name": "webhook-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+         "uri": "[uri(variables('baseTemplatePath'), 'webhook/deploy.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "blobStorageName": {
+            "value": "[variables('blobStorageAccount')]"
           },
           "durinTopicWebhookAppName": {
             "value": "[variables('durinTopicWebhookAppName')]"
           }
         }
       },
-      "dependsOn": [
-        "[resourceId('Microsoft.Resources/deployments', 'storage')]"
+       "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'storage')]",
+        "[resourceId('Microsoft.Resources/deployments', 'azurefunctiondeployment')]"
       ]
     },
     {
@@ -188,7 +209,8 @@
         "[resourceId('Microsoft.Resources/deployments', 'storage')]",
         "[resourceId('Microsoft.Resources/deployments', 'azurefunctiondeployment')]",
         "[resourceId('Microsoft.Resources/deployments', 'eventgrid-topic-deployments')]",
-        "[resourceId('Microsoft.Resources/deployments', 'eventhub-deployment')]"
+        "[resourceId('Microsoft.Resources/deployments', 'eventhub-deployment')]",
+        "[resourceId('Microsoft.Resources/deployments', 'webhook-deployment')]"
       ]
     },
     {
