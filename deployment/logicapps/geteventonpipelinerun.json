@@ -84,7 +84,7 @@
 									}
 								},
 								"method": "get",
-								"path": "/@{encodeURIComponent(parameters('eventHubName'))}/events/batch/head",
+								"path": "[concat('/@{encodeURIComponent(',parameters('eventHubName'),')}/events/batch/head')]",
 								"queries": {
 									"consumerGroupName": "$Default",
 									"contentType": "application/json"
