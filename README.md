@@ -5,7 +5,7 @@ Click below to deploy connection objects in the azure. Once you click on the but
 
 [![Deploy Connection](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fv-sosah%2FAzureMediaDeployment%2Fdurinmedia-azure-function%2Fdeployment%2Fdeployconnection.json)
 
-<img src="images/step1.jpeg" height="100" width="500"/>
+<img src="https://raw.githubusercontent.com/v-sosah/AzureMediaDeployment/durinmedia-azure-function/images/step1.jpg" height="100" width="500"/>
 
 
 ### Authorize connections
