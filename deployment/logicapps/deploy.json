@@ -209,7 +209,8 @@
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Resources/deployments', 'logicapp-antivirus-deployment')]"
+        "[resourceId('Microsoft.Resources/deployments', 'logicapp-antivirus-deployment')]",
+        "[resourceId('Microsoft.Resources/deployments', 'logicapp-extractanssavemetadata-deployment')]"
       ]
     },
     {
