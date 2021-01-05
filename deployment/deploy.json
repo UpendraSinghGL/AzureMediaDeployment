@@ -213,7 +213,8 @@
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Resources/deployments', 'storage')]"
+        "[resourceId('Microsoft.Resources/deployments', 'storage')]",
+        "[resourceId('Microsoft.Resources/deployments', 'azurefunctiondeployment')]"
       ]
     },
     {
@@ -239,7 +240,8 @@
         "[resourceId('Microsoft.Resources/deployments', 'azurefunctiondeployment')]",
         "[resourceId('Microsoft.Resources/deployments', 'eventgrid-topic-deployments')]",
         "[resourceId('Microsoft.Resources/deployments', 'eventhub-deployment')]",
-        "[resourceId('Microsoft.Resources/deployments', 'webhook-deployment')]"
+        "[resourceId('Microsoft.Resources/deployments', 'webhook-deployment')]",
+        "[resourceId('Microsoft.Resources/deployments', 'datafactory-deployment')]"
       ]
     },
     {
