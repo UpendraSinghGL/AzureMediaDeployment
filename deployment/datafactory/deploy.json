@@ -48,7 +48,7 @@
 					"properties": {
 						"type": "AzureBlobStorage",
 						"typeProperties": {
-							"connectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('blobStorageAccount'),';AccountKey=',listKeys(variables('storageAccountId'), '2019-06-01').keys[0].value)]"
+							"connectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('blobStorageAccount'), ';AccountKey=', listKeys(resourceId(resourceGroup().name,'Microsoft.Storage/storageAccounts', parameters('blobStorageAccount')), '2019-04-01').keys[0].value,';EndpointSuffix=core.windows.net')]"
 						}
 					}
 				},
@@ -64,7 +64,7 @@
 					"properties": {
 						"type": "AzureBlobStorage",
 						"typeProperties": {
-							"connectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=',parameters('vendorblobstorageAccount'),';AccountKey=',listKeys(variables('vendorstorageAccountId'), '2019-06-01').keys[0].value)]"
+							"connectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('vendorblobstorageAccount'), ';AccountKey=', listKeys(resourceId(resourceGroup().name,'Microsoft.Storage/storageAccounts', parameters('vendorblobstorageAccount')), '2019-04-01').keys[0].value,';EndpointSuffix=core.windows.net')]"f
 						}
 					}
 				}
