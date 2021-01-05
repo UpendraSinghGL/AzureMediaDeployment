@@ -1,10 +1,11 @@
 ## Durin Media Azure Deployment Guide
 
 ### Deploy Connections
-Click below to deploy connection objects in the azure. Once you click on the button below, you will be redirected to azure portal. Please select the subscription and resource group(prefer to create new), click on review + create, then hit on create button. Sooner the deployment will start happen for connecton object. Now wait unless it completes.
+Click below to deploy connection objects in the azure. Once you click on the button below, you will be redirected to azure portal. Please select the subscription and resource group(prefer to create new), click on review + create, then hit on create button. Sooner the deployment will start happen for connection object. Now wait unless it completes. See the attached image for the reference.
 
 [![Deploy Connection](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fv-sosah%2FAzureMediaDeployment%2Fdurinmedia-azure-function%2Fdeployment%2Fdeployconnection.json)
 
+<img src="https://raw.githubusercontent.com/v-sosah/AzureMediaDeployment/durinmedia-azure-function/images/step1.jpg" width="500"/>
 
 
 ### Authorize connections
@@ -21,6 +22,12 @@ this unique name can be found in your CDS tenant(login to cds) -> Setting-> Cust
 
 [![Deploy Component](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fv-sosah%2FAzureMediaDeployment%2Fdurinmedia-azure-function%2Fdeployment%2Fdeploy.json)
 
+
+<img src="https://raw.githubusercontent.com/v-sosah/AzureMediaDeployment/durinmedia-azure-function/images/step2.jpg" width="900"/>
+
 ### Mac Client Connection configuration
 
 Once the azure component deployment completes, Expand the Deployment details Secction ->  Click on the MacClient Connection configuration -> Left pane "output link" -> Copy the configuration. you will need this configuration, while setting up your Mac Client.
+
+
+<img src="https://raw.githubusercontent.com/v-sosah/AzureMediaDeployment/durinmedia-azure-function/images/step3.jpg" width="900"/>
