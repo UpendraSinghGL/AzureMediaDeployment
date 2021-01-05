@@ -39,7 +39,7 @@
 				{
 					"type": "Microsoft.DataFactory/factories/linkedServices",
 					"apiVersion": "2018-06-01",
-					"name": "SourceBlobStorageLS",
+					"name": "[concat(parameters('dataFactoryName'), '/SourceBlobStorageLS')]",
 					"location": "[resourceGroup().location]",
 					"dependsOn": [
 						"[parameters('dataFactoryName')]",
@@ -55,7 +55,7 @@
 				{
 					"type": "Microsoft.DataFactory/factories/linkedServices",
 					"apiVersion": "2018-06-01",
-					"name": "VendorBlobStorageLS",
+					"name": "[concat(parameters('dataFactoryName'), '/VendorBlobStorageLS')]",
 					"location": "[resourceGroup().location]",
 					"dependsOn": [
 						"[parameters('dataFactoryName')]",
