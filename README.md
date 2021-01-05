@@ -10,7 +10,7 @@ Click below to deploy connection objects in the azure. Once you click on the but
 
 ### Authorize connections
 Once the deployment of connection completes, you should see <b>"Go to resource group" </b> Button. Click on that button, it should take you to page where all created object will listed. follow below steps
-* See the </b>commmondataservice</b> connection. click on it-> see at left pane-> click on Edit Api connection  -> Authorize-> enter cds tenant admin credential. After successfull authentication, Please save. See the attached image.
+* See the <b>commmondataservice</b> connection. click on it-> see at left pane-> click on Edit Api connection  -> Authorize-> enter cds tenant admin credential. After successfull authentication, Please save. See the attached image.
 * Similarly select <b>azureeventgrid</b>-> Edit Api Connection -> Authorize with you own Azure logged-in credential.
 * Same with <b>office365</b>. Please authorize with the user credential which can be use for sending Emails.
 * Same with <b>Virustotal</b>. Please authorize with "x-api_key". Check out [Virus Total](https://www.virustotal.com/) for api key.
@@ -29,7 +29,7 @@ this unique name can be found in your CDS tenant(login to cds) -> Setting-> Cust
 
 ### Mac Client Connection configuration
 
-Once the azure component deployment completes, Expand the Deployment details Secction ->  Click on the MacClient Connection configuration -> Left pane "output link" -> Copy the configuration. you will need this configuration, while setting up your Mac Client.
+Once the azure component deployment completes, <b> Expand the Deployment details Section ->  Click on the MacClient Connection configuration -> Left pane "output link" -> Copy the configuration </b>. you will need this configuration, while setting up your Mac Client.
 
 
 <img src="https://raw.githubusercontent.com/v-sosah/AzureMediaDeployment/durinmedia-azure-function/images/step3.jpg" width="900"/>
