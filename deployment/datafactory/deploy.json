@@ -31,41 +31,7 @@
 			"properties": {},
 			"identity": {
 				"type": "SystemAssigned"
-			},
-			"resources": [
-				{
-					"type": "Microsoft.DataFactory/factories/linkedServices",
-					"apiVersion": "2018-06-01",
-					"name": "[concat(parameters('dataFactoryName'), '/SourceBlobStorageLS')]",
-					"location": "[resourceGroup().location]",
-					"dependsOn": [
-						"[parameters('dataFactoryName')]",
-						"[parameters('blobStorageAccount')]"
-					],
-					"properties": {
-						"type": "AzureBlobStorage",
-						"typeProperties": {
-							"connectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('blobStorageAccount'), ';AccountKey=', listKeys(resourceId(resourceGroup().name,'Microsoft.Storage/storageAccounts', parameters('blobStorageAccount')), '2019-04-01').keys[0].value,';EndpointSuffix=core.windows.net')]"
-						}
-					}
-				},
-				{
-					"type": "Microsoft.DataFactory/factories/linkedServices",
-					"apiVersion": "2018-06-01",
-					"name": "[concat(parameters('dataFactoryName'), '/VendorBlobStorageLS')]",
-					"location": "[resourceGroup().location]",
-					"dependsOn": [
-						"[parameters('dataFactoryName')]",
-						"[parameters('vendorblobstorageAccount')]"
-					],
-					"properties": {
-						"type": "AzureBlobStorage",
-						"typeProperties": {
-							"connectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('vendorblobstorageAccount'), ';AccountKey=', listKeys(resourceId(resourceGroup().name,'Microsoft.Storage/storageAccounts', parameters('vendorblobstorageAccount')), '2019-04-01').keys[0].value,';EndpointSuffix=core.windows.net')]"
-						}
-					}
-				}
-			]
+			}
 		}
 	]
 }
