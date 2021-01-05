@@ -21,10 +21,7 @@
 			}
 		}
 	},
-	"variables": {
-		"storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('blobStorageAccount'))]",
-		"vendorstorageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('vendorblobStorageAccount'))]"
-	},
+	"variables": {},
 	"resources": [
 		{
 			"type": "Microsoft.DataFactory/factories",
