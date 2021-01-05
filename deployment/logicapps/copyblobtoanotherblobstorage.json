@@ -113,7 +113,7 @@
 							"type": "Http",
 							"inputs": {
 								"body": {
-									"name": "InputDataset",
+									"name": "@concat('InputDataset',variables('PipelineName'))",
 									"properties": {
 										"annotations": [],
 										"linkedServiceName": {
@@ -137,7 +137,7 @@
 									"Content-Type": "application/json"
 								},
 								"method": "PUT",
-								"uri": "@{concat('https://management.azure.com/subscriptions/', variables('configurations')?['SubscriptionId'], '/resourceGroups/', variables('configurations')?['ResourceGroup'], '/providers/Microsoft.DataFactory/factories/', variables('configurations')?['FactoryName'], '/datasets/InputDataset', '?api-version=', variables('configurations')?['api-version'])}"
+								"uri": "@{concat('https://management.azure.com/subscriptions/', variables('configurations')?['SubscriptionId'], '/resourceGroups/', variables('configurations')?['ResourceGroup'], '/providers/Microsoft.DataFactory/factories/', variables('configurations')?['FactoryName'], '/datasets/InputDataset',variables('PipelineName'), '?api-version=', variables('configurations')?['api-version'])}"
 							}
 						},
 						"HTTP_create_output_dataset": {

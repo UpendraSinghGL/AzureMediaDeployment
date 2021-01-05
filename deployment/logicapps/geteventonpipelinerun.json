@@ -439,6 +439,23 @@
 														"uri": "@{concat('https://management.azure.com/subscriptions/', variables('configurations')?['SubscriptionId'], '/resourceGroups/', variables('configurations')?['ResourceGroup'], '/providers/Microsoft.DataFactory/factories/', variables('configurations')?['FactoryName'], '/pipelines/', items('For_each')?['pipelineName'], '?api-version=', variables('configurations')?['api-version'])}"
 													}
 												},
+												"HTTP_Delete_input_dataset": {
+													"runAfter": {
+														"HTTP_delete_output_dataset_for_blob_storage": [
+															"Succeeded"
+														]
+													},
+													"type": "Http",
+													"inputs": {
+														"headers": {
+															"Accept": "application/json",
+															"Authorization": "Bearer @{body('HTTP_Get_Access_Token')?['access_token']}",
+															"Content-Type": "application/json"
+														},
+														"method": "DELETE",
+														"uri": "@{concat('https://management.azure.com/subscriptions/', variables('configurations')?['SubscriptionId'], '/resourceGroups/', variables('configurations')?['ResourceGroup'], '/providers/Microsoft.DataFactory/factories/', variables('configurations')?['FactoryName'], '/datasets/','InputDataset',items('For_each')?['pipelineName'],'?api-version=', variables('configurations')?['api-version'])}"
+													}
+												},
 												"HTTP_Get_Access_Token": {
 													"runAfter": {},
 													"type": "Http",
