@@ -7,6 +7,18 @@
 			"metadata": {
 				"description": "description"
 			}
+		},
+		"dataFactoryName": {
+			"type": "string",
+			"metadata": {
+				"description": "description"
+			}
+		},
+		"blobStorageAccount": {
+			"type": "string",
+			"metadata": {
+				"description": "Name of the Azure storage account."
+			}
 		}
 	},
 	"functions": [
@@ -63,18 +75,18 @@
 									"AadTenantDomain": "microsoft.onmicrosoft.com",
 									"AadTenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
 									"AccountName": "durinmediastorage",
+									"api-version": "2018-06-01",
 									"ArmAadAudience": "https://management.core.windows.net/",
 									"ArmEndpoint": "https://management.azure.com/",
-									"BlobLinkedServiceName": "AzureBlobStorage1",
-									"DestinationBlobLinkedServiceName": "VendorAzureBlobStorage",
-									"FactoryName": "durindatafactory",
+									"BlobLinkedServiceName": "SourceBlobStorageLS",
+									"DestinationBlobLinkedServiceName": "VendorBlobStorageLS",
+									"FactoryName": "[parameters('dataFactoryName')]",
 									"Location": "[resourceGroup().location]",
 									"OnPremLinkedServiceName": "Azure Nexis",
 									"ResourceGroup": "[resourceGroup().name]",
-									"SourceBlobLinkedServiceName": "AzureBlobStorage1",
-									"StorageAccountName": "durinmediastorage",
-									"SubscriptionId": "[subscription().id]",
-									"api-version": "2018-06-01"
+									"SourceBlobLinkedServiceName": "SourceBlobStorageLS",
+									"StorageAccountName": "[parameters('blobStorageAccount')]",
+									"SubscriptionId": "[subscription().id]"
 								},
 								"statusCode": 200
 							},

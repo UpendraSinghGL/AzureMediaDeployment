@@ -25,6 +25,12 @@
       "metadata": {
         "description": "description"
       }
+    },
+    "dataFactoryName": {
+      "type": "string",
+      "metadata": {
+        "description": "description"
+      }
     }
   },
     "functions": [],
@@ -288,7 +294,9 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "dataFactoryName": { "value": "[parameters('dataFactoryName')]" },
+          "blobStorageAccount": { "value": "[parameters('storageName')]" }
         }
       }
     }
