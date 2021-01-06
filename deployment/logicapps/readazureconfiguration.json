@@ -82,7 +82,7 @@
 									"ResourceGroup": "[resourceGroup().name]",
 									"SourceBlobLinkedServiceName": "Durin Media Source",
 									"StorageAccountName": "[parameters('blobStorageAccount')]",
-									"SubscriptionId": "[subscription().id]"
+									"SubscriptionId": "[subscription().subscriptionId]"
 								},
 								"statusCode": 200
 							},
