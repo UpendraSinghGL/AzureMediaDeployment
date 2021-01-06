@@ -29,7 +29,9 @@ this unique name can be found in your CDS tenant(login to cds) -> Setting-> Cust
 
 ### Mac Client Connection configuration
 
-Once the azure component deployment completes, <b> Expand the Deployment details Section ->  Click on the MacClient Connection configuration -> Left pane "output link" -> Copy the configuration </b>. you will need this configuration, while setting up your Mac Client.
+Once the azure component deployment completes, <b> Expand the Deployment details Section ->  Click on the CONNECTION-CONFIGURATION -> Left pane "output link" -> Copy the MAC AND CDS configuration </b>. you will need this configuration, while setting up your Mac Client.
+
+<b> The MAC and CDS configuration will be needed in tenant setup and mac client setup</b>
 
 
 <img src="https://raw.githubusercontent.com/v-sosah/AzureMediaDeployment/durinmedia-azure-function/images/step3.jpg" width="900"/>
