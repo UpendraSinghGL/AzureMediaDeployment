@@ -6,14 +6,21 @@
     "variables": {},
     "resources": [],
     "outputs": {
-        "configuration": {
+        "mac-configuration": {
             "type": "object",
             "value": {
-                "Logic-GenerateSASToken":"[listCallbackUrl(concat(resourceId('Microsoft.Logic/workflows','Logic-GenerateSASToken'),'/triggers/manual'),'2017-07-01').value]",
-                "Logic-AssetUploadFailure":"[listCallbackUrl(concat(resourceId('Microsoft.Logic/workflows','Logic-AssetUploadFailure'),'/triggers/manual'),'2017-07-01').value]",
-                "Logic-GetShowForUser":"[listCallbackUrl(concat(resourceId('Microsoft.Logic/workflows','Logic-GetShowForUser'),'/triggers/manual'),'2017-07-01').value]",
-                "Logic-GetSeasonEpisodeForShow":"[listCallbackUrl(concat(resourceId('Microsoft.Logic/workflows','Logic-GetSeasonEpisodeForShow'),'/triggers/manual'),'2017-07-01').value]",
-                "Logic-SendEmail":"[listCallbackUrl(concat(resourceId('Microsoft.Logic/workflows','Logic-SendEmail'),'/triggers/manual'),'2017-07-01').value]"
+                "Logic-GenerateSASToken": "[listCallbackUrl(concat(resourceId('Microsoft.Logic/workflows','Logic-GenerateSASToken'),'/triggers/manual'),'2017-07-01').value]",
+                "Logic-AssetUploadFailure": "[listCallbackUrl(concat(resourceId('Microsoft.Logic/workflows','Logic-AssetUploadFailure'),'/triggers/manual'),'2017-07-01').value]",
+                "Logic-GetShowForUser": "[listCallbackUrl(concat(resourceId('Microsoft.Logic/workflows','Logic-GetShowForUser'),'/triggers/manual'),'2017-07-01').value]",
+                "Logic-GetSeasonEpisodeForShow": "[listCallbackUrl(concat(resourceId('Microsoft.Logic/workflows','Logic-GetSeasonEpisodeForShow'),'/triggers/manual'),'2017-07-01').value]",
+                "Logic-SendEmail": "[listCallbackUrl(concat(resourceId('Microsoft.Logic/workflows','Logic-SendEmail'),'/triggers/manual'),'2017-07-01').value]"
+            }
+        },
+        "cds-configuration": {
+            "type": "object",
+            "value": {
+                "copyToNexisUrl": "[listCallbackUrl(concat(resourceId('Microsoft.Logic/workflows','Logic-CopyBlobToOnprem'),'/triggers/manual'),'2017-07-01').value]",
+                "copyToVendorLocation": "[listCallbackUrl(concat(resourceId('Microsoft.Logic/workflows','Logic-CopyBlobToAnotherBlobStorage'),'/triggers/manual'),'2017-07-01').value]"
             }
         }
     }
