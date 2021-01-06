@@ -29,12 +29,10 @@
     "uniqueName": "[concat('durinmedia',uniqueString(resourceGroup().id))]",
     "functionAppName": "[toLower(take(concat('func-', variables('uniqueName')), 60))]",
     "functionHostingPlanName": "[take(concat('plan-', variables('uniqueName')), 40)]",
-    "functionStorageAccountName": "[toLower(take(concat('st', variables('uniqueName')), 24))]",
+    "functionStorageAccountName": "[toLower(take(concat('stfun', variables('uniqueName')), 24))]",
     "functionServerFarmId": "[concat('/subscriptions/', subscription().subscriptionId,'/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Web/serverfarms/', variables('functionHostingPlanName'))]",
 
     "appInsightsName": "[take(concat('appi-', variables('uniqueName')), 255)]",
-
-    "storageAccountName": "[toLower(take(concat('st', 'func' ,variables('uniqueName')), 24))]",
 
     "readerAndDataAccessRoleId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'c12c1c16-33a1-487b-954d-41c89c60f349')]",
     "storageBlobDataContributorRoleId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')]",
@@ -159,27 +157,10 @@
       }
     },
     {
-      "apiVersion": "2019-06-01",
-      "type": "Microsoft.Storage/storageAccounts",
-      "name": "[variables('storageAccountName')]",
-      "location": "[variables('deploymentLocation')]",
-      "tags": {},
-      "dependsOn": [
-        "[concat('Microsoft.Web/sites/', variables('functionAppName'))]"
-      ],
-      "sku": {
-        "name": "Standard_LRS"
-      },
-      "properties": {
-        "supportsHttpsTrafficOnly": true
-      }
-    },
-    {
       "type": "Microsoft.Storage/storageAccounts/providers/roleAssignments",
       "apiVersion": "2018-07-01",
-      "name": "[concat(variables('storageAccountName'), '/Microsoft.Authorization/', guid(uniqueString(concat(variables('storageAccountName'), 'ReaderAndDataAccess'))))]",
+      "name": "[concat(parameters('blobStorageName'), '/Microsoft.Authorization/', guid(uniqueString(concat(parameters('blobStorageName'), 'ReaderAndDataAccess'))))]",
       "dependsOn": [
-        "[variables('storageAccountName')]",
         "[resourceId('Microsoft.Web/sites/sourcecontrols/', variables('functionAppName'), 'web')]"
       ],
       "properties": {
@@ -190,9 +171,8 @@
     {
       "type": "Microsoft.Storage/storageAccounts/providers/roleAssignments",
       "apiVersion": "2018-07-01",
-      "name": "[concat(variables('storageAccountName'), '/Microsoft.Authorization/', guid(uniqueString(concat(variables('storageAccountName'), 'BlobDataContributor'))))]",
+      "name": "[concat(parameters('blobStorageName'), '/Microsoft.Authorization/', guid(uniqueString(concat(parameters('blobStorageName'), 'BlobDataContributor'))))]",
       "dependsOn": [
-        "[variables('storageAccountName')]",
         "[resourceId('Microsoft.Web/sites/sourcecontrols/', variables('functionAppName'), 'web')]"
       ],
       "properties": {
