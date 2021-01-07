@@ -1,0 +1,251 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "connection_commondataservice": {
+            "type": "string",
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/commondataservice')]"
+        },
+         "workflows_Logic_SendEmail": {
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Logic/workflows/Logic-SendEmail')]",
+            "type": "String"
+        },
+        "crmOrgName": {
+            "type": "string",
+            "metadata": {
+                "description": "description"
+            }
+        }
+    },
+    "functions": [
+        {
+            "namespace": "durin",
+            "members": {
+                "wrapInQuote": {
+                    "parameters": [
+                        {
+                            "name": "text",
+                            "type": "string"
+                        }
+                    ],
+                    "output": {
+                        "value": "[concat('''', parameters('text'),'''')]",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    ],
+    "variables": {
+         "org": "[durin.wrapInQuote(concat(parameters('crmOrgName'),'.crm'))]"
+    },
+    "resources": [
+        {
+            "name": "Logic-ErrorLogNotification",
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2017-07-01",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/schemas/2016-06-01/Microsoft.Logic.json",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "$connections": {
+                            "defaultValue": {},
+                            "type": "Object"
+                        }
+                    },
+                    "triggers": {
+                        "When_a_record_is_created": {
+                            "type": "ApiConnectionWebhook",
+                            "inputs": {
+                                "body": {
+                                    "NotificationUrl": "@{listCallbackUrl()}"
+                                },
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                    }
+                                },
+                                "path": "[concat('/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/onnewitemswebhook')]",
+                                "queries": {
+                                    "scope": "Organization"
+                                }
+                            }
+                        }
+                    },
+                    "actions": {
+                        "Compose_Email_Body": {
+                            "runAfter": {
+                                "Condition_Check_AssetId_-_Null": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "Compose",
+                            "inputs": "@triggerBody()?['media_description']"
+                        },
+                        "Condition_Check_AssetId_-_Null": {
+                            "actions": {
+                                "Get_record": {
+                                    "runAfter": {},
+                                    "type": "ApiConnection",
+                                    "inputs": {
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                            }
+                                        },
+                                        "method": "get",
+                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('_media_asset_value'),']))}')]"
+                                    }
+                                },
+                                "Set_variable_-_AssetNotificationEmail": {
+                                    "runAfter": {
+                                        "Get_record": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "SetVariable",
+                                    "inputs": {
+                                        "name": "AssetNotificationEmail",
+                                        "value": "@body('Get_record')?['media_notificationemailaddress']"
+                                    }
+                                },
+                                "Set_variable_-_NotificationEmailAddress": {
+                                    "runAfter": {
+                                        "Set_variable_-_AssetNotificationEmail": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "SetVariable",
+                                    "inputs": {
+                                        "name": "NotificationEmailAddress",
+                                        "value": "@{concat(variables('NotificationEmail'),',',variables('AssetNotificationEmail'))}"
+                                    }
+                                }
+                            },
+                            "runAfter": {
+                                "Initialize_variable_-_NotificationEmailAddress": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "else": {
+                                "actions": {
+                                    "Set_variable": {
+                                        "runAfter": {},
+                                        "type": "SetVariable",
+                                        "inputs": {
+                                            "name": "NotificationEmailAddress",
+                                            "value": "@variables('NotificationEmail')"
+                                        }
+                                    }
+                                }
+                            },
+                            "expression": {
+                                "and": [
+                                    {
+                                        "not": {
+                                            "equals": [
+                                                "@triggerBody()?['_media_asset_value']",
+                                                "@null"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "not": {
+                                            "equals": [
+                                                "@triggerBody()?['_media_asset_value']",
+                                                ""
+                                            ]
+                                        }
+                                    }
+                                ]
+                            },
+                            "type": "If"
+                        },
+                        "Initialize_variable_-_NotificationEmail": {
+                            "runAfter": {
+                                "Initialize_variable_AssetNotificationEmail": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "NotificationEmail",
+                                        "type": "string",
+                                        "value": "pranay.mishra321@gmail.com"
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_variable_-_NotificationEmailAddress": {
+                            "runAfter": {
+                                "Initialize_variable_-_NotificationEmail": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "NotificationEmailAddress",
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_variable_AssetNotificationEmail": {
+                            "runAfter": {},
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "AssetNotificationEmail",
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        },
+                        "Logic-SendEmail": {
+                            "runAfter": {
+                                "Compose_Email_Body": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "Workflow",
+                            "inputs": {
+                                "body": {
+                                    "EmailBody": "@{outputs('Compose_Email_Body')}",
+                                    "Recipient": "@{variables('NotificationEmailAddress')}",
+                                    "Subject": "@{triggerBody()?['media_name']}"
+                                },
+                                "host": {
+                                    "triggerName": "manual",
+                                    "workflow": {
+                                        "id": "[parameters('workflows_Logic_SendEmail')]"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "outputs": {
+                    }
+                },
+                "parameters": {
+                    "$connections": {
+                        "value": {
+                            "commondataservice": {
+                                "connectionId": "[parameters('connection_commondataservice')]",
+                                "connectionName": "commondataservice",
+                                "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/commondataservice')]"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}
