@@ -1,5 +1,10 @@
 ## Durin Media Azure Deployment Guide
 
+### Prerequisite
+* CDS tenant Admin Credential
+* Azure Credential with Deployment permission
+* Virus Total Api Key. Check out [how to get api key](docs/VirusTotalScan.docx)
+
 ### Deploy Connections
 Click below to deploy connection objects in the azure. Once you click on the button below, you will be redirected to azure portal. Please select the subscription and resource group(prefer to create new), click on review + create, then hit on create button. Sooner the deployment will start for connection objects. Now wait unless it completes. See the attached image for the reference.
 
