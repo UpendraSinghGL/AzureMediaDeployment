@@ -12,7 +12,7 @@
     },
     "branch": {
       "type": "string",
-      "defaultValue": "durinmedia-azure-function",
+      "defaultValue": "main",
       "metadata": {
         "description": "The branch of the GitHub repository to use."
       }
