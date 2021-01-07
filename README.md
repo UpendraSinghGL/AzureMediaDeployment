@@ -25,7 +25,7 @@ this unique name can be found in your CDS tenant(login to cds) -> Setting-> Cust
 [![Deploy Component](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fv-sosah%2FAzureMediaDeployment%2Fdurinmedia-azure-function%2Fdeployment%2Fdeploy.json)
 
 
-<img src="https://raw.githubusercontent.com/v-sosah/AzureMediaDeployment/durinmedia-azure-function/images/step2.jpg" width="900"/>
+<img src="images/step2.jpg" width="900"/>
 
 ### Mac Client Connection configuration
 
@@ -34,4 +34,4 @@ Once the azure component deployment completes, <b> Expand the Deployment details
 <b> The MAC and CDS configuration will be needed in tenant setup and mac client setup</b>
 
 
-<img src="https://raw.githubusercontent.com/v-sosah/AzureMediaDeployment/durinmedia-azure-function/images/step3.jpg" width="900"/>
+<img src="images/step3.jpg" width="900"/>
