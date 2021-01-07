@@ -13,7 +13,7 @@ Once the deployment of connection completes, you should see <b>"Go to resource g
 * See the <b>commmondataservice</b> connection. click on it-> see at left pane-> click on Edit Api connection  -> Authorize-> enter cds tenant admin credential. After successfull authentication, Please save. See the attached image.
 * Similarly select <b>azureeventgrid</b>-> Edit Api Connection -> Authorize with you own Azure logged-in credential.
 * Same with <b>office365</b>. Please authorize with the user credential which can be use for sending Emails.
-* Same with <b>Virustotal</b>. Please authorize with "x-api_key". Check out [Virus Total](https://www.virustotal.com/) for api key.
+* Same with <b>Virustotal</b>. Please authorize with "x-api_key". Check out [Virus Total Doc](docs/VirusTotalScan.docx) for api key.
 
 <img src="https://raw.githubusercontent.com/v-sosah/AzureMediaDeployment/durinmedia-azure-function/images/authentication.jpg" width="900"/>
 
