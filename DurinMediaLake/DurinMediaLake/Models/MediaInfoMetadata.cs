@@ -1,8 +1,8 @@
 ﻿namespace Microsoft.Media.DurinMediaLake.Models
 {
-    using Newtonsoft.Json;
-    using System.Collections.Generic;
-    public class MediaInfoMetadata
+	using Newtonsoft.Json;
+	using System.Collections.Generic;
+	public class MediaInfoMetadata
 	{
 		public Media media { get; set; }
 	}
