@@ -14,7 +14,7 @@
 	},
 	"resources": [
 		{
-			"name": "send_event_pipeline",
+			"name": "[concat(parameters('dataFactoryName'), '/send_event_pipeline')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
