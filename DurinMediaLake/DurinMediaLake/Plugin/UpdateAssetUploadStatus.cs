@@ -40,7 +40,7 @@
                     }
                     this.OrganizationService.Update(mediasset);
                 }
-			}
+            }
         }
     }
 }
