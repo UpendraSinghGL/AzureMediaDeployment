@@ -285,6 +285,22 @@
       ]
     },
     {
+      "name": "logicapp-eventonpipelinerunhttp-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/eventonpipelinerunhttp.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+        }
+      },
+      "dependsOn": []
+    },
+    {
       "name": "logicapp-readazureconfiguration-deployment",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2019-10-01",

@@ -31,7 +31,41 @@
 			"properties": {},
 			"identity": {
 				"type": "SystemAssigned"
-			}
+			},
+			"resources": [
+				{
+					"type": "Microsoft.DataFactory/factories/linkedServices",
+					"apiVersion": "2018-06-01",
+					"name": "[concat(parameters('dataFactoryName'), '/Durin Media Source')]",
+					"location": "[resourceGroup().location]",
+					"dependsOn": [
+						"[parameters('dataFactoryName')]",
+						"[parameters('blobStorageAccount')]"
+					],
+					"properties": {
+						"type": "AzureBlobStorage",
+						"typeProperties": {
+							"connectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('blobStorageAccount'), ';EndpointSuffix=', environment().suffixes.storage, ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('blobStorageAccount')),'2019-06-01').keys[0].value)]"
+						}
+					}
+				},
+				{
+					"type": "Microsoft.DataFactory/factories/linkedServices",
+					"apiVersion": "2018-06-01",
+					"name": "[concat(parameters('dataFactoryName'), '/Vendor Storage')]",
+					"location": "[resourceGroup().location]",
+					"dependsOn": [
+						"[parameters('dataFactoryName')]",
+						"[parameters('vendorblobstorageAccount')]"
+					],
+					"properties": {
+						"type": "AzureBlobStorage",
+						"typeProperties": {
+							"connectionString": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('vendorblobStorageAccount'), ';EndpointSuffix=', environment().suffixes.storage, ';AccountKey=', listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('vendorblobStorageAccount')),'2019-06-01').keys[0].value)]"
+						}
+					}
+				}
+			]
 		}
 	]
 }
