@@ -29,7 +29,7 @@
                     string rawMetadataJson = String.Empty;
                     MediaInfoMetadata mediaInfoMetadata = new MediaInfoMetadata();
 
-                    this.TracingService.Trace("metadataPlugin: Run Started for Id - " + fileEntity.Id);
+                    this.TracingService.Trace("MediaInfoMetadataExtraction Plugin: Run Started for Id - " + fileEntity.Id);
 
                     if (fileEntity.Contains(MediaAssetFileConstants.MediaInfoMetadata))
                     {
@@ -115,28 +115,26 @@
                                 }
                                 else
                                 {
-                                    this.TracingService.Trace("metadataPlugin: mediaTrackId is empty.");
+                                    this.TracingService.Trace("MediaInfoMetadataExtraction: mediaTrackId is empty.");
                                 }
                             }
 
-                            //SetFileType(mediaTracks, fileEntity);
-
-                            this.TracingService.Trace(string.Format("metadataPlugin: Successfully created {0}/{1} metadata record related to asset file.", totalMetadataCount - failedMetadataCount, totalMetadataCount));
-                            this.TracingService.Trace(string.Format("metadataPlugin: {0} metadata record failed", failedMetadataCount));
+                            this.TracingService.Trace(string.Format("MediaInfoMetadataExtraction: Successfully created {0}/{1} metadata record related to asset file.", totalMetadataCount - failedMetadataCount, totalMetadataCount));
+                            this.TracingService.Trace(string.Format("MediaInfoMetadataExtraction: {0} metadata record failed", failedMetadataCount));
                         }
                         else
                         {
-                            this.TracingService.Trace("metadataPlugin: metadata extracted from media info don't have any track.");
+                            this.TracingService.Trace("MediaInfoMetadataExtraction: metadata extracted from media info don't have any track.");
                         }
 
                         // Create the task in Microsoft Dynamics CRM.
-                        this.TracingService.Trace("metadataPlugin: Run Completed");
+                        this.TracingService.Trace("MediaInfoMetadataExtraction: Run Completed");
                     }
                 }
             }
             catch (Exception ex)
             {
-                this.TracingService.Trace("metadataPlugin: Run Failed | " + ex.Message);
+                this.TracingService.Trace("MediaInfoMetadataExtraction: Run Failed | " + ex.Message);
             }
         }
 

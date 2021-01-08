@@ -10,11 +10,11 @@
     {
         public override void ExecutePlugin()
         {
-            if (this.PluginContext.InputParameters.Contains("Target") &&
-                PluginContext.InputParameters["Target"] is Entity)
+            if (this.PluginContext.InputParameters.Contains(PluginConstants.Target) &&
+                PluginContext.InputParameters[PluginConstants.Target] is Entity)
             {
                 // Obtain the target entity from the input parameters.
-                Entity fileEntity = (Entity)this.PluginContext.InputParameters["Target"];
+                Entity fileEntity = (Entity)this.PluginContext.InputParameters[PluginConstants.Target];
 
                 // Verify that the target entity represents the media_assetfiles.
                 // If not, this plug-in was not registered correctly.
@@ -23,20 +23,20 @@
 
                 Entity mediaassetfile = this.OrganizationService.Retrieve(MediaAssetFileConstants.EntityLogicalName, fileEntity.Id, new ColumnSet(true));
                 EntityReference accountRef = mediaassetfile.GetAttributeValue<EntityReference>(MediaAssetConstants.EntityLogicalName);
-                Entity mediasset = this.OrganizationService.Retrieve(MediaAssetConstants.EntityLogicalName, accountRef.Id, new ColumnSet("media_folderfilecount"));
+                Entity mediasset = this.OrganizationService.Retrieve(MediaAssetConstants.EntityLogicalName, accountRef.Id, new ColumnSet(MediaAssetConstants.FolderFileCount));
 
-                CalculateRollupFieldRequest rollupRequest = new CalculateRollupFieldRequest { Target = new EntityReference(MediaAssetConstants.EntityLogicalName, mediasset.Id), FieldName = "media_uploadedfile" };
+                CalculateRollupFieldRequest rollupRequest = new CalculateRollupFieldRequest { Target = new EntityReference(MediaAssetConstants.EntityLogicalName, mediasset.Id), FieldName = MediaAssetConstants.UploadedFile };
                 CalculateRollupFieldResponse response = (CalculateRollupFieldResponse)this.OrganizationService.Execute(rollupRequest);
 
                 if (fileEntity.Contains(MediaAssetFileConstants.UploadStatus))
                 {
-                    var uploadStatus = ((Microsoft.Xrm.Sdk.OptionSetValue)fileEntity.Attributes["media_uploadstatus"]).Value;
+                    var uploadStatus = ((Microsoft.Xrm.Sdk.OptionSetValue)fileEntity.Attributes[MediaAssetFileConstants.UploadStatus]).Value;
                     //Get count of Uploaded Asset files in an Asset
-                    int AssetFolderFileCount = Convert.ToInt32((mediasset.Attributes["media_folderfilecount"]));
+                    int AssetFolderFileCount = Convert.ToInt32((mediasset.Attributes[MediaAssetConstants.FolderFileCount]));
 
-                    if (AssetFolderFileCount == Convert.ToInt32(response.Entity.Attributes["media_uploadedfile"]))
+                    if (AssetFolderFileCount == Convert.ToInt32(response.Entity.Attributes[MediaAssetConstants.UploadedFile]))
                     {
-                        mediasset.Attributes["media_assetstatus"] = new OptionSetValue(UploadStatus.Completed);
+                        mediasset.Attributes[MediaAssetConstants.AssetStatus] = new OptionSetValue(UploadStatus.Completed);
                     }
                     this.OrganizationService.Update(mediasset);
                 }

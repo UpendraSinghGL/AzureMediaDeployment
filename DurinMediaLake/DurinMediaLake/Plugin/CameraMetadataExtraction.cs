@@ -1,5 +1,6 @@
 ﻿namespace Microsoft.Media.DurinMediaLake.Plugin
 {
+    using Microsoft.Media.DurinMediaLake.Constant;
     using Microsoft.Xrm.Sdk;
     using Microsoft.Xrm.Sdk.Query;
     using System;
@@ -9,20 +10,19 @@
     {
         public override void ExecutePlugin()
         {
-            if (this.PluginContext.InputParameters.Contains("Target") && this.PluginContext.InputParameters["Target"] is Entity)
+            if (this.PluginContext.InputParameters.Contains(PluginConstants.Target) && this.PluginContext.InputParameters[PluginConstants.Target] is Entity)
             {
-                var asset = this.PluginContext.InputParameters["Target"] as Entity;
-                if (asset != null && asset.Attributes!=null && asset.Attributes.ContainsKey("media_camerarawfilemetadata"))
+                var asset = this.PluginContext.InputParameters[PluginConstants.Target] as Entity;
+                if (asset != null && asset.Attributes!=null && asset.Attributes.ContainsKey(MetadataConstants.CameraMetadataEntityLogicalName))
                 {
-                    var cameraFileMetatdata = Convert.ToString(asset.Attributes["media_camerarawfilemetadata"]);
+                    var cameraFileMetatdata = Convert.ToString(asset.Attributes[MetadataConstants.CameraMetadataEntityLogicalName]);
                     var assetid = Convert.ToString(asset.Attributes["media_assetid"]);
                     if (!string.IsNullOrEmpty(cameraFileMetatdata))
                     {
-
                         var query = new QueryExpression();
-                        query.EntityName = "media_assetfiles";
+                        query.EntityName = MediaAssetFileConstants.EntityLogicalName;
                         query.ColumnSet = new ColumnSet("media_name");
-                        query.Criteria.AddCondition("media_asset", ConditionOperator.Equal, assetid);
+                        query.Criteria.AddCondition(MediaAssetConstants.EntityLogicalName, ConditionOperator.Equal, assetid);
 
                         var assetFiles = this.OrganizationService.RetrieveMultiple(query).Entities;
                         if (assetFiles.Count > 0)
@@ -43,7 +43,6 @@
                                 }
                                 if (Convert.ToString(line).Trim('\t') == "Data")
                                 {
-
                                     dataStartFromLineNo = lineno + 1;
                                     continue;
                                 }
@@ -72,15 +71,14 @@
 
                                     if (!string.IsNullOrEmpty(assetfileid))
                                     {
-
                                         foreach (string key in attrdict.Keys)
                                         {
                                             try
                                             {
-                                                var entity = new Entity("media_camerarawfilemetadata");
+                                                var entity = new Entity(MetadataConstants.CameraMetadataEntityLogicalName);
                                                 entity.Attributes.Add("media_keyname", key);
                                                 entity.Attributes.Add("media_keyvalue", attrdict[key]);
-                                                entity.Attributes.Add("media_assetfiles", new EntityReference("media_assetfiles", Guid.Parse(assetfileid)));
+                                                entity.Attributes.Add(MediaAssetFileConstants.EntityLogicalName, new EntityReference(MediaAssetFileConstants.EntityLogicalName, Guid.Parse(assetfileid)));
                                                 this.OrganizationService.Create(entity);
                                             }
                                             catch (Exception e)
@@ -89,9 +87,7 @@
                                         }
                                     }
                                 }
-
                             }
-
                         }
                     }
                 }
