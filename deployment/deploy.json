@@ -82,6 +82,33 @@
       ]
     },
     {
+      "name": "datafactory-linkedservice-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(variables('baseTemplatePath'), 'datafactory/linkedservice-deploy.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "dataFactoryName": {
+            "value": "[variables('dataFactoryName')]"
+          },
+          "blobStorageAccount": {
+            "value": "[variables('blobStorageAccount')]"
+          },
+          "vendorblobStorageAccount": {
+            "value": "[variables('vendorblobStorageAccount')]"
+          }
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'azurefunctiondeployment')]",
+        "[resourceId('Microsoft.Resources/deployments', 'datafactory-deployment')]"
+      ]
+    },
+    {
       "name": "logiapps-deployment",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2019-10-01",
