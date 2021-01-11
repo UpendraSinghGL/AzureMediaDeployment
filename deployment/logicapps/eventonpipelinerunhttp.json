@@ -107,7 +107,7 @@
                               }
                             },
                             "method": "post",
-                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]",
+                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]",
                           }
                         },
                         "Get_record": {
@@ -124,7 +124,7 @@
                               }
                             },
                             "method": "get",
-                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_assetId'),')))}')]",
+                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_assetId'),')))}')]",
                           }
                         },
                         "HTTP_Get_Access_Token": {
@@ -244,7 +244,7 @@
                                                               }
                                                             },
                                                             "method": "patch",
-                                                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_assetId'),')))}')]",
+                                                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_assetId'),')))}')]",
                                                           }
                                                         }
                                                     },
@@ -264,7 +264,7 @@
                                                                   }
                                                                 },
                                                                 "method": "patch",
-                                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_vendorcopystatuses'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_vendorCopyStatusId'),')))}')]",
+                                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_vendorcopystatuses'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_vendorCopyStatusId'),')))}')]",
                                                               }
                                                             }
                                                         }
@@ -299,7 +299,7 @@
                                                             }
                                                         },
                                                         "method": "post",
-														                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
+														                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
                                                     }
                                                 }
                                             }
@@ -362,7 +362,7 @@
                                                               }
                                                             },
                                                             "method": "patch",
-                                                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_assetId'),')))}')]",
+                                                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_assetId'),')))}')]",
                                                           }
                                                         }
                                                     },
@@ -382,7 +382,7 @@
                                                                   }
                                                                 },
                                                                 "method": "patch",
-                                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_vendorcopystatuses'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_vendorCopyStatusId'),')))}')]",
+                                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_vendorcopystatuses'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_vendorCopyStatusId'),')))}')]",
                                                               }
                                                             }
                                                         }
@@ -488,7 +488,7 @@
                                       }
                                     },
                                     "method": "post",
-                                    "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]",
+                                    "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('crmOrgName'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]",
                                   }
                                 },
                                 "HTTP_Get_Pipeline_Run": {
