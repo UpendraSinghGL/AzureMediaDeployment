@@ -28,10 +28,7 @@
 			"apiVersion": "2018-06-01",
 			"name": "[concat(parameters('dataFactoryName'), '/Durin Media Source')]",
 			"location": "[resourceGroup().location]",
-			"dependsOn": [
-				"[parameters('dataFactoryName')]",
-				"[parameters('blobStorageAccount')]"
-			],
+			"dependsOn": [],
 			"properties": {
 				"type": "AzureBlobStorage",
 				"typeProperties": {
@@ -44,10 +41,7 @@
 			"apiVersion": "2018-06-01",
 			"name": "[concat(parameters('dataFactoryName'), '/Vendor Storage')]",
 			"location": "[resourceGroup().location]",
-			"dependsOn": [
-				"[parameters('dataFactoryName')]",
-				"[parameters('vendorblobstorageAccount')]"
-			],
+			"dependsOn": [],
 			"properties": {
 				"type": "AzureBlobStorage",
 				"typeProperties": {
