@@ -21,9 +21,7 @@
 			}
 		}
 	},
-	"variables": {
-		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('dataFactoryName'))]"
-	},
+	"variables": {},
 	"resources": [
 		{
 			"type": "Microsoft.DataFactory/factories/linkedServices",
