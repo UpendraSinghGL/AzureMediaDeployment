@@ -2,10 +2,6 @@
 	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
 	"contentVersion": "1.0.0.0",
 	"parameters": {
-		"connection_commondataservice": {
-			"type": "string",
-			"defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/commondataservice')]"
-		},
 		"crmOrgName": {
 			"type": "string",
 			"metadata": {
@@ -65,17 +61,7 @@
 					},
 					"outputs": {}
 				},
-				"parameters": {
-					"$connections": {
-						"value": {
-							"commondataservice": {
-								"connectionId": "[parameters('connection_commondataservice')]",
-								"connectionName": "commondataservice",
-								"id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/commondataservice')]"
-							}
-						}
-					}
-				}
+				"parameters": {}
 			}
 		}
 	]
