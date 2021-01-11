@@ -3,7 +3,7 @@
 ### Prerequisite
 * CDS tenant Admin Credential
 * Azure Credential with Deployment permission
-* Virus Total Api Key. Check out [how to get api key](docs/VirusTotalScan.docx)
+* Virus Total Api Key. Check out [how to get api key](docs/VirusTotalScan.md)
 
 ### Deploy Connections
 Click below to deploy connection objects in the azure. Once you click on the button below, you will be redirected to azure portal. Please select the subscription and resource group(prefer to create new), click on review + create, then hit on create button. Sooner the deployment will start for connection objects. Now wait unless it completes. See the attached image for the reference.
@@ -18,7 +18,7 @@ Once the deployment of connection completes, you should see <b>"Go to resource g
 * See the <b>commmondataservice</b> connection. click on it-> see at left pane-> click on Edit Api connection  -> Authorize-> enter cds tenant admin credential. After successfull authentication, Please save. See the attached image.
 * Similarly select <b>azureeventgrid</b>-> Edit Api Connection -> Authorize with you own Azure logged-in credential.
 * Same with <b>office365</b>. Please authorize with the user credential which can be use for sending Emails.
-* Same with <b>Virustotal</b>. Please authorize with "x-api_key". Check out [Virus Total Doc](docs/VirusTotalScan.docx) for api key.
+* Same with <b>Virustotal</b>. Please authorize with "x-api_key". Check out [Virus Total Doc](docs/VirusTotalScan.md) for api key.
 
 <img src="images/authentication.jpg" width="900"/>
 
