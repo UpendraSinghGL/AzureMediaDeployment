@@ -38,7 +38,7 @@
 								"Content-Type": "application/json"
 							},
 							"body": {
-								"value": "{\n   \"pipelineName\": \"@pipeline().parameters.pipelineName\",\n   \"pipelineRunId\": \"@pipeline().parameters.runId\",\n \"status\": \"@pipeline().parameters.status\",\n}",
+								"value": "{\n   \"pipelineName\": \"@{pipeline().parameters.pipelineName}\",\n   \"pipelineRunId\": \"@{pipeline().parameters.runId}\",\n \"status\": \"@{pipeline().parameters.status}\",\n}",
 								"type": "Expression"
 							}
 						}
