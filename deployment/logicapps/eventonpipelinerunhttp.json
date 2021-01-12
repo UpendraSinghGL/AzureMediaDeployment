@@ -577,7 +577,7 @@
                             "host": {
                               "triggerName": "manual",
                               "workflow": {
-                                "id": "[parameters('workflows_Logic_SendEmail_externalid')]"
+                                "id": "[parameters('workflows_Logic_SendEmail')]"
                               }
                             }
                           }
@@ -617,7 +617,7 @@
                             "host": {
                               "triggerName": "manual",
                               "workflow": {
-                                "id": "[parameters('workflows_Logic_SendEmail_externalid')]"
+                                "id": "[parameters('workflows_Logic_SendEmail')]"
                               }
                             }
                           }
