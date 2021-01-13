@@ -27,7 +27,7 @@ Once the deployment of connection completes, you should see <b>"Go to resource g
 Click the below button, it will again  redirect you to azure portal, Please select the <b>same subscription and resource group</b> and enter the CDS Org Unique name.
 this unique name can be found in your CDS tenant(login to cds) -> Setting-> Customization -> Developer Resource -> Unique name. Attached the image for the reference
 
-[![Deploy Component](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fv-sosah%2FAzureMediaDeployment%2Fdurinmedia_dev%2Fdeployment%2Fdeploy.json)
+[![Deploy Component](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fv-sosah%2FAzureMediaDeployment%2Fdurinmedia_appreg%2Fdeployment%2Fdeploy.json)
 
 
 <img src="images/step2.jpg" width="900"/>
