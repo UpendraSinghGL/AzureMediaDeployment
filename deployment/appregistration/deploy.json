@@ -33,7 +33,7 @@
 			"name": "identity-role",
 			"properties": {
 				"roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', variables('Reader'))]",
-				"principalId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('identityName')), '2018-11-30', 'Full').principalId]"
+				"principalId": "[reference(concat('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('identityName')),'2015-08-31-PREVIEW').principalId]"
 			},
 			"dependsOn": [
 				"[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('identityName'))]"
