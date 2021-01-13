@@ -18,7 +18,7 @@
 		"aadAppUri": "[concat('https://', variables('appName'), 'azurewebsites.net')]",
 		"aadAppRedirectUri": "[concat('https://', variables('appName'), 'azurewebsites.net/signin-oidc')]",
 		"cliArg": "[concat(variables('appName'), ' ', variables('aadAppUri'), ' ', variables('aadAppRedirectUri'))]",
-		"Reader": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'acdd72a7-3385-48ef-bd42-f606fba81ae7')]"
+		"Reader": "acdd72a7-3385-48ef-bd42-f606fba81ae7"
 	},
 	"resources": [
 		{
