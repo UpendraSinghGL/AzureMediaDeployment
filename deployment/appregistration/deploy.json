@@ -30,7 +30,7 @@
 		{
 			"type": "Microsoft.Authorization/roleAssignments",
 			"apiVersion": "2018-09-01-preview",
-			"name": "identity-role",
+			"name": "[guid(resourceGroup().id)]",
 			"properties": {
 				"roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', variables('Reader'))]",
 				"principalId": "[reference(concat('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('identityName')),'2015-08-31-PREVIEW').principalId]"
