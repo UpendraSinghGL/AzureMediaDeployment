@@ -18,7 +18,8 @@
 		"aadAppUri": "[concat('https://', variables('appName'), 'azurewebsites.net')]",
 		"aadAppRedirectUri": "[concat('https://', variables('appName'), 'azurewebsites.net/signin-oidc')]",
 		"cliArg": "[concat(variables('appName'), ' ', variables('aadAppUri'), ' ', variables('aadAppRedirectUri'))]",
-		"Reader": "acdd72a7-3385-48ef-bd42-f606fba81ae7"
+		"Contributor": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'b24988ac-6180-42a0-ab88-20f7382dd24c')]",
+		"Reader": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', 'acdd72a7-3385-48ef-bd42-f606fba81ae7')]"
 	},
 	"resources": [
 		{
@@ -32,7 +33,7 @@
 			"apiVersion": "2018-09-01-preview",
 			"name": "[guid(resourceGroup().id)]",
 			"properties": {
-				"roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', variables('Reader'))]",
+				"roleDefinitionId": "[variables('Contributor')]",
 				"principalId": "[reference(concat('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('identityName')),'2015-08-31-PREVIEW').principalId]"
 			},
 			"dependsOn": [
