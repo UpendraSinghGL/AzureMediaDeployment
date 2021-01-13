@@ -8,7 +8,7 @@
 ### Deploy Connections
 Click below to deploy connection objects in the azure. Once you click on the button below, you will be redirected to azure portal. Please select the subscription and resource group(prefer to create new), click on review + create, then hit on create button. Sooner the deployment will start for connection objects. Now wait unless it completes. See the attached image for the reference.
 
-[![Deploy Connection](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fv-sosah%2FAzureMediaDeployment%2Fdurinmedia_dev%2Fdeployment%2Fdeployconnection.json)
+[![Deploy Connection](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fv-sosah%2FAzureMediaDeployment%2Fdurinmedia_appreg%2Fdeployment%2Fdeployconnection.json)
 
 <img src="images/step1.jpg" width="500"/>
 
