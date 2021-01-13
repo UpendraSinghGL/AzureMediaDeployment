@@ -30,10 +30,10 @@
 		{
 			"type": "Microsoft.Authorization/roleAssignments",
 			"apiVersion": "2018-09-01-preview",
-			"name": "[guid(resourceGroup().id)]",
+			"name": "identity-role",
 			"properties": {
 				"roleDefinitionId": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', variables('Reader'))]",
-				"principalId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('identityName')), '2018-11-30', 'Full').identity.principalId]"
+				"principalId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('identityName')), '2018-11-30', 'Full').principalId]"
 			},
 			"dependsOn": [
 				"[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('identityName'))]"
