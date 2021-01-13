@@ -1175,6 +1175,7 @@
       <CanChangeTrackingBeEnabled>1</CanChangeTrackingBeEnabled>
       <IsEnabledForExternalChannels>0</IsEnabledForExternalChannels>
       <IsSolutionAware>0</IsSolutionAware>
+      <IconVectorName>media_assetfile_16x16.png</IconVectorName>
     </entity>
   </EntityInfo>
   <FormXml />

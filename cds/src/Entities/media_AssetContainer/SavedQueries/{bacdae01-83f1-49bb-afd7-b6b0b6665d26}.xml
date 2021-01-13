@@ -10,7 +10,7 @@
     <layoutxml>
       <grid name="resultset" jump="media_name" select="1" icon="1" preview="1">
         <row name="result" id="media_assetcontainerid">
-          <cell name="media_name" width="194" />
+          <cell name="media_name" width="100" imageproviderfunctionname="DurinMedia.Utility.displayIconInView" imageproviderwebresource="$webresource:media_durinutility.js" />
           <cell name="media_studio" width="100" />
           <cell name="media_containerpath" width="127" />
           <cell name="createdon" width="125" />

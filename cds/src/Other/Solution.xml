@@ -132,12 +132,24 @@
       <RootComponent type="60" id="{f7bc7d25-6852-441d-a98e-92dd1fcd1646}" behavior="0" />
       <RootComponent type="60" id="{f8959496-faab-4c8b-a091-577ba27399a6}" behavior="0" />
       <RootComponent type="61" schemaName="media_AppLogo" behavior="0" />
+      <RootComponent type="61" schemaName="media_assetfile_16x16.png" behavior="0" />
+      <RootComponent type="61" schemaName="media_asset_16x16.png" behavior="0" />
+      <RootComponent type="61" schemaName="media_configuration16x16.png" behavior="0" />
+      <RootComponent type="61" schemaName="media_durinutility.js" behavior="0" />
+      <RootComponent type="61" schemaName="media_episode_16x16.png" behavior="0" />
+      <RootComponent type="61" schemaName="media_show16x16.png" behavior="0" />
+      <RootComponent type="61" schemaName="media_studio_icon.png" behavior="0" />
+      <RootComponent type="61" schemaName="media_vendor_16x16.png" behavior="0" />
       <RootComponent type="62" schemaName="media_DurinMediaLake" behavior="0" />
       <RootComponent type="80" schemaName="media_DurinMediaLake" behavior="0" />
       <RootComponent type="91" id="{943dc731-f13d-41f9-89a4-8ef3cb24b6b6}" schemaName="Microsoft.Media.DurinMediaLake, Version=1.0.0.0, Culture=neutral, PublicKeyToken=809b50fade28e4c2" behavior="0" />
       <RootComponent type="92" id="{9d8de4bf-1c49-eb11-a813-000d3a1c234d}" behavior="0" />
       <RootComponent type="92" id="{c73c32a9-1c49-eb11-a813-000d3a1c234d}" behavior="0" />
       <RootComponent type="92" id="{fb9f47da-1c49-eb11-a813-000d3a1c234d}" behavior="0" />
+      <RootComponent type="431" schemaName="media_assetcontainer media_logo" behavior="0" />
+      <RootComponent type="431" schemaName="media_studio media_logo" behavior="0" />
+      <RootComponent type="432" schemaName="media_assetcontainer" behavior="0" />
+      <RootComponent type="432" schemaName="media_studio" behavior="0" />
     </RootComponents>
     <MissingDependencies></MissingDependencies>
   </SolutionManifest>
