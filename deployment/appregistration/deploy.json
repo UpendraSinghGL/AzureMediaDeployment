@@ -1,0 +1,50 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {},
+	"variables": {
+		"identityName": "durinmedia-identity",
+		"cliResourceName": "AzCLIAppRegDeploymentScript",
+		"appName": "durinarmapp",
+		"appServicePlanName": "[concat('Plan-', variables('appName'))]",
+		"aadAppUri": "[concat('https://', variables('appName'), 'azurewebsites.net')]",
+		"aadAppRedirectUri": "[concat('https://', variables('appName'), 'azurewebsites.net/signin-oidc')]",
+		"cliArg": "[concat(variables('appName'), ' ', variables('aadAppUri'), ' ', variables('aadAppRedirectUri'))]"
+	},
+	"resources": [
+		{
+			"type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+			"name": "[variables('identityName')]",
+			"apiVersion": "2018-11-30",
+			"location": "[resourceGroup().location]"
+		},
+		{
+			"type": "Microsoft.Resources/deploymentScripts",
+			"apiVersion": "2019-10-01-preview",
+			"name": "[variables('cliResourceName')]",
+			"location": "[resourceGroup().location]",
+			"kind": "AzureCLI",
+			"identity": {
+				"type": "UserAssigned",
+				"userAssignedIdentities": {
+					"[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('identityName'))]": {}
+				}
+			},
+			"properties": {
+				"forceUpdateTag": "[parameters('utcValue')]",
+				"AzCliVersion": "2.0.80",
+				"timeout": "PT30M",
+				"arguments": "[variables('cliArg')]",
+				"scriptContent": "
+        appInfo=$(az ad app create --display-name $1 --identifier-uris \"$2\" --reply-urls \"$3\")
+        echo $appInfo > $AZ_SCRIPTS_OUTPUT_PATH
+			",
+				"cleanupPreference": "OnSuccess",
+				"retentionInterval": "P1D"
+			},
+			"dependsOn": [
+				"[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('identityName'))]"
+			]
+		}
+	]
+}
