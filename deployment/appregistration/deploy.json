@@ -61,21 +61,21 @@
 				"timeout": "PT30M",
 				"arguments": "[variables('cliArg')]",
 				"scriptContent": "
-        appInfo=$(az ad app create --display-name $1)
+				appInfo=$(az ad app create --display-name $1)
         echo $appInfo > $AZ_SCRIPTS_OUTPUT_PATH
-			",
+				",
 				"cleanupPreference": "OnSuccess",
 				"retentionInterval": "P1D"
 			},
 			"dependsOn": [
 				"[resourceID('Microsoft.Authorization/roleAssignments/',variables('RoleAssignmentId'))]"
-			],
-			"outputs": {
-				"result": {
-					"value": "[reference(variables('cliResourceName')).outputs]",
-					"type": "object"
-				}
-			}
+			]
 		}
-	]
+	],
+	"outputs": {
+		"result": {
+			"value": "[reference(variables('cliResourceName')).outputs]",
+			"type": "object"
+		}
+	}
 }
