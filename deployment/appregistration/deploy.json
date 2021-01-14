@@ -61,7 +61,7 @@
 				"timeout": "PT30M",
 				"arguments": "[variables('cliArg')]",
 				"scriptContent": "
-				appInfo=$(az ad app create --display-name $1)
+				appInfo=$(az ad app create --display-name DurinARMApp)
         echo $appInfo > $AZ_SCRIPTS_OUTPUT_PATH
 				",
 				"cleanupPreference": "OnSuccess",
@@ -73,7 +73,7 @@
 		}
 	],
 	"outputs": {
-		"result": {
+		"outputs": {
 			"value": "[reference(variables('cliResourceName')).outputs]",
 			"type": "object"
 		}
