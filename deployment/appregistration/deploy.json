@@ -13,6 +13,7 @@
 	"variables": {
 		"identityName": "durinmedia-identity",
 		"cliResourceName": "AzCLIAppRegDeploymentScript",
+		"roleAssignmentId": "[guid(resourceGroup().id)]",
 		"appName": "durinarmapp",
 		"appServicePlanName": "[concat('Plan-', variables('appName'))]",
 		"aadAppUri": "[concat('https://', variables('appName'), 'azurewebsites.net')]",
@@ -31,10 +32,12 @@
 		{
 			"type": "Microsoft.Authorization/roleAssignments",
 			"apiVersion": "2018-09-01-preview",
-			"name": "[guid(resourceGroup().id)]",
+			"name": "[variables('RoleAssignmentId')]",
 			"properties": {
 				"roleDefinitionId": "[variables('Contributor')]",
-				"principalId": "[reference(concat('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('identityName')),'2015-08-31-PREVIEW').principalId]"
+				"principalId": "[reference(concat('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('identityName')),'2015-08-31-PREVIEW').principalId]",
+				"scope": "[resourceGroup().id]",
+				"principalType": "ServicePrincipal"
 			},
 			"dependsOn": [
 				"[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('identityName'))]"
@@ -65,7 +68,7 @@
 				"retentionInterval": "P1D"
 			},
 			"dependsOn": [
-				"[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('identityName'))]"
+				"[resourceID('Microsoft.Authorization/roleAssignments/',variables('RoleAssignmentId'))]"
 			]
 		}
 	]
