@@ -15,6 +15,12 @@
             "metadata": {
                 "description": "description"
             }
+        },
+        "crmIdentifier": {
+            "type": "string",
+            "metadata": {
+                "description": "description"
+            }
         }
     },
     "functions": [
@@ -37,7 +43,7 @@
         }
     ],
     "variables": {
-         "org": "[durin.wrapInQuote(concat(parameters('crmOrgName'),'.crm'))]"
+         "org": "[durin.wrapInQuote(concat(parameters('crmOrgName'),'.',parameters('crmIdentifier')))]"
     },
     "resources": [
         {

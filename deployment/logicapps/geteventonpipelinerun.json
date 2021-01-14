@@ -29,6 +29,12 @@
 		"connections_eventhubs": {
 			"defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/eventhubs')]",
 			"type": "String"
+		},
+		"crmIdentifier": {
+			"type": "string",
+			"metadata": {
+				"description": "crmIdentifier"
+			}
 		}
 	},
 	"functions": [
@@ -51,7 +57,7 @@
 		}
 	],
 	"variables": {
-		"org": "[durin.wrapInQuote(concat(parameters('crmOrgName'),'.crm'))]"
+		"org": "[durin.wrapInQuote(concat(parameters('crmOrgName'),'.',parameters('crmIdentifier')))]"
 	},
 	"resources": [
 		{
@@ -179,7 +185,7 @@
 																	}
 																},
 																"method": "patch",
-																"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_assetId'),')))}')]",
+																"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_assetId'),')))}')]"
 															}
 														}
 													},
