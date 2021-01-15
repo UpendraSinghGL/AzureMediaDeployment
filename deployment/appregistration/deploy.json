@@ -61,6 +61,7 @@
 				"timeout": "PT30M",
 				"arguments": "",
 				"scriptContent": "
+					Install-Module AzureAD
 					Connect-AzureAD
 					New-AzureADApplication -DisplayName DurinPowerApp",
 				"cleanupPreference": "OnExpiration",
