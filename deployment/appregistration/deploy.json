@@ -46,7 +46,7 @@
 		{
 			"type": "Microsoft.Resources/deploymentScripts",
 			"apiVersion": "2019-10-01-preview",
-			"name": "[variables('cliResourceName')]",
+			"name": "[concat(variables('cliResourceName'),parameters('utcValue'))]",
 			"location": "[resourceGroup().location]",
 			"kind": "AzureCLI",
 			"identity": {
@@ -60,10 +60,7 @@
 				"AzCliVersion": "2.0.80",
 				"timeout": "PT30M",
 				"arguments": "[variables('cliArg')]",
-				"scriptContent": "
-				appInfo=$(az ad app create --display-name DurinARMApp)
-        echo $appInfo > $AZ_SCRIPTS_OUTPUT_PATH
-				",
+				"scriptContent": "\r\n\t\t\t\tappInfo=$(az ad app create --display-name DurinARMApp)\r\n        echo $appInfo > $AZ_SCRIPTS_OUTPUT_PATH\r\n\t\t\t\t",
 				"cleanupPreference": "OnSuccess",
 				"retentionInterval": "P1D"
 			},
