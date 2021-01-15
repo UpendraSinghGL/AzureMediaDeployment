@@ -12,7 +12,7 @@
 	},
 	"variables": {
 		"identityName": "durinmedia-identity",
-		"cliResourceName": "AzCLIAppRegDeploymentScript",
+		"cliResourceName": "[concat('AzCLIAppRegDeploymentScript',parameters('utcValue'))]",
 		"roleAssignmentId": "[guid(resourceGroup().id)]",
 		"appName": "durinarmapp",
 		"appServicePlanName": "[concat('Plan-', variables('appName'))]",
@@ -46,11 +46,11 @@
 		{
 			"type": "Microsoft.Resources/deploymentScripts",
 			"apiVersion": "2019-10-01-preview",
-			"name": "[concat(variables('cliResourceName'),parameters('utcValue'))]",
+			"name": "[variables('cliResourceName')]",
 			"location": "[resourceGroup().location]",
 			"kind": "AzureCLI",
 			"identity": {
-				"type": "UserAssigned",
+				"type": "userAssigned",
 				"userAssignedIdentities": {
 					"[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('identityName'))]": {}
 				}
@@ -60,8 +60,8 @@
 				"AzCliVersion": "2.0.80",
 				"timeout": "PT30M",
 				"arguments": "[variables('cliArg')]",
-				"scriptContent": "\r\n\t\t\t\tappInfo=$(az ad app create --display-name DurinARMApp)\r\n        echo $appInfo > $AZ_SCRIPTS_OUTPUT_PATH\r\n\t\t\t\t",
-				"cleanupPreference": "OnSuccess",
+				"scriptContent": "\r\n\t\t\t\t appInfo=$(az ad app create --display-name DurinARMApp)\r\n        echo $appInfo > $AZ_SCRIPTS_OUTPUT_PATH \r\n\t\t\t\t",
+				"cleanupPreference": "OnExpiration",
 				"retentionInterval": "P1D"
 			},
 			"dependsOn": [
@@ -69,5 +69,14 @@
 			]
 		}
 	],
-	"outputs": {}
+	"outputs": {
+		"result": {
+			"value": "[reference(variables('cliResourceName')).status]",
+			"type": "object"
+		},
+		"outputs": {
+			"value": "[reference(variables('cliResourceName')).outputs]",
+			"type": "object"
+		}
+	}
 }
