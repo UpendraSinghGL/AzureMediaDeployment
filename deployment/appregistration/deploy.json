@@ -12,7 +12,7 @@
 	},
 	"variables": {
 		"identityName": "durinmedia-identity",
-		"cliResourceName": "[concat('AzCLIAppRegDeploymentScript',parameters('utcValue'))]",
+		"scriptName": "[concat('powerShellAppReg',parameters('utcValue'))]",
 		"roleAssignmentId": "[guid(resourceGroup().id)]",
 		"appName": "durinarmapp",
 		"appServicePlanName": "[concat('Plan-', variables('appName'))]",
@@ -45,10 +45,10 @@
 		},
 		{
 			"type": "Microsoft.Resources/deploymentScripts",
-			"apiVersion": "2019-10-01-preview",
-			"name": "[variables('cliResourceName')]",
+			"apiVersion": "2020-10-01",
+			"name": "[variables('scriptName')]",
 			"location": "[resourceGroup().location]",
-			"kind": "AzureCLI",
+			"kind": "AzurePowerShell",
 			"identity": {
 				"type": "userAssigned",
 				"userAssignedIdentities": {
@@ -57,10 +57,12 @@
 			},
 			"properties": {
 				"forceUpdateTag": "[parameters('utcValue')]",
-				"AzCliVersion": "2.0.80",
+				"azPowerShellVersion": "3.0",
 				"timeout": "PT30M",
-				"arguments": "[variables('cliArg')]",
-				"scriptContent": "appInfo=$(az ad app create --display-name DurinARMAppTest); echo $appInfo | jq > $AZ_SCRIPTS_OUTPUT_PATH",
+				"arguments": "",
+				"scriptContent": "
+					Connect-AzureAD
+					New-AzureADApplication -DisplayName DurinPowerApp",
 				"cleanupPreference": "OnExpiration",
 				"retentionInterval": "P1D"
 			},
@@ -71,7 +73,7 @@
 	],
 	"outputs": {
 		"result": {
-			"value": "[reference(variables('cliResourceName')).status]",
+			"value": "[reference(variables('scriptName')).status]",
 			"type": "object"
 		}
 	}
