@@ -69,10 +69,5 @@
 			]
 		}
 	],
-	"outputs": {
-		"outputs": {
-			"value": "[reference(concat(variables('cliResourceName'),parameters('utcValue'))).outputs]",
-			"type": "object"
-		}
-	}
+	"outputs": {}
 }
