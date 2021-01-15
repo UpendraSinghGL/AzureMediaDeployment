@@ -71,7 +71,7 @@
 	],
 	"outputs": {
 		"outputs": {
-			"value": "[reference(variables('cliResourceName')).outputs]",
+			"value": "[reference(concat(variables('cliResourceName'),parameters('utcValue'))).outputs]",
 			"type": "object"
 		}
 	}
