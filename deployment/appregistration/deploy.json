@@ -60,7 +60,7 @@
 				"AzCliVersion": "2.0.80",
 				"timeout": "PT30M",
 				"arguments": "[variables('cliArg')]",
-				"scriptContent": "\r\n\t\t\t\t appInfo=$(az ad app create --display-name DurinARMApp)\r\n        echo $appInfo > $AZ_SCRIPTS_OUTPUT_PATH \r\n\t\t\t\t",
+				"scriptContent": "\r\n\t\t\t\t appInfo=$(az ad app create --display-name DurinARMApp)\r\n        echo $appInfo \r\n\t\t\t\t",
 				"cleanupPreference": "OnExpiration",
 				"retentionInterval": "P1D"
 			},
