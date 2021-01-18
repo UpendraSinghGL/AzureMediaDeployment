@@ -62,6 +62,7 @@
 				"arguments": "",
 				"scriptContent": "
 					Install-Module AzureAD -Force
+					Import-Module AzureAD
 					Connect-AzureAD
 					New-AzureADApplication -DisplayName DurinPowerApp",
 				"cleanupPreference": "OnExpiration",
