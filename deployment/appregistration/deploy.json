@@ -61,9 +61,8 @@
 				"timeout": "PT30M",
 				"arguments": "",
 				"scriptContent": "
-					Install-module AzureADPreview -Verbose
-					Connect-AzureAD -identity
-					New-AzureADApplication -DisplayName DurinPowerApp",
+					$DeploymentScriptOutputs['test'] = 'test this output'
+          Write-Host 'I am a deployment script'",
 				"cleanupPreference": "OnExpiration",
 				"retentionInterval": "P1D"
 			},
