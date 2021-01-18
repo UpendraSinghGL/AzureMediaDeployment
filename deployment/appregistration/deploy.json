@@ -45,7 +45,7 @@
 		},
 		{
 			"type": "Microsoft.Resources/deploymentScripts",
-			"apiVersion": "2020-10-01",
+			"apiVersion": "2019-10-01-preview",
 			"name": "[variables('scriptName')]",
 			"location": "[resourceGroup().location]",
 			"kind": "AzurePowerShell",
