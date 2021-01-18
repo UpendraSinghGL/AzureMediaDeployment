@@ -64,7 +64,7 @@
 					Install-Module AzureAD -Force
 					Import-Module AzureAD
 					Connect-AzureAD -identity
-					New-AzADApplication -DisplayName DurinPowerApp",
+					New-AzureADApplication -DisplayName DurinPowerApp",
 				"cleanupPreference": "OnExpiration",
 				"retentionInterval": "P1D"
 			},
