@@ -24,12 +24,6 @@
 	},
 	"resources": [
 		{
-			"type": "Microsoft.ManagedIdentity/userAssignedIdentities",
-			"name": "[variables('identityName')]",
-			"apiVersion": "2018-11-30",
-			"location": "[resourceGroup().location]"
-		},
-		{
 			"type": "Microsoft.Authorization/roleAssignments",
 			"apiVersion": "2018-09-01-preview",
 			"name": "[variables('RoleAssignmentId')]",
@@ -39,9 +33,7 @@
 				"scope": "[resourceGroup().id]",
 				"principalType": "ServicePrincipal"
 			},
-			"dependsOn": [
-				"[resourceID('Microsoft.ManagedIdentity/userAssignedIdentities/',variables('identityName'))]"
-			]
+			"dependsOn": []
 		},
 		{
 			"type": "Microsoft.Resources/deploymentScripts",
@@ -61,8 +53,9 @@
 				"timeout": "PT30M",
 				"arguments": "",
 				"scriptContent": "
-					$DeploymentScriptOutputs['test'] = 'test this output'
-          Write-Host 'I am a deployment script'",
+					Install-module AzureADPreview -Verbose
+					Connect-AzureAD -identity
+					New-AzureADApplication -DisplayName DurinPowerApp",
 				"cleanupPreference": "OnExpiration",
 				"retentionInterval": "P1D"
 			},
