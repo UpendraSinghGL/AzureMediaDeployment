@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="BuildProject" ToolsVersion="15.0"
+	xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+	<PropertyGroup>
+		<TargetFramework>net462</TargetFramework>
+		<OutDir>solution</OutDir>
+		<SolutionName>DurinMediaLake</SolutionName>
+		<Version>1.0.0.39</Version>
+		<ProjectDir>src</ProjectDir>
+		<RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CrmSdk.CoreTools" Version="9.1.0.68" GeneratePathProperty="true" />
+	</ItemGroup>
+	<Target Name="BuildProject">
+		<Exec Command="$(PkgMicrosoft_CrmSdk_CoreTools)\content\bin\coretools\SolutionPackager.exe /action:Pack /z: $(MSBuildThisFileDirectory)$(OutDir)\$(SolutionName)$(Version).zip  /p:Both /localize  /f:$(MSBuildThisFileDirectory)$(ProjectDir)"/>
+	</Target>
+	<Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+</Project>
