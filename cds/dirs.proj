@@ -6,7 +6,6 @@
 		<TargetFramework>net462</TargetFramework>
 		<OutDir>solution</OutDir>
 		<SolutionName>DurinMediaLake</SolutionName>
-		<Version>1.0.0.39</Version>
 		<ProjectDir>src</ProjectDir>
 		<RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 	</PropertyGroup>
@@ -14,7 +13,7 @@
 		<PackageReference Include="Microsoft.CrmSdk.CoreTools" Version="9.1.0.68" GeneratePathProperty="true" />
 	</ItemGroup>
 	<Target Name="BuildProject">
-		<Exec Command="$(PkgMicrosoft_CrmSdk_CoreTools)\content\bin\coretools\SolutionPackager.exe /action:Pack /z: $(MSBuildThisFileDirectory)$(OutDir)\$(SolutionName)$(Version).zip  /p:Both /localize  /f:$(MSBuildThisFileDirectory)$(ProjectDir)"/>
+		<Exec Command="$(PkgMicrosoft_CrmSdk_CoreTools)\content\bin\coretools\SolutionPackager.exe /action:Pack /z: $(MSBuildThisFileDirectory)$(OutDir)\$(SolutionName).zip  /p:Both /localize  /f:$(MSBuildThisFileDirectory)$(ProjectDir)"/>
 	</Target>
 	<Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
 </Project>
