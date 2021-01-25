@@ -10,33 +10,42 @@
     <layoutxml>
       <grid name="resultset" jump="media_name" select="1" icon="1" preview="1">
         <row name="result" id="media_vendorcopystatusid">
-          <cell name="media_asset" width="100" />
+          <cell name="a_ae51a1da4ed240ae936ced99ded902af.media_assetcontainer" width="100" />
           <cell name="media_vendor" width="100" />
-          <cell name="media_copydestination" width="100" />
+          <cell name="media_asset" width="100" />
+          <cell name="a_4578277afc5d46e8ab14b2d6428d6fa3.fullname" width="100" />
           <cell name="media_copystatus" width="100" />
           <cell name="createdon" width="125" />
+          <cell name="modifiedon" width="100" />
         </row>
       </grid>
     </layoutxml>
     <querytype>0</querytype>
     <fetchxml>
-      <fetch version="1.0" mapping="logical">
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
         <entity name="media_vendorcopystatus">
           <attribute name="createdon" />
-          <filter type="and">
-            <condition attribute="statecode" operator="eq" value="0" />
-          </filter>
           <attribute name="media_copystatus" />
-          <attribute name="media_copydestination" />
           <attribute name="media_vendor" />
           <attribute name="media_asset" />
+          <attribute name="modifiedon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+            <condition attribute="media_copystatus" operator="eq" value="207940000" />
+          </filter>
+          <link-entity name="media_asset" from="media_assetid" to="media_asset" visible="false" link-type="outer" alias="a_ae51a1da4ed240ae936ced99ded902af">
+            <attribute name="media_assetcontainer" />
+          </link-entity>
+          <link-entity name="systemuser" from="systemuserid" to="createdby" visible="false" link-type="outer" alias="a_4578277afc5d46e8ab14b2d6428d6fa3">
+            <attribute name="fullname" />
+          </link-entity>
           <attribute name="media_vendorcopystatusid" />
         </entity>
       </fetch>
     </fetchxml>
     <IntroducedVersion>1.0.0.5</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Active Asset Copy Status" languagecode="1033" />
+      <LocalizedName description="Started Copy Status" languagecode="1033" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

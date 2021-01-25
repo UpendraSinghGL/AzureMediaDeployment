@@ -16,8 +16,6 @@
   <EntityRelationship Name="lk_media_assetactivity_modifiedby" />
   <EntityRelationship Name="lk_media_assetcontainer_createdby" />
   <EntityRelationship Name="lk_media_assetcontainer_modifiedby" />
-  <EntityRelationship Name="lk_media_assetcontainerusers_createdby" />
-  <EntityRelationship Name="lk_media_assetcontainerusers_modifiedby" />
   <EntityRelationship Name="lk_media_asseterrorlog_createdby" />
   <EntityRelationship Name="lk_media_asseterrorlog_modifiedby" />
   <EntityRelationship Name="lk_media_assetfiles_createdby" />
@@ -61,7 +59,6 @@
   <EntityRelationship Name="media_AssetContainer_media_AssetTemplate_" />
   <EntityRelationship Name="media_AssetContainer_Studio_media_Studio" />
   <EntityRelationship Name="media_AssetContainer_SystemUser_SystemUse" />
-  <EntityRelationship Name="media_AssetContainerUsers_User_SystemUser" />
   <EntityRelationship Name="media_AssetErrorLog_media_Asset_media_Ass" />
   <EntityRelationship Name="media_AssetErrorLog_media_AssetContainer_" />
   <EntityRelationship Name="media_AssetErrorLog_media_AssetFiles_medi" />
@@ -79,16 +76,9 @@
   <EntityRelationship Name="media_ShowVendorMapping_Show_media_AssetC" />
   <EntityRelationship Name="media_ShowVendorMapping_Vendor_media_Vend" />
   <EntityRelationship Name="media_Track_AssetFile_media_AssetFiles" />
-  <EntityRelationship Name="msdyn_appconfiguration_systemuser" />
-  <EntityRelationship Name="msdyn_ciprovider_systemuser_membership" />
-  <EntityRelationship Name="msdyn_msdyn_liveworkstream_systemuser" />
-  <EntityRelationship Name="msdyn_msdyn_presence_systemuser" />
-  <EntityRelationship Name="msdyn_resourcerequirement_systemuser" />
-  <EntityRelationship Name="msdyn_systemuser_msdyn_omnichannelqueue" />
   <EntityRelationship Name="organization_media_asset" />
   <EntityRelationship Name="organization_media_assetactivity" />
   <EntityRelationship Name="organization_media_assetcontainer" />
-  <EntityRelationship Name="organization_media_assetcontainerusers" />
   <EntityRelationship Name="organization_media_asseterrorlog" />
   <EntityRelationship Name="organization_media_assetfiles" />
   <EntityRelationship Name="organization_media_assetfolderlayout" />

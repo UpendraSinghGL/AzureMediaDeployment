@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.1.0.25851" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.1.0.26442" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>DurinMediaLake</UniqueName>
     <LocalizedNames>
       <LocalizedName description="Durin Media Lake" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>1.0.0.39</Version>
+    <Version>1.0.0.0</Version>
     <Managed>2</Managed>
     <Publisher>
       <UniqueName>durinmedialake</UniqueName>
@@ -81,7 +81,6 @@
       <RootComponent type="1" schemaName="media_asset" behavior="0" />
       <RootComponent type="1" schemaName="media_assetactivity" behavior="0" />
       <RootComponent type="1" schemaName="media_assetcontainer" behavior="0" />
-      <RootComponent type="1" schemaName="media_assetcontainerusers" behavior="0" />
       <RootComponent type="1" schemaName="media_asseterrorlog" behavior="0" />
       <RootComponent type="1" schemaName="media_assetfiles" behavior="0" />
       <RootComponent type="1" schemaName="media_assetfolderlayout" behavior="0" />
@@ -120,10 +119,10 @@
       <RootComponent type="60" id="{76f26161-007e-4446-821c-967f61131509}" behavior="0" />
       <RootComponent type="60" id="{7b21b814-0f9f-4913-9512-fbb44f3c9930}" behavior="0" />
       <RootComponent type="60" id="{80618147-09bd-4187-b81c-9f61085094cf}" behavior="0" />
-      <RootComponent type="60" id="{87d35bec-6871-43e0-9463-f2fe66408a70}" behavior="0" />
       <RootComponent type="60" id="{9f312bc5-caf4-440c-8b87-b276bc9d94c5}" behavior="0" />
       <RootComponent type="60" id="{a59e94d2-39a9-4025-89df-898b2373d63c}" behavior="0" />
       <RootComponent type="60" id="{ae2fb61d-aeb1-43bf-89b2-f2f4d63344bf}" behavior="0" />
+      <RootComponent type="60" id="{b19b1c52-d65b-eb11-a812-0022480918d2}" behavior="0" />
       <RootComponent type="60" id="{c4c77f28-5973-40fd-a2f6-69449dbe3ec7}" behavior="0" />
       <RootComponent type="60" id="{cc827918-8966-41ef-aa42-5745e1a28a3f}" behavior="0" />
       <RootComponent type="60" id="{ce32e288-cdc0-4b8b-8b1b-0bc2a1281fa1}" behavior="0" />
@@ -134,9 +133,12 @@
       <RootComponent type="61" schemaName="media_AppLogo" behavior="0" />
       <RootComponent type="61" schemaName="media_assetfile_16x16.png" behavior="0" />
       <RootComponent type="61" schemaName="media_asset_16x16.png" behavior="0" />
+      <RootComponent type="61" schemaName="media_BlockIcon" behavior="0" />
       <RootComponent type="61" schemaName="media_configuration16x16.png" behavior="0" />
+      <RootComponent type="61" schemaName="media_copyfile" behavior="0" />
       <RootComponent type="61" schemaName="media_durinutility.js" behavior="0" />
       <RootComponent type="61" schemaName="media_episode_16x16.png" behavior="0" />
+      <RootComponent type="61" schemaName="media_SessionIcon" behavior="0" />
       <RootComponent type="61" schemaName="media_show16x16.png" behavior="0" />
       <RootComponent type="61" schemaName="media_studio_icon.png" behavior="0" />
       <RootComponent type="61" schemaName="media_vendor_16x16.png" behavior="0" />
@@ -151,6 +153,19 @@
       <RootComponent type="432" schemaName="media_assetcontainer" behavior="0" />
       <RootComponent type="432" schemaName="media_studio" behavior="0" />
     </RootComponents>
-    <MissingDependencies></MissingDependencies>
+    <MissingDependencies>
+      <MissingDependency>
+        <Required key="0" type="1" schemaName="bot" displayName="Chatbot" solution="PowerVirtualAgents (1.1.2.208)" />
+        <Dependent key="1" type="1" schemaName="systemuser" displayName="User" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="2" type="1" schemaName="usermobileofflineprofilemembership" displayName="UserMobileOfflineProfileMembership" solution="MobileOfflineMembership (1.0.0.1)" />
+        <Dependent key="1" type="1" schemaName="systemuser" displayName="User" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required key="3" type="61" schemaName="msdyn_/Images/AppModule_Default_Icon.png" displayName="msdyn_/Images/AppModule_Default_Icon.png" solution="AppModuleWebResources (2.5)" />
+        <Dependent key="4" type="80" schemaName="media_DurinMediaLake" displayName="Durin Media Lake" />
+      </MissingDependency>
+    </MissingDependencies>
   </SolutionManifest>
 </ImportExportXml>

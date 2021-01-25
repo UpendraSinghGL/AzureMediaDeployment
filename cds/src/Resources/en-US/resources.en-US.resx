@@ -62,7 +62,7 @@
     <value>1033</value>
   </metadata>
   <metadata name="Source file" xml:space="preserve">
-    <value>DurinMediaLake_1_0_0_39_managed.zip</value>
+    <value>DurinMediaLake_1_0_0_0_managed.zip</value>
   </metadata>
   <metadata name="Source package type" xml:space="preserve">
     <value>Managed</value>
@@ -73,34 +73,6 @@
   <metadata name="SolutionPackager Version String" xml:space="preserve">
     <value>9.0.0.0</value>
   </metadata>
-  <data name="10:CustomLabel,msdyn_ciprovider_systemuser_membershipOrdinal:1" xml:space="preserve">
-    <value />
-    <comment>msdyn_ciprovider_systemuser CustomLabel for EntityRelationship 'msdyn_ciprovider_systemuser_membership'</comment>
-  </data>
-  <data name="10:CustomLabel,msdyn_ciprovider_systemuser_membershipOrdinal:2" xml:space="preserve">
-    <value />
-    <comment>msdyn_ciprovider_systemuser CustomLabel for EntityRelationship 'msdyn_ciprovider_systemuser_membership'</comment>
-  </data>
-  <data name="10:CustomLabel,msdyn_msdyn_presence_systemuser" xml:space="preserve">
-    <value />
-    <comment>SystemUser CustomLabel for EntityRelationship 'msdyn_msdyn_presence_systemuser'</comment>
-  </data>
-  <data name="10:CustomLabel,msdyn_resourcerequirement_systemuserOrdinal:1" xml:space="preserve">
-    <value />
-    <comment>msdyn_resourcerequirement_systemuser CustomLabel for EntityRelationship 'msdyn_resourcerequirement_systemuser'</comment>
-  </data>
-  <data name="10:CustomLabel,msdyn_resourcerequirement_systemuserOrdinal:2" xml:space="preserve">
-    <value />
-    <comment>msdyn_resourcerequirement_systemuser CustomLabel for EntityRelationship 'msdyn_resourcerequirement_systemuser'</comment>
-  </data>
-  <data name="10:CustomLabel,msdyn_systemuser_msdyn_omnichannelqueueOrdinal:1" xml:space="preserve">
-    <value />
-    <comment>msdyn_systemuser_msdyn_omnichannelqueue CustomLabel for EntityRelationship 'msdyn_systemuser_msdyn_omnichannelqueue'</comment>
-  </data>
-  <data name="10:CustomLabel,msdyn_systemuser_msdyn_omnichannelqueueOrdinal:2" xml:space="preserve">
-    <value />
-    <comment>msdyn_systemuser_msdyn_omnichannelqueue CustomLabel for EntityRelationship 'msdyn_systemuser_msdyn_omnichannelqueue'</comment>
-  </data>
   <data name="10:Description,business_unit_media_block" xml:space="preserve">
     <value>Unique identifier for the business unit that owns the record</value>
     <comment>media_Block Description for EntityRelationship 'business_unit_media_block'</comment>
@@ -148,14 +120,6 @@
   <data name="10:Description,lk_media_assetactivity_modifiedby" xml:space="preserve">
     <value>Unique identifier of the user who modified the record.</value>
     <comment>media_AssetActivity Description for EntityRelationship 'lk_media_assetactivity_modifiedby'</comment>
-  </data>
-  <data name="10:Description,lk_media_assetcontainerusers_createdby" xml:space="preserve">
-    <value>Unique identifier of the user who created the record.</value>
-    <comment>media_AssetContainerUsers Description for EntityRelationship 'lk_media_assetcontainerusers_createdby'</comment>
-  </data>
-  <data name="10:Description,lk_media_assetcontainerusers_modifiedby" xml:space="preserve">
-    <value>Unique identifier of the user who modified the record.</value>
-    <comment>media_AssetContainerUsers Description for EntityRelationship 'lk_media_assetcontainerusers_modifiedby'</comment>
   </data>
   <data name="10:Description,lk_media_assetcontainer_createdby" xml:space="preserve">
     <value>Unique identifier of the user who created the record.</value>
@@ -313,10 +277,6 @@
     <value />
     <comment>media_AssetActivity Description for EntityRelationship 'media_AssetActivity_media_Asset_media_Ass'</comment>
   </data>
-  <data name="10:Description,media_AssetContainerUsers_User_SystemUser" xml:space="preserve">
-    <value />
-    <comment>media_AssetContainerUsers Description for EntityRelationship 'media_AssetContainerUsers_User_SystemUser'</comment>
-  </data>
   <data name="10:Description,media_AssetContainer_media_AssetTemplate_" xml:space="preserve">
     <value />
     <comment>media_AssetContainer Description for EntityRelationship 'media_AssetContainer_media_AssetTemplate_'</comment>
@@ -413,10 +373,6 @@
     <value />
     <comment>media_Track Description for EntityRelationship 'media_Track_AssetFile_media_AssetFiles'</comment>
   </data>
-  <data name="10:Description,msdyn_msdyn_presence_systemuser" xml:space="preserve">
-    <value>Unique identifier for Presence associated with User.</value>
-    <comment>SystemUser Description for EntityRelationship 'msdyn_msdyn_presence_systemuser'</comment>
-  </data>
   <data name="10:Description,organization_media_asset" xml:space="preserve">
     <value>Unique identifier for the organization</value>
     <comment>media_Asset Description for EntityRelationship 'organization_media_asset'</comment>
@@ -428,10 +384,6 @@
   <data name="10:Description,organization_media_assetcontainer" xml:space="preserve">
     <value>Unique identifier for the organization</value>
     <comment>media_AssetContainer Description for EntityRelationship 'organization_media_assetcontainer'</comment>
-  </data>
-  <data name="10:Description,organization_media_assetcontainerusers" xml:space="preserve">
-    <value>Unique identifier for the organization</value>
-    <comment>media_AssetContainerUsers Description for EntityRelationship 'organization_media_assetcontainerusers'</comment>
   </data>
   <data name="10:Description,organization_media_asseterrorlog" xml:space="preserve">
     <value>Unique identifier for the organization</value>
@@ -612,18 +564,6 @@
   <data name="1:Description,Asset Activity{f6ab59af-2023-eb11-a813-000d3a530fa6}" xml:space="preserve">
     <value>All active Asset Activities</value>
     <comment>'Asset Activity' : Description for SavedQuery on Entity QueryId: '{f6ab59af-2023-eb11-a813-000d3a530fa6}'</comment>
-  </data>
-  <data name="1:Description,Asset Container Users{7fd1a35d-1f23-eb11-a813-000d3a530fa6}" xml:space="preserve">
-    <value>All active Asset Container Users</value>
-    <comment>'Asset Container Users' : Description for SavedQuery on Entity QueryId: '{7fd1a35d-1f23-eb11-a813-000d3a530fa6}'</comment>
-  </data>
-  <data name="1:Description,Asset Container Users{87d35bec-6871-43e0-9463-f2fe66408a70}" xml:space="preserve">
-    <value>A form for this entity.</value>
-    <comment>'Asset Container Users' : Description for systemform in Entity FormXml ID: '{87d35bec-6871-43e0-9463-f2fe66408a70}'</comment>
-  </data>
-  <data name="1:Description,Asset Container Users{ecc1e7da-161f-426b-9d97-bbf2c0729d44}" xml:space="preserve">
-    <value>A card form for this entity.</value>
-    <comment>'Asset Container Users' : Description for systemform in Entity FormXml ID: '{ecc1e7da-161f-426b-9d97-bbf2c0729d44}'</comment>
   </data>
   <data name="1:Description,Asset Copy Status{21921c53-f049-4f42-8857-20c5f1da8d70}" xml:space="preserve">
     <value>A card form for this entity.</value>
@@ -862,11 +802,11 @@
     <comment>'media_AssetContainer' : Description for Attribute 'media_AssetContainerId' on Entity</comment>
   </data>
   <data name="1:Description,media_AssetContainermedia_assetcontainer_statecode" xml:space="preserve">
-    <value>Status of the Asset Container</value>
+    <value>Status of the Show</value>
     <comment>'media_AssetContainer' : Description for OptionSet 'media_assetcontainer_statecode' on Entity</comment>
   </data>
   <data name="1:Description,media_AssetContainermedia_assetcontainer_statuscode" xml:space="preserve">
-    <value>Reason for the status of the Asset Container</value>
+    <value>Reason for the status of the Show</value>
     <comment>'media_AssetContainer' : Description for OptionSet 'media_assetcontainer_statuscode' on Entity</comment>
   </data>
   <data name="1:Description,media_AssetContainermedia_AssetTemplate" xml:space="preserve">
@@ -888,6 +828,10 @@
   <data name="1:Description,media_AssetContainermedia_FolderName" xml:space="preserve">
     <value />
     <comment>'media_AssetContainer' : Description for Attribute 'media_FolderName' on Entity</comment>
+  </data>
+  <data name="1:Description,media_AssetContainermedia_logo" xml:space="preserve">
+    <value />
+    <comment>'media_AssetContainer' : Description for Attribute 'media_logo' on Entity</comment>
   </data>
   <data name="1:Description,media_AssetContainermedia_media_assetcontainer_enablechecksumcheck" xml:space="preserve">
     <value />
@@ -945,86 +889,6 @@
     <value>For internal use only.</value>
     <comment>'media_AssetContainer' : Description for Attribute 'TimeZoneRuleVersionNumber' on Entity</comment>
   </data>
-  <data name="1:Description,media_AssetContainerUsersCreatedBy" xml:space="preserve">
-    <value>Unique identifier of the user who created the record.</value>
-    <comment>'media_AssetContainerUsers' : Description for Attribute 'CreatedBy' on Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersCreatedOn" xml:space="preserve">
-    <value>Date and time when the record was created.</value>
-    <comment>'media_AssetContainerUsers' : Description for Attribute 'CreatedOn' on Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersCreatedOnBehalfBy" xml:space="preserve">
-    <value>Unique identifier of the delegate user who created the record.</value>
-    <comment>'media_AssetContainerUsers' : Description for Attribute 'CreatedOnBehalfBy' on Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersentitymedia_AssetContainerUsers" xml:space="preserve">
-    <value />
-    <comment> 'media_AssetContainerUsers' : Description for Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersImportSequenceNumber" xml:space="preserve">
-    <value>Sequence number of the import that created this record.</value>
-    <comment>'media_AssetContainerUsers' : Description for Attribute 'ImportSequenceNumber' on Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersmedia_AssetContainerUsersId" xml:space="preserve">
-    <value>Unique identifier for entity instances</value>
-    <comment>'media_AssetContainerUsers' : Description for Attribute 'media_AssetContainerUsersId' on Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersmedia_assetcontainerusers_statecode" xml:space="preserve">
-    <value>Status of the Asset Container Users</value>
-    <comment>'media_AssetContainerUsers' : Description for OptionSet 'media_assetcontainerusers_statecode' on Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersmedia_assetcontainerusers_statuscode" xml:space="preserve">
-    <value>Reason for the status of the Asset Container Users</value>
-    <comment>'media_AssetContainerUsers' : Description for OptionSet 'media_assetcontainerusers_statuscode' on Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersmedia_BlobContainerSASToken" xml:space="preserve">
-    <value />
-    <comment>'media_AssetContainerUsers' : Description for Attribute 'media_BlobContainerSASToken' on Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersmedia_Name" xml:space="preserve">
-    <value>Required name field</value>
-    <comment>'media_AssetContainerUsers' : Description for Attribute 'media_Name' on Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersmedia_User" xml:space="preserve">
-    <value />
-    <comment>'media_AssetContainerUsers' : Description for Attribute 'media_User' on Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersModifiedBy" xml:space="preserve">
-    <value>Unique identifier of the user who modified the record.</value>
-    <comment>'media_AssetContainerUsers' : Description for Attribute 'ModifiedBy' on Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersModifiedOn" xml:space="preserve">
-    <value>Date and time when the record was modified.</value>
-    <comment>'media_AssetContainerUsers' : Description for Attribute 'ModifiedOn' on Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersModifiedOnBehalfBy" xml:space="preserve">
-    <value>Unique identifier of the delegate user who modified the record.</value>
-    <comment>'media_AssetContainerUsers' : Description for Attribute 'ModifiedOnBehalfBy' on Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersOrganizationId" xml:space="preserve">
-    <value>Unique identifier for the organization</value>
-    <comment>'media_AssetContainerUsers' : Description for Attribute 'OrganizationId' on Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersOverriddenCreatedOn" xml:space="preserve">
-    <value>Date and time that the record was migrated.</value>
-    <comment>'media_AssetContainerUsers' : Description for Attribute 'OverriddenCreatedOn' on Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersstatecode" xml:space="preserve">
-    <value>Status of the Asset Container Users</value>
-    <comment>'media_AssetContainerUsers' : Description for Attribute 'statecode' on Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersstatuscode" xml:space="preserve">
-    <value>Reason for the status of the Asset Container Users</value>
-    <comment>'media_AssetContainerUsers' : Description for Attribute 'statuscode' on Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersTimeZoneRuleVersionNumber" xml:space="preserve">
-    <value>For internal use only.</value>
-    <comment>'media_AssetContainerUsers' : Description for Attribute 'TimeZoneRuleVersionNumber' on Entity</comment>
-  </data>
-  <data name="1:Description,media_AssetContainerUsersUTCConversionTimeZoneCode" xml:space="preserve">
-    <value>Time zone code that was in use when the record was created.</value>
-    <comment>'media_AssetContainerUsers' : Description for Attribute 'UTCConversionTimeZoneCode' on Entity</comment>
-  </data>
   <data name="1:Description,media_AssetContainerUTCConversionTimeZoneCode" xml:space="preserve">
     <value>Time zone code that was in use when the record was created.</value>
     <comment>'media_AssetContainer' : Description for Attribute 'UTCConversionTimeZoneCode' on Entity</comment>
@@ -1078,11 +942,11 @@
     <comment>'media_AssetErrorLog' : Description for Attribute 'media_AssetErrorLogId' on Entity</comment>
   </data>
   <data name="1:Description,media_AssetErrorLogmedia_asseterrorlog_statecode" xml:space="preserve">
-    <value>Status of the Asset Error Log</value>
+    <value>Status of the Error Log</value>
     <comment>'media_AssetErrorLog' : Description for OptionSet 'media_asseterrorlog_statecode' on Entity</comment>
   </data>
   <data name="1:Description,media_AssetErrorLogmedia_asseterrorlog_statuscode" xml:space="preserve">
-    <value>Reason for the status of the Asset Error Log</value>
+    <value>Reason for the status of the Error Log</value>
     <comment>'media_AssetErrorLog' : Description for OptionSet 'media_asseterrorlog_statuscode' on Entity</comment>
   </data>
   <data name="1:Description,media_AssetErrorLogmedia_AssetFiles" xml:space="preserve">
@@ -1966,11 +1830,11 @@
     <comment>'media_Configuration' : Description for Attribute 'media_ConfigurationId' on Entity</comment>
   </data>
   <data name="1:Description,media_Configurationmedia_configuration_statecode" xml:space="preserve">
-    <value>Status of the Configuration</value>
+    <value>Status of the API Configuration</value>
     <comment>'media_Configuration' : Description for OptionSet 'media_configuration_statecode' on Entity</comment>
   </data>
   <data name="1:Description,media_Configurationmedia_configuration_statuscode" xml:space="preserve">
-    <value>Reason for the status of the Configuration</value>
+    <value>Reason for the status of the API Configuration</value>
     <comment>'media_Configuration' : Description for OptionSet 'media_configuration_statuscode' on Entity</comment>
   </data>
   <data name="1:Description,media_Configurationmedia_Name" xml:space="preserve">
@@ -2397,6 +2261,10 @@
     <value>Sequence number of the import that created this record.</value>
     <comment>'media_Studio' : Description for Attribute 'ImportSequenceNumber' on Entity</comment>
   </data>
+  <data name="1:Description,media_Studiomedia_logo" xml:space="preserve">
+    <value />
+    <comment>'media_Studio' : Description for Attribute 'media_logo' on Entity</comment>
+  </data>
   <data name="1:Description,media_Studiomedia_Name" xml:space="preserve">
     <value>Required name field</value>
     <comment>'media_Studio' : Description for Attribute 'media_Name' on Entity</comment>
@@ -2585,6 +2453,10 @@
     <value />
     <comment>'media_vendorcopystatus' : Description for Attribute 'media_copystatus' on Entity</comment>
   </data>
+  <data name="1:Description,media_vendorcopystatusmedia_Duration" xml:space="preserve">
+    <value />
+    <comment>'media_vendorcopystatus' : Description for Attribute 'media_Duration' on Entity</comment>
+  </data>
   <data name="1:Description,media_vendorcopystatusmedia_name" xml:space="preserve">
     <value>The name of the custom entity.</value>
     <comment>'media_vendorcopystatus' : Description for Attribute 'media_name' on Entity</comment>
@@ -2598,11 +2470,11 @@
     <comment>'media_vendorcopystatus' : Description for Attribute 'media_vendorcopystatusId' on Entity</comment>
   </data>
   <data name="1:Description,media_vendorcopystatusmedia_vendorcopystatus_statecode" xml:space="preserve">
-    <value>Status of the VendorCopyStatus</value>
+    <value>Status of the Asset Copy Status</value>
     <comment>'media_vendorcopystatus' : Description for OptionSet 'media_vendorcopystatus_statecode' on Entity</comment>
   </data>
   <data name="1:Description,media_vendorcopystatusmedia_vendorcopystatus_statuscode" xml:space="preserve">
-    <value>Reason for the status of the VendorCopyStatus</value>
+    <value>Reason for the status of the Asset Copy Status</value>
     <comment>'media_vendorcopystatus' : Description for OptionSet 'media_vendorcopystatus_statuscode' on Entity</comment>
   </data>
   <data name="1:Description,media_vendorcopystatusModifiedBy" xml:space="preserve">
@@ -2817,10 +2689,6 @@
     <value>Active Tracks owned by me</value>
     <comment>'Track' : Description for SavedQuery on Entity QueryId: '{df482a90-eb2e-eb11-a813-000d3a5308e0}'</comment>
   </data>
-  <data name="1:Description,User{c0d7d7dd-afd0-4675-85fe-1cc5a48be6df}" xml:space="preserve">
-    <value>A form for this entity.</value>
-    <comment>'User' : Description for systemform in Entity FormXml ID: '{c0d7d7dd-afd0-4675-85fe-1cc5a48be6df}'</comment>
-  </data>
   <data name="1:Description,Vendor{529808ad-d7d6-49c6-966c-fd5be0eddc48}" xml:space="preserve">
     <value>A card form for this entity.</value>
     <comment>'Vendor' : Description for systemform in Entity FormXml ID: '{529808ad-d7d6-49c6-966c-fd5be0eddc48}'</comment>
@@ -2957,6 +2825,10 @@
     <value>Folder Name</value>
     <comment>'media_AssetContainer' : displayname for Attribute 'media_FolderName' on Entity</comment>
   </data>
+  <data name="1:displayname,media_AssetContainermedia_logo" xml:space="preserve">
+    <value>logo</value>
+    <comment>'media_AssetContainer' : displayname for Attribute 'media_logo' on Entity</comment>
+  </data>
   <data name="1:displayname,media_AssetContainermedia_media_assetcontainer_enablechecksumcheck" xml:space="preserve">
     <value>Local Enumeration</value>
     <comment>'media_AssetContainer' : displayname for OptionSet 'media_media_assetcontainer_enablechecksumcheck' on Entity</comment>
@@ -3012,82 +2884,6 @@
   <data name="1:displayname,media_AssetContainerTimeZoneRuleVersionNumber" xml:space="preserve">
     <value>Time Zone Rule Version Number</value>
     <comment>'media_AssetContainer' : displayname for Attribute 'TimeZoneRuleVersionNumber' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersCreatedBy" xml:space="preserve">
-    <value>Created By</value>
-    <comment>'media_AssetContainerUsers' : displayname for Attribute 'CreatedBy' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersCreatedOn" xml:space="preserve">
-    <value>Created On</value>
-    <comment>'media_AssetContainerUsers' : displayname for Attribute 'CreatedOn' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersCreatedOnBehalfBy" xml:space="preserve">
-    <value>Created By (Delegate)</value>
-    <comment>'media_AssetContainerUsers' : displayname for Attribute 'CreatedOnBehalfBy' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersImportSequenceNumber" xml:space="preserve">
-    <value>Import Sequence Number</value>
-    <comment>'media_AssetContainerUsers' : displayname for Attribute 'ImportSequenceNumber' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersmedia_AssetContainerUsersId" xml:space="preserve">
-    <value>Asset Container Users</value>
-    <comment>'media_AssetContainerUsers' : displayname for Attribute 'media_AssetContainerUsersId' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersmedia_assetcontainerusers_statecode" xml:space="preserve">
-    <value>Status</value>
-    <comment>'media_AssetContainerUsers' : displayname for OptionSet 'media_assetcontainerusers_statecode' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersmedia_assetcontainerusers_statuscode" xml:space="preserve">
-    <value>Status Reason</value>
-    <comment>'media_AssetContainerUsers' : displayname for OptionSet 'media_assetcontainerusers_statuscode' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersmedia_BlobContainerSASToken" xml:space="preserve">
-    <value>Blob Container SAS Token</value>
-    <comment>'media_AssetContainerUsers' : displayname for Attribute 'media_BlobContainerSASToken' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersmedia_Name" xml:space="preserve">
-    <value>Name</value>
-    <comment>'media_AssetContainerUsers' : displayname for Attribute 'media_Name' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersmedia_User" xml:space="preserve">
-    <value>User</value>
-    <comment>'media_AssetContainerUsers' : displayname for Attribute 'media_User' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersModifiedBy" xml:space="preserve">
-    <value>Modified By</value>
-    <comment>'media_AssetContainerUsers' : displayname for Attribute 'ModifiedBy' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersModifiedOn" xml:space="preserve">
-    <value>Modified On</value>
-    <comment>'media_AssetContainerUsers' : displayname for Attribute 'ModifiedOn' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersModifiedOnBehalfBy" xml:space="preserve">
-    <value>Modified By (Delegate)</value>
-    <comment>'media_AssetContainerUsers' : displayname for Attribute 'ModifiedOnBehalfBy' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersOrganizationId" xml:space="preserve">
-    <value>Organization Id</value>
-    <comment>'media_AssetContainerUsers' : displayname for Attribute 'OrganizationId' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersOverriddenCreatedOn" xml:space="preserve">
-    <value>Record Created On</value>
-    <comment>'media_AssetContainerUsers' : displayname for Attribute 'OverriddenCreatedOn' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersstatecode" xml:space="preserve">
-    <value>Status</value>
-    <comment>'media_AssetContainerUsers' : displayname for Attribute 'statecode' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersstatuscode" xml:space="preserve">
-    <value>Status Reason</value>
-    <comment>'media_AssetContainerUsers' : displayname for Attribute 'statuscode' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersTimeZoneRuleVersionNumber" xml:space="preserve">
-    <value>Time Zone Rule Version Number</value>
-    <comment>'media_AssetContainerUsers' : displayname for Attribute 'TimeZoneRuleVersionNumber' on Entity</comment>
-  </data>
-  <data name="1:displayname,media_AssetContainerUsersUTCConversionTimeZoneCode" xml:space="preserve">
-    <value>UTC Conversion Time Zone Code</value>
-    <comment>'media_AssetContainerUsers' : displayname for Attribute 'UTCConversionTimeZoneCode' on Entity</comment>
   </data>
   <data name="1:displayname,media_AssetContainerUTCConversionTimeZoneCode" xml:space="preserve">
     <value>UTC Conversion Time Zone Code</value>
@@ -4401,6 +4197,10 @@
     <value>Import Sequence Number</value>
     <comment>'media_Studio' : displayname for Attribute 'ImportSequenceNumber' on Entity</comment>
   </data>
+  <data name="1:displayname,media_Studiomedia_logo" xml:space="preserve">
+    <value>logo</value>
+    <comment>'media_Studio' : displayname for Attribute 'media_logo' on Entity</comment>
+  </data>
   <data name="1:displayname,media_Studiomedia_Name" xml:space="preserve">
     <value>Name</value>
     <comment>'media_Studio' : displayname for Attribute 'media_Name' on Entity</comment>
@@ -4581,6 +4381,10 @@
     <value>Copy Status</value>
     <comment>'media_vendorcopystatus' : displayname for Attribute 'media_copystatus' on Entity</comment>
   </data>
+  <data name="1:displayname,media_vendorcopystatusmedia_Duration" xml:space="preserve">
+    <value>Duration(Minutes)</value>
+    <comment>'media_vendorcopystatus' : displayname for Attribute 'media_Duration' on Entity</comment>
+  </data>
   <data name="1:displayname,media_vendorcopystatusmedia_name" xml:space="preserve">
     <value>Name</value>
     <comment>'media_vendorcopystatus' : displayname for Attribute 'media_name' on Entity</comment>
@@ -4750,11 +4554,11 @@
     <comment>'API Configuration' : label for section in Entity FormXml ID: '{195a0e01-cedd-4474-ae95-25abc888aa0d}'</comment>
   </data>
   <data name="1:label,API Configuration{1d3915a2-4e72-42f7-9ce0-38072e1d8e7c}" xml:space="preserve">
-    <value />
+    <value>Created On</value>
     <comment>'API Configuration' : label for cell in Entity FormXml ID: '{1d3915a2-4e72-42f7-9ce0-38072e1d8e7c}'</comment>
   </data>
   <data name="1:label,API Configuration{2c6d7a67-ab89-4bdb-b7a4-5e167d11538a}" xml:space="preserve">
-    <value />
+    <value>Name</value>
     <comment>'API Configuration' : label for cell in Entity FormXml ID: '{2c6d7a67-ab89-4bdb-b7a4-5e167d11538a}'</comment>
   </data>
   <data name="1:label,API Configuration{2d976085-af77-40e0-97e8-c32dcac9ce07}" xml:space="preserve">
@@ -4782,7 +4586,7 @@
     <comment>'API Configuration' : label for tab in Entity FormXml ID: '{49d1ec10-a02e-47f0-9de1-32e1eeb43905}'</comment>
   </data>
   <data name="1:label,API Configuration{5381588d-cba5-45a8-bc95-0377f7fd475b}" xml:space="preserve">
-    <value />
+    <value>Owner</value>
     <comment>'API Configuration' : label for cell in Entity FormXml ID: '{5381588d-cba5-45a8-bc95-0377f7fd475b}'</comment>
   </data>
   <data name="1:label,API Configuration{57ab56c0-624f-4330-9a7b-c187d24b8ac2}" xml:space="preserve">
@@ -4794,7 +4598,7 @@
     <comment>'API Configuration' : label for tab in Entity FormXml ID: '{5a724067-63a2-4dd8-8b0b-2460e2c2a7f1}'</comment>
   </data>
   <data name="1:label,API Configuration{5fd1f860-3a46-4001-8924-a0257d3cec07}" xml:space="preserve">
-    <value />
+    <value>Status Reason</value>
     <comment>'API Configuration' : label for cell in Entity FormXml ID: '{5fd1f860-3a46-4001-8924-a0257d3cec07}'</comment>
   </data>
   <data name="1:label,API Configuration{63738280-9bf8-4b24-b4fc-327aa56bc5f4}" xml:space="preserve">
@@ -4830,7 +4634,7 @@
     <comment>'API Configuration' : label for cell in Entity FormXml ID: '{a32d7d11-0d17-4b67-a2a5-d7d5559d4132}'</comment>
   </data>
   <data name="1:label,API Configuration{bc61eec7-14c9-4502-9c60-577144fe0bbe}" xml:space="preserve">
-    <value />
+    <value>Owner</value>
     <comment>'API Configuration' : label for cell in Entity FormXml ID: '{bc61eec7-14c9-4502-9c60-577144fe0bbe}'</comment>
   </data>
   <data name="1:label,API Configuration{d9274ba5-9fe3-4631-ae80-90bb4fd0953b}" xml:space="preserve">
@@ -4842,7 +4646,7 @@
     <comment>'API Configuration' : label for cell in Entity FormXml ID: '{ebcdd50c-8909-4c56-acd1-f6bdea4c5822}'</comment>
   </data>
   <data name="1:label,API Configuration{f78f05b5-ca95-4c2e-b67e-4a70c3de7c62}" xml:space="preserve">
-    <value />
+    <value>Name</value>
     <comment>'API Configuration' : label for cell in Entity FormXml ID: '{f78f05b5-ca95-4c2e-b67e-4a70c3de7c62}'</comment>
   </data>
   <data name="1:label,API Configuration{f93f3ab4-3674-4a57-b8e1-adedbe957c03}" xml:space="preserve">
@@ -4921,112 +4725,8 @@
     <value>Header</value>
     <comment>'Asset Activity' : label for section in Entity FormXml ID: '{f24f865f-f485-40d5-a71f-d8ebc5f10235}'</comment>
   </data>
-  <data name="1:label,Asset Container Users{105055f0-bcb7-42e6-a764-e4bd012861c1}" xml:space="preserve">
-    <value>General</value>
-    <comment>'Asset Container Users' : label for section in Entity FormXml ID: '{105055f0-bcb7-42e6-a764-e4bd012861c1}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{1464009d-b402-4187-af7c-a9befdfd2862}" xml:space="preserve">
-    <value />
-    <comment>'Asset Container Users' : label for cell in Entity FormXml ID: '{1464009d-b402-4187-af7c-a9befdfd2862}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{1544c863-afa7-4e5e-bd40-e05dd7b10690}" xml:space="preserve">
-    <value>Status</value>
-    <comment>'Asset Container Users' : label for cell in Entity FormXml ID: '{1544c863-afa7-4e5e-bd40-e05dd7b10690}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{1a306399-474b-48b5-9db4-f22f608bf18c}" xml:space="preserve">
-    <value>Created On</value>
-    <comment>'Asset Container Users' : label for cell in Entity FormXml ID: '{1a306399-474b-48b5-9db4-f22f608bf18c}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{25d4c2d5-3c97-4e7b-aad2-577b098a1fb0}" xml:space="preserve">
-    <value />
-    <comment>'Asset Container Users' : label for cell in Entity FormXml ID: '{25d4c2d5-3c97-4e7b-aad2-577b098a1fb0}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{28cdf2fd-591c-4a51-a464-554baca29a4b}" xml:space="preserve">
-    <value />
-    <comment>'Asset Container Users' : label for cell in Entity FormXml ID: '{28cdf2fd-591c-4a51-a464-554baca29a4b}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{2ad06e99-ffa6-4d33-b952-bf4e82943d25}" xml:space="preserve">
-    <value />
-    <comment>'Asset Container Users' : label for cell in Entity FormXml ID: '{2ad06e99-ffa6-4d33-b952-bf4e82943d25}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{4c72410f-c554-4c99-b8c0-beb47957c97f}" xml:space="preserve">
-    <value>Header</value>
-    <comment>'Asset Container Users' : label for section in Entity FormXml ID: '{4c72410f-c554-4c99-b8c0-beb47957c97f}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{60a84eda-3c08-4969-a4bc-9050c295f6a1}" xml:space="preserve">
-    <value>Name</value>
-    <comment>'Asset Container Users' : label for cell in Entity FormXml ID: '{60a84eda-3c08-4969-a4bc-9050c295f6a1}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{6dc7bc36-54d7-4bf2-a008-f01e1ec4885f}" xml:space="preserve">
-    <value />
-    <comment>'Asset Container Users' : label for cell in Entity FormXml ID: '{6dc7bc36-54d7-4bf2-a008-f01e1ec4885f}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{782a18e0-43b6-401d-8d69-fd23d7f2754a}" xml:space="preserve">
-    <value />
-    <comment>'Asset Container Users' : label for cell in Entity FormXml ID: '{782a18e0-43b6-401d-8d69-fd23d7f2754a}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{925cbd98-56c7-4e3f-a014-85e39b6899bf}" xml:space="preserve">
-    <value />
-    <comment>'Asset Container Users' : label for cell in Entity FormXml ID: '{925cbd98-56c7-4e3f-a014-85e39b6899bf}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{983cd72e-fb59-471c-a38f-ebb7fb5a0472}" xml:space="preserve">
-    <value>Status Reason</value>
-    <comment>'Asset Container Users' : label for cell in Entity FormXml ID: '{983cd72e-fb59-471c-a38f-ebb7fb5a0472}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{9a026eb9-c1f7-4b39-8854-2a5557b4db99}" xml:space="preserve">
-    <value>Name</value>
-    <comment>'Asset Container Users' : label for cell in Entity FormXml ID: '{9a026eb9-c1f7-4b39-8854-2a5557b4db99}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{9d702fe7-554c-49a4-b5d7-bc0dbe1bcc93}" xml:space="preserve">
-    <value>General</value>
-    <comment>'Asset Container Users' : label for tab in Entity FormXml ID: '{9d702fe7-554c-49a4-b5d7-bc0dbe1bcc93}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{a0c28b56-8c10-4e2b-a7ce-e8809c3455d5}" xml:space="preserve">
-    <value />
-    <comment>'Asset Container Users' : label for cell in Entity FormXml ID: '{a0c28b56-8c10-4e2b-a7ce-e8809c3455d5}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{a74f66f8-faab-45ff-b4e0-1f4a23145057}" xml:space="preserve">
-    <value>User</value>
-    <comment>'Asset Container Users' : label for cell in Entity FormXml ID: '{a74f66f8-faab-45ff-b4e0-1f4a23145057}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{b725c641-5a2c-4eb6-b002-2912848f7981}" xml:space="preserve">
-    <value />
-    <comment>'Asset Container Users' : label for cell in Entity FormXml ID: '{b725c641-5a2c-4eb6-b002-2912848f7981}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{b981bff8-fc67-42c6-9695-25fefd935ef3}" xml:space="preserve">
-    <value />
-    <comment>'Asset Container Users' : label for cell in Entity FormXml ID: '{b981bff8-fc67-42c6-9695-25fefd935ef3}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{c630b5ce-c18e-45f2-908a-ff187c265811}" xml:space="preserve">
-    <value>Details</value>
-    <comment>'Asset Container Users' : label for section in Entity FormXml ID: '{c630b5ce-c18e-45f2-908a-ff187c265811}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{d4dc8d93-8e95-43c6-b1b7-3e0e47bc2baa}" xml:space="preserve">
-    <value>Footer</value>
-    <comment>'Asset Container Users' : label for section in Entity FormXml ID: '{d4dc8d93-8e95-43c6-b1b7-3e0e47bc2baa}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{d6c81a6c-3b1f-4102-9b88-3389bc7e88d1}" xml:space="preserve">
-    <value />
-    <comment>'Asset Container Users' : label for tab in Entity FormXml ID: '{d6c81a6c-3b1f-4102-9b88-3389bc7e88d1}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{de952690-8660-43bc-bb9a-98517aa640cb}" xml:space="preserve">
-    <value>Name</value>
-    <comment>'Asset Container Users' : label for cell in Entity FormXml ID: '{de952690-8660-43bc-bb9a-98517aa640cb}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{e3bf9f7d-3759-4d5e-8474-7c75164e7963}" xml:space="preserve">
-    <value>GENERAL</value>
-    <comment>'Asset Container Users' : label for section in Entity FormXml ID: '{e3bf9f7d-3759-4d5e-8474-7c75164e7963}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{f58ad710-693a-44ca-87fb-807eef526330}" xml:space="preserve">
-    <value>ColorStrip</value>
-    <comment>'Asset Container Users' : label for section in Entity FormXml ID: '{f58ad710-693a-44ca-87fb-807eef526330}'</comment>
-  </data>
-  <data name="1:label,Asset Container Users{f75457bd-53c0-42dc-83e3-40a8d0873418}" xml:space="preserve">
-    <value />
-    <comment>'Asset Container Users' : label for tab in Entity FormXml ID: '{f75457bd-53c0-42dc-83e3-40a8d0873418}'</comment>
-  </data>
   <data name="1:label,Asset Copy Status{06d39f62-b206-4880-a843-8ed9deee29a1}" xml:space="preserve">
-    <value />
+    <value>Status Reason</value>
     <comment>'Asset Copy Status' : label for cell in Entity FormXml ID: '{06d39f62-b206-4880-a843-8ed9deee29a1}'</comment>
   </data>
   <data name="1:label,Asset Copy Status{089de96b-a14a-2c8a-5ade-859b0a801e0a}" xml:space="preserve">
@@ -5066,7 +4766,7 @@
     <comment>'Asset Copy Status' : label for cell in Entity FormXml ID: '{36709409-086e-541e-5d90-e96ba15ce71e}'</comment>
   </data>
   <data name="1:label,Asset Copy Status{3e9204bd-6d3e-4193-b1d9-33f9b069a5bb}" xml:space="preserve">
-    <value />
+    <value>Name</value>
     <comment>'Asset Copy Status' : label for cell in Entity FormXml ID: '{3e9204bd-6d3e-4193-b1d9-33f9b069a5bb}'</comment>
   </data>
   <data name="1:label,Asset Copy Status{464d44e9-c9d5-4906-ad65-ec19c0f532a4}" xml:space="preserve">
@@ -5074,7 +4774,7 @@
     <comment>'Asset Copy Status' : label for cell in Entity FormXml ID: '{464d44e9-c9d5-4906-ad65-ec19c0f532a4}'</comment>
   </data>
   <data name="1:label,Asset Copy Status{4f15337b-512a-4d39-a63f-a81d0a353b91}" xml:space="preserve">
-    <value />
+    <value>Owner</value>
     <comment>'Asset Copy Status' : label for cell in Entity FormXml ID: '{4f15337b-512a-4d39-a63f-a81d0a353b91}'</comment>
   </data>
   <data name="1:label,Asset Copy Status{5933d7be-ae2d-43c7-aa30-872417cc261b}" xml:space="preserve">
@@ -5082,7 +4782,7 @@
     <comment>'Asset Copy Status' : label for cell in Entity FormXml ID: '{5933d7be-ae2d-43c7-aa30-872417cc261b}'</comment>
   </data>
   <data name="1:label,Asset Copy Status{7be440c7-c7f2-426a-89aa-d8e05d1a958b}" xml:space="preserve">
-    <value />
+    <value>Name</value>
     <comment>'Asset Copy Status' : label for cell in Entity FormXml ID: '{7be440c7-c7f2-426a-89aa-d8e05d1a958b}'</comment>
   </data>
   <data name="1:label,Asset Copy Status{80a0898e-d3a6-4ca6-b61e-a63f068157d0}" xml:space="preserve">
@@ -5106,11 +4806,11 @@
     <comment>'Asset Copy Status' : label for cell in Entity FormXml ID: '{a3424994-e866-1c6b-69d3-cb2e49d5c0d3}'</comment>
   </data>
   <data name="1:label,Asset Copy Status{a57773bf-a5ff-4a59-be36-5c394eecd237}" xml:space="preserve">
-    <value />
+    <value>Owner</value>
     <comment>'Asset Copy Status' : label for cell in Entity FormXml ID: '{a57773bf-a5ff-4a59-be36-5c394eecd237}'</comment>
   </data>
   <data name="1:label,Asset Copy Status{be684711-2515-43be-98b5-85017cabf717}" xml:space="preserve">
-    <value />
+    <value>Created On</value>
     <comment>'Asset Copy Status' : label for cell in Entity FormXml ID: '{be684711-2515-43be-98b5-85017cabf717}'</comment>
   </data>
   <data name="1:label,Asset Copy Status{c3870f89-aeff-49a4-b35f-ef68dc3894df}" xml:space="preserve">
@@ -5950,7 +5650,7 @@
     <comment>'Block' : label for section in Entity FormXml ID: '{030eb98e-3324-4fe8-9499-3d787f359ea9}'</comment>
   </data>
   <data name="1:label,Block{0dd1cd54-e6b9-4efc-a4c4-d903211e1b90}" xml:space="preserve">
-    <value />
+    <value>Owner</value>
     <comment>'Block' : label for cell in Entity FormXml ID: '{0dd1cd54-e6b9-4efc-a4c4-d903211e1b90}'</comment>
   </data>
   <data name="1:label,Block{1175f5ad-2c7b-48af-b84a-c7485505ed49}" xml:space="preserve">
@@ -5962,7 +5662,7 @@
     <comment>'Block' : label for section in Entity FormXml ID: '{144b8a2c-b300-463f-b6ed-c343d5925423}'</comment>
   </data>
   <data name="1:label,Block{1e03dde9-8afc-40cd-a0f4-834388dc8e70}" xml:space="preserve">
-    <value />
+    <value>Status Reason</value>
     <comment>'Block' : label for cell in Entity FormXml ID: '{1e03dde9-8afc-40cd-a0f4-834388dc8e70}'</comment>
   </data>
   <data name="1:label,Block{25b0cc79-bee0-45e7-98f7-b5240dd46fc7}" xml:space="preserve">
@@ -5982,7 +5682,7 @@
     <comment>'Block' : label for cell in Entity FormXml ID: '{2ee8a3ee-99a2-407c-b630-4ad87747225a}'</comment>
   </data>
   <data name="1:label,Block{5344918a-bb1c-4602-8b26-93b8315d29d4}" xml:space="preserve">
-    <value />
+    <value>Name</value>
     <comment>'Block' : label for cell in Entity FormXml ID: '{5344918a-bb1c-4602-8b26-93b8315d29d4}'</comment>
   </data>
   <data name="1:label,Block{69fc74a8-5ba6-45c2-86d4-ca9aa4060030}" xml:space="preserve">
@@ -6002,7 +5702,7 @@
     <comment>'Block' : label for cell in Entity FormXml ID: '{7fc1e173-6711-4a2b-a9c2-bd76e016b9ef}'</comment>
   </data>
   <data name="1:label,Block{86ab8fea-cd34-429f-b927-f341556d66ff}" xml:space="preserve">
-    <value />
+    <value>Owner</value>
     <comment>'Block' : label for cell in Entity FormXml ID: '{86ab8fea-cd34-429f-b927-f341556d66ff}'</comment>
   </data>
   <data name="1:label,Block{89c77a65-b49d-420e-9a23-d8cb0370f5ad}" xml:space="preserve">
@@ -6026,11 +5726,11 @@
     <comment>'Block' : label for section in Entity FormXml ID: '{9d5d75cb-2d51-4471-b58f-78c8d6ffe9b9}'</comment>
   </data>
   <data name="1:label,Block{9db5f441-a143-4842-93cf-c2cbee16977c}" xml:space="preserve">
-    <value />
+    <value>Created On</value>
     <comment>'Block' : label for cell in Entity FormXml ID: '{9db5f441-a143-4842-93cf-c2cbee16977c}'</comment>
   </data>
   <data name="1:label,Block{c9a78e64-6b2e-4c23-8fa0-da4b114e38de}" xml:space="preserve">
-    <value />
+    <value>Name</value>
     <comment>'Block' : label for cell in Entity FormXml ID: '{c9a78e64-6b2e-4c23-8fa0-da4b114e38de}'</comment>
   </data>
   <data name="1:label,Block{edba370a-17aa-44a1-a246-8bf6eaa5d904}" xml:space="preserve">
@@ -6066,7 +5766,7 @@
     <comment>'Camera Raw File Metadata' : label for cell in Entity FormXml ID: '{099774c4-49b6-47de-9556-128afbd4579b}'</comment>
   </data>
   <data name="1:label,Camera Raw File Metadata{159f46cb-87f5-4526-a79e-5be5a704cb0e}" xml:space="preserve">
-    <value />
+    <value>Key Name</value>
     <comment>'Camera Raw File Metadata' : label for cell in Entity FormXml ID: '{159f46cb-87f5-4526-a79e-5be5a704cb0e}'</comment>
   </data>
   <data name="1:label,Camera Raw File Metadata{1c4f09bf-2d47-4955-b058-23e59cea6efc}" xml:space="preserve">
@@ -6078,7 +5778,7 @@
     <comment>'Camera Raw File Metadata' : label for section in Entity FormXml ID: '{28fd5e45-08ff-4e3e-b016-9a2a18241377}'</comment>
   </data>
   <data name="1:label,Camera Raw File Metadata{312f6501-bf20-4d6d-b466-de3e7075d7c6}" xml:space="preserve">
-    <value />
+    <value>Key Name</value>
     <comment>'Camera Raw File Metadata' : label for cell in Entity FormXml ID: '{312f6501-bf20-4d6d-b466-de3e7075d7c6}'</comment>
   </data>
   <data name="1:label,Camera Raw File Metadata{346d4c49-6960-4073-a485-0934ab51e048}" xml:space="preserve">
@@ -6122,7 +5822,7 @@
     <comment>'Camera Raw File Metadata' : label for cell in Entity FormXml ID: '{8b1cba5b-544f-4b9d-b6ec-560acd6e9efb}'</comment>
   </data>
   <data name="1:label,Camera Raw File Metadata{8cfc7c55-e387-4bbb-99d6-87b63f2bfa0b}" xml:space="preserve">
-    <value />
+    <value>Created On</value>
     <comment>'Camera Raw File Metadata' : label for cell in Entity FormXml ID: '{8cfc7c55-e387-4bbb-99d6-87b63f2bfa0b}'</comment>
   </data>
   <data name="1:label,Camera Raw File Metadata{9fa56d2f-669b-4a41-8ab6-1f254411393d}" xml:space="preserve">
@@ -6134,7 +5834,7 @@
     <comment>'Camera Raw File Metadata' : label for cell in Entity FormXml ID: '{a76b06fe-3883-4b65-8471-079766ea399f}'</comment>
   </data>
   <data name="1:label,Camera Raw File Metadata{a921c1f8-fcb1-4803-a3a7-69193b48da64}" xml:space="preserve">
-    <value />
+    <value>Owner</value>
     <comment>'Camera Raw File Metadata' : label for cell in Entity FormXml ID: '{a921c1f8-fcb1-4803-a3a7-69193b48da64}'</comment>
   </data>
   <data name="1:label,Camera Raw File Metadata{ab47638d-4a32-4fe8-8ed2-10f8d22042d2}" xml:space="preserve">
@@ -6150,7 +5850,7 @@
     <comment>'Camera Raw File Metadata' : label for cell in Entity FormXml ID: '{bc12df9c-eaba-46e0-a100-810156c71a0b}'</comment>
   </data>
   <data name="1:label,Camera Raw File Metadata{c1dabcae-4a98-4c5a-9ec6-c24890fc19f3}" xml:space="preserve">
-    <value />
+    <value>Status Reason</value>
     <comment>'Camera Raw File Metadata' : label for cell in Entity FormXml ID: '{c1dabcae-4a98-4c5a-9ec6-c24890fc19f3}'</comment>
   </data>
   <data name="1:label,Camera Raw File Metadata{c5ede7b9-f458-46a6-ab82-73b29f8183e1}" xml:space="preserve">
@@ -6162,7 +5862,7 @@
     <comment>'Camera Raw File Metadata' : label for cell in Entity FormXml ID: '{c6def29a-c198-434c-9a78-abb21e5cd803}'</comment>
   </data>
   <data name="1:label,Camera Raw File Metadata{d525bba9-88f7-4e59-8924-e49187e8c615}" xml:space="preserve">
-    <value />
+    <value>Owner</value>
     <comment>'Camera Raw File Metadata' : label for cell in Entity FormXml ID: '{d525bba9-88f7-4e59-8924-e49187e8c615}'</comment>
   </data>
   <data name="1:label,Camera Raw File Metadata{e5b44c5a-7dfc-444f-8ca5-69fd181573d5}" xml:space="preserve">
@@ -6186,7 +5886,7 @@
     <comment>'Episode' : label for section in Entity FormXml ID: '{078d15f0-fa21-451d-8a83-01b2b6ff4a79}'</comment>
   </data>
   <data name="1:label,Episode{0c577e98-f442-4f06-bb0d-c07ff6525354}" xml:space="preserve">
-    <value />
+    <value>Status Reason</value>
     <comment>'Episode' : label for cell in Entity FormXml ID: '{0c577e98-f442-4f06-bb0d-c07ff6525354}'</comment>
   </data>
   <data name="1:label,Episode{1bcf6fcf-87e9-4908-9f37-14ce8391e2a7}" xml:space="preserve">
@@ -6234,7 +5934,7 @@
     <comment>'Episode' : label for section in Entity FormXml ID: '{533f346a-8892-4e1b-a04f-34dd7d7693a4}'</comment>
   </data>
   <data name="1:label,Episode{62910435-c940-42cb-b6fa-154de2a6db1a}" xml:space="preserve">
-    <value />
+    <value>Owner</value>
     <comment>'Episode' : label for cell in Entity FormXml ID: '{62910435-c940-42cb-b6fa-154de2a6db1a}'</comment>
   </data>
   <data name="1:label,Episode{67ce2078-b4d3-438c-840f-45ff37eb5d27}" xml:space="preserve">
@@ -6258,7 +5958,7 @@
     <comment>'Episode' : label for tab in Entity FormXml ID: '{84d4570e-76f9-4f0a-8604-b8b0fe5cc357}'</comment>
   </data>
   <data name="1:label,Episode{89aa2efb-bec2-475b-8874-15344ec3a6c2}" xml:space="preserve">
-    <value />
+    <value>Owner</value>
     <comment>'Episode' : label for cell in Entity FormXml ID: '{89aa2efb-bec2-475b-8874-15344ec3a6c2}'</comment>
   </data>
   <data name="1:label,Episode{9170772a-f740-4e3c-bcf7-a4b00983ce57}" xml:space="preserve">
@@ -6270,15 +5970,15 @@
     <comment>'Episode' : label for section in Entity FormXml ID: '{9f7fe821-657e-45fa-bdb6-f985fac9f2d6}'</comment>
   </data>
   <data name="1:label,Episode{a270f2c6-46d9-4526-a3d0-60a872a40394}" xml:space="preserve">
-    <value />
+    <value>Created On</value>
     <comment>'Episode' : label for cell in Entity FormXml ID: '{a270f2c6-46d9-4526-a3d0-60a872a40394}'</comment>
   </data>
   <data name="1:label,Episode{aa2af9e5-24a5-4ece-8900-45660bb0b9a1}" xml:space="preserve">
-    <value />
+    <value>Name</value>
     <comment>'Episode' : label for cell in Entity FormXml ID: '{aa2af9e5-24a5-4ece-8900-45660bb0b9a1}'</comment>
   </data>
   <data name="1:label,Episode{aac7c615-aa00-4677-b836-500ba8d56231}" xml:space="preserve">
-    <value />
+    <value>Name</value>
     <comment>'Episode' : label for cell in Entity FormXml ID: '{aac7c615-aa00-4677-b836-500ba8d56231}'</comment>
   </data>
   <data name="1:label,Episode{b4d158b5-a76e-4df6-b2a6-43a174873540}" xml:space="preserve">
@@ -6424,22 +6124,6 @@
   <data name="1:label,media_AssetContainermedia_media_assetcontainer_uploadallowed1" xml:space="preserve">
     <value>Yes</value>
     <comment>'media_AssetContainer' : label for option '1' on Entity</comment>
-  </data>
-  <data name="1:label,media_AssetContainerUsersmedia_assetcontainerusers_statecode0" xml:space="preserve">
-    <value>Active</value>
-    <comment>'media_AssetContainerUsers' : label for state '0' on Entity</comment>
-  </data>
-  <data name="1:label,media_AssetContainerUsersmedia_assetcontainerusers_statecode1" xml:space="preserve">
-    <value>Inactive</value>
-    <comment>'media_AssetContainerUsers' : label for state '1' on Entity</comment>
-  </data>
-  <data name="1:label,media_AssetContainerUsersmedia_assetcontainerusers_statuscode1" xml:space="preserve">
-    <value>Active</value>
-    <comment>'media_AssetContainerUsers' : label for status '1' on Entity</comment>
-  </data>
-  <data name="1:label,media_AssetContainerUsersmedia_assetcontainerusers_statuscode2" xml:space="preserve">
-    <value>Inactive</value>
-    <comment>'media_AssetContainerUsers' : label for status '2' on Entity</comment>
   </data>
   <data name="1:label,media_AssetErrorLogmedia_asseterrorlog_statecode0" xml:space="preserve">
     <value>Active</value>
@@ -6866,7 +6550,7 @@
     <comment>'Season' : label for cell in Entity FormXml ID: '{209d05d3-57e2-4f21-838a-94056056bbe6}'</comment>
   </data>
   <data name="1:label,Season{21d25717-c059-47fe-9e85-6c0e2e23d658}" xml:space="preserve">
-    <value />
+    <value>Name</value>
     <comment>'Season' : label for cell in Entity FormXml ID: '{21d25717-c059-47fe-9e85-6c0e2e23d658}'</comment>
   </data>
   <data name="1:label,Season{24c5ed8a-12f2-4a0b-9da8-63a518ce1199}" xml:space="preserve">
@@ -6906,7 +6590,7 @@
     <comment>'Season' : label for cell in Entity FormXml ID: '{6ce17cb7-d817-48c0-9db3-678267560032}'</comment>
   </data>
   <data name="1:label,Season{7019b8df-ccbc-4e9c-b1e4-93647e9743eb}" xml:space="preserve">
-    <value />
+    <value>Created On</value>
     <comment>'Season' : label for cell in Entity FormXml ID: '{7019b8df-ccbc-4e9c-b1e4-93647e9743eb}'</comment>
   </data>
   <data name="1:label,Season{714d6948-d56b-4acb-aa78-38c69fa9ef4f}" xml:space="preserve">
@@ -6926,19 +6610,19 @@
     <comment>'Season' : label for section in Entity FormXml ID: '{7e9af471-e010-4c6b-b71d-1c4df29627f2}'</comment>
   </data>
   <data name="1:label,Season{83344874-6d3e-4ca0-bbba-406ef56c5bdc}" xml:space="preserve">
-    <value />
+    <value>Owner</value>
     <comment>'Season' : label for cell in Entity FormXml ID: '{83344874-6d3e-4ca0-bbba-406ef56c5bdc}'</comment>
   </data>
   <data name="1:label,Season{8356823c-6a64-42cf-bd20-4d8d31e5f042}" xml:space="preserve">
-    <value />
+    <value>Name</value>
     <comment>'Season' : label for cell in Entity FormXml ID: '{8356823c-6a64-42cf-bd20-4d8d31e5f042}'</comment>
   </data>
   <data name="1:label,Season{877a90d8-a5c8-4319-bb22-71f29e6a34ba}" xml:space="preserve">
-    <value />
+    <value>Owner</value>
     <comment>'Season' : label for cell in Entity FormXml ID: '{877a90d8-a5c8-4319-bb22-71f29e6a34ba}'</comment>
   </data>
   <data name="1:label,Season{8a300252-d463-43bf-b3a3-fa411453d868}" xml:space="preserve">
-    <value />
+    <value>Status Reason</value>
     <comment>'Season' : label for cell in Entity FormXml ID: '{8a300252-d463-43bf-b3a3-fa411453d868}'</comment>
   </data>
   <data name="1:label,Season{8f377542-0ab0-4e0c-a785-3dbd23587ce4}" xml:space="preserve">
@@ -6998,7 +6682,7 @@
     <comment>'Show Vendor Mapping' : label for section in Entity FormXml ID: '{1e8d10e9-faf9-4301-8d02-05a4de014105}'</comment>
   </data>
   <data name="1:label,Show Vendor Mapping{1fbae3b7-8244-4d4e-86db-de2428abe527}" xml:space="preserve">
-    <value />
+    <value>Status Reason</value>
     <comment>'Show Vendor Mapping' : label for cell in Entity FormXml ID: '{1fbae3b7-8244-4d4e-86db-de2428abe527}'</comment>
   </data>
   <data name="1:label,Show Vendor Mapping{37647d55-1b6a-4802-ae85-301cedeb417f}" xml:space="preserve">
@@ -7010,7 +6694,7 @@
     <comment>'Show Vendor Mapping' : label for cell in Entity FormXml ID: '{395d5788-bcec-478f-8695-a64664d3e621}'</comment>
   </data>
   <data name="1:label,Show Vendor Mapping{3fd696d5-9779-498d-b9df-99b2433cd36e}" xml:space="preserve">
-    <value />
+    <value>Name</value>
     <comment>'Show Vendor Mapping' : label for cell in Entity FormXml ID: '{3fd696d5-9779-498d-b9df-99b2433cd36e}'</comment>
   </data>
   <data name="1:label,Show Vendor Mapping{4033015a-15db-4f08-8999-50937b5d0b76}" xml:space="preserve">
@@ -7038,7 +6722,7 @@
     <comment>'Show Vendor Mapping' : label for cell in Entity FormXml ID: '{8bc65667-00ff-4548-b76b-f245027d597e}'</comment>
   </data>
   <data name="1:label,Show Vendor Mapping{a44b92ae-acbd-44a1-b07d-73398dff66ca}" xml:space="preserve">
-    <value />
+    <value>Created On</value>
     <comment>'Show Vendor Mapping' : label for cell in Entity FormXml ID: '{a44b92ae-acbd-44a1-b07d-73398dff66ca}'</comment>
   </data>
   <data name="1:label,Show Vendor Mapping{ae38ad6a-c4e9-454c-a4fb-3e4c93be1f91}" xml:space="preserve">
@@ -7054,7 +6738,7 @@
     <comment>'Show Vendor Mapping' : label for cell in Entity FormXml ID: '{b08c6675-b163-47b3-bb1b-52b454f711c8}'</comment>
   </data>
   <data name="1:label,Show Vendor Mapping{b223890a-a374-4cc4-b35b-46974209e933}" xml:space="preserve">
-    <value />
+    <value>Owner</value>
     <comment>'Show Vendor Mapping' : label for cell in Entity FormXml ID: '{b223890a-a374-4cc4-b35b-46974209e933}'</comment>
   </data>
   <data name="1:label,Show Vendor Mapping{bba43e8f-35c5-48e5-9f9d-ba64a0dfb83d}" xml:space="preserve">
@@ -7070,7 +6754,7 @@
     <comment>'Show Vendor Mapping' : label for cell in Entity FormXml ID: '{d565197b-a3d0-4cc7-82a7-7078e4db2fbb}'</comment>
   </data>
   <data name="1:label,Show Vendor Mapping{e8809cf3-d7d2-49f8-ac3a-0af7d74c44e5}" xml:space="preserve">
-    <value />
+    <value>Owner</value>
     <comment>'Show Vendor Mapping' : label for cell in Entity FormXml ID: '{e8809cf3-d7d2-49f8-ac3a-0af7d74c44e5}'</comment>
   </data>
   <data name="1:label,Show Vendor Mapping{eb8c0511-1c59-40e4-a58c-20632796d4ce}" xml:space="preserve">
@@ -7082,7 +6766,7 @@
     <comment>'Show Vendor Mapping' : label for cell in Entity FormXml ID: '{ec515be4-95fd-47ed-abfd-df315dbdf4a4}'</comment>
   </data>
   <data name="1:label,Show Vendor Mapping{ee148f23-912e-47f2-8285-62e83ed4841f}" xml:space="preserve">
-    <value />
+    <value>Name</value>
     <comment>'Show Vendor Mapping' : label for cell in Entity FormXml ID: '{ee148f23-912e-47f2-8285-62e83ed4841f}'</comment>
   </data>
   <data name="1:label,Show Vendor Mapping{f5d3484e-8413-460f-a583-712500c8e385}" xml:space="preserve">
@@ -7270,7 +6954,7 @@
     <comment>'Studio' : label for cell in Entity FormXml ID: '{295ae2a6-9681-4584-ab06-b1ea0f6fc860}'</comment>
   </data>
   <data name="1:label,Studio{3b15ad08-4607-42c1-a15a-73fa56313b3f}" xml:space="preserve">
-    <value />
+    <value>Status Reason</value>
     <comment>'Studio' : label for cell in Entity FormXml ID: '{3b15ad08-4607-42c1-a15a-73fa56313b3f}'</comment>
   </data>
   <data name="1:label,Studio{4c754829-48be-4daf-8a84-e5508dacd768}" xml:space="preserve">
@@ -7306,7 +6990,7 @@
     <comment>'Studio' : label for section in Entity FormXml ID: '{825c53dc-4667-4251-8e78-eaf5210c7c7f}'</comment>
   </data>
   <data name="1:label,Studio{87fa3289-09a6-4586-800f-5e84ab4aaf68}" xml:space="preserve">
-    <value />
+    <value>Name</value>
     <comment>'Studio' : label for cell in Entity FormXml ID: '{87fa3289-09a6-4586-800f-5e84ab4aaf68}'</comment>
   </data>
   <data name="1:label,Studio{9457730e-5c98-45b1-b452-80db962f0798}" xml:space="preserve">
@@ -7322,7 +7006,7 @@
     <comment>'Studio' : label for tab in Entity FormXml ID: '{978e3917-9063-4480-8510-28479ac1933f}'</comment>
   </data>
   <data name="1:label,Studio{97d22a4c-3908-44da-85d5-39cb8d1d2bca}" xml:space="preserve">
-    <value />
+    <value>Owner</value>
     <comment>'Studio' : label for cell in Entity FormXml ID: '{97d22a4c-3908-44da-85d5-39cb8d1d2bca}'</comment>
   </data>
   <data name="1:label,Studio{9cddbfba-e99a-4184-9359-cd3874c8f9ea}" xml:space="preserve">
@@ -7334,7 +7018,7 @@
     <comment>'Studio' : label for section in Entity FormXml ID: '{a10da615-8cf6-4f29-9fee-6715a251de07}'</comment>
   </data>
   <data name="1:label,Studio{abb8d340-4195-4e05-a332-b8e0b7709db6}" xml:space="preserve">
-    <value />
+    <value>Created On</value>
     <comment>'Studio' : label for cell in Entity FormXml ID: '{abb8d340-4195-4e05-a332-b8e0b7709db6}'</comment>
   </data>
   <data name="1:label,Studio{ad09f4aa-7e63-453d-866f-fb383f988998}" xml:space="preserve">
@@ -7342,7 +7026,7 @@
     <comment>'Studio' : label for cell in Entity FormXml ID: '{ad09f4aa-7e63-453d-866f-fb383f988998}'</comment>
   </data>
   <data name="1:label,Studio{b5b35877-2289-4e13-8ec1-b484a6659717}" xml:space="preserve">
-    <value />
+    <value>Name</value>
     <comment>'Studio' : label for cell in Entity FormXml ID: '{b5b35877-2289-4e13-8ec1-b484a6659717}'</comment>
   </data>
   <data name="1:label,Studio{b9c9536d-f53e-408e-8fed-2c87947178f2}" xml:space="preserve">
@@ -7358,7 +7042,7 @@
     <comment>'Studio' : label for section in Entity FormXml ID: '{d7af6d92-894f-44f5-8a86-d772ae44979c}'</comment>
   </data>
   <data name="1:label,Studio{dd65af1e-b1fb-4603-99ac-238e7372f48b}" xml:space="preserve">
-    <value />
+    <value>Owner</value>
     <comment>'Studio' : label for cell in Entity FormXml ID: '{dd65af1e-b1fb-4603-99ac-238e7372f48b}'</comment>
   </data>
   <data name="1:label,Studio{eec6a38f-4e5e-4fb9-8e6c-715161f33a51}" xml:space="preserve">
@@ -7501,150 +7185,6 @@
     <value />
     <comment>'Track' : label for cell in Entity FormXml ID: '{f2d85637-f926-4591-8521-9d0f3b89605c}'</comment>
   </data>
-  <data name="1:label,User{0c7745b4-2ee4-4e62-8b00-c91d41964645}" xml:space="preserve">
-    <value>Site</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{0c7745b4-2ee4-4e62-8b00-c91d41964645}'</comment>
-  </data>
-  <data name="1:label,User{0DA1C8D1-4773-4fbe-AD36-88E542BFD3BE}" xml:space="preserve">
-    <value>Default Queue</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{0DA1C8D1-4773-4fbe-AD36-88E542BFD3BE}'</comment>
-  </data>
-  <data name="1:label,User{0da6aab1-c3fc-4414-ab40-ff9b5ffe156c}" xml:space="preserve">
-    <value>Preferred Address</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{0da6aab1-c3fc-4414-ab40-ff9b5ffe156c}'</comment>
-  </data>
-  <data name="1:label,User{123e6312-e7ad-edb2-8c2b-1bae53c98c57}" xml:space="preserve">
-    <value>Mailbox</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{123e6312-e7ad-edb2-8c2b-1bae53c98c57}'</comment>
-  </data>
-  <data name="1:label,User{15ef5f59-27e2-4c16-be5c-a6ac9350aacb}" xml:space="preserve">
-    <value>Access Mode</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{15ef5f59-27e2-4c16-be5c-a6ac9350aacb}'</comment>
-  </data>
-  <data name="1:label,User{162a4bb3-8b10-404b-ad36-cb0635b31553}" xml:space="preserve">
-    <value>Preferred Phone</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{162a4bb3-8b10-404b-ad36-cb0635b31553}'</comment>
-  </data>
-  <data name="1:label,User{192a5772-6770-4c61-8f0f-8926e0d1c0a4}" xml:space="preserve">
-    <value>User Name</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{192a5772-6770-4c61-8f0f-8926e0d1c0a4}'</comment>
-  </data>
-  <data name="1:label,User{22CF131D-2919-469A-9FD8-6256C90C56F5}" xml:space="preserve">
-    <value>Status</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{22CF131D-2919-469A-9FD8-6256C90C56F5}'</comment>
-  </data>
-  <data name="1:label,User{230815e2-e951-43e6-8970-88946484d82f}" xml:space="preserve">
-    <value>Other Phone</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{230815e2-e951-43e6-8970-88946484d82f}'</comment>
-  </data>
-  <data name="1:label,User{23863fb6-b584-4b59-905d-8b403c2ee69f}" xml:space="preserve">
-    <value>Mobile Phone</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{23863fb6-b584-4b59-905d-8b403c2ee69f}'</comment>
-  </data>
-  <data name="1:label,User{2ecd8b0d-647c-4d31-ac6c-0e423444ebcf}" xml:space="preserve">
-    <value>Street 2</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{2ecd8b0d-647c-4d31-ac6c-0e423444ebcf}'</comment>
-  </data>
-  <data name="1:label,User{3946169e-878d-4a7d-afea-820d52540466}" xml:space="preserve">
-    <value>Windows Live ID</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{3946169e-878d-4a7d-afea-820d52540466}'</comment>
-  </data>
-  <data name="1:label,User{4a8fe9e1-7d8e-4250-a267-4f14474a1370}" xml:space="preserve">
-    <value>Business Unit</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{4a8fe9e1-7d8e-4250-a267-4f14474a1370}'</comment>
-  </data>
-  <data name="1:label,User{513bfb0e-4e9c-404b-b3e5-4b31dac653d2}" xml:space="preserve">
-    <value>Home Phone</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{513bfb0e-4e9c-404b-b3e5-4b31dac653d2}'</comment>
-  </data>
-  <data name="1:label,User{5d58295f-6c42-405f-9fcf-41a69edbde68}" xml:space="preserve">
-    <value>ZIP/Postal Code</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{5d58295f-6c42-405f-9fcf-41a69edbde68}'</comment>
-  </data>
-  <data name="1:label,User{7bded721-6511-47e3-a49a-5e0bd440dcae}" xml:space="preserve">
-    <value>Title</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{7bded721-6511-47e3-a49a-5e0bd440dcae}'</comment>
-  </data>
-  <data name="1:label,User{8088b709-235e-4d2e-8f13-995b071093c4}" xml:space="preserve">
-    <value>Mobile Alert Email</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{8088b709-235e-4d2e-8f13-995b071093c4}'</comment>
-  </data>
-  <data name="1:label,User{87524490-16df-4ecd-947d-516cfa90d282}" xml:space="preserve">
-    <value>State/Province</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{87524490-16df-4ecd-947d-516cfa90d282}'</comment>
-  </data>
-  <data name="1:label,User{8b1bbe79-b567-4a47-b09b-3dc5eb0f3c41}" xml:space="preserve">
-    <value>Primary Email</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{8b1bbe79-b567-4a47-b09b-3dc5eb0f3c41}'</comment>
-  </data>
-  <data name="1:label,User{92d26a0b-06eb-4eb8-b19d-84c2845a0bb7}" xml:space="preserve">
-    <value>Invitation Status</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{92d26a0b-06eb-4eb8-b19d-84c2845a0bb7}'</comment>
-  </data>
-  <data name="1:label,User{93844cbf-9b48-4c08-81ef-41830f854783}" xml:space="preserve">
-    <value>Position</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{93844cbf-9b48-4c08-81ef-41830f854783}'</comment>
-  </data>
-  <data name="1:label,User{ac0addcc-a626-6c98-40ee-b11edac36204}" xml:space="preserve">
-    <value>Section</value>
-    <comment>'User' : label for section in Entity FormXml ID: '{ac0addcc-a626-6c98-40ee-b11edac36204}'</comment>
-  </data>
-  <data name="1:label,User{ac8d6cc6-3b36-4729-a994-9a3deab9b184}" xml:space="preserve">
-    <value>Street 1</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{ac8d6cc6-3b36-4729-a994-9a3deab9b184}'</comment>
-  </data>
-  <data name="1:label,User{adec6722-caa8-4d97-a47f-13b0f6bf2a5f}" xml:space="preserve">
-    <value>Main Phone</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{adec6722-caa8-4d97-a47f-13b0f6bf2a5f}'</comment>
-  </data>
-  <data name="1:label,User{b115c435-0640-450b-8373-1b3b14fd94de}" xml:space="preserve">
-    <value>City</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{b115c435-0640-450b-8373-1b3b14fd94de}'</comment>
-  </data>
-  <data name="1:label,User{b3390253-43ec-4032-917d-a7df251fd7d9}" xml:space="preserve">
-    <value>License Type</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{b3390253-43ec-4032-917d-a7df251fd7d9}'</comment>
-  </data>
-  <data name="1:label,User{bd790631-ed97-4b7c-a428-b6ddab35291d}" xml:space="preserve">
-    <value>Pager</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{bd790631-ed97-4b7c-a428-b6ddab35291d}'</comment>
-  </data>
-  <data name="1:label,User{be13b312-b6ac-83d7-34e1-e90dc1ecbec7}" xml:space="preserve">
-    <value>RecordWall</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{be13b312-b6ac-83d7-34e1-e90dc1ecbec7}'</comment>
-  </data>
-  <data name="1:label,User{cd992a7b-96f3-44e9-b90a-a79839fc1bbd}" xml:space="preserve">
-    <value>Email 2</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{cd992a7b-96f3-44e9-b90a-a79839fc1bbd}'</comment>
-  </data>
-  <data name="1:label,User{d37bde4b-3782-4762-a5d6-cb4ba1793f54}" xml:space="preserve">
-    <value>Country/Region</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{d37bde4b-3782-4762-a5d6-cb4ba1793f54}'</comment>
-  </data>
-  <data name="1:label,User{db07805e-d5ee-4b94-afc3-ce833e34e5dd}" xml:space="preserve">
-    <value>Territory</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{db07805e-d5ee-4b94-afc3-ce833e34e5dd}'</comment>
-  </data>
-  <data name="1:label,User{e94e6ac4-12db-bc8c-ec81-8b20c5987655}" xml:space="preserve">
-    <value>What's New</value>
-    <comment>'User' : label for tab in Entity FormXml ID: '{e94e6ac4-12db-bc8c-ec81-8b20c5987655}'</comment>
-  </data>
-  <data name="1:label,User{eb448292-95c0-4774-86d1-a88a2064018e}" xml:space="preserve">
-    <value>First Name</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{eb448292-95c0-4774-86d1-a88a2064018e}'</comment>
-  </data>
-  <data name="1:label,User{ec8e91ce-9bbf-4a29-b865-cd1c248691ca}" xml:space="preserve">
-    <value>Manager</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{ec8e91ce-9bbf-4a29-b865-cd1c248691ca}'</comment>
-  </data>
-  <data name="1:label,User{f0092777-6b75-45aa-a994-193dab730fc4}" xml:space="preserve">
-    <value>Last Name</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{f0092777-6b75-45aa-a994-193dab730fc4}'</comment>
-  </data>
-  <data name="1:label,User{fe8b4694-081b-49d0-94e8-21775016779b}" xml:space="preserve">
-    <value>Street 3</value>
-    <comment>'User' : label for cell in Entity FormXml ID: '{fe8b4694-081b-49d0-94e8-21775016779b}'</comment>
-  </data>
   <data name="1:label,Vendor95ac3689-32c5-4260-b54c-60dccc4a0f41" xml:space="preserve">
     <value>Shows</value>
     <comment>'Vendor' : label for section in Entity FormXml ID: '95ac3689-32c5-4260-b54c-60dccc4a0f41'</comment>
@@ -7658,7 +7198,7 @@
     <comment>'Vendor' : label for cell in Entity FormXml ID: '{10bc51c5-c128-48d1-a917-5a21d317acc4}'</comment>
   </data>
   <data name="1:label,Vendor{1333ce57-b216-468a-bd49-4b3466456730}" xml:space="preserve">
-    <value />
+    <value>Status Reason</value>
     <comment>'Vendor' : label for cell in Entity FormXml ID: '{1333ce57-b216-468a-bd49-4b3466456730}'</comment>
   </data>
   <data name="1:label,Vendor{13572b40-2732-4480-b729-be1134ea20fd}" xml:space="preserve">
@@ -7666,7 +7206,7 @@
     <comment>'Vendor' : label for section in Entity FormXml ID: '{13572b40-2732-4480-b729-be1134ea20fd}'</comment>
   </data>
   <data name="1:label,Vendor{17e0ef66-8737-495e-b9d4-95dc72b437d2}" xml:space="preserve">
-    <value />
+    <value>Owner</value>
     <comment>'Vendor' : label for cell in Entity FormXml ID: '{17e0ef66-8737-495e-b9d4-95dc72b437d2}'</comment>
   </data>
   <data name="1:label,Vendor{246119fc-efda-4cf0-a09b-4c8f0416a8cd}" xml:space="preserve">
@@ -7694,7 +7234,7 @@
     <comment>'Vendor' : label for section in Entity FormXml ID: '{418bd61e-3775-4226-b501-8fb1872b9d45}'</comment>
   </data>
   <data name="1:label,Vendor{4df8341f-28d2-40d8-8e6f-5fc97c475a86}" xml:space="preserve">
-    <value />
+    <value>Name</value>
     <comment>'Vendor' : label for cell in Entity FormXml ID: '{4df8341f-28d2-40d8-8e6f-5fc97c475a86}'</comment>
   </data>
   <data name="1:label,Vendor{50a48b74-a13b-49cc-aa9b-91a6dbce0ca2}" xml:space="preserve">
@@ -7714,7 +7254,7 @@
     <comment>'Vendor' : label for cell in Entity FormXml ID: '{744d7da6-7d79-49d1-a977-4527400a0287}'</comment>
   </data>
   <data name="1:label,Vendor{74f475a8-f427-4b84-a264-ace9f92ee0e5}" xml:space="preserve">
-    <value />
+    <value>Owner</value>
     <comment>'Vendor' : label for cell in Entity FormXml ID: '{74f475a8-f427-4b84-a264-ace9f92ee0e5}'</comment>
   </data>
   <data name="1:label,Vendor{76a0078b-44e4-4934-897c-98c998dc8b9d}" xml:space="preserve">
@@ -7730,7 +7270,7 @@
     <comment>'Vendor' : label for cell in Entity FormXml ID: '{8be39eb9-bdce-429d-b9ff-dada73b8df92}'</comment>
   </data>
   <data name="1:label,Vendor{8fb6ab88-c4e6-4406-9856-f0e89ad96d16}" xml:space="preserve">
-    <value />
+    <value>Created On</value>
     <comment>'Vendor' : label for cell in Entity FormXml ID: '{8fb6ab88-c4e6-4406-9856-f0e89ad96d16}'</comment>
   </data>
   <data name="1:label,Vendor{99f039ee-6328-4d36-a218-e34abb5cf798}" xml:space="preserve">
@@ -7766,7 +7306,7 @@
     <comment>'Vendor' : label for tab in Entity FormXml ID: '{ec2c5646-89ab-4e78-bd06-b0ab337066fc}'</comment>
   </data>
   <data name="1:label,Vendor{efcd6196-4d5f-4b62-a950-7b58ba573db1}" xml:space="preserve">
-    <value />
+    <value>Name</value>
     <comment>'Vendor' : label for cell in Entity FormXml ID: '{efcd6196-4d5f-4b62-a950-7b58ba573db1}'</comment>
   </data>
   <data name="1:LocalizedCollectionName,media_AssetActivityentitymedia_AssetActivity" xml:space="preserve">
@@ -7776,10 +7316,6 @@
   <data name="1:LocalizedCollectionName,media_AssetContainerentitymedia_AssetContainer" xml:space="preserve">
     <value>Shows</value>
     <comment> 'media_AssetContainer' : LocalizedCollectionName for Entity</comment>
-  </data>
-  <data name="1:LocalizedCollectionName,media_AssetContainerUsersentitymedia_AssetContainerUsers" xml:space="preserve">
-    <value>Asset Container Users</value>
-    <comment> 'media_AssetContainerUsers' : LocalizedCollectionName for Entity</comment>
   </data>
   <data name="1:LocalizedCollectionName,media_Assetentitymedia_Asset" xml:space="preserve">
     <value>Assets</value>
@@ -7937,64 +7473,44 @@
     <value>Asset Activities</value>
     <comment>'Asset Activity' : LocalizedName for SavedQuery on Entity QueryId: '{f6ab59af-2023-eb11-a813-000d3a530fa6}'</comment>
   </data>
-  <data name="1:LocalizedName,Asset Container Users{1302cef7-7131-4f3e-95be-3ea1d9a32f74}" xml:space="preserve">
-    <value>Information</value>
-    <comment>'Asset Container Users' : LocalizedName for systemform in Entity FormXml ID: '{1302cef7-7131-4f3e-95be-3ea1d9a32f74}'</comment>
-  </data>
-  <data name="1:LocalizedName,Asset Container Users{2a44497b-7d31-43d1-849c-5f497e55d3e9}" xml:space="preserve">
-    <value>Active Asset Container Users</value>
-    <comment>'Asset Container Users' : LocalizedName for SavedQuery on Entity QueryId: '{2a44497b-7d31-43d1-849c-5f497e55d3e9}'</comment>
-  </data>
-  <data name="1:LocalizedName,Asset Container Users{2ee58bb5-2e79-4ddb-80e0-fc0ff63fad6b}" xml:space="preserve">
-    <value>Asset Container Users Lookup View</value>
-    <comment>'Asset Container Users' : LocalizedName for SavedQuery on Entity QueryId: '{2ee58bb5-2e79-4ddb-80e0-fc0ff63fad6b}'</comment>
-  </data>
-  <data name="1:LocalizedName,Asset Container Users{7b793831-6bce-4714-8bb7-1f55dc7d03c3}" xml:space="preserve">
-    <value>Asset Container Users Associated View</value>
-    <comment>'Asset Container Users' : LocalizedName for SavedQuery on Entity QueryId: '{7b793831-6bce-4714-8bb7-1f55dc7d03c3}'</comment>
-  </data>
-  <data name="1:LocalizedName,Asset Container Users{7fd1a35d-1f23-eb11-a813-000d3a530fa6}" xml:space="preserve">
-    <value>Asset Container Users</value>
-    <comment>'Asset Container Users' : LocalizedName for SavedQuery on Entity QueryId: '{7fd1a35d-1f23-eb11-a813-000d3a530fa6}'</comment>
-  </data>
-  <data name="1:LocalizedName,Asset Container Users{87d35bec-6871-43e0-9463-f2fe66408a70}" xml:space="preserve">
-    <value>Information</value>
-    <comment>'Asset Container Users' : LocalizedName for systemform in Entity FormXml ID: '{87d35bec-6871-43e0-9463-f2fe66408a70}'</comment>
-  </data>
-  <data name="1:LocalizedName,Asset Container Users{9c9e7937-eb7b-48f7-84fb-15e349295439}" xml:space="preserve">
-    <value>Quick Find Active Asset Container Users</value>
-    <comment>'Asset Container Users' : LocalizedName for SavedQuery on Entity QueryId: '{9c9e7937-eb7b-48f7-84fb-15e349295439}'</comment>
-  </data>
-  <data name="1:LocalizedName,Asset Container Users{cbdc0c8a-db6c-4746-9505-123b48caba3c}" xml:space="preserve">
-    <value>Inactive Asset Container Users</value>
-    <comment>'Asset Container Users' : LocalizedName for SavedQuery on Entity QueryId: '{cbdc0c8a-db6c-4746-9505-123b48caba3c}'</comment>
-  </data>
-  <data name="1:LocalizedName,Asset Container Users{d2c8fc62-2c26-4981-bd86-cdce3266ad9b}" xml:space="preserve">
-    <value>Asset Container Users Advanced Find View</value>
-    <comment>'Asset Container Users' : LocalizedName for SavedQuery on Entity QueryId: '{d2c8fc62-2c26-4981-bd86-cdce3266ad9b}'</comment>
-  </data>
-  <data name="1:LocalizedName,Asset Container Users{ecc1e7da-161f-426b-9d97-bbf2c0729d44}" xml:space="preserve">
-    <value>Information</value>
-    <comment>'Asset Container Users' : LocalizedName for systemform in Entity FormXml ID: '{ecc1e7da-161f-426b-9d97-bbf2c0729d44}'</comment>
-  </data>
   <data name="1:LocalizedName,Asset Copy Status{02021cc9-ceda-43e8-bc35-81002c03b699}" xml:space="preserve">
     <value>Quick Find Active VendorCopyStatuses</value>
     <comment>'Asset Copy Status' : LocalizedName for SavedQuery on Entity QueryId: '{02021cc9-ceda-43e8-bc35-81002c03b699}'</comment>
+  </data>
+  <data name="1:LocalizedName,Asset Copy Status{198AF757-F85B-EB11-A812-0022480918D2}" xml:space="preserve">
+    <value>Asset Copy to Vendor Status</value>
+    <comment>'Asset Copy Status' : LocalizedName for Visualization '{198AF757-F85B-EB11-A812-0022480918D2}' on  Entity</comment>
   </data>
   <data name="1:LocalizedName,Asset Copy Status{21921c53-f049-4f42-8857-20c5f1da8d70}" xml:space="preserve">
     <value>Information</value>
     <comment>'Asset Copy Status' : LocalizedName for systemform in Entity FormXml ID: '{21921c53-f049-4f42-8857-20c5f1da8d70}'</comment>
   </data>
+  <data name="1:LocalizedName,Asset Copy Status{3AA88ABE-6D5C-EB11-A812-0022480918D2}" xml:space="preserve">
+    <value>Copy Asset to Vendor Status</value>
+    <comment>'Asset Copy Status' : LocalizedName for Visualization '{3AA88ABE-6D5C-EB11-A812-0022480918D2}' on  Entity</comment>
+  </data>
   <data name="1:LocalizedName,Asset Copy Status{632f5c6c-908e-4065-8276-3458c5226502}" xml:space="preserve">
     <value>Information</value>
     <comment>'Asset Copy Status' : LocalizedName for systemform in Entity FormXml ID: '{632f5c6c-908e-4065-8276-3458c5226502}'</comment>
+  </data>
+  <data name="1:LocalizedName,Asset Copy Status{675E15ED-705C-EB11-A812-0022480918D2}" xml:space="preserve">
+    <value>Asset by Created On and Duration(Minutes)</value>
+    <comment>'Asset Copy Status' : LocalizedName for Visualization '{675E15ED-705C-EB11-A812-0022480918D2}' on  Entity</comment>
   </data>
   <data name="1:LocalizedName,Asset Copy Status{76a18bce-e50e-44f8-83de-d948160385c2}" xml:space="preserve">
     <value>Asset Copy Status Associated View</value>
     <comment>'Asset Copy Status' : LocalizedName for SavedQuery on Entity QueryId: '{76a18bce-e50e-44f8-83de-d948160385c2}'</comment>
   </data>
+  <data name="1:LocalizedName,Asset Copy Status{83f344d7-1657-eb11-a812-0022480817d4}" xml:space="preserve">
+    <value>Completed Copy Status</value>
+    <comment>'Asset Copy Status' : LocalizedName for SavedQuery on Entity QueryId: '{83f344d7-1657-eb11-a812-0022480817d4}'</comment>
+  </data>
+  <data name="1:LocalizedName,Asset Copy Status{8c01e386-1757-eb11-a812-0022480817d4}" xml:space="preserve">
+    <value>Failed Copy Status</value>
+    <comment>'Asset Copy Status' : LocalizedName for SavedQuery on Entity QueryId: '{8c01e386-1757-eb11-a812-0022480817d4}'</comment>
+  </data>
   <data name="1:LocalizedName,Asset Copy Status{97f37b73-1968-4d35-a67f-c2e6c0438619}" xml:space="preserve">
-    <value>Active Asset Copy Status</value>
+    <value>Started Copy Status</value>
     <comment>'Asset Copy Status' : LocalizedName for SavedQuery on Entity QueryId: '{97f37b73-1968-4d35-a67f-c2e6c0438619}'</comment>
   </data>
   <data name="1:LocalizedName,Asset Copy Status{98774e6c-d8c1-4f11-946a-45857380a969}" xml:space="preserve">
@@ -8013,9 +7529,25 @@
     <value>VendorCopyStatus Lookup View</value>
     <comment>'Asset Copy Status' : LocalizedName for SavedQuery on Entity QueryId: '{e950a56d-acec-47bb-8eaa-a3da9c5a7f86}'</comment>
   </data>
+  <data name="1:LocalizedName,Asset Copy Status{f5fafba5-f75b-eb11-a812-0022480918d2}" xml:space="preserve">
+    <value>Overall Copy Status</value>
+    <comment>'Asset Copy Status' : LocalizedName for SavedQuery on Entity QueryId: '{f5fafba5-f75b-eb11-a812-0022480918d2}'</comment>
+  </data>
+  <data name="1:LocalizedName,Asset Copy Status{F99B036B-F85B-EB11-A812-0022480918D2}" xml:space="preserve">
+    <value>Asset Copy Status by Copy Status-Copy(1)</value>
+    <comment>'Asset Copy Status' : LocalizedName for Visualization '{F99B036B-F85B-EB11-A812-0022480918D2}' on  Entity</comment>
+  </data>
   <data name="1:LocalizedName,Asset Copy Status{fadbcfdc-80cd-4f28-87b9-dca8d3813c0a}" xml:space="preserve">
     <value>VendorCopyStatus Advanced Find View</value>
     <comment>'Asset Copy Status' : LocalizedName for SavedQuery on Entity QueryId: '{fadbcfdc-80cd-4f28-87b9-dca8d3813c0a}'</comment>
+  </data>
+  <data name="1:LocalizedName,Asset Files{27817077-C95B-EB11-A812-0022480917A6}" xml:space="preserve">
+    <value>Checksum Verification Status</value>
+    <comment>'Asset Files' : LocalizedName for Visualization '{27817077-C95B-EB11-A812-0022480917A6}' on  Entity</comment>
+  </data>
+  <data name="1:LocalizedName,Asset Files{4E71FB7C-6F5C-EB11-A812-0022480918D2}" xml:space="preserve">
+    <value>File Size(MB), Asset Files by Created On</value>
+    <comment>'Asset Files' : LocalizedName for Visualization '{4E71FB7C-6F5C-EB11-A812-0022480918D2}' on  Entity</comment>
   </data>
   <data name="1:LocalizedName,Asset Files{6b0d64b4-d5db-4529-b169-3221abe47d74}" xml:space="preserve">
     <value>Asset Files Advanced Find View</value>
@@ -8037,9 +7569,21 @@
     <value>Asset Files</value>
     <comment>'Asset Files' : LocalizedName for SavedQuery on Entity QueryId: '{8ba9184b-ac24-eb11-a813-000d3a530fa6}'</comment>
   </data>
+  <data name="1:LocalizedName,Asset Files{9813406B-BC5B-EB11-A812-0022480917A6}" xml:space="preserve">
+    <value>MediaInfo Metadata Extraction</value>
+    <comment>'Asset Files' : LocalizedName for Visualization '{9813406B-BC5B-EB11-A812-0022480917A6}' on  Entity</comment>
+  </data>
   <data name="1:LocalizedName,Asset Files{9bc261f4-e701-4d3c-8ef8-91fee2a7642a}" xml:space="preserve">
     <value>Asset Files Lookup View</value>
     <comment>'Asset Files' : LocalizedName for SavedQuery on Entity QueryId: '{9bc261f4-e701-4d3c-8ef8-91fee2a7642a}'</comment>
+  </data>
+  <data name="1:LocalizedName,Asset Files{ADE4C87F-C95B-EB11-A812-0022480917A6}" xml:space="preserve">
+    <value>Virus Scan Status</value>
+    <comment>'Asset Files' : LocalizedName for Visualization '{ADE4C87F-C95B-EB11-A812-0022480917A6}' on  Entity</comment>
+  </data>
+  <data name="1:LocalizedName,Asset Files{B72A1CCA-BC5B-EB11-A812-0022480917A6}" xml:space="preserve">
+    <value>Virus Scan</value>
+    <comment>'Asset Files' : LocalizedName for Visualization '{B72A1CCA-BC5B-EB11-A812-0022480917A6}' on  Entity</comment>
   </data>
   <data name="1:LocalizedName,Asset Files{b8244684-9944-4cbb-ab4c-24d05fc22600}" xml:space="preserve">
     <value>Active Asset Files</value>
@@ -8053,6 +7597,10 @@
     <value>Asset Files Associated View</value>
     <comment>'Asset Files' : LocalizedName for SavedQuery on Entity QueryId: '{cd40e973-808c-4ae0-ab73-6e0986cb3321}'</comment>
   </data>
+  <data name="1:LocalizedName,Asset Files{CF25A0C6-C85B-EB11-A812-0022480917A6}" xml:space="preserve">
+    <value>Metadata Extraction Status</value>
+    <comment>'Asset Files' : LocalizedName for Visualization '{CF25A0C6-C85B-EB11-A812-0022480917A6}' on  Entity</comment>
+  </data>
   <data name="1:LocalizedName,Asset Files{d37b1131-18ab-467e-9464-3c71be1b0ce8}" xml:space="preserve">
     <value>Information</value>
     <comment>'Asset Files' : LocalizedName for systemform in Entity FormXml ID: '{d37b1131-18ab-467e-9464-3c71be1b0ce8}'</comment>
@@ -8060,6 +7608,10 @@
   <data name="1:LocalizedName,Asset Files{f7bc7d25-6852-441d-a98e-92dd1fcd1646}" xml:space="preserve">
     <value>Information</value>
     <comment>'Asset Files' : LocalizedName for systemform in Entity FormXml ID: '{f7bc7d25-6852-441d-a98e-92dd1fcd1646}'</comment>
+  </data>
+  <data name="1:LocalizedName,Asset Files{F98C4A9C-BC5B-EB11-A812-0022480917A6}" xml:space="preserve">
+    <value>CheckSum Verification</value>
+    <comment>'Asset Files' : LocalizedName for Visualization '{F98C4A9C-BC5B-EB11-A812-0022480917A6}' on  Entity</comment>
   </data>
   <data name="1:LocalizedName,Asset Folder Layout {074d735d-1e23-eb11-a813-000d3a530fa6}" xml:space="preserve">
     <value>Asset Folder Layouts</value>
@@ -8225,6 +7777,14 @@
     <value>Asset Advanced Find View</value>
     <comment>'Asset' : LocalizedName for SavedQuery on Entity QueryId: '{1a1c794a-3e35-4fb0-a837-6243e796dd90}'</comment>
   </data>
+  <data name="1:LocalizedName,Asset{1F981DF9-C25B-EB11-A812-0022480917A6}" xml:space="preserve">
+    <value>Asset Upload Status</value>
+    <comment>'Asset' : LocalizedName for Visualization '{1F981DF9-C25B-EB11-A812-0022480917A6}' on  Entity</comment>
+  </data>
+  <data name="1:LocalizedName,Asset{2B413AA2-BB5B-EB11-A812-0022480917A6}" xml:space="preserve">
+    <value>Asset Upload</value>
+    <comment>'Asset' : LocalizedName for Visualization '{2B413AA2-BB5B-EB11-A812-0022480917A6}' on  Entity</comment>
+  </data>
   <data name="1:LocalizedName,Asset{531ec6d7-9bd6-4a66-a48b-4f5231529bc4}" xml:space="preserve">
     <value>Information</value>
     <comment>'Asset' : LocalizedName for systemform in Entity FormXml ID: '{531ec6d7-9bd6-4a66-a48b-4f5231529bc4}'</comment>
@@ -8248,6 +7808,14 @@
   <data name="1:LocalizedName,Asset{98e304fa-2488-41c4-910a-7c4489535b02}" xml:space="preserve">
     <value>Information</value>
     <comment>'Asset' : LocalizedName for systemform in Entity FormXml ID: '{98e304fa-2488-41c4-910a-7c4489535b02}'</comment>
+  </data>
+  <data name="1:LocalizedName,Asset{99597487-F25B-EB11-A812-0022480918D2}" xml:space="preserve">
+    <value>Asset Copy to Nexis mount Status</value>
+    <comment>'Asset' : LocalizedName for Visualization '{99597487-F25B-EB11-A812-0022480918D2}' on  Entity</comment>
+  </data>
+  <data name="1:LocalizedName,Asset{9EE3796C-6E5C-EB11-A812-0022480918D2}" xml:space="preserve">
+    <value>Copy asset to Nexis mount status</value>
+    <comment>'Asset' : LocalizedName for Visualization '{9EE3796C-6E5C-EB11-A812-0022480918D2}' on  Entity</comment>
   </data>
   <data name="1:LocalizedName,Asset{a31a1ce6-64a9-4096-bb14-32b8827773d4}" xml:space="preserve">
     <value>Asset Lookup View</value>
@@ -8428,10 +7996,6 @@
   <data name="1:LocalizedName,media_AssetContainerentitymedia_AssetContainer" xml:space="preserve">
     <value>Show</value>
     <comment> 'media_AssetContainer' : LocalizedName for Entity</comment>
-  </data>
-  <data name="1:LocalizedName,media_AssetContainerUsersentitymedia_AssetContainerUsers" xml:space="preserve">
-    <value>Asset Container Users</value>
-    <comment> 'media_AssetContainerUsers' : LocalizedName for Entity</comment>
   </data>
   <data name="1:LocalizedName,media_Assetentitymedia_Asset" xml:space="preserve">
     <value>Asset</value>
@@ -8749,10 +8313,6 @@
     <value>Information</value>
     <comment>'Track' : LocalizedName for systemform in Entity FormXml ID: '{e29e0a05-61cd-42aa-87ca-7230ba2c856f}'</comment>
   </data>
-  <data name="1:LocalizedName,User{c0d7d7dd-afd0-4675-85fe-1cc5a48be6df}" xml:space="preserve">
-    <value>Information</value>
-    <comment>'User' : LocalizedName for systemform in Entity FormXml ID: '{c0d7d7dd-afd0-4675-85fe-1cc5a48be6df}'</comment>
-  </data>
   <data name="1:LocalizedName,Vendor{035ab7d9-f832-45a6-b9e8-7801735bb631}" xml:space="preserve">
     <value>Vendor Lookup View</value>
     <comment>'Vendor' : LocalizedName for SavedQuery on Entity QueryId: '{035ab7d9-f832-45a6-b9e8-7801735bb631}'</comment>
@@ -8881,6 +8441,10 @@
     <value>Copy to Nexis</value>
     <comment>'Copy to Nexis' : LocalizedName for Workflow</comment>
   </data>
+  <data name="660:LocalizedName,{b19b1c52-d65b-eb11-a812-0022480918d2}" xml:space="preserve">
+    <value>Asset Upload</value>
+    <comment>'InteractionCentricDashboard'</comment>
+  </data>
   <data name="80:Description,media_DurinMediaLake" xml:space="preserve">
     <value>Creating basic app for supporting this poc</value>
     <comment> 'media_DurinMediaLake' : Description for AppModule</comment>
@@ -8897,9 +8461,25 @@
     <value>Media Lake</value>
     <comment>Title for Area 'NewArea_7b880037' Area 'NewArea_7b880037'</comment>
   </data>
+  <data name="81:Title,NewArea_7b880037NewGroup_a0bf658b" xml:space="preserve">
+    <value>Dashboard</value>
+    <comment>Title for Area 'NewArea_7b880037' Group 'NewGroup_a0bf658b'</comment>
+  </data>
+  <data name="81:Title,NewArea_7b880037NewGroup_c53377f9" xml:space="preserve">
+    <value>Asset Copy Status</value>
+    <comment>Title for Area 'NewArea_7b880037' Group 'NewGroup_c53377f9'</comment>
+  </data>
   <data name="81:Title,NewArea_7b880037NewGroup_ffa0bf02" xml:space="preserve">
     <value>Media Lake</value>
     <comment>Title for Area 'NewArea_7b880037' Group 'NewGroup_ffa0bf02'</comment>
+  </data>
+  <data name="81:Title,NewArea_7b880037NewSubArea_3367cb99" xml:space="preserve">
+    <value>Asset Status</value>
+    <comment>Title for Area 'NewArea_7b880037' SubArea 'NewSubArea_3367cb99'</comment>
+  </data>
+  <data name="81:Title,NewArea_7b880037NewSubArea_f2299acb" xml:space="preserve">
+    <value>Vendor Copy Status</value>
+    <comment>Title for Area 'NewArea_7b880037' SubArea 'NewSubArea_f2299acb'</comment>
   </data>
   <data name="81:Title,NewArea_7b880037New_Group" xml:space="preserve">
     <value>Setting</value>

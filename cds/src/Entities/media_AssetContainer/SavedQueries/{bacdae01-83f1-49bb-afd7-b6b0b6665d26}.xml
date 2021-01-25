@@ -21,7 +21,6 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="media_assetcontainer">
-          <attribute name="media_assetcontainerid" />
           <attribute name="media_name" />
           <attribute name="createdon" />
           <order attribute="media_name" descending="false" />
@@ -30,6 +29,7 @@
           </filter>
           <attribute name="media_containerpath" />
           <attribute name="media_studio" />
+          <attribute name="media_assetcontainerid" />
         </entity>
       </fetch>
     </fetchxml>

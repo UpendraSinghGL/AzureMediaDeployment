@@ -19,13 +19,13 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="media_studio">
-          <attribute name="media_studioid" />
           <attribute name="media_name" />
           <attribute name="createdon" />
           <order attribute="media_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <attribute name="media_studioid" />
         </entity>
       </fetch>
     </fetchxml>

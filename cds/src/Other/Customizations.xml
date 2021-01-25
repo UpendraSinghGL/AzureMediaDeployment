@@ -5,17 +5,6 @@
   <Workflows />
   <FieldSecurityProfiles />
   <Templates />
-  <EntityMaps />
-  <EntityRelationships />
-  <OrganizationSettings />
-  <optionsets />
-  <WebResources />
-  <CustomControls />
-  <SolutionPluginAssemblies />
-  <SdkMessageProcessingSteps />
-  <AppModuleSiteMaps />
-  <AppModules />
-  <EntityDataProviders />
   <EntityImageConfigs>
     <EntityImageConfig>
       <parententitylogicalname>media_assetcontainer</parententitylogicalname>
@@ -38,17 +27,29 @@
       <canstorefullimage>1</canstorefullimage>
     </AttributeImageConfig>
   </AttributeImageConfigs>
+  <EntityMaps />
+  <EntityRelationships />
+  <OrganizationSettings />
+  <optionsets />
+  <InteractionCentricDashboards />
+  <WebResources />
+  <CustomControls />
+  <SolutionPluginAssemblies />
+  <SdkMessageProcessingSteps />
+  <AppModuleSiteMaps />
+  <AppModules />
+  <EntityDataProviders />
   <connectionreferences>
-    <connectionreference connectionreferencelogicalname="media_sharedcommondataserviceforapps_49c83">
-      <connectionreferencedisplayname>Common Data Service (current environment)</connectionreferencedisplayname>
-      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+    <connectionreference connectionreferencelogicalname="media_sharedcommondataservice_90942">
+      <connectionreferencedisplayname>Common Data Service</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataservice</connectorid>
       <iscustomizable>1</iscustomizable>
       <statecode>0</statecode>
       <statuscode>1</statuscode>
     </connectionreference>
-    <connectionreference connectionreferencelogicalname="media_sharedcommondataservice_90942">
-      <connectionreferencedisplayname>Common Data Service</connectionreferencedisplayname>
-      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataservice</connectorid>
+    <connectionreference connectionreferencelogicalname="media_sharedcommondataserviceforapps_49c83">
+      <connectionreferencedisplayname>Common Data Service (current environment)</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
       <iscustomizable>1</iscustomizable>
       <statecode>0</statecode>
       <statuscode>1</statuscode>
