@@ -116,4 +116,6 @@
   <EntityRelationship Name="user_media_track" />
   <EntityRelationship Name="user_media_vendor" />
   <EntityRelationship Name="user_media_vendorcopystatus" />
+  <EntityRelationship Name="media_ShowNexisMapping_Nexis_media_Nexis" />
+  <EntityRelationship Name="media_ShowNexisMapping_Show_media_AssetCo" />
 </EntityRelationships>

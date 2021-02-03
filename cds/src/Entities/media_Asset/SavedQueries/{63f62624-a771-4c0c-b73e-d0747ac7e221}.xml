@@ -42,6 +42,7 @@
           <attribute name="media_season" />
           <order attribute="createdon" descending="true" />
           <attribute name="media_block" />
+          <attribute name="media_blobpath" />
         </entity>
       </fetch>
     </fetchxml>

@@ -6,7 +6,7 @@
       <LocalizedName description="Durin Media Lake" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>1.0.0.0</Version>
+    <Version>1.0.0.1</Version>
     <Managed>2</Managed>
     <Publisher>
       <UniqueName>durinmedialake</UniqueName>
@@ -96,8 +96,11 @@
       <RootComponent type="1" schemaName="media_showvendormapping" behavior="0" />
       <RootComponent type="1" schemaName="media_studio" behavior="0" />
       <RootComponent type="1" schemaName="media_track" behavior="0" />
+      <RootComponent type="1" schemaName="media_nexis" behavior="0" />
       <RootComponent type="1" schemaName="media_vendor" behavior="0" />
+      <RootComponent type="1" schemaName="media_shownexismapping" behavior="0" />
       <RootComponent type="1" schemaName="media_vendorcopystatus" behavior="0" />
+      <RootComponent type="1" schemaName="media_copystatus" behavior="0" />
       <RootComponent type="1" schemaName="systemuser" behavior="0" />
       <RootComponent type="9" schemaName="media_assetstatus" behavior="0" />
       <RootComponent type="9" schemaName="media_checksumstatus" behavior="0" />
@@ -106,8 +109,10 @@
       <RootComponent type="9" schemaName="media_filesizestatus" behavior="0" />
       <RootComponent type="9" schemaName="media_metadatastatus" behavior="0" />
       <RootComponent type="9" schemaName="media_type" behavior="0" />
+      <RootComponent type="9" schemaName="media_status" behavior="0" />
       <RootComponent type="9" schemaName="media_uploadstatus" behavior="0" />
       <RootComponent type="9" schemaName="media_virusscanstatus" behavior="0" />
+      <RootComponent type="9" schemaName="media_destinantiontype" behavior="0" />
       <RootComponent type="29" id="{622dc589-9c4a-eb11-a813-000d3a1c234d}" behavior="0" />
       <RootComponent type="29" id="{a8c28660-f03d-eb11-a813-000d3a530fa6}" behavior="0" />
       <RootComponent type="60" id="{130d7175-17c6-475b-a5da-6691f7173d48}" behavior="0" />
@@ -137,11 +142,13 @@
       <RootComponent type="61" schemaName="media_configuration16x16.png" behavior="0" />
       <RootComponent type="61" schemaName="media_copyfile" behavior="0" />
       <RootComponent type="61" schemaName="media_durinutility.js" behavior="0" />
+      <RootComponent type="61" schemaName="media_CopyToVendor.js" behavior="0" />
       <RootComponent type="61" schemaName="media_episode_16x16.png" behavior="0" />
       <RootComponent type="61" schemaName="media_SessionIcon" behavior="0" />
       <RootComponent type="61" schemaName="media_show16x16.png" behavior="0" />
       <RootComponent type="61" schemaName="media_studio_icon.png" behavior="0" />
       <RootComponent type="61" schemaName="media_vendor_16x16.png" behavior="0" />
+      <RootComponent type="61" schemaName="media_NexisIcon" behavior="0" />
       <RootComponent type="62" schemaName="media_DurinMediaLake" behavior="0" />
       <RootComponent type="80" schemaName="media_DurinMediaLake" behavior="0" />
       <RootComponent type="91" id="{943dc731-f13d-41f9-89a4-8ef3cb24b6b6}" schemaName="Microsoft.Media.DurinMediaLake, Version=1.0.0.0, Culture=neutral, PublicKeyToken=809b50fade28e4c2" behavior="0" />
@@ -152,6 +159,8 @@
       <RootComponent type="431" schemaName="media_studio media_logo" behavior="0" />
       <RootComponent type="432" schemaName="media_assetcontainer" behavior="0" />
       <RootComponent type="432" schemaName="media_studio" behavior="0" />
+      <RootComponent type="61" schemaName="media_copyVendorLocation.html" behavior="0" />
+      <RootComponent type="60" id="{c074db67-1d58-4bf6-ad58-246a6e28ba63}" behavior="0" />
     </RootComponents>
     <MissingDependencies>
       <MissingDependency>

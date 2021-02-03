@@ -12,6 +12,7 @@
         <row name="result" id="media_assetfilesid">
           <cell name="media_name" width="228" />
           <cell name="media_asset" width="128" />
+          <cell name="media_asset.media_assetcontainer" width="100" />
           <cell name="media_filetype" width="100" />
           <cell name="media_uploadstatus" width="100" />
           <cell name="media_checksumstatus" width="100" />
@@ -38,6 +39,10 @@
           <attribute name="media_metadatastatus" />
           <attribute name="media_virusscanstatus" />
           <attribute name="media_uploadstatus" />
+          <attribute name="media_blobpath" />
+          <link-entity name="media_asset" from="media_assetid" to="media_asset" visible="false" link-type="outer" alias="media_asset">
+            <attribute name="media_assetcontainer" />
+          </link-entity>
         </entity>
       </fetch>
     </fetchxml>

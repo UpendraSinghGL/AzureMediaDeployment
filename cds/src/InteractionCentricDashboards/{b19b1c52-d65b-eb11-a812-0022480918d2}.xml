@@ -126,6 +126,6 @@
       </form>
     </forms>
   </FormXml>
-  <IntroducedVersion>1.0.0.43</IntroducedVersion>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
   <IsTabletEnabled>0</IsTabletEnabled>
 </InteractionCentricDashboard>

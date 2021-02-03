@@ -45,6 +45,6 @@
     <LocalizedName description="Virus Scan Status" languagecode="1033" />
   </LocalizedNames>
   <IsCustomizable>1</IsCustomizable>
-  <IntroducedVersion>1.0.0.43</IntroducedVersion>
+  <IntroducedVersion>1.0.0.0</IntroducedVersion>
   <CanBeDeleted>1</CanBeDeleted>
 </visualization>

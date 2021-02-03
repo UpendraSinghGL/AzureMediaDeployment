@@ -46,7 +46,7 @@
         </entity>
       </fetch>
     </fetchxml>
-    <IntroducedVersion>1.0.0.43</IntroducedVersion>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
     <LocalizedNames>
       <LocalizedName description="Completed Copy Status" languagecode="1033" />
     </LocalizedNames>

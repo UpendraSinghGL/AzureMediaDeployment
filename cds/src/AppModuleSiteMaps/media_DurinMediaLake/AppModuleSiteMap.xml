@@ -37,12 +37,14 @@
             <Title LCID="1033" Title="Vendor Copy Status" />
           </Titles>
         </SubArea>
+        <SubArea Id="NewSubArea_2e3cee638" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="media_copystatus" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />
       </Group>
       <Group Id="New_Group" ResourceId="SitemapDesigner.NewGroup" DescriptionResourceId="SitemapDesigner.NewGroup" IntroducedVersion="7.0.0.0" IsProfile="false" ToolTipResourseId="SitemapDesigner.Unknown">
         <Titles>
           <Title LCID="1033" Title="Setting" />
         </Titles>
         <SubArea Id="NewSubArea_8cd10b5f" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="media_vendor" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />
+        <SubArea Id="NewSubArea_283ed144" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="media_nexis" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />
         <SubArea Id="NewSubArea_ae03e61" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="media_configuration" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />
       </Group>
     </Area>
