@@ -6,7 +6,6 @@
     }
 
     CopyVendorUtility.openCommonDialog = function (selectedRows, selectedcontrol, copyType) {
-        debugger;
         var selectedIds = selectedRows.map(x => x.Id);
         CopyVendorUtility.CheckIfMultipleShowSelected(selectedcontrol.getEntityName(), selectedcontrol.getFetchXml(), selectedIds)
             .then((res) => {
@@ -98,29 +97,43 @@
         if (source && destination) {
             source = JSON.parse(source);
             destination = JSON.parse(destination);
-            fetch(`/api/data/v9.1/media_assetcontainers(${showId})/media_containerpath`)
-                .then(res => res.json())
-                .then((x) => {
-                    var containerName = x.value;
-                    if (entityName == 'media_season') {
-                        source.forEach(y => {
-                            y.path = `${containerName}/${y.name}`;
-                        })
-                    }
+            Promise.all([
+                fetch('/api/data/v9.1/media_configurations?$top=1&$select=media_setting').then(res => res.json()),
+                fetch(`/api/data/v9.1/media_assetcontainers(${showId})/media_containerpath`).then(res => res.json())
+            ]).then((responses) => {
+                var media_settings = responses[0].value;
+                media_settings = media_settings.length > 0 ? JSON.parse(media_settings[0].media_setting) : {};
+                var containerName = responses[1].value;
+                if (entityName == 'media_season') {
+                    source.forEach(y => {
+                        y.path = `${containerName}/${y.name}`;
+                    })
+                }
+                var request = {
+                    destination: destination,
+                    source: source,
+                    showid: showId,
+                    container: containerName,
+                    entityLogicalName: entityName,
+                    destinationType: type
+                }
 
-                    var request = {
-                        destination: destination,
-                        source: source,
-                        showid: showId,
-                        container: containerName,
-                        entityLogicalName: entityName,
-                        destinationType: type
-                    }
+                if (media_settings.copyToDestinationUrl) {
 
-                    console.log(request);
-
-                    Xrm.Page.ui.close();
-                })
+                    fetch(media_settings.copyToDestinationUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(request)
+                    }).then((x) => {
+                    })
+                } else {
+                    CopyVendorUtility.showErrorMessage('Please setup the Api Configuration to use this feature.');
+                }
+                Xrm.Page.ui.close();
+            })
         }
         else
             Xrm.Page.ui.close();
