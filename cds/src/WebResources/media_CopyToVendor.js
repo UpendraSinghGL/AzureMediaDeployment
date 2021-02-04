@@ -6,6 +6,7 @@
     }
 
     CopyVendorUtility.openCommonDialog = function (selectedRows, selectedcontrol, copyType) {
+        debugger;
         var selectedIds = selectedRows.map(x => x.Id);
         CopyVendorUtility.CheckIfMultipleShowSelected(selectedcontrol.getEntityName(), selectedcontrol.getFetchXml(), selectedIds)
             .then((res) => {
@@ -13,7 +14,7 @@
                     Xrm.Navigation.openDialog("CopyToVendorDialog", { height: 300, width: 400 },
                         {
                             media_entityName: selectedcontrol.getEntityName(),
-                            media_entityIds: selectedIds.join(','),
+                            media_entities: JSON.stringify(res.selectedSources),
                             media_showId: res.showId,
                             media_type: copyType
                         });
@@ -48,22 +49,30 @@
                     showColumnName = "media_asset.media_assetcontainer";
                 } break;
             }
+
             fetch(apiUrl).then((response) => response.json()).then(data => {
                 var showid = '';
+                var isMultipleShowSelected = false;
+                var selectedSources = [];
                 for (index = 0; index < data.value.length; index++) {
                     var etn = data.value[index];
                     var etnid = etn[`${entity}id`];
                     var assetContainerId = etn[showColumnName];
-                    if (selectedIds.indexOf(etnid) >= 0) {
+                    if (selectedIds.indexOf(etnid) >= 0) { // selected record
                         if (showid != '' && showid != assetContainerId) {
-                            res({ showId: showid, isMultipleShowSelected: true });
+                            isMultipleShowSelected = true
                             break;
                         } else {
                             showid = assetContainerId;
                         }
+                        selectedSources.push({
+                            id: etnid,
+                            name: etn['media_name'],
+                            path: etn['media_blobpath']
+                        })
                     }
                 }
-                res({ showId: showid, isMultipleShowSelected: false });
+                res({ showId: showid, isMultipleShowSelected, selectedSources });
             });
         });
     }
@@ -79,21 +88,43 @@
     }
 
     CopyVendorUtility.OnDialogOk = function (formContext) {
-        var type = formContext.getAttribute('media_type').getValue();
+
+        var type = formContext.getFormContext().getAttribute('media_type').getValue();
         var showId = formContext.getFormContext().getAttribute('media_showId').getValue();
         var entityName = formContext.getFormContext().getAttribute('media_entityName').getValue();
-        var entityIds = formContext.getFormContext().getAttribute('media_entityIds').getValue();
-        var selectedLocation = formContext.getFormContext().getAttribute('media_selectedLocation').getValue();
-        // var vendorids
-        // container name
-        // file path
-        // season , containername/name 
-        if (selectedLocation) {
-            Xrm.Page.ui.close();
-        } else {
-            CopyVendorUtility.showErrorMessage(`Please select a location to continue.`);
+        var source = formContext.getFormContext().getAttribute('media_entities').getValue();
+        var destination = formContext.getFormContext().getAttribute('media_selectedLocation').getValue();
+
+        if (source && destination) {
+            source = JSON.parse(source);
+            destination = JSON.parse(destination);
+            fetch(`/api/data/v9.1/media_assetcontainers(${showId})/media_containerpath`)
+                .then(res => res.json())
+                .then((x) => {
+                    var containerName = x.value;
+                    if (entityName == 'media_season') {
+                        source.forEach(y => {
+                            y.path = `${containerName}/${y.name}`;
+                        })
+                    }
+
+                    var request = {
+                        destination: destination,
+                        source: source,
+                        showid: showId,
+                        container: containerName,
+                        entityLogicalName: entityName,
+                        destinationType: type
+                    }
+
+                    console.log(request);
+
+                    Xrm.Page.ui.close();
+                })
         }
-        debugger;
+        else
+            Xrm.Page.ui.close();
+
     }
     CopyVendorUtility.OnDialogCancel = function (formContext) {
         Xrm.Page.ui.close();

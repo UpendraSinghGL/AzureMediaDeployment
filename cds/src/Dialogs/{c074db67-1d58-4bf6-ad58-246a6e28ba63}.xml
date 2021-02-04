@@ -17,7 +17,7 @@
 				<formparameters>
 					<querystringparameter name="media_type" type="SafeString" />
 					<querystringparameter name="media_entityName" type="SafeString" />
-					<querystringparameter name="media_entityIds" type="SafeString" />
+					<querystringparameter name="media_entities" type="SafeString" />
 					<querystringparameter name="media_showId" type="SafeString" />
 					<querystringparameter name="media_selectedLocation" type="SafeString" />
 				</formparameters>

@@ -15,7 +15,7 @@
     </div>
 </body>
 <script>
-    var type = parent.Xrm.getAttribute('media_type').getValue();
+    var type = parent.Xrm.Page.getAttribute('media_type').getValue();
     if (type == 'vendor') {
         DurinMedia.CopyVendorUtility.GetVendorList().then(data => {
             if (data.value.length > 0) {
@@ -58,13 +58,18 @@
             var selectedLocations = [];
             document.querySelectorAll("#vendor-list-control input:checked").forEach(x => {
                 var location = x.getAttribute('data-location');
-                if (location)
-                    selectedLocations.push(location);
+                if (location) {
+                    selectedLocations.push({
+                        id: x.id,
+                        name: x.name,
+                        path: location
+                    });
+                }
             })
-            parent.Xrm.Page.getAttribute("media_selectedLocation").setValue(selectedLocations.join(','))
+            parent.Xrm.Page.getAttribute("media_selectedLocation").setValue(JSON.stringify(selectedLocations));
         }
         var label = document.createElement("label");
-        label.setAttribute("for", name);
+        label.setAttribute("for", value);
         label.innerText = name;
         para.appendChild(checkbox);
         para.appendChild(label);
