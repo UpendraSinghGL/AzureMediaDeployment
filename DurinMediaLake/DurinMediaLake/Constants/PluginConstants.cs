@@ -10,6 +10,9 @@
         public const string EntityLogicalName = "media_assetfiles";
         public const string MediaInfoMetadata = "media_mediainfometadata";
         public const string UploadStatus = "media_uploadstatus";
+        public const string AlefileContent = "media_alefilecontent";
+        public const string BlobPath = "media_blobpath";
+        public const string miscInfo = "media_miscinfo";
     }
 
     public class UploadStatus
@@ -42,6 +45,14 @@
         public const string KeyValue = "media_keyvalue";
         public const string RefTrack = "media_track";
         public const string CameraMetadataEntityLogicalName = "media_camerarawfilemetadata";
+    }
+
+    public class MiscInfo
+    {
+        public string AleFileNameField { get; set; }
+        public string MatchType { get; set; }
+        public int TruncateCharFromStart { get; set; }
+        public int TruncateCharFromEnd { get; set; }
     }
 
     public enum FileType
