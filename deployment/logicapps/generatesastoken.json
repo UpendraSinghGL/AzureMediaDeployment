@@ -185,7 +185,7 @@
                                                     "inputs": {
                                                         "body": {
                                                             "ExpiryTime": "@{addHours(utcNow(),6)}",
-                                                            "Permissions": "Read,Write,List"
+                                                            "Permissions": "Read,Write,List,Delete"
                                                         },
                                                         "host": {
                                                             "connection": {
