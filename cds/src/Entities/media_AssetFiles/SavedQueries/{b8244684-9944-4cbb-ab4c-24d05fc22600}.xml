@@ -40,6 +40,7 @@
           <attribute name="media_virusscanstatus" />
           <attribute name="media_uploadstatus" />
           <attribute name="media_blobpath" />
+          <attribute name="media_alefileid"/>
           <link-entity name="media_asset" from="media_assetid" to="media_asset" visible="false" link-type="outer" alias="media_asset">
             <attribute name="media_assetcontainer" />
           </link-entity>

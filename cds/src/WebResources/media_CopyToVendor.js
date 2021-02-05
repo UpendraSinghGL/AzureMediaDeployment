@@ -67,7 +67,8 @@
                         selectedSources.push({
                             id: etnid,
                             name: etn['media_name'],
-                            path: etn['media_blobpath']
+                            path: etn['media_blobpath'],
+                            aleId: etn['media_alefileid'] || ''
                         })
                     }
                 }
