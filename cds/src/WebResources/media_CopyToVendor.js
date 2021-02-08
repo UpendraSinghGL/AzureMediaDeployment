@@ -1,6 +1,19 @@
 (function (DurinMedia) {
     var CopyVendorUtility = {};
 
+    CopyVendorUtility.CanCopy = function (selectedRows, selectedcontrol) {
+        var entityName = selectedcontrol.getEntityName();
+        var viewId = selectedcontrol.getViewSelector().getCurrentView().id;
+        switch (entityName) {
+            case "media_assetfiles":
+                return viewId == '{B8244684-9944-4CBB-AB4C-24D05FC22600}';
+            case "media_asset":
+                return viewId == '{63F62624-A771-4C0C-B73E-D0747AC7E221}'
+            default:
+                return false;
+        }
+    }
+
     CopyVendorUtility.ShowVendorDialog = function (selectedRows, selectedcontrol) {
         CopyVendorUtility.openCommonDialog(selectedRows, selectedcontrol, 'vendor');
     }

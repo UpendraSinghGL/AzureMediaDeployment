@@ -58,6 +58,10 @@
     <EnableRules>
       <EnableRule Id="media.media_assetfiles.btnCopyTo.EnableRule">
         <SelectionCountRule AppliesTo="PrimaryEntity" Minimum="1" />
+        <CustomRule FunctionName="DurinMedia.CopyVendorUtility.CanCopy" Library="$webresource:media_CopyToVendor.js">
+          <CrmParameter Value="SelectedControlSelectedItemReferences" />
+          <CrmParameter Value="SelectedControl" />
+        </CustomRule>
       </EnableRule>
     </EnableRules>
   </RuleDefinitions>
