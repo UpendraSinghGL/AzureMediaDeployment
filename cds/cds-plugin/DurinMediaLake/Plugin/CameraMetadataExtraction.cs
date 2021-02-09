@@ -35,6 +35,7 @@
                         query.EntityName = MediaAssetFileConstants.EntityLogicalName;
                         query.ColumnSet = new ColumnSet("media_name");
                         query.Criteria.AddCondition(MediaAssetConstants.EntityLogicalName, ConditionOperator.Equal, assetid);
+                        query.Criteria.AddCondition(MediaAssetFileConstants.Status, ConditionOperator.Equal, 0);
                         query.Criteria.AddCondition(MediaAssetFileConstants.BlobPath, ConditionOperator.Like, containsPath + "%");
 
                         var assetFiles = this.OrganizationService.RetrieveMultiple(query).Entities;
