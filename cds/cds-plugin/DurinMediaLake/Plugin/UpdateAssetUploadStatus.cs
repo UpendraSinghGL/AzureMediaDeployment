@@ -28,6 +28,23 @@
                 CalculateRollupFieldRequest rollupRequest = new CalculateRollupFieldRequest { Target = new EntityReference(MediaAssetConstants.EntityLogicalName, mediasset.Id), FieldName = MediaAssetConstants.UploadedFile };
                 CalculateRollupFieldResponse response = (CalculateRollupFieldResponse)this.OrganizationService.Execute(rollupRequest);
 
+                if(fileEntity.Contains(MediaAssetFileConstants.Status))
+                {
+                    if(Convert.ToInt32(((Microsoft.Xrm.Sdk.OptionSetValue)fileEntity.Attributes[MediaAssetFileConstants.Status]).Value) == 1)
+                    {
+                        var query = new QueryExpression();
+                        query.EntityName = MediaAssetFileConstants.EntityLogicalName;
+                        query.ColumnSet = new ColumnSet("media_name");
+                        query.Criteria.AddCondition(MediaAssetConstants.EntityLogicalName, ConditionOperator.Equal, mediasset.Id);
+                        query.Criteria.AddCondition(MediaAssetFileConstants.Status, ConditionOperator.Equal, 0);
+
+                        var assetFiles = this.OrganizationService.RetrieveMultiple(query).Entities; 
+
+                        mediasset.Attributes[MediaAssetConstants.FolderFileCount] = assetFiles?.Count;
+                        this.OrganizationService.Update(mediasset);
+                    }
+                }   
+
                 if (fileEntity.Contains(MediaAssetFileConstants.UploadStatus))
                 {
                     var uploadStatus = ((Microsoft.Xrm.Sdk.OptionSetValue)fileEntity.Attributes[MediaAssetFileConstants.UploadStatus]).Value;
