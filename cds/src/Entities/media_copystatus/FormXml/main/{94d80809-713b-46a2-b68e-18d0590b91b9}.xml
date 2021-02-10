@@ -14,7 +14,7 @@
           <columns>
             <column width="100%">
               <sections>
-                <section showlabel="false" showbar="false" IsUserDefined="0" id="{47003dc5-af98-4ece-ad2d-895af9d18891}">
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{47003dc5-af98-4ece-ad2d-895af9d18891}" columns="11">
                   <labels>
                     <label description="General" languagecode="1033" />
                   </labels>
@@ -26,16 +26,6 @@
                         </labels>
                         <control id="media_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="media_name" />
                       </cell>
-                    </row>
-                    <row>
-                      <cell id="{675b7adc-4417-44c5-ace8-98a4d3dec7ae}">
-                        <labels>
-                          <label description="Owner" languagecode="1033" />
-                        </labels>
-                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
-                      </cell>
-                    </row>
-                    <row>
                       <cell id="{187b3d9a-60ad-49cd-8186-03c1a9df0dc7}" locklevel="0">
                         <labels>
                           <label description="Copy Duration" languagecode="1033" />
@@ -44,6 +34,12 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{5aff6eac-77c3-44d2-b4ad-31ffb4398771}" locklevel="0">
+                        <labels>
+                          <label description="Show" languagecode="1033" />
+                        </labels>
+                        <control id="media_show" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="media_show" disabled="false" />
+                      </cell>
                       <cell id="{88f97a77-c58c-45a0-8fa2-e4ece164c701}" locklevel="0">
                         <labels>
                           <label description="Destinantion Type" languagecode="1033" />
@@ -58,13 +54,25 @@
                         </labels>
                         <control id="media_destinationname" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="media_destinationname" disabled="false" />
                       </cell>
-                    </row>
-                    <row>
                       <cell id="{e888f3c3-dcf6-4037-8649-6ccc46412e5c}" locklevel="0">
                         <labels>
                           <label description="Status" languagecode="1033" />
                         </labels>
                         <control id="media_status" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="media_status" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{675b7adc-4417-44c5-ace8-98a4d3dec7ae}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                      <cell id="{f1d4cd9c-97be-45c1-b7f8-ea2421a97817}" locklevel="0">
+                        <labels>
+                          <label description="Created By" languagecode="1033" />
+                        </labels>
+                        <control id="createdby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="createdby" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -74,6 +82,12 @@
                         </labels>
                         <control id="media_duration" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="media_duration" disabled="false" />
                       </cell>
+                      <cell id="{6b80a268-cbb4-4c62-81cb-59b9a62e584b}" locklevel="0">
+                        <labels>
+                          <label description="Created On" languagecode="1033" />
+                        </labels>
+                        <control id="createdon" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="createdon" disabled="false" />
+                      </cell>
                     </row>
                     <row>
                       <cell id="{85af767e-2509-4348-93a7-677a68398bda}" locklevel="0">
@@ -82,21 +96,11 @@
                         </labels>
                         <control id="statecode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
                       </cell>
-                    </row>
-                    <row>
-                      <cell id="{f1d4cd9c-97be-45c1-b7f8-ea2421a97817}" locklevel="0">
+                      <cell id="{6ea8179c-d1c7-4279-ad27-ef70b8f42004}" locklevel="0">
                         <labels>
-                          <label description="Created By" languagecode="1033" />
+                          <label description="Copy Start Time" languagecode="1033" />
                         </labels>
-                        <control id="createdby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="createdby" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{6b80a268-cbb4-4c62-81cb-59b9a62e584b}" locklevel="0">
-                        <labels>
-                          <label description="Created On" languagecode="1033" />
-                        </labels>
-                        <control id="createdon" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="createdon" disabled="false" />
+                        <control id="media_copystarttime" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="media_copystarttime" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -106,8 +110,6 @@
                         </labels>
                         <control id="media_sourcerecord" classid="{71716B6C-711E-476C-8AB8-5D11542BFB47}" datafieldname="media_sourcerecord" disabled="false" />
                       </cell>
-                    </row>
-                    <row>
                       <cell id="{61734f11-9175-4f5c-9e3b-2f0743da21e6}" locklevel="0">
                         <labels>
                           <label description="Copy End Time" languagecode="1033" />
@@ -116,11 +118,15 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{6ea8179c-d1c7-4279-ad27-ef70b8f42004}" locklevel="0">
+                      <cell locklevel="0" id="{fd33c249-73ab-443e-bd39-ba270698383f}">
                         <labels>
-                          <label description="Copy Start Time" languagecode="1033" />
+                          <label description="" languagecode="1033" />
                         </labels>
-                        <control id="media_copystarttime" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="media_copystarttime" disabled="false" />
+                      </cell>
+                      <cell showlabel="false" locklevel="0" id="{a483a832-ca75-4f3f-b6f8-90d56b83172e}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
                       </cell>
                     </row>
                   </rows>
@@ -173,7 +179,7 @@
         </rows>
       </footer>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>

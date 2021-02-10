@@ -631,7 +631,7 @@
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
           <Format>none</Format>
-          <MinValue>1</MinValue>
+          <MinValue>0</MinValue>
           <MaxValue>2147483647</MaxValue>
           <displaynames>
             <displayname description="Folder File Count" languagecode="1033" />

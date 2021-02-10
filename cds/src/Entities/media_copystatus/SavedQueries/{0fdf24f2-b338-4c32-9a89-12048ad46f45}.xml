@@ -31,7 +31,7 @@
     </fetchxml>
     <IntroducedVersion>1.0.0.0</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Inactive Copy Statuses" languagecode="1033" />
+      <LocalizedName description="Inactive Copy Status" languagecode="1033" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>
