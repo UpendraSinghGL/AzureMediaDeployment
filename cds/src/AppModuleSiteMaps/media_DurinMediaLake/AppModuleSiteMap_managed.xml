@@ -30,13 +30,8 @@
       </Group>
       <Group Id="NewGroup_c53377f9" ResourceId="SitemapDesigner.NewGroup" IsProfile="false" ToolTipResourseId="SitemapDesigner.Unknown">
         <Titles>
-          <Title LCID="1033" Title="Asset Copy Status" />
+          <Title LCID="1033" Title="Copy Status" />
         </Titles>
-        <SubArea Id="NewSubArea_f2299acb" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="media_vendorcopystatus" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
-          <Titles>
-            <Title LCID="1033" Title="Vendor Copy Status" />
-          </Titles>
-        </SubArea>
         <SubArea Id="NewSubArea_2e3cee638" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="media_copystatus" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />
       </Group>
       <Group Id="New_Group" ResourceId="SitemapDesigner.NewGroup" DescriptionResourceId="SitemapDesigner.NewGroup" IntroducedVersion="7.0.0.0" IsProfile="false" ToolTipResourseId="SitemapDesigner.Unknown">

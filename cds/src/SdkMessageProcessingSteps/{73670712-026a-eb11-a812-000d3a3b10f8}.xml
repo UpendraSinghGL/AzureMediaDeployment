@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SdkMessageProcessingStep Name="Microsoft.Media.DurinMediaLake.Plugin.CameraMetadataExtraction: Update of media_asset" SdkMessageProcessingStepId="{c73c32a9-1c49-eb11-a813-000d3a1c234d}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<SdkMessageProcessingStep Name="Microsoft.Media.DurinMediaLake.Plugin.CameraMetadataExtraction: Update of media_assetfiles (Profiled)" SdkMessageProcessingStepId="{73670712-026a-eb11-a812-000d3a3b10f8}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SdkMessageId>20bebb1b-ea3e-db11-86a7-000a3a5473e8</SdkMessageId>
   <PluginTypeName>Microsoft.Media.DurinMediaLake.Plugin.CameraMetadataExtraction, Microsoft.Media.DurinMediaLake, Version=1.0.0.0, Culture=neutral, PublicKeyToken=809b50fade28e4c2</PluginTypeName>
-  <PluginTypeId>3a9a610a-a395-4a87-823d-7363abc6f737</PluginTypeId>
-  <PrimaryEntity>media_asset</PrimaryEntity>
+  <PluginTypeId>6d3964f9-1c7d-4463-8df8-2d11434f40cf</PluginTypeId>
+  <PrimaryEntity>media_assetfiles</PrimaryEntity>
   <AsyncAutoDelete>1</AsyncAutoDelete>
-  <Description>Microsoft.Media.DurinMediaLake.Plugin.CameraMetadataExtraction: Update of media_asset</Description>
-  <FilteringAttributes>media_camerarawfilemetadata</FilteringAttributes>
+  <Description>Microsoft.Media.DurinMediaLake.Plugin.CameraMetadataExtraction: Update of media_assetfiles</Description>
+  <FilteringAttributes>media_alefilecontent</FilteringAttributes>
   <InvocationSource>1</InvocationSource>
   <Mode>1</Mode>
   <Rank>1</Rank>

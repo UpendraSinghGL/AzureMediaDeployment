@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SdkMessageProcessingStep Name="Microsoft.Media.DurinMediaLake.Plugin.MediaInfoMetadataExtract: Update of media_assetfiles" SdkMessageProcessingStepId="{9d8de4bf-1c49-eb11-a813-000d3a1c234d}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<SdkMessageProcessingStep Name="Microsoft.Media.DurinMediaLake.Plugin.MediaInfoMetadataExtract: Update of media_assetfiles" SdkMessageProcessingStepId="{b9a4642a-026a-eb11-a812-000d3a3b10f8}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SdkMessageId>20bebb1b-ea3e-db11-86a7-000a3a5473e8</SdkMessageId>
   <PluginTypeName>Microsoft.Media.DurinMediaLake.Plugin.MediaInfoMetadataExtract, Microsoft.Media.DurinMediaLake, Version=1.0.0.0, Culture=neutral, PublicKeyToken=809b50fade28e4c2</PluginTypeName>
-  <PluginTypeId>deb1348c-4567-4ad0-b42b-407669361e14</PluginTypeId>
+  <PluginTypeId>39d24521-394d-418d-b0f1-25d12188c9ce</PluginTypeId>
   <PrimaryEntity>media_assetfiles</PrimaryEntity>
   <AsyncAutoDelete>1</AsyncAutoDelete>
   <Description>Microsoft.Media.DurinMediaLake.Plugin.MediaInfoMetadataExtract: Update of media_assetfiles</Description>
