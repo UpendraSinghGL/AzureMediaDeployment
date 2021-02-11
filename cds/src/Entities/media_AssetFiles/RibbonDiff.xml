@@ -3,12 +3,12 @@
   <CustomActions>
     <CustomAction Id="media.media_assetfiles.CopyTo.Button.CustomAction" Location="Mscrm.HomepageGrid.media_assetfiles.MainTab.Management.Controls._children" Sequence="55">
       <CommandUIDefinition>
-        <SplitButton Command="media.media_assetfiles.bnCopyTo.Command" Id="media.media_assetfiles.CopyTo.Button" LabelText="$LocLabels:media.media_assetfiles.CopyTo.Button.LabelText" Sequence="55" TemplateAlias="o2">
+        <SplitButton Command="media.media_assetfiles.bnCopyTo.Command" Id="media.media_assetfiles.CopyTo.Button" LabelText="$LocLabels:media.media_assetfiles.CopyTo.Button.LabelText" Sequence="55" TemplateAlias="o2" ModernImage="$webresource:media_copyfile">
           <Menu Id="media.media_assetfiles.CopyTo.Button.Menu">
             <MenuSection Id="media.media_assetfiles.CopyTo.Section" Sequence="5" DisplayMode="Menu16">
               <Controls Id="media.media_assetfiles.CopyTo.Section.Controls">
-                <Button Command="media.media_assetfiles.btnCopyToVendor.Command" Id="media.media_assetfiles.btnVendorLocation.Button" LabelText="$LocLabels:media.media_assetfiles.btnVendorLocation.Button.LabelText" Sequence="10" />
-                <Button Command="media.media_assetfiles.CopyToNexis.Command" Id="media.media_assetfiles.btnNexis.Button" LabelText="$LocLabels:media.media_assetfiles.btnNexis.Button.LabelText" Sequence="15" />
+                <Button Command="media.media_assetfiles.btnCopyToVendor.Command" Id="media.media_assetfiles.btnVendorLocation.Button" LabelText="$LocLabels:media.media_assetfiles.btnVendorLocation.Button.LabelText" Sequence="10" ModernImage="$webresource:media_vendor_16x16.png"/>
+                <Button Command="media.media_assetfiles.CopyToNexis.Command" Id="media.media_assetfiles.btnNexis.Button" LabelText="$LocLabels:media.media_assetfiles.btnNexis.Button.LabelText" Sequence="15" ModernImage="$webresource:media_NexisIcon" />
               </Controls>
             </MenuSection>
           </Menu>

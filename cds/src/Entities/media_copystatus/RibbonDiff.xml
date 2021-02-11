@@ -4,7 +4,7 @@
   <CustomActions>
     <CustomAction Id="media.media_copystatus.ViewDetails.Button.CustomAction" Location="Mscrm.HomepageGrid.media_copystatus.MainTab.Management.Controls._children" Sequence="23">
       <CommandUIDefinition>
-        <Button Command="media.media_copystatus.ViewDetails.Command" Id="media.media_copystatus.ViewDetails.Button" Image16by16="" LabelText="$LocLabels:media.media_copystatus.ViewDetails.Button.LabelText" Sequence="23" TemplateAlias="o1" />
+        <Button Command="media.media_copystatus.ViewDetails.Command" Id="media.media_copystatus.ViewDetails.Button" Image16by16="" LabelText="$LocLabels:media.media_copystatus.ViewDetails.Button.LabelText" Sequence="23" TemplateAlias="o1" ModernImage="$webresource:media_details_16x16.png"/>
       </CommandUIDefinition>
     </CustomAction>
   </CustomActions>

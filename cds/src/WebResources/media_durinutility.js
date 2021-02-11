@@ -6,7 +6,7 @@
     }
 
     Utility.NavigateTo = function (selectedid, entity, attribute) {
-        fetch(`/api/data/v9.1/${entity}/${attribute}(${selectedid.replace(/[{}]/g, '')})`)
+        fetch(`/api/data/v9.1/${entity}(${selectedid.replace(/[{}]/g, '')})/${attribute}`)
             .then(res => res.json())
             .then(data => {
                 location.href = data.value;

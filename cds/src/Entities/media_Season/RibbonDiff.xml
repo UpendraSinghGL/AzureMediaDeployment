@@ -3,12 +3,12 @@
   <CustomActions>
     <CustomAction Id="media.media_season.CopyTo.Button.CustomAction" Location="Mscrm.HomepageGrid.media_season.MainTab.Management.Controls._children" Sequence="55">
       <CommandUIDefinition>
-        <SplitButton Command="media.media_season.bnCopyTo.Command" Id="media.media_season.CopyTo.Button" LabelText="$LocLabels:media.media_season.CopyTo.Button.LabelText" Sequence="55" TemplateAlias="o2">
+        <SplitButton Command="media.media_season.bnCopyTo.Command" Id="media.media_season.CopyTo.Button" LabelText="$LocLabels:media.media_season.CopyTo.Button.LabelText" Sequence="55" TemplateAlias="o2" ModernImage="$webresource:media_copyfile">
           <Menu Id="media.media_season.CopyTo.Button.Menu">
             <MenuSection Id="media.media_season.CopyTo.Section" Sequence="5" DisplayMode="Menu16">
               <Controls Id="media.media_season.CopyTo.Section.Controls">
-                <Button Command="media.media_season.btnCopyToVendor.Command" Id="media.media_season.btnVendorLocation.Button" LabelText="$LocLabels:media.media_season.btnVendorLocation.Button.LabelText" Sequence="10" />
-                <Button Command="media.media_season.CopyToNexis.Command" Id="media.media_season.btnNexis.Button" LabelText="$LocLabels:media.media_season.btnNexis.Button.LabelText" Sequence="15" />
+                <Button Command="media.media_season.btnCopyToVendor.Command" Id="media.media_season.btnVendorLocation.Button" LabelText="$LocLabels:media.media_season.btnVendorLocation.Button.LabelText" Sequence="10" ModernImage="$webresource:media_vendor_16x16.png"/>
+                <Button Command="media.media_season.CopyToNexis.Command" Id="media.media_season.btnNexis.Button" LabelText="$LocLabels:media.media_season.btnNexis.Button.LabelText" Sequence="15" ModernImage="$webresource:media_NexisIcon"/>
               </Controls>
             </MenuSection>
           </Menu>

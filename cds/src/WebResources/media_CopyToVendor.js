@@ -107,13 +107,15 @@
         var entityName = formContext.getFormContext().getAttribute('media_entityName').getValue();
         var source = formContext.getFormContext().getAttribute('media_entities').getValue();
         var destination = formContext.getFormContext().getAttribute('media_selectedLocation').getValue();
+        var userId = formContext.getContext().userSettings.userId.replace(/[{}]/g, '');
 
         if (source && destination) {
             source = JSON.parse(source);
             destination = JSON.parse(destination);
             Promise.all([
                 fetch('/api/data/v9.1/media_configurations?$top=1&$select=media_setting').then(res => res.json()),
-                fetch(`/api/data/v9.1/media_assetcontainers(${showId})/media_containerpath`).then(res => res.json())
+                fetch(`/api/data/v9.1/media_assetcontainers(${showId})/media_containerpath`).then(res => res.json()),
+                fetch(`/api/data/v9.1/systemusers(${userId})/internalemailaddress`).then(res => res.json())
             ]).then((responses) => {
                 var media_settings = responses[0].value;
                 media_settings = media_settings.length > 0 ? JSON.parse(media_settings[0].media_setting) : {};
@@ -129,7 +131,11 @@
                     showid: showId,
                     container: containerName,
                     entityLogicalName: entityName,
-                    destinationType: type
+                    destinationType: type,
+                    submittedBy: {
+                        userId: userId,
+                        email: responses[2].value
+                    }
                 }
 
                 if (media_settings.copyToDestinationUrl) {
