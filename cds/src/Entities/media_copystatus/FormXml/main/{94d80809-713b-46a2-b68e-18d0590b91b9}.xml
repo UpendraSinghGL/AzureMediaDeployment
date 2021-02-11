@@ -62,25 +62,11 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{675b7adc-4417-44c5-ace8-98a4d3dec7ae}">
+                      <cell id="{675b7adc-4417-44c5-ace8-98a4d3dec7ae}" visible="false">
                         <labels>
                           <label description="Owner" languagecode="1033" />
                         </labels>
                         <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
-                      </cell>
-                      <cell id="{f1d4cd9c-97be-45c1-b7f8-ea2421a97817}" locklevel="0">
-                        <labels>
-                          <label description="Created By" languagecode="1033" />
-                        </labels>
-                        <control id="createdby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="createdby" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{258a4989-b6a8-458d-97f4-b5f3331c08f4}" locklevel="0">
-                        <labels>
-                          <label description="Task Duration" languagecode="1033" />
-                        </labels>
-                        <control id="media_duration" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="media_duration" disabled="false" />
                       </cell>
                       <cell id="{6b80a268-cbb4-4c62-81cb-59b9a62e584b}" locklevel="0">
                         <labels>
@@ -90,11 +76,11 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{85af767e-2509-4348-93a7-677a68398bda}" locklevel="0">
+                      <cell id="{258a4989-b6a8-458d-97f4-b5f3331c08f4}" locklevel="0">
                         <labels>
-                          <label description="Status" languagecode="1033" />
+                          <label description="Task Duration" languagecode="1033" />
                         </labels>
-                        <control id="statecode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
+                        <control id="media_duration" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="media_duration" disabled="false" />
                       </cell>
                       <cell id="{6ea8179c-d1c7-4279-ad27-ef70b8f42004}" locklevel="0">
                         <labels>
@@ -104,11 +90,11 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{429a8f41-9dd0-42de-b30b-2f845bd392a9}" locklevel="0">
+                      <cell id="{6490f1c0-6a28-4772-965d-a46ecff4285e}" locklevel="0">
                         <labels>
-                          <label description="Source Record" languagecode="1033" />
+                          <label description="Submitted By" languagecode="1033" />
                         </labels>
-                        <control id="media_sourcerecord" classid="{71716B6C-711E-476C-8AB8-5D11542BFB47}" datafieldname="media_sourcerecord" disabled="false" />
+                        <control id="media_submittedby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="media_submittedby" disabled="false" />
                       </cell>
                       <cell id="{61734f11-9175-4f5c-9e3b-2f0743da21e6}" locklevel="0">
                         <labels>
@@ -118,12 +104,26 @@
                       </cell>
                     </row>
                     <row>
-                      <cell locklevel="0" id="{fd33c249-73ab-443e-bd39-ba270698383f}">
+                      <cell id="{85af767e-2509-4348-93a7-677a68398bda}" locklevel="0">
+                        <labels>
+                          <label description="Status" languagecode="1033" />
+                        </labels>
+                        <control id="statecode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{46e2fb26-aa30-458a-9939-fca03096c82b}">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
                       </cell>
-                      <cell showlabel="false" locklevel="0" id="{a483a832-ca75-4f3f-b6f8-90d56b83172e}">
+                    </row>
+                    <row>
+                      <cell id="{429a8f41-9dd0-42de-b30b-2f845bd392a9}" locklevel="0">
+                        <labels>
+                          <label description="Source Record" languagecode="1033" />
+                        </labels>
+                        <control id="media_sourcerecord" classid="{71716B6C-711E-476C-8AB8-5D11542BFB47}" datafieldname="media_sourcerecord" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{fc262dd9-f9b9-496b-8fcf-eca6e9da91cb}">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>

@@ -36,7 +36,15 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{23621674-e2f4-418e-939c-5c80cab41a15}">
+                      <cell id="{bed95bd5-825d-4f50-a03e-3397084172d1}" locklevel="0">
+                        <labels>
+                          <label description="Owner Email" languagecode="1033" />
+                        </labels>
+                        <control id="media_owneremail" classid="{ADA2203E-B4CD-49BE-9DDF-234642B43B52}" datafieldname="media_owneremail" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{23621674-e2f4-418e-939c-5c80cab41a15}" visible="false">
                         <labels>
                           <label description="Owner" languagecode="1033" />
                         </labels>

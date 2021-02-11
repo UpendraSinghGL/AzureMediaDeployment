@@ -11,8 +11,9 @@
       <grid name="resultset" jump="media_name" select="1" icon="1" preview="1">
         <row name="result" id="media_copystatusid">
           <cell name="media_destinantiontype" width="100" />
-          <cell name="media_name" width="300" />
+          <cell name="media_name" width="222" />
           <cell name="media_show" width="100" />
+          <cell name="media_submittedby" width="114" />
           <cell name="createdon" width="125" />
           <cell name="media_sourcerecord" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="media_status" width="100" />
@@ -42,6 +43,7 @@
           <attribute name="media_copystatusid" />
           <order attribute="createdon" descending="true" />
           <attribute name="media_show" />
+          <attribute name="media_submittedby" />
         </entity>
       </fetch>
     </fetchxml>

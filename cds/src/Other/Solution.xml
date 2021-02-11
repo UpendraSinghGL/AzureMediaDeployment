@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.1.0.26442" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.1.0.26442" SolutionPackageVersion="9.1" languagecode="1033" generatedBy="CrmLive"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>DurinMediaLake</UniqueName>
     <LocalizedNames>
@@ -115,6 +116,7 @@
       <RootComponent type="9" schemaName="media_destinantiontype" behavior="0" />
       <RootComponent type="29" id="{622dc589-9c4a-eb11-a813-000d3a1c234d}" behavior="0" />
       <RootComponent type="29" id="{a8c28660-f03d-eb11-a813-000d3a530fa6}" behavior="0" />
+      <RootComponent type="29" id="{76bc9a4d-7167-eb11-a812-0022480855c2}" behavior="0" />
       <RootComponent type="60" id="{130d7175-17c6-475b-a5da-6691f7173d48}" behavior="0" />
       <RootComponent type="60" id="{19ac851e-c3c4-446a-8659-220b0bdc2340}" behavior="0" />
       <RootComponent type="60" id="{531ec6d7-9bd6-4a66-a48b-4f5231529bc4}" behavior="0" />

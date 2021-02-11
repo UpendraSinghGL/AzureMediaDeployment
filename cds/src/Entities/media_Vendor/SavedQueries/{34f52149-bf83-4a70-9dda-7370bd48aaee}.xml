@@ -12,6 +12,7 @@
         <row name="result" id="media_vendorid">
           <cell name="media_name" width="300" />
           <cell name="media_folderpath" width="214" />
+          <cell name="media_owneremail" width="100" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
@@ -28,6 +29,7 @@
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
           <attribute name="media_folderpath" />
+          <attribute name="media_owneremail" />
         </entity>
       </fetch>
     </fetchxml>

@@ -10,7 +10,8 @@
     <layoutxml>
       <grid name="resultset" jump="media_name" select="1" icon="1" preview="1">
         <row name="result" id="media_nexisid">
-          <cell name="media_name" width="300" />
+          <cell name="media_name" width="175" />
+          <cell name="media_owneremail" width="169" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
@@ -26,6 +27,7 @@
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <attribute name="media_owneremail" />
         </entity>
       </fetch>
     </fetchxml>
