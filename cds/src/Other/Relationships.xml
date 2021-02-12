@@ -118,4 +118,5 @@
   <EntityRelationship Name="user_media_vendorcopystatus" />
   <EntityRelationship Name="media_ShowNexisMapping_Nexis_media_Nexis" />
   <EntityRelationship Name="media_ShowNexisMapping_Show_media_AssetCo" />
+  <EntityRelationship Name="media_copystatus_SubmittedBy_SystemUser" />
 </EntityRelationships>
