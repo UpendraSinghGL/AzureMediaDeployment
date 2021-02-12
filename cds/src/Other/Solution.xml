@@ -164,6 +164,7 @@
       <RootComponent type="432" schemaName="media_studio" behavior="0" />
       <RootComponent type="61" schemaName="media_copyVendorLocation.html" behavior="0" />
       <RootComponent type="60" id="{c074db67-1d58-4bf6-ad58-246a6e28ba63}" behavior="0" />
+      <RootComponent type="60" id="{dea2d740-e85b-eb11-a812-0022480918d2}" behavior="0" />
     </RootComponents>
     <MissingDependencies>
       <MissingDependency>
