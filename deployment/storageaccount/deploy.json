@@ -25,13 +25,14 @@
             "sku": {
                 "name": "Standard_LRS",
                 "tier": "Standard"
-            },
-            "resources": [
-                {
-                    "name": "MacAccessToken",
-                    "type": "tableServices/tables",
-                    "apiVersion": "2019-06-01"
-                }
+            }
+        },
+        {
+            "name": "MacAccessToken",
+            "type": "Microsoft.Storage/storageAccounts/tableServices/tables",
+            "apiVersion": "2019-06-01",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storagename'))]"
             ]
         },
         {
