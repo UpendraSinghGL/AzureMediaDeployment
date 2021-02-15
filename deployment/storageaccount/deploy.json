@@ -28,8 +28,8 @@
             },
             "resources": [
                 {
-                    "name": "[concat(parameters('storagename'),'MacAccessToken')]",
-                    "type": "Microsoft.Storage/storageAccounts/tableServices/tables",
+                    "name": "MacAccessToken",
+                    "type": "tableServices/tables",
                     "apiVersion": "2019-06-01"
                 }
             ]
