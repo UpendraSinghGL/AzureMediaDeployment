@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<optionset Name="media_type" localizedName="Type" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<optionset Name="media_type" localizedName="Type"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <OptionSetType>picklist</OptionSetType>
   <IsGlobal>1</IsGlobal>
   <IntroducedVersion>1.0.0.0</IntroducedVersion>
@@ -30,6 +31,30 @@
       <labels>
         <label description="LUTS" languagecode="1033" />
       </labels>
+    </option>
+    <option value="207940004">
+      <labels>
+        <label description="Reports/Notes" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="207940005">
+      <labels>
+        <label description="Others" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
+    </option>
+    <option value="207940006">
+      <labels>
+        <label description="Stills" languagecode="1033" />
+      </labels>
+      <Descriptions>
+        <Description description="" languagecode="1033" />
+      </Descriptions>
     </option>
   </options>
 </optionset>
