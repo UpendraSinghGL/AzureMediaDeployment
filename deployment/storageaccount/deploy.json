@@ -7,7 +7,7 @@
             "metadata": {
                 "description": "description"
             }
-        }     
+        }
     },
     "functions": [],
     "variables": {
@@ -52,7 +52,54 @@
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storagename'))]"
             ]
         },
-         {
+        {
+            "type": "Microsoft.Storage/storageAccounts/tableServices",
+            "apiVersion": "2020-08-01-preview",
+            "name": "[concat(parameters('storagename'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storagename'))]"
+            ],
+            "properties": {
+                "cors": {
+                    "corsRules": []
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/tableServices/tables",
+            "apiVersion": "2020-08-01-preview",
+            "name": "[concat(parameters('storagename'), '/default/MacUserToken')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/tableServices', parameters('storagename'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storagename'))]"
+            ]
+        },
+        {
+            "name": "azuretables",
+            "type": "Microsoft.Web/connections",
+            "apiVersion": "2016-06-01",
+            "location": "[resourceGroup().location]",
+            "tags": {
+            },
+            "properties": {
+                "displayName": "duringtableconnection",
+                "parameterValues": {
+                    "accountName": "[parameters('storagename')]",
+                    "accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts',parameters('storagename')) ,'2019-06-01').keys[0].value]"
+                },
+                "customParameterValues": {
+                },
+                "nonSecretParameterValues": {
+                },
+                "api": {
+                    "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/azuretables')]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/tableServices', parameters('storagename'))]"
+            ]
+        },
+        {
             "name": "[take(concat('vendor', parameters('storagename')),24)]",
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2019-06-01",

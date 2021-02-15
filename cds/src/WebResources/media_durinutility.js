@@ -12,4 +12,18 @@
                 location.href = data.value;
             })
     }
+
+    Utility.OnMacUserSave = function (context) {
+        if (context && context.getFormContext()) {
+            var formContext = context.getFormContext();
+            var selectedUser = formContext.getAttribute('media_user').getValue();
+            if (selectedUser && selectedUser.length > 0) {
+                formContext.getAttribute('media_name').setValue(selectedUser[0].name);
+            }
+            if (formContext.ui.getFormType() == 1) {
+                formContext.getAttribute('media_token').setValue(Math.random().toString(36).substr(2));
+            }
+        }
+
+    }
 }(window.DurinMedia = window.DurinMedia || {}))
