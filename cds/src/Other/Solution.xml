@@ -114,6 +114,7 @@
       <RootComponent type="9" schemaName="media_uploadstatus" behavior="0" />
       <RootComponent type="9" schemaName="media_virusscanstatus" behavior="0" />
       <RootComponent type="9" schemaName="media_destinantiontype" behavior="0" />
+      <RootComponent type="1" schemaName="media_copyrequest" behavior="0" />
       <RootComponent type="29" id="{622dc589-9c4a-eb11-a813-000d3a1c234d}" behavior="0" />
       <RootComponent type="29" id="{a8c28660-f03d-eb11-a813-000d3a530fa6}" behavior="0" />
       <RootComponent type="29" id="{76bc9a4d-7167-eb11-a812-0022480855c2}" behavior="0" />

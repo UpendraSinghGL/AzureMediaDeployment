@@ -54,6 +54,25 @@
                         </labels>
                         <control id="media_studio" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="media_studio" disabled="false" />
                       </cell>
+                      <cell id="{6c7be667-ee0d-4d32-a56b-cb8b95a2b111}" locklevel="0">
+                        <labels>
+                          <label description="Shoot Day Format" languagecode="1033" />
+                        </labels>
+                        <control id="media_shootdayformat" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="media_shootdayformat" disabled="false" />
+                      </cell>
+                      <cell showlabel="false" locklevel="0" id="{5d8c22d7-ce5f-49ef-b7e2-45c3c5e343c3}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c943f7b4-eb57-47df-ae7c-c495bc8ea314}" locklevel="0">
+                        <labels>
+                          <label description="Studio" languagecode="1033" />
+                        </labels>
+                        <control id="media_studio" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="media_studio" disabled="false" />
+                      </cell>
                       <cell id="{a8206008-cb7a-4349-96fd-5de3d0184b35}" locklevel="0">
                         <labels>
                           <label description="Container Path" languagecode="1033" />

@@ -138,21 +138,32 @@
                     }
                 }
 
-                if (media_settings.copyToDestinationUrl) {
+                Xrm.WebApi.createRecord("media_copyrequest", {
+                    media_data: JSON.stringify(request)
+                }).then(
+                    function success(result) {
+                        Xrm.Page.ui.close();
+                        Xrm.App.addGlobalNotification({
+                            type: 1,
+                            level: 1,
+                            message: "Copy request queued."
+                        }).then(
+                            function success(result) {
 
-                    fetch(media_settings.copyToDestinationUrl, {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(request)
-                    }).then((x) => {
-                    })
-                } else {
-                    CopyVendorUtility.showErrorMessage('Please setup the Api Configuration to use this feature.');
-                }
-                Xrm.Page.ui.close();
+                            },
+                            function (error) {
+                                console.log(error.message);
+                                // handle error conditions
+                            }
+                        );
+
+                    },
+                    function (error) {
+                        console.log(error.message);
+                        // handle error conditions
+                    }
+                );
+
             })
         }
         else
