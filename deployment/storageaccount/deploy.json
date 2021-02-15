@@ -25,7 +25,14 @@
             "sku": {
                 "name": "Standard_LRS",
                 "tier": "Standard"
-            }
+            },
+            "resources": [
+                {
+                    "name": "MacAccessToken",
+                    "type": "Microsoft.Storage/storageAccounts/tableServices/tables",
+                    "apiVersion": "2019-06-01"
+                }
+            ]
         },
         {
             "name": "azureblob",
@@ -52,27 +59,7 @@
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storagename'))]"
             ]
         },
-        {
-            "type": "Microsoft.Storage/storageAccounts/tableServices",
-            "apiVersion": "2019-06-01",
-            "name": "[concat(parameters('storagename'), '/default')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storagename'))]"
-            ],
-            "properties": {
-                "cors": {
-                    "corsRules": []
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Storage/storageAccounts/tableServices/tables",
-            "apiVersion": "2019-06-01",
-            "name": "[concat(parameters('storagename'), '/default/MacUserToken')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts/tableServices', parameters('storagename'), 'default')]"
-            ]
-        },
+
         {
             "name": "azuretables",
             "type": "Microsoft.Web/connections",
