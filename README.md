@@ -28,7 +28,7 @@ Click the below button, it will again  redirect you to azure portal, Please sele
  * <b> Unique Name:- Unique name can be found in your CDS tenant(login to cds) -> Setting-> Customization -> Developer Resource -> Unique name. Attached the image for the reference </b>
  * <b>CRM Identifier:- Look at the Endpoint Address, it would be some thing like https://disco.crm4.dynamics.com/api/discovery . Crm4 is Crm Identifier here</b>. 
 
-[![Deploy Component](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fv-sosah%2FAzureMediaDeployment%2Fmain%2Fdeployment%2Fdeploy.json)
+[![Deploy Component](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fv-sosah%2FAzureMediaDeployment%2Fusers%2Fv-sosah%2FsecurityImplementation%2Fdeployment%2Fdeploy.json)
 
 
 <img src="images/step2.jpg" width="900"/>
