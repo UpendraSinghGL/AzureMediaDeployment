@@ -82,7 +82,7 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts/tableServices', parameters('storagename'))]"
+                "[resourceId('Microsoft.Storage/storageAccounts/tableServices/tables', parameters('storagename'), 'MacAccessToken')]"
             ]
         },
         {
