@@ -35,9 +35,9 @@ Click the below button, it will again  redirect you to azure portal, Please sele
 
 ### Mac Client Connection configuration
 
-Once the azure component deployment completes, <b> Expand the Deployment details Section ->  Click on the CONNECTION-CONFIGURATION -> Left pane "output link" -> Copy the MAC AND CDS configuration </b>. you will need this configuration, while setting up your Mac Client.
+Once the azure component deployment completes, <b> Expand the Deployment details Section ->  Click on the CONNECTION-CONFIGURATION -> Left pane "output link" -> Copy the MAC configuration </b>. you will need this configuration, while setting up your Mac Client.
 
-<b> The MAC and CDS configuration will be needed in tenant setup and mac client setup</b>
+<b> The MAC Config is needed for mac client setup</b>
 
 
 <img src="images/step3.jpg" width="900"/>
