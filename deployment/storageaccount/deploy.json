@@ -54,7 +54,7 @@
         },
         {
             "type": "Microsoft.Storage/storageAccounts/tableServices",
-            "apiVersion": "2020-08-01-preview",
+            "apiVersion": "2019-06-01",
             "name": "[concat(parameters('storagename'), '/default')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storagename'))]"
@@ -67,11 +67,10 @@
         },
         {
             "type": "Microsoft.Storage/storageAccounts/tableServices/tables",
-            "apiVersion": "2020-08-01-preview",
+            "apiVersion": "2019-06-01",
             "name": "[concat(parameters('storagename'), '/default/MacUserToken')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts/tableServices', parameters('storagename'), 'default')]",
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storagename'))]"
+                "[resourceId('Microsoft.Storage/storageAccounts/tableServices', parameters('storagename'), 'default')]"
             ]
         },
         {
