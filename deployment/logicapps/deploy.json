@@ -1,6 +1,6 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
   "parameters": {
     "baseTemplatePath": {
       "type": "string",
@@ -39,8 +39,8 @@
       }
     }
   },
-    "functions": [],
-    "variables": {},
+  "functions": [],
+  "variables": {},
   "resources": [
     {
       "name": "logicapp-generatesastoken-deployment",
@@ -54,7 +54,7 @@
         },
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       },
       "dependsOn": [
@@ -72,7 +72,7 @@
         },
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       }
     },
@@ -102,7 +102,7 @@
         },
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       },
       "dependsOn": [
@@ -121,7 +121,7 @@
         },
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       },
       "dependsOn": [
@@ -140,7 +140,7 @@
         },
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       }
     },
@@ -156,7 +156,7 @@
         },
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       }
     },
@@ -172,7 +172,7 @@
         },
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       }
     },
@@ -188,7 +188,7 @@
         },
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       }
     },
@@ -204,7 +204,7 @@
         },
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       }
     },
@@ -221,7 +221,7 @@
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
           "storageName": { "value": "[parameters('storageName')]" },
-          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       },
       "dependsOn": [
@@ -241,7 +241,7 @@
         },
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       }
     },
@@ -257,7 +257,7 @@
         },
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       },
       "dependsOn": [
@@ -276,7 +276,7 @@
         },
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       },
       "dependsOn": [
@@ -296,7 +296,7 @@
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
           "eventHubName": { "value": "[parameters('eventHubName')]" },
-          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       },
       "dependsOn": [
@@ -318,11 +318,28 @@
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
           "dataFactoryName": { "value": "[parameters('dataFactoryName')]" },
           "blobStorageAccount": { "value": "[parameters('storageName')]" },
-          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
+        }
+      }
+    },
+    {
+      "name": "logicapp-macusertoken-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/macusertoken.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "blobStorageAccount": { "value": "[parameters('storageName')]" },
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       }
     }
   ],
-    "outputs": {
-    }
+  "outputs": {
+  }
 }

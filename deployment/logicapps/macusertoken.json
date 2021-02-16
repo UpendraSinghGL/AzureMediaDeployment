@@ -1,0 +1,354 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "crmOrgName": {
+            "type": "string",
+            "metadata": {
+                "description": "description"
+            }
+        },
+        "blobStorageAccount": {
+            "type": "string",
+            "metadata": {
+                "description": "description"
+            }
+        },
+        "crmIdentifier": {
+            "type": "string",
+            "metadata": {
+                "description": "description"
+            }
+        },
+        "connections_office365": {
+            "type": "string",
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/office365')]"
+        },
+        "connection_commondataservice": {
+            "type": "string",
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/commondataservice')]"
+        },
+        "connections_azuretables": {
+            "type": "string",
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/azuretables')]"
+        }
+    },
+    "functions": [
+        {
+            "namespace": "durin",
+            "members": {
+                "wrapInQuote": {
+                    "parameters": [
+                        {
+                            "name": "text",
+                            "type": "string"
+                        }
+                    ],
+                    "output": {
+                        "value": "[concat('''', parameters('text'),'''')]",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    ],
+    "variables": {
+        "org": "[durin.wrapInQuote(concat(parameters('crmOrgName'),'.',parameters('crmIdentifier')))]"
+    },
+    "resources": [
+        {
+            "name": "Logic-MacUserTokenManupulation",
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2017-07-01",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/schemas/2016-06-01/Microsoft.Logic.json",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "$connections": {
+                            "defaultValue": {},
+                            "type": "Object"
+                        }
+                    },
+                    "triggers": {
+                        "When_a_record_is_created": {
+                            "inputs": {
+                                "body": {
+                                    "NotificationUrl": "@{listCallbackUrl()}"
+                                },
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                    }
+                                },
+                                "path": "[concat('/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_macusers'),'))}/onnewitemswebhook')]",
+                                "queries": {
+                                    "scope": "Organization"
+                                }
+                            },
+                            "type": "ApiConnectionWebhook"
+                        },
+                        "When_a_record_is_deleted": {
+                            "inputs": {
+                                "body": {
+                                    "NotificationUrl": "@{listCallbackUrl()}"
+                                },
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                    }
+                                },
+                                "path": "[concat('/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_macusers'),'))}/ondeleteditemswebhook')]",
+                                "queries": {
+                                    "scope": "Organization"
+                                }
+                            },
+                            "type": "ApiConnectionWebhook"
+                        },
+                        "When_a_record_is_updated": {
+                            "inputs": {
+                                "body": {
+                                    "AttributeFilters": [
+                                        "media_token"
+                                    ],
+                                    "NotificationUrl": "@{listCallbackUrl()}"
+                                },
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                    }
+                                },
+                                "path": "[concat('/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_macusers'),'))}/onupdateditemswebhook')]",
+                                "queries": {
+                                    "scope": "Organization"
+                                }
+                            },
+                            "type": "ApiConnectionWebhook"
+                        }
+                    },
+                    "actions": {
+                        "Condition": {
+                            "actions": {
+                                "Get_User": {
+                                    "inputs": {
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                            }
+                                        },
+                                        "method": "get",
+                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('systemusers'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('_media_user_value'),']))}')]"
+                                    },
+                                    "runAfter": {
+                                        "Insert_or_Merge_Entity": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "ApiConnection"
+                                },
+                                "Insert_or_Merge_Entity": {
+                                    "inputs": {
+                                        "body": {
+                                            "cdsRecordId": "@{triggerBody()?['media_macuserid']}",
+                                            "token": "@{triggerBody()?['media_token']}",
+                                            "user": "@{triggerBody()?['_media_user_value']}"
+                                        },
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['azuretables']['connectionId']"
+                                            }
+                                        },
+                                        "method": "patch",
+                                        "path": "/Tables/@{encodeURIComponent('MacAccessToken')}/entities(PartitionKey='@{encodeURIComponent(triggerBody()?['_media_user_value'])}',RowKey='@{encodeURIComponent(triggerBody()?['media_token'])}')"
+                                    },
+                                    "runAfter": {},
+                                    "type": "ApiConnection"
+                                },
+                                "Send_an_email_(V2)": {
+                                    "inputs": {
+                                        "body": {
+                                            "Body": "<p>Dear user,<br>\n<br>\nYou have been given access to Mac Client application. <strong>Use this token \"</strong><strong>@{triggerBody()?['media_token']}</strong><strong>\" in the Mac Client App to connect</strong>.<br>\n<br>\nPlease contact your organization administrator if you face any problem.<br>\n<br>\nThanks &amp; Regards,<br>\nAdmin</p>",
+                                            "Subject": "Mac Client Access Granted !!!",
+                                            "To": "@body('Get_User')?['internalemailaddress']"
+                                        },
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['office365']['connectionId']"
+                                            }
+                                        },
+                                        "method": "post",
+                                        "path": "/v2/Mail"
+                                    },
+                                    "runAfter": {
+                                        "Get_User": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "ApiConnection"
+                                }
+                            },
+                            "else": {
+                                "actions": {
+                                    "For_each": {
+                                        "actions": {
+                                            "Delete_Entity": {
+                                                "inputs": {
+                                                    "host": {
+                                                        "connection": {
+                                                            "name": "@parameters('$connections')['azuretables']['connectionId']"
+                                                        }
+                                                    },
+                                                    "method": "delete",
+                                                    "path": "/Tables/@{encodeURIComponent('MacAccessToken')}/entities/etag(PartitionKey='@{encodeURIComponent(items('For_each')?['PartitionKey'])}',RowKey='@{encodeURIComponent(items('For_each')?['RowKey'])}')"
+                                                },
+                                                "runAfter": {},
+                                                "type": "ApiConnection"
+                                            }
+                                        },
+                                        "foreach": "@body('Get_entities')?['value']",
+                                        "runAfter": {
+                                            "Get_entities": [
+                                                "Succeeded"
+                                            ]
+                                        },
+                                        "type": "Foreach"
+                                    },
+                                    "Get_entities": {
+                                        "inputs": {
+                                            "host": {
+                                                "connection": {
+                                                    "name": "@parameters('$connections')['azuretables']['connectionId']"
+                                                }
+                                            },
+                                            "method": "get",
+                                            "path": "/Tables/@{encodeURIComponent('MacAccessToken')}/entities",
+                                            "queries": {
+                                                "$filter": "cdsRecordId eq '@{triggerBody()?['media_macuserid']}'"
+                                            }
+                                        },
+                                        "runAfter": {},
+                                        "type": "ApiConnection"
+                                    },
+                                    "in_case_of_renew_token": {
+                                        "actions": {
+                                            "Get_record": {
+                                                "inputs": {
+                                                    "host": {
+                                                        "connection": {
+                                                            "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                                        }
+                                                    },
+                                                    "method": "get",
+                                                    "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('systemusers'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('_media_user_value'),']))}')]"
+                                                },
+                                                "runAfter": {
+                                                    "Insert_the_token_as_a_new_entity": [
+                                                        "Succeeded"
+                                                    ]
+                                                },
+                                                "type": "ApiConnection"
+                                            },
+                                            "Insert_the_token_as_a_new_entity": {
+                                                "inputs": {
+                                                    "body": {
+                                                        "cdsRecordId": "@{triggerBody()?['media_macuserid']}",
+                                                        "token": "@{triggerBody()?['media_token']}",
+                                                        "user": "@{triggerBody()?['_media_user_value']}"
+                                                    },
+                                                    "host": {
+                                                        "connection": {
+                                                            "name": "@parameters('$connections')['azuretables']['connectionId']"
+                                                        }
+                                                    },
+                                                    "method": "patch",
+                                                    "path": "/Tables/@{encodeURIComponent('MacAccessToken')}/entities(PartitionKey='@{encodeURIComponent(triggerBody()?['_media_user_value'])}',RowKey='@{encodeURIComponent(triggerBody()?['media_token'])}')"
+                                                },
+                                                "runAfter": {},
+                                                "type": "ApiConnection"
+                                            },
+                                            "Send_an_email_(V2)_2": {
+                                                "inputs": {
+                                                    "body": {
+                                                        "Body": "<p>Dear @{body('Get_record')?['firstname']} @{body('Get_record')?['lastname']} ,<br>\n<br>\nYour Access token has been renewed. <strong>Please use this new token </strong><strong>@{triggerBody()?['media_token']}</strong><strong> for mac client application access.</strong><br>\n<br>\nThanks &amp; Regards,<br>\nAdmin</p>",
+                                                        "Subject": "Mac Client Access Token Renewed !!!",
+                                                        "To": "@body('Get_record')?['internalemailaddress']"
+                                                    },
+                                                    "host": {
+                                                        "connection": {
+                                                            "name": "@parameters('$connections')['office365']['connectionId']"
+                                                        }
+                                                    },
+                                                    "method": "post",
+                                                    "path": "/v2/Mail"
+                                                },
+                                                "runAfter": {
+                                                    "Get_record": [
+                                                        "Succeeded"
+                                                    ]
+                                                },
+                                                "type": "ApiConnection"
+                                            }
+                                        },
+                                        "expression": {
+                                            "and": [
+                                                {
+                                                    "equals": [
+                                                        "@triggerBody()?['SdkMessage']",
+                                                        "Update"
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        "runAfter": {
+                                            "For_each": [
+                                                "Succeeded"
+                                            ]
+                                        },
+                                        "type": "If"
+                                    }
+                                }
+                            },
+                            "expression": {
+                                "and": [
+                                    {
+                                        "equals": [
+                                            "@triggerBody()?['SdkMessage']",
+                                            "Create"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "runAfter": {},
+                            "type": "If"
+                        }
+                    },
+                    "outputs": {
+                    }
+                },
+                "parameters": {
+                    "$connections": {
+                        "value": {
+                            "azuretables": {
+                                "connectionId": "[parameters('connections_azuretables')]",
+                                "connectionName": "azuretables",
+                                "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/azuretables')]"
+                            },
+                            "commondataservice": {
+                                "connectionId": "[parameters('connection_commondataservice')]",
+                                "connectionName": "commondataservice",
+                                "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/commondataservice')]"
+                            },
+                            "office365": {
+                                "connectionId": "[parameters('connections_office365')]",
+                                "connectionName": "office365",
+                                "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/office365')]"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}
