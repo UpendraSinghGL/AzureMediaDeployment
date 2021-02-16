@@ -26,4 +26,23 @@
         }
 
     }
+
+    Utility.RenewToken = function (context) {
+        context.getAttribute('media_token').setValue(Math.random().toString(36).substr(2));
+        context.data.refresh(true).then(()=>{
+            Xrm.App.addGlobalNotification({
+                type: 1,
+                level: 1,
+                message: "A new token renewed. "
+            }).then(
+                function success(result) {
+
+                },
+                function (error) {
+                    console.log(error.message);
+                    // handle error conditions
+                }
+            );
+        });
+    }
 }(window.DurinMedia = window.DurinMedia || {}))

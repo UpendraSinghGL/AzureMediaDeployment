@@ -119,4 +119,9 @@
   <EntityRelationship Name="media_ShowNexisMapping_Nexis_media_Nexis" />
   <EntityRelationship Name="media_ShowNexisMapping_Show_media_AssetCo" />
   <EntityRelationship Name="media_copystatus_SubmittedBy_SystemUser" />
+  <EntityRelationship Name="lk_media_macuser_createdby" />
+  <EntityRelationship Name="lk_media_macuser_modifiedby" />
+  <EntityRelationship Name="media_AssetContainer_media_MacUser_media_" />
+  <EntityRelationship Name="media_MacUser_User_SystemUser" />
+  <EntityRelationship Name="user_media_macuser" />
 </EntityRelationships>
