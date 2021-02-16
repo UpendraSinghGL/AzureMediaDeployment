@@ -72,8 +72,8 @@
             "properties": {
                 "displayName": "duringtablestorageconnection",
                 "parameterValues": {
-                    "accountName": "[parameters('storagename')]",
-                    "accessKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts',parameters('storagename')) ,'2019-06-01').keys[0].value]"
+                    "storageaccount": "[parameters('storagename')]",
+                    "sharedkey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts',parameters('storagename')) ,'2019-06-01').keys[0].value]"
                 },
                 "customParameterValues": {
                 },
