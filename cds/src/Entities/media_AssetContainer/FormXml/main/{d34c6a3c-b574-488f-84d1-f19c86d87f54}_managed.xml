@@ -67,11 +67,11 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{c943f7b4-eb57-47df-ae7c-c495bc8ea314}" locklevel="0">
+                      <cell id="{cca6ccf4-c279-4f68-8972-67755ed31d28}" locklevel="0">
                         <labels>
-                          <label description="Studio" languagecode="1033" />
+                          <label description="Status" languagecode="1033" />
                         </labels>
-                        <control id="media_studio" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="media_studio" disabled="false" />
+                        <control id="statecode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
                       </cell>
                       <cell id="{a8206008-cb7a-4349-96fd-5de3d0184b35}" locklevel="0">
                         <labels>
@@ -86,11 +86,11 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{cca6ccf4-c279-4f68-8972-67755ed31d28}" locklevel="0">
+                      <cell id="{b042853f-b43f-4d46-a817-220102c90376}" locklevel="0">
                         <labels>
-                          <label description="Status" languagecode="1033" />
+                          <label description="Enable Checksum Check" languagecode="1033" />
                         </labels>
-                        <control id="statecode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
+                        <control id="media_enablechecksumcheck" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="media_enablechecksumcheck" disabled="false" />
                       </cell>
                       <cell locklevel="0" id="{828421aa-f00f-4c11-9619-446a59f61f33}">
                         <labels>
@@ -98,24 +98,6 @@
                         </labels>
                       </cell>
                       <cell showlabel="false" locklevel="0" id="{73280747-be5a-4551-9871-06ab16e2ffd8}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{b042853f-b43f-4d46-a817-220102c90376}" locklevel="0">
-                        <labels>
-                          <label description="Enable Checksum Check" languagecode="1033" />
-                        </labels>
-                        <control id="media_enablechecksumcheck" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="media_enablechecksumcheck" disabled="false" />
-                      </cell>
-                      <cell locklevel="0" id="{8bc5200a-c562-4fde-9d87-2c9d4dd80221}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                      <cell showlabel="false" locklevel="0" id="{6011a9c7-7bfa-4c8a-9c25-6242ce311b93}">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
