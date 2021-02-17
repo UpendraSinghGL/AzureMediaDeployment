@@ -58,7 +58,6 @@
   <EntityRelationship Name="media_AssetActivity_media_Asset_media_Ass" />
   <EntityRelationship Name="media_AssetContainer_media_AssetTemplate_" />
   <EntityRelationship Name="media_AssetContainer_Studio_media_Studio" />
-  <EntityRelationship Name="media_AssetContainer_SystemUser_SystemUse" />
   <EntityRelationship Name="media_AssetErrorLog_media_Asset_media_Ass" />
   <EntityRelationship Name="media_AssetErrorLog_media_AssetContainer_" />
   <EntityRelationship Name="media_AssetErrorLog_media_AssetFiles_medi" />

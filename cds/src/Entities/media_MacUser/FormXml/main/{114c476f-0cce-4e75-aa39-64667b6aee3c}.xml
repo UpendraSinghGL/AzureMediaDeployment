@@ -44,7 +44,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{43105273-d459-4d51-b0d0-1f87ba9ed699}">
+                      <cell id="{43105273-d459-4d51-b0d0-1f87ba9ed699}" visible="false">
                         <labels>
                           <label description="Owner" languagecode="1033" />
                         </labels>
