@@ -8,7 +8,7 @@
         },
         "connection_commondataservice": {
             "type": "string",
-           "defaultValue":"[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/commondataservice')]"
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/commondataservice')]"
         },
         "crmOrgName": {
             "type": "string",
@@ -86,8 +86,6 @@
                                 "Condition_-_Check_for_ErrorMessage": {
                                     "actions": {
                                         "Create_error_log_record": {
-                                            "runAfter": {},
-                                            "type": "ApiConnection",
                                             "inputs": {
                                                 "body": {
                                                     "_media_assetcontainer_value": "@triggerBody()?['showId']",
@@ -100,38 +98,34 @@
                                                 },
                                                 "method": "post",
                                                 "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
-                                            }
+                                            },
+                                            "runAfter": {},
+                                            "type": "ApiConnection"
                                         },
                                         "Response_failure": {
+                                            "inputs": {
+                                                "body": "Failed to generate SAS Token",
+                                                "statusCode": 500
+                                            },
+                                            "kind": "Http",
                                             "runAfter": {
                                                 "Create_error_log_record": [
                                                     "Succeeded"
                                                 ]
                                             },
-                                            "type": "Response",
-                                            "kind": "Http",
-                                            "inputs": {
-                                                "body": "Failed to generate SAS Token",
-                                                "statusCode": 500
-                                            }
+                                            "type": "Response"
                                         }
-                                    },
-                                    "runAfter": {
-                                        "Scope": [
-                                            "Succeeded",
-                                            "Failed"
-                                        ]
                                     },
                                     "else": {
                                         "actions": {
                                             "Response_success": {
-                                                "runAfter": {},
-                                                "type": "Response",
-                                                "kind": "Http",
                                                 "inputs": {
                                                     "body": "@outputs('Compose')",
                                                     "statusCode": 200
-                                                }
+                                                },
+                                                "kind": "Http",
+                                                "runAfter": {},
+                                                "type": "Response"
                                             }
                                         }
                                     },
@@ -145,13 +139,17 @@
                                             }
                                         ]
                                     },
+                                    "runAfter": {
+                                        "Scope": [
+                                            "Succeeded",
+                                            "Failed"
+                                        ]
+                                    },
                                     "type": "If"
                                 },
                                 "Scope": {
                                     "actions": {
                                         "Fetch_user_show": {
-                                            "runAfter": {},
-                                            "type": "ApiConnection",
                                             "inputs": {
                                                 "host": {
                                                     "connection": {
@@ -161,27 +159,27 @@
                                                 "method": "get",
                                                 "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetcontainers'),'))}/items')]",
                                                 "queries": {
-                                                    "$filter": "media_AssetContainer_SystemUser_SystemUse/any(o:o/azureactivedirectoryobjectid eq '@{triggerBody()?['userId']}') and media_assetcontainerid eq '@{triggerBody()?['showId']}'"
+                                                    "$filter": "media_AssetContainer_media_MacUser_media_/any(o:o/_media_user_value eq @{body('Logic-ValidateToken')}) and media_assetcontainerid eq '@{triggerBody()?['showId']}'"
                                                 }
-                                            }
+                                            },
+                                            "runAfter": {},
+                                            "type": "ApiConnection"
                                         },
                                         "If_Record_greater_than_0": {
                                             "actions": {
                                                 "Compose": {
+                                                    "inputs": {
+                                                        "sas": "@{body('Create_SAS_URI')}",
+                                                        "weburi": "@{body('Create_SAS_URI')?['WebUrl']}"
+                                                    },
                                                     "runAfter": {
                                                         "Create_SAS_URI": [
                                                             "Succeeded"
                                                         ]
                                                     },
-                                                    "type": "Compose",
-                                                    "inputs": {
-                                                        "sas": "@{body('Create_SAS_URI')}",
-                                                        "weburi": "@{body('Create_SAS_URI')?['WebUrl']}"
-                                                    }
+                                                    "type": "Compose"
                                                 },
                                                 "Create_SAS_URI": {
-                                                    "runAfter": {},
-                                                    "type": "ApiConnection",
                                                     "inputs": {
                                                         "body": {
                                                             "ExpiryTime": "@{addHours(utcNow(),6)}",
@@ -197,23 +195,20 @@
                                                         "queries": {
                                                             "path": "@{body('Fetch_user_show')?['value']?[0]?['media_containerpath']}"
                                                         }
-                                                    }
+                                                    },
+                                                    "runAfter": {},
+                                                    "type": "ApiConnection"
                                                 }
-                                            },
-                                            "runAfter": {
-                                                "Fetch_user_show": [
-                                                    "Succeeded"
-                                                ]
                                             },
                                             "else": {
                                                 "actions": {
                                                     "Not_Found_Response": {
-                                                        "runAfter": {},
-                                                        "type": "Response",
-                                                        "kind": "Http",
                                                         "inputs": {
                                                             "statusCode": 404
-                                                        }
+                                                        },
+                                                        "kind": "Http",
+                                                        "runAfter": {},
+                                                        "type": "Response"
                                                     }
                                                 }
                                             },
@@ -227,37 +222,34 @@
                                                     }
                                                 ]
                                             },
+                                            "runAfter": {
+                                                "Fetch_user_show": [
+                                                    "Succeeded"
+                                                ]
+                                            },
                                             "type": "If"
                                         },
                                         "Set_variable_-_Get_User_Assosciated_Show_-_ErrorMessage": {
+                                            "inputs": {
+                                                "name": "ErrorMessage",
+                                                "value": "Failed to fetch associated user for showId: @{triggerBody()?['showId']}"
+                                            },
                                             "runAfter": {
                                                 "Fetch_user_show": [
                                                     "Failed",
                                                     "TimedOut"
                                                 ]
                                             },
-                                            "type": "SetVariable",
-                                            "inputs": {
-                                                "name": "ErrorMessage",
-                                                "value": "Failed to fetch associated user for showId: @{triggerBody()?['showId']}"
-                                            }
+                                            "type": "SetVariable"
                                         }
                                     },
                                     "runAfter": {},
                                     "type": "Scope"
                                 }
                             },
-                            "runAfter": {
-                                "Initialize_variable_-_ErrorMessage": [
-                                    "Succeeded"
-                                ]
-                            },
                             "else": {
                                 "actions": {
                                     "Response": {
-                                        "runAfter": {},
-                                        "type": "Response",
-                                        "kind": "Http",
                                         "inputs": {
                                             "body": {
                                                 "message": "ShowId and UserId Required"
@@ -266,7 +258,10 @@
                                                 "Content-Type": "application/json; charset=utf-8"
                                             },
                                             "statusCode": 400
-                                        }
+                                        },
+                                        "kind": "Http",
+                                        "runAfter": {},
+                                        "type": "Response"
                                     }
                                 }
                             },
@@ -286,11 +281,14 @@
                                     }
                                 ]
                             },
+                            "runAfter": {
+                                "Initialize_variable_-_ErrorMessage": [
+                                    "Succeeded"
+                                ]
+                            },
                             "type": "If"
                         },
                         "Initialize_variable_-_ErrorMessage": {
-                            "runAfter": {},
-                            "type": "InitializeVariable",
                             "inputs": {
                                 "variables": [
                                     {
@@ -298,7 +296,42 @@
                                         "type": "string"
                                     }
                                 ]
-                            }
+                            },
+                            "runAfter": {
+                                "Logic-ValidateToken": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable"
+                        },
+                        "Logic-ValidateToken": {
+                            "inputs": {
+                                "body": {
+                                    "token": "@{triggerOutputs()['headers']['x-auth-token']}",
+                                    "userId": "@triggerBody()?['userId']"
+                                },
+                                "host": {
+                                    "triggerName": "manual",
+                                    "workflow": {
+                                        "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Logic/workflows/Logic-ValidateToken')]"
+                                    }
+                                }
+                            },
+                            "runAfter": {},
+                            "type": "Workflow"
+                        },
+                        "unathorized_response": {
+                            "inputs": {
+                                "body": "@body('Logic-ValidateToken')",
+                                "statusCode": 401
+                            },
+                            "kind": "Http",
+                            "runAfter": {
+                                "Logic-ValidateToken": [
+                                    "Failed"
+                                ]
+                            },
+                            "type": "Response"
                         }
                     },
                     "outputs": {
@@ -308,7 +341,7 @@
                     "$connections": {
                         "value": {
                             "azureblob": {
-                                "connectionId":"[parameters('connections_azureblob')]",
+                                "connectionId": "[parameters('connections_azureblob')]",
                                 "connectionName": "azureblob",
                                 "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/azureblob')]"
                             },

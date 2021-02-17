@@ -141,9 +141,6 @@
                                         "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('systemusers'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('_media_user_value'),']))}')]"
                                     },
                                     "runAfter": {
-                                        "Insert_or_Merge_Entity": [
-                                            "Succeeded"
-                                        ]
                                     },
                                     "type": "ApiConnection"
                                 },
@@ -152,7 +149,8 @@
                                         "body": {
                                             "cdsRecordId": "@{triggerBody()?['media_macuserid']}",
                                             "token": "@{triggerBody()?['media_token']}",
-                                            "user": "@{triggerBody()?['_media_user_value']}"
+                                            "user": "@{triggerBody()?['_media_user_value']}",
+                                            "azureUserId": "@{body('Get_User')?['azureactivedirectoryobjectid']}"
                                         },
                                         "host": {
                                             "connection": {
@@ -162,7 +160,11 @@
                                         "method": "patch",
                                         "path": "/Tables/@{encodeURIComponent('MacAccessToken')}/entities(PartitionKey='@{encodeURIComponent(triggerBody()?['_media_user_value'])}',RowKey='@{encodeURIComponent(triggerBody()?['media_token'])}')"
                                     },
-                                    "runAfter": {},
+                                    "runAfter": {
+                                        "Get_User": [
+                                            "Succeeded"
+                                        ]
+                                    },
                                     "type": "ApiConnection"
                                 },
                                 "Send_an_email_(V2)": {
@@ -181,7 +183,7 @@
                                         "path": "/v2/Mail"
                                     },
                                     "runAfter": {
-                                        "Get_User": [
+                                        "Insert_or_Merge_Entity": [
                                             "Succeeded"
                                         ]
                                     },
@@ -243,9 +245,6 @@
                                                     "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('systemusers'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('_media_user_value'),']))}')]"
                                                 },
                                                 "runAfter": {
-                                                    "Insert_the_token_as_a_new_entity": [
-                                                        "Succeeded"
-                                                    ]
                                                 },
                                                 "type": "ApiConnection"
                                             },
@@ -254,7 +253,8 @@
                                                     "body": {
                                                         "cdsRecordId": "@{triggerBody()?['media_macuserid']}",
                                                         "token": "@{triggerBody()?['media_token']}",
-                                                        "user": "@{triggerBody()?['_media_user_value']}"
+                                                        "user": "@{triggerBody()?['_media_user_value']}",
+                                                        "azureUserId": "@{body('Get_record')?['azureactivedirectoryobjectid']}"
                                                     },
                                                     "host": {
                                                         "connection": {
@@ -264,7 +264,11 @@
                                                     "method": "patch",
                                                     "path": "/Tables/@{encodeURIComponent('MacAccessToken')}/entities(PartitionKey='@{encodeURIComponent(triggerBody()?['_media_user_value'])}',RowKey='@{encodeURIComponent(triggerBody()?['media_token'])}')"
                                                 },
-                                                "runAfter": {},
+                                                "runAfter": {
+                                                    "Get_record": [
+                                                        "Succeeded"
+                                                    ]
+                                                },
                                                 "type": "ApiConnection"
                                             },
                                             "Send_an_email_(V2)_2": {
@@ -283,7 +287,7 @@
                                                     "path": "/v2/Mail"
                                                 },
                                                 "runAfter": {
-                                                    "Get_record": [
+                                                    "Insert_the_token_as_a_new_entity": [
                                                         "Succeeded"
                                                     ]
                                                 },

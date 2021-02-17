@@ -66,6 +66,9 @@
                   "properties": {
                     "showId": {
                       "type": "string"
+                    },
+                    "userId": {
+                      "type": "string"
                     }
                   },
                   "type": "object"
@@ -411,7 +414,11 @@
               }
             },
             "Initialize_variable_season": {
-              "runAfter": {},
+              "runAfter": {
+                "Logic-ValidateToken": [
+                  "Succeeded"
+                ]
+              },
               "type": "InitializeVariable",
               "inputs": {
                 "variables": [
@@ -438,6 +445,35 @@
                   }
                 ]
               }
+            },
+            "Logic-ValidateToken": {
+              "inputs": {
+                "body": {
+                  "token": "@{triggerOutputs()['headers']['x-auth-token']}",
+                  "userId": "@triggerBody()?['userId']"
+                },
+                "host": {
+                  "triggerName": "manual",
+                  "workflow": {
+                    "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Logic/workflows/Logic-ValidateToken')]"
+                  }
+                }
+              },
+              "runAfter": {},
+              "type": "Workflow"
+            },
+            "Response": {
+              "inputs": {
+                "body": "@body('Logic-ValidateToken')",
+                "statusCode": 401
+              },
+              "kind": "Http",
+              "runAfter": {
+                "Logic-ValidateToken": [
+                  "Failed"
+                ]
+              },
+              "type": "Response"
             }
           },
           "outputs": {}
