@@ -17,8 +17,6 @@
   <EntityRelationship Name="lk_media_asseterrorlog_modifiedby" />
   <EntityRelationship Name="lk_media_assetfiles_createdby" />
   <EntityRelationship Name="lk_media_assetfiles_modifiedby" />
-  <EntityRelationship Name="lk_media_assetfolderlayout_createdby" />
-  <EntityRelationship Name="lk_media_assetfolderlayout_modifiedby" />
   <EntityRelationship Name="lk_media_assetmetadata_createdby" />
   <EntityRelationship Name="lk_media_assetmetadata_modifiedby" />
   <EntityRelationship Name="lk_media_assettype_createdby" />
@@ -68,7 +66,6 @@
   <EntityRelationship Name="organization_media_assetcontainer" />
   <EntityRelationship Name="organization_media_asseterrorlog" />
   <EntityRelationship Name="organization_media_assetfiles" />
-  <EntityRelationship Name="organization_media_assetfolderlayout" />
   <EntityRelationship Name="organization_media_assetmetadata" />
   <EntityRelationship Name="organization_media_assettype" />
   <EntityRelationship Name="organization_media_metadata" />

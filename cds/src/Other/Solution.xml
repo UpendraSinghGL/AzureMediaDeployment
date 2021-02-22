@@ -83,7 +83,6 @@
       <RootComponent type="1" schemaName="media_assetcontainer" behavior="0" />
       <RootComponent type="1" schemaName="media_asseterrorlog" behavior="0" />
       <RootComponent type="1" schemaName="media_assetfiles" behavior="0" />
-      <RootComponent type="1" schemaName="media_assetfolderlayout" behavior="0" />
       <RootComponent type="1" schemaName="media_assetmetadata" behavior="0" />
       <RootComponent type="1" schemaName="media_assettype" behavior="0" />
       <RootComponent type="1" schemaName="media_block" behavior="0" />

@@ -14,7 +14,6 @@
     <AppModuleComponent type="1" schemaName="media_configuration" />
     <AppModuleComponent type="1" schemaName="media_asset" />
     <AppModuleComponent type="1" schemaName="media_assetfiles" />
-    <AppModuleComponent type="1" schemaName="media_assetfolderlayout" />
     <AppModuleComponent type="60" id="{76f26161-007e-4446-821c-967f61131509}" />
     <AppModuleComponent type="1" schemaName="media_assetmetadata" />
     <AppModuleComponent type="60" id="{130d7175-17c6-475b-a5da-6691f7173d48}" />
