@@ -136,7 +136,7 @@
                           <labels>
                             <label description="Asset Copy Status" languagecode="1033" />
                           </labels>
-                          <control id="Component658001b" uniqueid="{752b8c26-7128-3aa0-51e2-dd338a9c236a}" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <!-- <control id="Component658001b" uniqueid="{752b8c26-7128-3aa0-51e2-dd338a9c236a}" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                             <parameters>
                               <TargetEntityType>media_vendorcopystatus</TargetEntityType>
                               <ChartGridMode>Chart</ChartGridMode>
@@ -154,7 +154,7 @@
                               <EnableChartPicker>false</EnableChartPicker>
                               <RelationshipName />
                             </parameters>
-                          </control>
+                          </control> -->
                         </cell>
                         <cell colspan="1" rowspan="12" showlabel="false" id="{23496db3-a5b2-4b17-8cf4-92f76d10a782}" auto="false">
                           <labels>
