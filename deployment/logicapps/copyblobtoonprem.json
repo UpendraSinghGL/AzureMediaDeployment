@@ -230,6 +230,68 @@
 													}
 												},
 												"userProperties": []
+											},
+											{
+												"dependsOn": [
+													{
+														"activity": "CopyFromBlobToFileSystem",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													}
+												],
+												"name": "Execute Pipeline1",
+												"type": "ExecutePipeline",
+												"typeProperties": {
+													"parameters": {
+														"pipelineName": {
+															"type": "Expression",
+															"value": "@string('@pipeline().Pipeline')"
+														},
+														"runId": {
+															"type": "Expression",
+															"value": "@string('@pipeline().RunId')"
+														},
+														"status": "Succeeded"
+													},
+													"pipeline": {
+														"referenceName": "send_event_pipeline",
+														"type": "PipelineReference"
+													},
+													"waitOnCompletion": true
+												},
+												"userProperties": []
+											},
+											{
+												"dependsOn": [
+													{
+														"activity": "CopyFromBlobToFileSystem",
+														"dependencyConditions": [
+															"Failed"
+														]
+													}
+												],
+												"name": "Execute Pipeline2",
+												"type": "ExecutePipeline",
+												"typeProperties": {
+													"parameters": {
+														"pipelineName": {
+															"type": "Expression",
+															"value": "@string('@pipeline().Pipeline')"
+														},
+														"runId": {
+															"type": "Expression",
+															"value": "@string('@pipeline().RunId')"
+														},
+														"status": "Failed"
+													},
+													"pipeline": {
+														"referenceName": "send_event_pipeline",
+														"type": "PipelineReference"
+													},
+													"waitOnCompletion": true
+												},
+												"userProperties": []
 											}
 										],
 										"annotations": []

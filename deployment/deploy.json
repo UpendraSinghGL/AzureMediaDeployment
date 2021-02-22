@@ -19,11 +19,10 @@
   "variables": {
     "baseTemplatePath": "[deployment().properties.templateLink.uri]",
     "blobStorageAccount": "[take(concat('durinstorage',uniqueString(resourceGroup().id)),24)]",
-    "eventHubName": "[take(concat('durinadfeventhub',uniqueString(resourceGroup().id)),60)]",
     "dataFactoryName": "[take(concat('durinadf',uniqueString(resourceGroup().id)),60)]",
     "vendorblobStorageAccount": "[take(concat('vendor', variables('blobStorageAccount')),24)]"
   },
-  "resources": [    
+  "resources": [
     {
       "name": "azurefunctiondeployment",
       "type": "Microsoft.Resources/deployments",
@@ -42,24 +41,6 @@
       },
       "dependsOn": [
       ]
-    },
-    {
-      "name": "eventhub-deployment",
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2019-10-01",
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[uri(variables('baseTemplatePath'), 'event-hub/deploy.json')]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "eventHubName": {
-            "value": "[variables('eventHubName')]"
-          }
-        }
-      },
-      "dependsOn": []
     },
     {
       "name": "datafactory-deployment",
@@ -101,14 +82,59 @@
           "baseTemplatePath": { "value": "[variables('baseTemplatePath')]" },
           "crmOrgName": { "value": "[parameters('cdsOrgUniqueName')]" },
           "storageName": { "value": "[variables('blobStorageAccount')]" },
-          "eventHubName": { "value": "[variables('eventHubName')]" },
           "dataFactoryName": { "value": "[variables('dataFactoryName')]" },
           "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
         }
       },
       "dependsOn": [
         "[resourceId('Microsoft.Resources/deployments', 'azurefunctiondeployment')]",
-        "[resourceId('Microsoft.Resources/deployments', 'eventhub-deployment')]",
+        "[resourceId('Microsoft.Resources/deployments', 'datafactory-deployment')]"
+      ]
+    },
+    {
+      "name": "datafactory-pipeline-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(variables('baseTemplatePath'), 'datafactory/pipeline-deploy.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "dataFactoryName": {
+            "value": "[variables('dataFactoryName')]"
+          }
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'logiapps-deployment')]"
+      ]
+    },
+    {
+      "name": "datafactory-linkedservice-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(variables('baseTemplatePath'), 'datafactory/linkedservice-deploy.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "dataFactoryName": {
+            "value": "[variables('dataFactoryName')]"
+          },
+          "blobStorageAccount": {
+            "value": "[variables('blobStorageAccount')]"
+          },
+          "vendorblobStorageAccount": {
+            "value": "[variables('vendorblobStorageAccount')]"
+          }
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'azurefunctiondeployment')]",
         "[resourceId('Microsoft.Resources/deployments', 'datafactory-deployment')]"
       ]
     },
