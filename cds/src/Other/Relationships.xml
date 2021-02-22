@@ -9,7 +9,6 @@
   <EntityRelationship Name="business_unit_media_studio" />
   <EntityRelationship Name="business_unit_media_track" />
   <EntityRelationship Name="business_unit_media_vendor" />
-  <EntityRelationship Name="business_unit_media_vendorcopystatus" />
   <EntityRelationship Name="lk_media_asset_createdby" />
   <EntityRelationship Name="lk_media_asset_modifiedby" />
   <EntityRelationship Name="lk_media_assetcontainer_createdby" />
@@ -46,8 +45,6 @@
   <EntityRelationship Name="lk_media_track_modifiedby" />
   <EntityRelationship Name="lk_media_vendor_createdby" />
   <EntityRelationship Name="lk_media_vendor_modifiedby" />
-  <EntityRelationship Name="lk_media_vendorcopystatus_createdby" />
-  <EntityRelationship Name="lk_media_vendorcopystatus_modifiedby" />
   <EntityRelationship Name="media_Asset_Block_media_Block" />
   <EntityRelationship Name="media_Asset_media_AssetContainer_media_As" />
   <EntityRelationship Name="media_Asset_media_AssetType_media_AssetTy" />
@@ -65,9 +62,7 @@
   <EntityRelationship Name="media_Block_Season_media_Season" />
   <EntityRelationship Name="media_CameraRawFileMetadata_media_AssetFi" />
   <EntityRelationship Name="media_Episode_Season_media_Season" />
-  <EntityRelationship Name="media_media_asset_media_vendorcopystatus_asset" />
   <EntityRelationship Name="media_media_vendor_media_asseterrorlog_vendors" />
-  <EntityRelationship Name="media_media_vendor_media_vendorcopystatus_vendor" />
   <EntityRelationship Name="media_Metadata_Track_media_Track" />
   <EntityRelationship Name="media_Season_Show_media_AssetContainer" />
   <EntityRelationship Name="media_ShowVendorMapping_Show_media_AssetC" />
@@ -91,7 +86,6 @@
   <EntityRelationship Name="owner_media_studio" />
   <EntityRelationship Name="owner_media_track" />
   <EntityRelationship Name="owner_media_vendor" />
-  <EntityRelationship Name="owner_media_vendorcopystatus" />
   <EntityRelationship Name="team_media_block" />
   <EntityRelationship Name="team_media_camerarawfilemetadata" />
   <EntityRelationship Name="team_media_configuration" />
@@ -101,7 +95,6 @@
   <EntityRelationship Name="team_media_studio" />
   <EntityRelationship Name="team_media_track" />
   <EntityRelationship Name="team_media_vendor" />
-  <EntityRelationship Name="team_media_vendorcopystatus" />
   <EntityRelationship Name="user_media_block" />
   <EntityRelationship Name="user_media_camerarawfilemetadata" />
   <EntityRelationship Name="user_media_configuration" />
@@ -111,7 +104,6 @@
   <EntityRelationship Name="user_media_studio" />
   <EntityRelationship Name="user_media_track" />
   <EntityRelationship Name="user_media_vendor" />
-  <EntityRelationship Name="user_media_vendorcopystatus" />
   <EntityRelationship Name="media_ShowNexisMapping_Nexis_media_Nexis" />
   <EntityRelationship Name="media_ShowNexisMapping_Show_media_AssetCo" />
   <EntityRelationship Name="media_copystatus_SubmittedBy_SystemUser" />

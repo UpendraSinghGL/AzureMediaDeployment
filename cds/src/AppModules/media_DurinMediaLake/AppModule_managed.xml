@@ -13,7 +13,6 @@
     <AppModuleComponent type="62" schemaName="media_DurinMediaLake" />
     <AppModuleComponent type="1" schemaName="media_configuration" />
     <AppModuleComponent type="1" schemaName="media_asset" />
-    <AppModuleComponent type="1" schemaName="media_vendorcopystatus" />
     <AppModuleComponent type="1" schemaName="media_assetfiles" />
     <AppModuleComponent type="1" schemaName="media_assetfolderlayout" />
     <AppModuleComponent type="60" id="{76f26161-007e-4446-821c-967f61131509}" />
