@@ -108,7 +108,7 @@
 											}
 										},
 										"method": "patch",
-										"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_copystatuses'),'))}/items/@{encodeURIComponent(encodeURIComponent(items(',durin.wrapInQuote('Create_a_new_copy_status_record_'),')?[',durin.wrapInQuote('media_copystatusid'),']))}')]"
+										"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_copystatuses'),'))}/items/@{encodeURIComponent(encodeURIComponent(body(',durin.wrapInQuote('Create_a_new_copy_status_record_'),')?[',durin.wrapInQuote('media_copystatusid'),']))}')]"
 									}
 								}
 							},
