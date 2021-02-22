@@ -160,7 +160,7 @@
 													}
 												},
 												"method": "get",
-												"path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('cf11e01718114104a69a6e5ee0f3bab5.crm'))}/tables/@{encodeURIComponent(encodeURIComponent('media_assets'))}/items",
+												"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items')]",
 												"queries": {
 													"$filter": "media_AssetContainer/media_assetcontainerid eq '@{triggerBody()?['showId']}' and statecode eq 0",
 													"$orderby": "createdon desc",
