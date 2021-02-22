@@ -2,7 +2,6 @@
 <EntityRelationships xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <EntityRelationship Name="business_unit_media_block" />
   <EntityRelationship Name="business_unit_media_camerarawfilemetadata" />
-  <EntityRelationship Name="business_unit_media_configuration" />
   <EntityRelationship Name="business_unit_media_episode" />
   <EntityRelationship Name="business_unit_media_season" />
   <EntityRelationship Name="business_unit_media_showvendormapping" />
@@ -25,8 +24,6 @@
   <EntityRelationship Name="lk_media_block_modifiedby" />
   <EntityRelationship Name="lk_media_camerarawfilemetadata_createdby" />
   <EntityRelationship Name="lk_media_camerarawfilemetadata_modifiedby" />
-  <EntityRelationship Name="lk_media_configuration_createdby" />
-  <EntityRelationship Name="lk_media_configuration_modifiedby" />
   <EntityRelationship Name="lk_media_episode_createdby" />
   <EntityRelationship Name="lk_media_episode_modifiedby" />
   <EntityRelationship Name="lk_media_metadata_createdby" />
@@ -71,7 +68,6 @@
   <EntityRelationship Name="organization_media_metadata" />
   <EntityRelationship Name="owner_media_block" />
   <EntityRelationship Name="owner_media_camerarawfilemetadata" />
-  <EntityRelationship Name="owner_media_configuration" />
   <EntityRelationship Name="owner_media_episode" />
   <EntityRelationship Name="owner_media_season" />
   <EntityRelationship Name="owner_media_showvendormapping" />
@@ -80,7 +76,6 @@
   <EntityRelationship Name="owner_media_vendor" />
   <EntityRelationship Name="team_media_block" />
   <EntityRelationship Name="team_media_camerarawfilemetadata" />
-  <EntityRelationship Name="team_media_configuration" />
   <EntityRelationship Name="team_media_episode" />
   <EntityRelationship Name="team_media_season" />
   <EntityRelationship Name="team_media_showvendormapping" />
@@ -89,7 +84,6 @@
   <EntityRelationship Name="team_media_vendor" />
   <EntityRelationship Name="user_media_block" />
   <EntityRelationship Name="user_media_camerarawfilemetadata" />
-  <EntityRelationship Name="user_media_configuration" />
   <EntityRelationship Name="user_media_episode" />
   <EntityRelationship Name="user_media_season" />
   <EntityRelationship Name="user_media_showvendormapping" />

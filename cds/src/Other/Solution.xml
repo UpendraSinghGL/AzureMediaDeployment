@@ -87,7 +87,6 @@
       <RootComponent type="1" schemaName="media_assettype" behavior="0" />
       <RootComponent type="1" schemaName="media_block" behavior="0" />
       <RootComponent type="1" schemaName="media_camerarawfilemetadata" behavior="0" />
-      <RootComponent type="1" schemaName="media_configuration" behavior="0" />
       <RootComponent type="1" schemaName="media_episode" behavior="0" />
       <RootComponent type="1" schemaName="media_metadata" behavior="0" />
       <RootComponent type="1" schemaName="media_season" behavior="0" />
