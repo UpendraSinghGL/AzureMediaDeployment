@@ -12,8 +12,6 @@
   <EntityRelationship Name="business_unit_media_vendorcopystatus" />
   <EntityRelationship Name="lk_media_asset_createdby" />
   <EntityRelationship Name="lk_media_asset_modifiedby" />
-  <EntityRelationship Name="lk_media_assetactivity_createdby" />
-  <EntityRelationship Name="lk_media_assetactivity_modifiedby" />
   <EntityRelationship Name="lk_media_assetcontainer_createdby" />
   <EntityRelationship Name="lk_media_assetcontainer_modifiedby" />
   <EntityRelationship Name="lk_media_asseterrorlog_createdby" />
@@ -55,7 +53,6 @@
   <EntityRelationship Name="media_Asset_media_AssetType_media_AssetTy" />
   <EntityRelationship Name="media_Asset_media_Episode_media_Episode" />
   <EntityRelationship Name="media_Asset_Season_media_Season" />
-  <EntityRelationship Name="media_AssetActivity_media_Asset_media_Ass" />
   <EntityRelationship Name="media_AssetContainer_media_AssetTemplate_" />
   <EntityRelationship Name="media_AssetContainer_Studio_media_Studio" />
   <EntityRelationship Name="media_AssetContainer_SystemUser_SystemUse" />
@@ -77,7 +74,6 @@
   <EntityRelationship Name="media_ShowVendorMapping_Vendor_media_Vend" />
   <EntityRelationship Name="media_Track_AssetFile_media_AssetFiles" />
   <EntityRelationship Name="organization_media_asset" />
-  <EntityRelationship Name="organization_media_assetactivity" />
   <EntityRelationship Name="organization_media_assetcontainer" />
   <EntityRelationship Name="organization_media_asseterrorlog" />
   <EntityRelationship Name="organization_media_assetfiles" />

@@ -80,7 +80,6 @@
     </Publisher>
     <RootComponents>
       <RootComponent type="1" schemaName="media_asset" behavior="0" />
-      <RootComponent type="1" schemaName="media_assetactivity" behavior="0" />
       <RootComponent type="1" schemaName="media_assetcontainer" behavior="0" />
       <RootComponent type="1" schemaName="media_asseterrorlog" behavior="0" />
       <RootComponent type="1" schemaName="media_assetfiles" behavior="0" />
