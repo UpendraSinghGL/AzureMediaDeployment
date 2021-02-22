@@ -204,6 +204,42 @@
                                                 },
                                                 "If_metadata.json": {
                                                     "actions": {
+                                                        "Condition": {
+                                                            "actions": {
+                                                              "Update_shoot_record_file_count": {
+                                                                "runAfter": {},
+                                                                "type": "ApiConnection",
+                                                                "inputs": {
+                                                                  "body": {
+                                                                    "media_folderfilecount": "@add(body('List_records_matching_asset')?['value']?[0]?['media_folderfilecount'],outputs('Compose_new_added_fileCount'))"
+                                                                  },
+                                                                  "host": {
+                                                                    "connection": {
+                                                                      "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                                                    }
+                                                                  },
+                                                                  "method": "patch",
+                                                                  "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs('Compose_AssetId')))}')]"
+                                                                }
+                                                              }
+                                                            },
+                                                            "runAfter": {
+                                                                "Iterate_Asset_files_records": [
+                                                                    "Succeeded"
+                                                                ]
+                                                            },
+                                                            "expression": {
+                                                                "and": [
+                                                                    {
+                                                                        "greater": [
+                                                                            "@length(body('List_records_matching_asset')?['value'])",
+                                                                            0
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "type": "If"
+                                                        },
                                                         "Condition_if_asset_exist": {
                                                             "actions": {
                                                                 "Compose_AssetId": {
@@ -211,24 +247,78 @@
                                                                     "type": "Compose",
                                                                     "inputs": "@body('List_records_matching_asset')?['value']?[0]?['media_assetid']"
                                                                 },
-                                                                "Update_shoot_record": {
+                                                                "Compose_FolderFileCount": {
                                                                     "runAfter": {
                                                                         "Compose_AssetId": [
                                                                             "Succeeded"
                                                                         ]
                                                                     },
-                                                                    "type": "ApiConnection",
+                                                                    "type": "Compose",
+                                                                    "inputs": "@add(body('List_records_matching_asset')?['value']?[0]?['media_folderfilecount'],length(body('Parse_JSON')?['files']))"
+                                                                },
+                                                                "Compose_new_added_fileCount": {
+                                                                    "runAfter": {
+                                                                        "List_existing_assetFiles": [
+                                                                            "Succeeded"
+                                                                        ]
+                                                                    },
+                                                                    "type": "Compose",
+                                                                    "inputs": "@sub(length(body('Parse_JSON')?['files']),length(body('List_existing_assetFiles')?['value']))"
+                                                                },
+                                                                "Join_filterQuery": {
+                                                                    "runAfter": {
+                                                                        "Select_filePath_array": [
+                                                                            "Succeeded"
+                                                                        ]
+                                                                    },
+                                                                    "type": "Join",
                                                                     "inputs": {
-                                                                        "body": {
-                                                                            "media_folderfilecount": "@add(body('List_records_matching_asset')?['value']?[0]?['media_folderfilecount'],length(body('Parse_JSON')?['files']))"
-                                                                        },
-                                                                        "host": {
-                                                                            "connection": {
-                                                                                "name": "@parameters('$connections')['commondataservice']['connectionId']"
-                                                                            }
-                                                                        },
-                                                                        "method": "patch",
-                                                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_AssetId'),')))}')]"
+                                                                        "from": "@body('Select_filePath_array')",
+                                                                        "joinWith": " or media_blobpath eq "
+                                                                    }
+                                                                },
+                                                                "List_existing_assetFiles": {
+                                                                    "runAfter": {
+                                                                        "Join_filterQuery": [
+                                                                            "Succeeded"
+                                                                        ]
+                                                                    },
+                                                                    "type": "ApiConnection",
+                                                                  "inputs": {
+                                                                    "host": {
+                                                                      "connection": {
+                                                                        "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                                                      }
+                                                                    },
+                                                                    "method": "get",
+                                                                    "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items')]",
+                                                                    "queries": {
+                                                                      "$filter": "_media_asset_value eq '@{outputs('Compose_AssetId')}' and statecode eq 0  and (media_blobpath eq  @{body('Join_filterQuery')})"
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "Select_filePath_array": {
+                                                                    "runAfter": {
+                                                                        "Compose_FolderFileCount": [
+                                                                            "Succeeded"
+                                                                        ]
+                                                                    },
+                                                                    "type": "Select",
+                                                                    "inputs": {
+                                                                        "from": "@body('Parse_JSON')?['files']",
+                                                                        "select": "@concat('''',variables('DirectoryPath'),'/',item()?['filePath'],'''')"
+                                                                    }
+                                                                },
+                                                                "Set_variable_NewAddedFileList": {
+                                                                    "runAfter": {
+                                                                        "Compose_new_added_fileCount": [
+                                                                            "Succeeded"
+                                                                        ]
+                                                                    },
+                                                                    "type": "SetVariable",
+                                                                    "inputs": {
+                                                                        "name": "NewAddedFileList",
+                                                                        "value": "@body('List_existing_assetFiles')?['value']"
                                                                     }
                                                                 }
                                                             },
@@ -296,98 +386,84 @@
                                                                     "type": "Compose",
                                                                     "inputs": "@if(greater(items('Iterate_Asset_files_records')?['filesize'],0),div(div(items('Iterate_Asset_files_records')?['filesize'],1024.00),1024.00),0)"
                                                                 },
-                                                                "Compose-Asset_File_Types": {
-                                                                    "runAfter": {},
-                                                                    "type": "Compose",
-                                                                    "inputs": [
-                                                                        {
-                                                                            "TypeName": "Camera RAW",
-                                                                            "Value": 207940001
-                                                                        },
-                                                                        {
-                                                                            "TypeName": "CDL",
-                                                                            "Value": 207940002
-                                                                        },
-                                                                        {
-                                                                            "TypeName": "LUTS",
-                                                                            "Value": 207940003
-                                                                        },
-                                                                        {
-                                                                            "TypeName": "Audio",
-                                                                            "Value": 207940000
-                                                                        }
-                                                                    ]
-                                                                },
-                                                                "Create_Shoot_file": {
+                                                                "Compose_BlobPath": {
                                                                     "runAfter": {
                                                                         "Calculate_FileSize": [
                                                                             "Succeeded"
                                                                         ]
                                                                     },
-                                                                    "type": "ApiConnection",
-                                                                    "inputs": {
-                                                                        "body": {
-                                                                            "_media_asset_value": "@{if(equals(body('Create_Shoot_Record')?['media_assetid'],null),outputs('Compose_AssetId'),body('Create_Shoot_Record')?['media_assetid'])}",
-                                                                            "media_blobpath": "@{concat(variables('DirectoryPath'),'/',items('Iterate_Asset_files_records')?['filePath'])}",
-                                                                            "media_checksummd5": "@items('Iterate_Asset_files_records')?['checksum']",
-                                                                            "media_filesizemb": "@outputs('Calculate_FileSize')",
-                                                                            "media_filetype": "@body('Filter_FileType')?[0]?['Value']",
-                                                                            "media_name": "@items('Iterate_Asset_files_records')?['name']",
-                                                                            "media_uploadstatus": 207940001
-                                                                        },
-                                                                        "host": {
-                                                                            "connection": {
-                                                                                "name": "@parameters('$connections')['commondataservice']['connectionId']"
-                                                                            }
-                                                                        },
-                                                                        "method": "post",
-                                                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items')]"
-                                                                    }
+                                                                    "type": "Compose",
+                                                                    "inputs": "@concat(variables('DirectoryPath'),'/',items('Iterate_Asset_files_records')?['filePath'])"
                                                                 },
-                                                                "Filter_FileType": {
+                                                                "Condition_if_assetfile_exist": {
+                                                                    "actions": {},
                                                                     "runAfter": {
-                                                                        "Parse_JSON-Asset_file_types": [
+                                                                        "Filter_current_file": [
                                                                             "Succeeded"
                                                                         ]
                                                                     },
+                                                                    "else": {
+                                                                        "actions": {
+                                                                            "Create_asset_file": {
+                                                                                "runAfter": {},
+                                                                                "type": "ApiConnection",
+                                                                              "inputs": {
+                                                                                "body": {
+                                                                                  "_media_asset_value": "@{if(equals(body('Create_Shoot_Record')?['media_assetid'],null),outputs('Compose_AssetId'),body('Create_Shoot_Record')?['media_assetid'])}",
+                                                                                  "media_blobpath": "@{concat(variables('DirectoryPath'),'/',items('Iterate_Asset_files_records')?['filePath'])}",
+                                                                                  "media_checksummd5": "@items('Iterate_Asset_files_records')?['checksum']",
+                                                                                  "media_filesizemb": "@outputs('Calculate_FileSize')",
+                                                                                  "media_filetype": "@body('Filter_FileType')?[0]?['Value']",
+                                                                                  "media_miscinfo": "@{items('Iterate_Asset_files_records')?['miscInfo']}",
+                                                                                  "media_name": "@items('Iterate_Asset_files_records')?['name']",
+                                                                                  "media_uploadstatus": 207940001
+                                                                                },
+                                                                                "host": {
+                                                                                  "connection": {
+                                                                                    "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                                                                  }
+                                                                                },
+                                                                                "method": "post",
+                                                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items')]"
+                                                                              }
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "expression": {
+                                                                        "and": [
+                                                                            {
+                                                                                "greater": [
+                                                                                    "@length(body('Filter_current_file'))",
+                                                                                    0
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "type": "If"
+                                                                },
+                                                                "Filter_FileType": {
+                                                                    "runAfter": {},
                                                                     "type": "Query",
                                                                     "inputs": {
                                                                         "from": "@body('Parse_JSON-Asset_file_types')",
                                                                         "where": "@equals(toUpper(item()?['TypeName']), toUpper(items('Iterate_Asset_files_records')?['type']))"
                                                                     }
                                                                 },
-                                                                "Parse_JSON-Asset_file_types": {
+                                                                "Filter_current_file": {
                                                                     "runAfter": {
-                                                                        "Compose-Asset_File_Types": [
+                                                                        "Compose_BlobPath": [
                                                                             "Succeeded"
                                                                         ]
                                                                     },
-                                                                    "type": "ParseJson",
+                                                                    "type": "Query",
                                                                     "inputs": {
-                                                                        "content": "@outputs('Compose-Asset_File_Types')",
-                                                                        "schema": {
-                                                                            "items": {
-                                                                                "properties": {
-                                                                                    "TypeName": {
-                                                                                        "type": "string"
-                                                                                    },
-                                                                                    "Value": {
-                                                                                        "type": "integer"
-                                                                                    }
-                                                                                },
-                                                                                "required": [
-                                                                                    "TypeName",
-                                                                                    "Value"
-                                                                                ],
-                                                                                "type": "object"
-                                                                            },
-                                                                            "type": "array"
-                                                                        }
+                                                                        "from": "@variables('NewAddedFileList')",
+                                                                        "where": "@equals(item()?['media_blobpath'], outputs('Compose_BlobPath'))"
                                                                     }
                                                                 },
                                                                 "Set_variable_-_ErrorMessage": {
                                                                     "runAfter": {
-                                                                        "Create_Shoot_file": [
+                                                                        "Condition_if_assetfile_exist": [
                                                                             "Failed",
                                                                             "TimedOut"
                                                                         ]
@@ -400,14 +476,14 @@
                                                                 }
                                                             },
                                                             "runAfter": {
-                                                                "Condition_if_asset_exist": [
+                                                                "Parse_JSON-Asset_file_types": [
                                                                     "Succeeded"
                                                                 ]
                                                             },
                                                             "type": "Foreach",
                                                             "runtimeConfiguration": {
                                                                 "concurrency": {
-                                                                    "repetitions": 25
+                                                                    "repetitions": 50
                                                                 }
                                                             }
                                                         },
@@ -447,9 +523,6 @@
                                                                         "checksum": {
                                                                             "type": "string"
                                                                         },
-                                                                        "description": {
-                                                                            "type": "string"
-                                                                        },
                                                                         "episodeId": {
                                                                             "type": "string"
                                                                         },
@@ -465,6 +538,23 @@
                                                                                     "filesize": {
                                                                                         "type": "integer"
                                                                                     },
+                                                                                    "miscInfo": {
+                                                                                        "properties": {
+                                                                                            "aleFileNameField": {
+                                                                                                "type": "string"
+                                                                                            },
+                                                                                            "matchType": {
+                                                                                                "type": "string"
+                                                                                            },
+                                                                                            "truncateCharFromEnd": {
+                                                                                                "type": "integer"
+                                                                                            },
+                                                                                            "truncateCharFromStart": {
+                                                                                                "type": "integer"
+                                                                                            }
+                                                                                        },
+                                                                                        "type": "object"
+                                                                                    },
                                                                                     "name": {
                                                                                         "type": "string"
                                                                                     },
@@ -473,12 +563,12 @@
                                                                                     }
                                                                                 },
                                                                                 "required": [
-                                                                                    "name",
-                                                                                    "filePath",
                                                                                     "checksum",
+                                                                                    "filePath",
                                                                                     "filesize",
+                                                                                    "name",
                                                                                     "type"
-                                                                                ],
+                                                                                ],                                                      
                                                                                 "type": "object"
                                                                             },
                                                                             "type": "array"
@@ -506,6 +596,64 @@
                                                                         }
                                                                     },
                                                                     "type": "object"
+                                                                }
+                                                            }
+                                                        },
+                                                        "Parse_JSON-Asset_file_types": {
+                                                            "runAfter": {
+                                                                "Condition_if_asset_exist": [
+                                                                    "Succeeded"
+                                                                ]
+                                                            },
+                                                            "type": "ParseJson",
+                                                            "inputs": {
+                                                                "content": [
+                                                                    {
+                                                                        "TypeName": "Camera RAW",
+                                                                        "Value": 207940001
+                                                                    },
+                                                                    {
+                                                                        "TypeName": "CDL",
+                                                                        "Value": 207940002
+                                                                    },
+                                                                    {
+                                                                        "TypeName": "LUTS",
+                                                                        "Value": 207940003
+                                                                    },
+                                                                    {
+                                                                        "TypeName": "Audio",
+                                                                        "Value": 207940000
+                                                                    },
+                                                                    {
+                                                                        "TypeName": "Stills",
+                                                                        "Value": 207940006
+                                                                    },
+                                                                    {
+                                                                        "TypeName": "Others",
+                                                                        "Value": 207940005
+                                                                    },
+                                                                    {
+                                                                        "TypeName": "Reports/Notes",
+                                                                        "Value": 207940004
+                                                                    }
+                                                                ],
+                                                                "schema": {
+                                                                    "items": {
+                                                                        "properties": {
+                                                                            "TypeName": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "Value": {
+                                                                                "type": "integer"
+                                                                            }
+                                                                        },
+                                                                        "required": [
+                                                                            "TypeName",
+                                                                            "Value"
+                                                                        ],
+                                                                        "type": "object"
+                                                                    },
+                                                                    "type": "array"
                                                                 }
                                                             }
                                                         },
@@ -593,7 +741,7 @@
                                                                     "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items')]",
                                                                     "queries": {
                                                                         "$expand": "media_Asset($select=media_name)",
-                                                                        "$filter": "@{decodeUriComponent(concat('media_blobpath eq %27',outputs('Compose'),'%27'))}",
+                                                                        "$filter": "@{decodeUriComponent(concat('media_blobpath eq %27',outputs('Compose'),'%27','and statecode eq 0'))}",
                                                                         "$top": 1
                                                                     }
                                                                 }
@@ -638,18 +786,18 @@
                                                                     "Update_Asset_camera_raw_metadata": {
                                                                         "runAfter": {},
                                                                         "type": "ApiConnection",
-                                                                        "inputs": {
-                                                                            "body": {
-                                                                                "media_camerarawfilemetadata": "@{decodeBase64(body('Get_blob_content')['$content'])}"
-                                                                            },
-                                                                            "host": {
-                                                                                "connection": {
-                                                                                    "name": "@parameters('$connections')['commondataservice']['connectionId']"
-                                                                                }
-                                                                            },
-                                                                            "method": "patch",
-                                                                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(items(',durin.wrapInQuote('Iterate_camera_raw_metadata'),')?[',durin.wrapInQuote('_media_asset_value'),']))}')]"
-                                                                        }
+                                                                      "inputs": {
+                                                                        "body": {
+                                                                          "media_alefilecontent": "@{decodeBase64(body('Get_blob_content')['$content'])}"
+                                                                        },
+                                                                        "host": {
+                                                                          "connection": {
+                                                                            "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                                                          }
+                                                                        },
+                                                                        "method": "patch",
+                                                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(items(',durin.wrapInQuote('Iterate_camera_raw_metadata'),')?[',durin.wrapInQuote('media_assetfilesid'),']))}')]",
+                                                                      }
                                                                     }
                                                                 },
                                                                 "runAfter": {
@@ -719,7 +867,7 @@
                                                             "method": "get",
                                                             "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items')]",
                                                             "queries": {
-                                                                "$filter": "@{decodeUriComponent(concat('media_blobpath eq %27',outputs('Compose'),'%27'))}"
+                                                                "$filter": "@{decodeUriComponent(concat('media_blobpath eq %27',outputs('Compose'),'%27','and statecode eq 0'))}"
                                                             }
                                                         }
                                                     },
@@ -922,7 +1070,7 @@
                                 }
                             },
                             "runAfter": {
-                                "Initialize_variable_Episodeidattr": [
+                                "Initialize_variable_NewAddedFileList": [
                                     "Succeeded"
                                 ]
                             },
@@ -1059,6 +1207,22 @@
                                     {
                                         "name": "episodeidattr",
                                         "type": "string"
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_variable_NewAddedFileList": {
+                            "runAfter": {
+                                "Initialize_variable_Episodeidattr": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "NewAddedFileList",
+                                        "type": "array"
                                     }
                                 ]
                             }
