@@ -393,7 +393,7 @@
 															}
 														},
 														"method": "get",
-														"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(if(equals(body(',durin.wrapInQuote('Update_a_record_in_CopyStatusId_status_succeeded'),')?[',durin.wrapInQuote('media_destinantiontype'),'],body('durin.wrapInQuote('Constants'),')?[',durin.wrapInQuote('vendorDropdownValue'),']),',durin.wrapInQuote('media_vendors'),',',durin.wrapInQuote('media_nexises'),')))}/items/@{encodeURIComponent(encodeURIComponent(body(',durin.wrapInQuote('Update_a_record_in_CopyStatusId_status_succeeded'),')?[',durin.wrapInQuote('media_destinationid'),']))}')]"
+														"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(if(equals(body(',durin.wrapInQuote('Update_a_record_in_CopyStatusId_status_succeeded'),')?[',durin.wrapInQuote('media_destinantiontype'),'],body(',durin.wrapInQuote('Constants'),')?[',durin.wrapInQuote('vendorDropdownValue'),']),',durin.wrapInQuote('media_vendors'),',',durin.wrapInQuote('media_nexises'),')))}/items/@{encodeURIComponent(encodeURIComponent(body(',durin.wrapInQuote('Update_a_record_in_CopyStatusId_status_succeeded'),')?[',durin.wrapInQuote('media_destinationid'),']))}')]"
 													}
 												},
 												"HTTP_Delete_Pipeline": {
