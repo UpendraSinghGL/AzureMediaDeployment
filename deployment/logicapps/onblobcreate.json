@@ -41,6 +41,12 @@
         "connections_azureeventgrid": {
             "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/azureeventgrid')]",
             "type": "String"
+        },
+        "crmIdentifier": {
+            "type": "string",
+            "metadata": {
+                "description": "description"
+            }
         }
     },
     "functions": [
@@ -63,7 +69,7 @@
         }
     ],
     "variables": {
-        "org": "[durin.wrapInQuote(concat(parameters('crmOrgName'),'.crm'))]"
+        "org": "[durin.wrapInQuote(concat(parameters('crmOrgName'),'.',parameters('crmIdentifier')))]"
     },
     "resources": [
         {

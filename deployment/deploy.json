@@ -5,7 +5,13 @@
     "cdsOrgUniqueName": {
       "type": "string",
       "metadata": {
-        "description": "Enter cds org unique name"
+        "description": "Enter CDS org unique name"
+      }
+    },
+    "crmIdentifier": {
+      "type": "string",
+      "metadata": {
+        "description": "CRM Identifier"
       }
     }
   },
@@ -76,7 +82,8 @@
           "baseTemplatePath": { "value": "[variables('baseTemplatePath')]" },
           "crmOrgName": { "value": "[parameters('cdsOrgUniqueName')]" },
           "storageName": { "value": "[variables('blobStorageAccount')]" },
-          "dataFactoryName": { "value": "[variables('dataFactoryName')]" }
+          "dataFactoryName": { "value": "[variables('dataFactoryName')]" },
+          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
         }
       },
       "dependsOn": [

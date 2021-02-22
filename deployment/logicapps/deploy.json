@@ -25,6 +25,12 @@
       "metadata": {
         "description": "description"
       }
+    },
+    "crmIdentifier": {
+      "type": "string",
+      "metadata": {
+        "description": "crmIdentifier"
+      }
     }
   },
     "functions": [],
@@ -41,7 +47,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
         }
       },
       "dependsOn": [
@@ -58,7 +65,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
         }
       }
     },
@@ -87,7 +95,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
         }
       },
       "dependsOn": [
@@ -105,7 +114,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
         }
       },
       "dependsOn": [
@@ -123,7 +133,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
         }
       }
     },
@@ -138,7 +149,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
         }
       }
     },
@@ -153,7 +165,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
         }
       }
     },
@@ -168,7 +181,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
         }
       }
     },
@@ -183,7 +197,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
         }
       }
     },
@@ -199,7 +214,8 @@
         },
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-          "storageName": { "value": "[parameters('storageName')]" }
+          "storageName": { "value": "[parameters('storageName')]" },
+          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
         }
       },
       "dependsOn": [
@@ -218,7 +234,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
         }
       }
     },
@@ -233,7 +250,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
         }
       },
       "dependsOn": [
@@ -251,7 +269,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
         }
       },
       "dependsOn": [
@@ -269,7 +288,8 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "crmOrgName": { "value": "[parameters('crmOrgName')]" }
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
         }
       },
       "dependsOn": [
@@ -290,7 +310,8 @@
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
           "dataFactoryName": { "value": "[parameters('dataFactoryName')]" },
-          "blobStorageAccount": { "value": "[parameters('storageName')]" }
+          "blobStorageAccount": { "value": "[parameters('storageName')]" },
+          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
         }
       }
     }
