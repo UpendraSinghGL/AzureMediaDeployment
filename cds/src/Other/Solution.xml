@@ -113,6 +113,7 @@
       <RootComponent type="9" schemaName="media_sourcetype" behavior="0" />
       <RootComponent type="1" schemaName="media_copyrequest" behavior="0" />
       <RootComponent type="29" id="{76bc9a4d-7167-eb11-a812-0022480855c2}" behavior="0" />
+      <RootComponent type="29" id="{e20e4144-ff74-eb11-a812-002248097e89}" behavior="0" />
       <RootComponent type="60" id="{130d7175-17c6-475b-a5da-6691f7173d48}" behavior="0" />
       <RootComponent type="60" id="{19ac851e-c3c4-446a-8659-220b0bdc2340}" behavior="0" />
       <RootComponent type="60" id="{531ec6d7-9bd6-4a66-a48b-4f5231529bc4}" behavior="0" />
@@ -161,6 +162,7 @@
       <RootComponent type="61" schemaName="media_copyVendorLocation.html" behavior="0" />
       <RootComponent type="60" id="{c074db67-1d58-4bf6-ad58-246a6e28ba63}" behavior="0" />
       <RootComponent type="60" id="{dea2d740-e85b-eb11-a812-0022480918d2}" behavior="0" />
+      <RootComponent type="60" id="{2a11c560-0275-eb11-a812-002248097e89}" behavior="0" />
     </RootComponents>
     <MissingDependencies>
       <MissingDependency>
