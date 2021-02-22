@@ -21,8 +21,6 @@
   <EntityRelationship Name="lk_media_assetfolderlayout_modifiedby" />
   <EntityRelationship Name="lk_media_assetmetadata_createdby" />
   <EntityRelationship Name="lk_media_assetmetadata_modifiedby" />
-  <EntityRelationship Name="lk_media_assettemplate_createdby" />
-  <EntityRelationship Name="lk_media_assettemplate_modifiedby" />
   <EntityRelationship Name="lk_media_assettype_createdby" />
   <EntityRelationship Name="lk_media_assettype_modifiedby" />
   <EntityRelationship Name="lk_media_block_createdby" />
@@ -50,7 +48,6 @@
   <EntityRelationship Name="media_Asset_media_AssetType_media_AssetTy" />
   <EntityRelationship Name="media_Asset_media_Episode_media_Episode" />
   <EntityRelationship Name="media_Asset_Season_media_Season" />
-  <EntityRelationship Name="media_AssetContainer_media_AssetTemplate_" />
   <EntityRelationship Name="media_AssetContainer_Studio_media_Studio" />
   <EntityRelationship Name="media_AssetContainer_SystemUser_SystemUse" />
   <EntityRelationship Name="media_AssetErrorLog_media_Asset_media_Ass" />
@@ -58,7 +55,6 @@
   <EntityRelationship Name="media_AssetErrorLog_media_AssetFiles_medi" />
   <EntityRelationship Name="media_AssetFiles_media_Asset_media_Asset" />
   <EntityRelationship Name="media_AssetMetadata_media_AssetFiles_medi" />
-  <EntityRelationship Name="media_AssetTemplate_AssetFolderLayout_med" />
   <EntityRelationship Name="media_Block_Season_media_Season" />
   <EntityRelationship Name="media_CameraRawFileMetadata_media_AssetFi" />
   <EntityRelationship Name="media_Episode_Season_media_Season" />
@@ -74,7 +70,6 @@
   <EntityRelationship Name="organization_media_assetfiles" />
   <EntityRelationship Name="organization_media_assetfolderlayout" />
   <EntityRelationship Name="organization_media_assetmetadata" />
-  <EntityRelationship Name="organization_media_assettemplate" />
   <EntityRelationship Name="organization_media_assettype" />
   <EntityRelationship Name="organization_media_metadata" />
   <EntityRelationship Name="owner_media_block" />
