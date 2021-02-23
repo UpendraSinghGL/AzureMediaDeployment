@@ -77,7 +77,7 @@
 										"name": "@parameters('$connections')['commondataservice']['connectionId']"
 									}
 								},
-								"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_copyrequests'),'))}/onnewitemswebhook')]",
+								"path": "[concat('/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_copyrequests'),'))}/onnewitemswebhook')]",
 								"queries": {
 									"scope": "Organization"
 								}
