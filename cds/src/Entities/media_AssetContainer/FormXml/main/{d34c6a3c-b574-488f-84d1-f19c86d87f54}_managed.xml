@@ -92,10 +92,11 @@
                         </labels>
                         <control id="media_enablechecksumcheck" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="media_enablechecksumcheck" disabled="false" />
                       </cell>
-                      <cell locklevel="0" id="{828421aa-f00f-4c11-9619-446a59f61f33}">
+                      <cell id="{c2b94399-643d-4d36-86ed-5808d14cb8a7}" locklevel="0">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Notification Email" languagecode="1033" />
                         </labels>
+                        <control id="media_notificationemail" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="media_notificationemail" disabled="false" />
                       </cell>
                       <cell showlabel="false" locklevel="0" id="{73280747-be5a-4551-9871-06ab16e2ffd8}">
                         <labels>
