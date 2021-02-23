@@ -124,12 +124,6 @@
                         </labels>
                         <control id="media_uploadedfile" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="media_uploadedfile" disabled="false" />
                       </cell>
-                      <cell id="{5226bfab-bd17-4a21-b037-174293aa1dae}" locklevel="0">
-                        <labels>
-                          <label description="Copy to Nexis Status" languagecode="1033" />
-                        </labels>
-                        <control id="media_copystatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="media_copystatus" disabled="true" />
-                      </cell>
                     </row>
                     <row>
                       <cell locklevel="0" id="{0179a05c-729a-4627-9fed-4a554714f639}">

@@ -113,13 +113,10 @@
             source = JSON.parse(source);
             destination = JSON.parse(destination);
             Promise.all([
-                fetch('/api/data/v9.1/media_configurations?$top=1&$select=media_setting').then(res => res.json()),
                 fetch(`/api/data/v9.1/media_assetcontainers(${showId})/media_containerpath`).then(res => res.json()),
                 fetch(`/api/data/v9.1/systemusers(${userId})/internalemailaddress`).then(res => res.json())
             ]).then((responses) => {
-                var media_settings = responses[0].value;
-                media_settings = media_settings.length > 0 ? JSON.parse(media_settings[0].media_setting) : {};
-                var containerName = responses[1].value;
+                var containerName = responses[0].value;
                 if (entityName == 'media_season') {
                     source.forEach(y => {
                         y.path = `${containerName}/${y.name}`;
@@ -134,7 +131,7 @@
                     destinationType: type,
                     submittedBy: {
                         userId: userId,
-                        email: responses[2].value
+                        email: responses[1].value
                     }
                 }
 

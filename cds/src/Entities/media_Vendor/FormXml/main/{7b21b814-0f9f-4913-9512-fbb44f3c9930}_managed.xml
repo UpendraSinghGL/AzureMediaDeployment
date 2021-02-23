@@ -43,6 +43,14 @@
                         <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{7d828459-8566-4ef9-b33c-966d967334d4}" locklevel="0">
+                        <labels>
+                          <label description="Owner Email" languagecode="1033" />
+                        </labels>
+                        <control id="media_owneremail" classid="{ADA2203E-B4CD-49BE-9DDF-234642B43B52}" datafieldname="media_owneremail" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
                 <section name="Shows" id="95ac3689-32c5-4260-b54c-60dccc4a0f41" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
