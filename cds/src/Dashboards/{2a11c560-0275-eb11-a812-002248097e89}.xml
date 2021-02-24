@@ -160,7 +160,7 @@
                           <labels>
                             <label description="Assets" languagecode="1033" />
                           </labels>
-                          <control id="Component2076ccd" uniqueid="{6b0d5b04-17a9-cc4a-dd13-2caa0859217a}" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <!-- <control id="Component2076ccd" uniqueid="{6b0d5b04-17a9-cc4a-dd13-2caa0859217a}" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                             <parameters>
                               <TargetEntityType>media_asset</TargetEntityType>
                               <ChartGridMode>Chart</ChartGridMode>
@@ -178,7 +178,7 @@
                               <EnableChartPicker>false</EnableChartPicker>
                               <RelationshipName />
                             </parameters>
-                          </control>
+                          </control> -->
                         </cell>
                       </row>
                       <row />
