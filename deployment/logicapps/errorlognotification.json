@@ -81,9 +81,27 @@
 						}
 					},
 					"actions": {
-						"Compose_Email_Body": {
+						"Compose": {
+							"runAfter": {
+								"Initialize_variable_RecipientsList": [
+									"Succeeded"
+								]
+							},
+							"type": "Compose",
+							"inputs": "@length(variables('RecipientsList'))"
+						},
+						"Compose_2": {
 							"runAfter": {
 								"Switch_on_ReferredRecordType": [
+									"Succeeded"
+								]
+							},
+							"type": "Compose",
+							"inputs": "@length(variables('RecipientsList'))"
+						},
+						"Compose_Email_Body": {
+							"runAfter": {
+								"Condition": [
 									"Succeeded"
 								]
 							},
@@ -92,12 +110,69 @@
 						},
 						"Compose_ReferredRecordType_": {
 							"runAfter": {
-								"Initialize_variable_RecipientsList": [
+								"Initialize_variable_Show_Id": [
 									"Succeeded"
 								]
 							},
 							"type": "Compose",
 							"inputs": "@if(equals(triggerBody()?['_media_assetfiles_value'],null),if(equals(triggerBody()?['_media_asset_value'],null),'','asset'),'assetfiles')"
+						},
+						"Condition": {
+							"actions": {
+								"Get_show": {
+									"runAfter": {},
+									"type": "ApiConnection",
+									"inputs": {
+										"host": {
+											"connection": {
+												"name": "@parameters('$connections')['commondataservice']['connectionId']"
+											}
+										},
+										"method": "get",
+										"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetcontainers'),'))}/items/@{encodeURIComponent(encodeURIComponent(variables(',durin.wrapInQuote('ShowId'),')))}')]"
+									}
+								},
+								"Set_variable_RecipientList": {
+									"runAfter": {
+										"Get_show": [
+											"Succeeded"
+										]
+									},
+									"type": "SetVariable",
+									"inputs": {
+										"name": "RecipientsList",
+										"value": "@array(body('Get_show')?['media_notificationemail'])"
+									}
+								}
+							},
+							"runAfter": {
+								"Filter_RecipientList": [
+									"Succeeded"
+								]
+							},
+							"expression": {
+								"and": [
+									{
+										"equals": [
+											"@empty(body('Filter_RecipientList'))",
+											"@true"
+										]
+									}
+								]
+							},
+							"type": "If"
+						},
+						"Filter_RecipientList": {
+							"runAfter": {
+								"Compose_2": [
+									"Succeeded"
+								]
+							},
+							"type": "Query",
+							"inputs": {
+								"from": "@variables('RecipientsList')",
+								"where": "@equals(empty(item()), false)"
+							}
 						},
 						"Initialize_variable_-_DefaultNotificationEmail": {
 							"runAfter": {},
@@ -106,8 +181,7 @@
 								"variables": [
 									{
 										"name": "DefaultNotificationEmail",
-										"type": "string",
-										"value": "pranay.mishra321@gmail.com"
+										"type": "string"
 									}
 								]
 							}
@@ -124,7 +198,23 @@
 									{
 										"name": "RecipientsList",
 										"type": "array",
-										"value": "@array(triggerBody()?['media_notificationemail'])"
+										"value": "@createArray(triggerBody()?['media_notificationemail'],variables('DefaultNotificationEmail'))"
+									}
+								]
+							}
+						},
+						"Initialize_variable_Show_Id": {
+							"runAfter": {
+								"Compose": [
+									"Succeeded"
+								]
+							},
+							"type": "InitializeVariable",
+							"inputs": {
+								"variables": [
+									{
+										"name": "ShowId",
+										"type": "string"
 									}
 								]
 							}
@@ -145,8 +235,11 @@
 								"host": {
 									"triggerName": "manual",
 									"workflow": {
-										"id": "[parameters('workflows_Logic_SendEmail')]"
+										"id": "[parameters('workflows_Logic_SendEmail_externalid')]"
 									}
+								},
+								"retryPolicy": {
+									"type": "none"
 								}
 							}
 						},
@@ -182,8 +275,19 @@
 													}
 												},
 												"method": "get",
-												"path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('cf11e01718114104a69a6e5ee0f3bab5.crm'))}/tables/@{encodeURIComponent(encodeURIComponent('media_assets'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?['_media_asset_value']))}",
 												"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('_media_asset_value'),']))}')]"
+											}
+										},
+										"Set_variable_ShowId": {
+											"runAfter": {
+												"Append_to_array_variable_RecipientList": [
+													"Succeeded"
+												]
+											},
+											"type": "SetVariable",
+											"inputs": {
+												"name": "ShowId",
+												"value": "@body('Get_asset_record')?['_media_assetcontainer_value']"
 											}
 										}
 									}
@@ -194,7 +298,7 @@
 										"For_each": {
 											"foreach": "@body('List_assetfiles_records')?['value']",
 											"actions": {
-												"Append_to_array_variable": {
+												"Append_to_array_variable_RecipientList_1": {
 													"runAfter": {
 														"Compose_asset": [
 															"Succeeded"
@@ -210,6 +314,18 @@
 													"runAfter": {},
 													"type": "Compose",
 													"inputs": "@json(items('For_each')?['media_Asset'])"
+												},
+												"Set_variable_ShowId_1": {
+													"runAfter": {
+														"Append_to_array_variable_RecipientList_1": [
+															"Succeeded"
+														]
+													},
+													"type": "SetVariable",
+													"inputs": {
+														"name": "ShowId",
+														"value": "@{outputs('Compose_asset')?['_media_assetcontainer_value']}"
+													}
 												}
 											},
 											"runAfter": {
@@ -231,7 +347,7 @@
 												"method": "get",
 												"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items')]",
 												"queries": {
-													"$expand": "media_Asset($select=media_name,media_notificationemailaddress)",
+													"$expand": "media_Asset($select=media_name,media_notificationemailaddress,_media_assetcontainer_value)",
 													"$filter": "media_assetfilesid eq '@{triggerBody()?['_media_assetfiles_value']}'"
 												}
 											}
