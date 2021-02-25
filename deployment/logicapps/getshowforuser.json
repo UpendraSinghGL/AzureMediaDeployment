@@ -136,7 +136,7 @@
                                         "method": "get",
                                         "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetcontainers'),'))}/items')]",
                                         "queries": {
-                                            "$expand": "media_Studio($select=media_name),media_AssetTemplate($select=media_name;$expand=media_AssetFolderLayout($select=media_layout))",
+                                            "$expand": "media_Studio($select=media_name)",
                                             "$filter": "media_AssetContainer_media_MacUser_media_/any(o:o/_media_user_value eq ' @{body('Logic-ValidateToken')}')"
                                         }
                                     }
