@@ -160,6 +160,8 @@
       <RootComponent type="60" id="{c074db67-1d58-4bf6-ad58-246a6e28ba63}" behavior="0" />
       <RootComponent type="60" id="{dea2d740-e85b-eb11-a812-0022480918d2}" behavior="0" />
       <RootComponent type="60" id="{2a11c560-0275-eb11-a812-002248097e89}" behavior="0" />
+      <RootComponent type="60" id="{0314cb1e-4577-eb11-a812-002248097ea6}" behavior="0" />
+      <RootComponent type="60" id="{5a6c1043-4477-eb11-a812-002248097ea6}" behavior="0" />
     </RootComponents>
     <MissingDependencies>
       <MissingDependency>
