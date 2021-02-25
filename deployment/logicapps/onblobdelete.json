@@ -101,6 +101,14 @@
                   "path": "[concat(subscription().id,'/providers/@{encodeURIComponent(',durin.wrapInQuote('Microsoft.Storage.StorageAccounts'),')}/resource/eventSubscriptions')]",
                   "queries": {
                     "x-ms-api-version": "2017-06-15-preview"
+                                }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
                   }
                 }
               }
@@ -110,6 +118,13 @@
                 "runAfter": {},
                 "type": "Compose",
                 "inputs": "@join(skip(split(replace(triggerBody()?['data']?['url'],'//','@'),'/'),1),'/')"
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs"
+                                    ]
+                                }
+                            }
               },
               "Fetch_Asset_file_record": {
                 "runAfter": {
@@ -129,6 +144,14 @@
                   "queries": {
                     "$filter": "media_blobpath eq '@{outputs('BlobPath')}' and statecode eq 0",
                     "$top": 1
+                                }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
                   }
                 }
               },
@@ -149,8 +172,15 @@
                       },
                       "method": "patch",
                       "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(items(',durin.wrapInQuote('Iterate_all_asset_file'),')?[',durin.wrapInQuote('media_assetfilesid'),']))}')]"
-                    }
-
+                                    },
+                                    "runtimeConfiguration": {
+                                        "secureData": {
+                                            "properties": [
+                                                "inputs",
+                                                "outputs"
+                                            ]
+                                        }
+                                    }
                   }
                 },
                 "runAfter": {

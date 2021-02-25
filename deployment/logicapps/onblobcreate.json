@@ -117,6 +117,14 @@
                                 "queries": {
                                     "x-ms-api-version": "2017-09-15-preview"
                                 }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
                             }
                         }
                     },
@@ -126,7 +134,14 @@
                                 "Compose": {
                                     "runAfter": {},
                                     "type": "Compose",
-                                    "inputs": "@replace(substring(triggerBody()?['subject'],add(indexOf(triggerBody()?['subject'],'/containers/'),12)),'/blobs','')"
+                                    "inputs": "@replace(substring(triggerBody()?['subject'],add(indexOf(triggerBody()?['subject'],'/containers/'),12)),'/blobs','')",
+                                    "runtimeConfiguration": {
+                                        "secureData": {
+                                            "properties": [
+                                                "inputs"
+                                            ]
+                                        }
+                                    }
                                 },
                                 "Condition_-_Check_for_ErrorMessage": {
                                     "actions": {
@@ -182,6 +197,14 @@
                                                 "queries": {
                                                     "$filter": "media_containerpath eq '@{variables('ContainerName')}'"
                                                 }
+                                            },
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs",
+                                                        "outputs"
+                                                    ]
+                                                }
                                             }
                                         },
                                         "If_blob_is_metadata_json_file": {
@@ -199,6 +222,14 @@
                                                         "path": "/datasets/default/files/@{encodeURIComponent(encodeURIComponent(outputs('Compose')))}/content",
                                                         "queries": {
                                                             "inferContentType": true
+                                                        }
+                                                    },
+                                                    "runtimeConfiguration": {
+                                                        "secureData": {
+                                                            "properties": [
+                                                                "inputs",
+                                                                "outputs"
+                                                            ]
                                                         }
                                                     }
                                                 },
@@ -220,6 +251,14 @@
                                                                   },
                                                                   "method": "patch",
                                                                   "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_AssetId'),')))}')]"
+                                                                    },
+                                                                    "runtimeConfiguration": {
+                                                                        "secureData": {
+                                                                            "properties": [
+                                                                                "inputs",
+                                                                                "outputs"
+                                                                            ]
+                                                                        }
                                                                 }
                                                               }
                                                             },
@@ -245,7 +284,14 @@
                                                                 "Compose_AssetId": {
                                                                     "runAfter": {},
                                                                     "type": "Compose",
-                                                                    "inputs": "@body('List_records_matching_asset')?['value']?[0]?['media_assetid']"
+                                                                    "inputs": "@body('List_records_matching_asset')?['value']?[0]?['media_assetid']",
+                                                                    "runtimeConfiguration": {
+                                                                        "secureData": {
+                                                                            "properties": [
+                                                                                "inputs"
+                                                                            ]
+                                                                        }
+                                                                    }
                                                                 },
                                                                 "Compose_FolderFileCount": {
                                                                     "runAfter": {
@@ -254,7 +300,14 @@
                                                                         ]
                                                                     },
                                                                     "type": "Compose",
-                                                                    "inputs": "@add(body('List_records_matching_asset')?['value']?[0]?['media_folderfilecount'],length(body('Parse_JSON')?['files']))"
+                                                                    "inputs": "@add(body('List_records_matching_asset')?['value']?[0]?['media_folderfilecount'],length(body('Parse_JSON')?['files']))",
+                                                                    "runtimeConfiguration": {
+                                                                        "secureData": {
+                                                                            "properties": [
+                                                                                "inputs"
+                                                                            ]
+                                                                        }
+                                                                    }
                                                                 },
                                                                 "Compose_new_added_fileCount": {
                                                                     "runAfter": {
@@ -263,7 +316,14 @@
                                                                         ]
                                                                     },
                                                                     "type": "Compose",
-                                                                    "inputs": "@sub(length(body('Parse_JSON')?['files']),length(body('List_existing_assetFiles')?['value']))"
+                                                                    "inputs": "@sub(length(body('Parse_JSON')?['files']),length(body('List_existing_assetFiles')?['value']))",
+                                                                    "runtimeConfiguration": {
+                                                                        "secureData": {
+                                                                            "properties": [
+                                                                                "inputs"
+                                                                            ]
+                                                                        }
+                                                                    }
                                                                 },
                                                                 "Join_filterQuery": {
                                                                     "runAfter": {
@@ -275,6 +335,14 @@
                                                                     "inputs": {
                                                                         "from": "@body('Select_filePath_array')",
                                                                         "joinWith": " or media_blobpath eq "
+                                                                    },
+                                                                    "runtimeConfiguration": {
+                                                                        "secureData": {
+                                                                            "properties": [
+                                                                                "inputs",
+                                                                                "outputs"
+                                                                            ]
+                                                                        }
                                                                     }
                                                                 },
                                                                 "List_existing_assetFiles": {
@@ -294,6 +362,14 @@
                                                                     "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items')]",
                                                                     "queries": {
                                                                       "$filter": "_media_asset_value eq '@{outputs('Compose_AssetId')}' and statecode eq 0  and (media_blobpath eq  @{body('Join_filterQuery')})"
+                                                                        }
+                                                                    },
+                                                                    "runtimeConfiguration": {
+                                                                        "secureData": {
+                                                                            "properties": [
+                                                                                "inputs",
+                                                                                "outputs"
+                                                                            ]
                                                                     }
                                                                   }
                                                                 },
@@ -307,6 +383,14 @@
                                                                     "inputs": {
                                                                         "from": "@body('Parse_JSON')?['files']",
                                                                         "select": "@concat('''',variables('DirectoryPath'),'/',item()?['filePath'],'''')"
+                                                                    },
+                                                                    "runtimeConfiguration": {
+                                                                        "secureData": {
+                                                                            "properties": [
+                                                                                "inputs",
+                                                                                "outputs"
+                                                                            ]
+                                                                        }
                                                                     }
                                                                 },
                                                                 "Set_variable_NewAddedFileList": {
@@ -358,6 +442,14 @@
                                                                             },
                                                                             "method": "post",
                                                                             "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items')]"
+                                                                        },
+                                                                        "runtimeConfiguration": {
+                                                                            "secureData": {
+                                                                                "properties": [
+                                                                                    "inputs",
+                                                                                    "outputs"
+                                                                                ]
+                                                                            }
                                                                         }
                                                                     }
                                                                 }
@@ -384,7 +476,14 @@
                                                                         ]
                                                                     },
                                                                     "type": "Compose",
-                                                                    "inputs": "@if(greater(items('Iterate_Asset_files_records')?['filesize'],0),div(div(items('Iterate_Asset_files_records')?['filesize'],1024.00),1024.00),0)"
+                                                                    "inputs": "@if(greater(items('Iterate_Asset_files_records')?['filesize'],0),div(div(items('Iterate_Asset_files_records')?['filesize'],1024.00),1024.00),0)",
+                                                                    "runtimeConfiguration": {
+                                                                        "secureData": {
+                                                                            "properties": [
+                                                                                "inputs"
+                                                                            ]
+                                                                        }
+                                                                    }
                                                                 },
                                                                 "Compose_BlobPath": {
                                                                     "runAfter": {
@@ -393,7 +492,14 @@
                                                                         ]
                                                                     },
                                                                     "type": "Compose",
-                                                                    "inputs": "@concat(variables('DirectoryPath'),'/',items('Iterate_Asset_files_records')?['filePath'])"
+                                                                    "inputs": "@concat(variables('DirectoryPath'),'/',items('Iterate_Asset_files_records')?['filePath'])",
+                                                                    "runtimeConfiguration": {
+                                                                        "secureData": {
+                                                                            "properties": [
+                                                                                "inputs"
+                                                                            ]
+                                                                        }
+                                                                    }
                                                                 },
                                                                 "Condition_if_assetfile_exist": {
                                                                     "actions": {},
@@ -425,6 +531,14 @@
                                                                                 },
                                                                                 "method": "post",
                                                                                 "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items')]"
+                                                                                },
+                                                                                "runtimeConfiguration": {
+                                                                                    "secureData": {
+                                                                                        "properties": [
+                                                                                            "inputs",
+                                                                                            "outputs"
+                                                                                        ]
+                                                                                    }
                                                                               }
                                                                             }
                                                                         }
@@ -447,6 +561,14 @@
                                                                     "inputs": {
                                                                         "from": "@body('Parse_JSON-Asset_file_types')",
                                                                         "where": "@equals(toUpper(item()?['TypeName']), toUpper(items('Iterate_Asset_files_records')?['type']))"
+                                                                    },
+                                                                    "runtimeConfiguration": {
+                                                                        "secureData": {
+                                                                            "properties": [
+                                                                                "inputs",
+                                                                                "outputs"
+                                                                            ]
+                                                                        }
                                                                     }
                                                                 },
                                                                 "Filter_current_file": {
@@ -504,6 +626,14 @@
                                                                 "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items')]",
                                                                 "queries": {
                                                                     "$filter": "media_shootday eq '@{body('Parse_JSON')?['shootDay']}' and media_unit eq '@{body('Parse_JSON')?['unit']}' and media_batch eq '@{body('Parse_JSON')?['batch']}' and @{variables('FilterAttributes')}"
+                                                                }
+                                                            },
+                                                            "runtimeConfiguration": {
+                                                                "secureData": {
+                                                                    "properties": [
+                                                                        "inputs",
+                                                                        "outputs"
+                                                                    ]
                                                                 }
                                                             }
                                                         },
@@ -597,6 +727,13 @@
                                                                     },
                                                                     "type": "object"
                                                                 }
+                                                            },
+                                                            "runtimeConfiguration": {
+                                                                "secureData": {
+                                                                    "properties": [
+                                                                        "inputs"
+                                                                    ]
+                                                                }
                                                             }
                                                         },
                                                         "Parse_JSON-Asset_file_types": {
@@ -654,6 +791,13 @@
                                                                         "type": "object"
                                                                     },
                                                                     "type": "array"
+                                                                }
+                                                            },
+                                                            "runtimeConfiguration": {
+                                                                "secureData": {
+                                                                    "properties": [
+                                                                        "inputs"
+                                                                    ]
                                                                 }
                                                             }
                                                         },
@@ -722,6 +866,13 @@
                                                                         "count": 10,
                                                                         "unit": "Second"
                                                                     }
+                                                                },
+                                                                "runtimeConfiguration": {
+                                                                    "secureData": {
+                                                                        "properties": [
+                                                                            "inputs"
+                                                                        ]
+                                                                    }
                                                                 }
                                                             },
                                                             "Fetch_asset_file_camera_raw_metadata": {
@@ -743,6 +894,14 @@
                                                                         "$expand": "media_Asset($select=media_name)",
                                                                         "$filter": "@{decodeUriComponent(concat('media_blobpath eq %27',outputs('Compose'),'%27','and statecode eq 0'))}",
                                                                         "$top": 1
+                                                                    }
+                                                                },
+                                                                "runtimeConfiguration": {
+                                                                    "secureData": {
+                                                                        "properties": [
+                                                                            "inputs",
+                                                                            "outputs"
+                                                                        ]
                                                                     }
                                                                 }
                                                             },
@@ -781,6 +940,14 @@
                                                                             },
                                                                             "method": "patch",
                                                                             "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(items(',durin.wrapInQuote('Iterate_camera_raw_metadata'),')?[',durin.wrapInQuote('media_assetfilesid'),']))}')]"
+                                                                        },
+                                                                        "runtimeConfiguration": {
+                                                                            "secureData": {
+                                                                                "properties": [
+                                                                                    "inputs",
+                                                                                    "outputs"
+                                                                                ]
+                                                                            }
                                                                         }
                                                                     },
                                                                     "Update_Asset_camera_raw_metadata": {
@@ -797,6 +964,14 @@
                                                                         },
                                                                         "method": "patch",
                                                                         "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(items(',durin.wrapInQuote('Iterate_camera_raw_metadata'),')?[',durin.wrapInQuote('media_assetfilesid'),']))}')]",
+                                                                        },
+                                                                        "runtimeConfiguration": {
+                                                                            "secureData": {
+                                                                                "properties": [
+                                                                                    "inputs",
+                                                                                    "outputs"
+                                                                                ]
+                                                                            }
                                                                       }
                                                                     }
                                                                 },
@@ -869,6 +1044,14 @@
                                                             "queries": {
                                                                 "$filter": "@{decodeUriComponent(concat('media_blobpath eq %27',outputs('Compose'),'%27','and statecode eq 0'))}"
                                                             }
+                                                        },
+                                                        "runtimeConfiguration": {
+                                                            "secureData": {
+                                                                "properties": [
+                                                                    "inputs",
+                                                                    "outputs"
+                                                                ]
+                                                            }
                                                         }
                                                     },
                                                     "Iterate_asset_files": {
@@ -892,6 +1075,14 @@
                                                                             "id": "[parameters('workflows_Logic_AntiVirusScan')]"
                                                                         }
                                                                     }
+                                                                },
+                                                                "runtimeConfiguration": {
+                                                                    "secureData": {
+                                                                        "properties": [
+                                                                            "inputs",
+                                                                            "outputs"
+                                                                        ]
+                                                                    }
                                                                 }
                                                             },
                                                             "Logic-CompareCheckSum": {
@@ -912,6 +1103,14 @@
                                                                             "id": "[parameters('workflows_Logic_CompareCheckSum')]"
                                                                         }
                                                                     }
+                                                                },
+                                                                "runtimeConfiguration": {
+                                                                    "secureData": {
+                                                                        "properties": [
+                                                                            "inputs",
+                                                                            "outputs"
+                                                                        ]
+                                                                    }
                                                                 }
                                                             },
                                                             "Logic-ExtractAndSaveMetadata": {
@@ -931,6 +1130,14 @@
                                                                         "workflow": {
                                                                             "id": "[parameters('workflows_Logic_ExtractAndSaveMetadata')]"
                                                                         }
+                                                                    }
+                                                                },
+                                                                "runtimeConfiguration": {
+                                                                    "secureData": {
+                                                                        "properties": [
+                                                                            "inputs",
+                                                                            "outputs"
+                                                                        ]
                                                                     }
                                                                 }
                                                             },
@@ -961,6 +1168,14 @@
                                                                     },
                                                                     "method": "patch",
                                                                     "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(items(',durin.wrapInQuote('Iterate_asset_files'),')?[',durin.wrapInQuote('media_assetfilesid'),']))}')]"
+                                                                },
+                                                                "runtimeConfiguration": {
+                                                                    "secureData": {
+                                                                        "properties": [
+                                                                            "inputs",
+                                                                            "outputs"
+                                                                        ]
+                                                                    }
                                                                 }
                                                             }
                                                         },

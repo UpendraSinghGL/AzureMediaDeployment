@@ -77,6 +77,14 @@
                                     },
                                     "type": "object"
                                 }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
                             }
                         }
                     },
@@ -100,6 +108,14 @@
                                                 },
                                                 "method": "post",
                                                 "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
+                                            },
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs",
+                                                        "outputs"
+                                                    ]
+                                                }
                                             }
                                         },
                                         "Response_failure": {
@@ -113,6 +129,13 @@
                                             "inputs": {
                                                 "body": "Failed to generate SAS Token",
                                                 "statusCode": 500
+                                            },
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs"
+                                                    ]
+                                                }
                                             }
                                         }
                                     },
@@ -131,6 +154,13 @@
                                                 "inputs": {
                                                     "body": "@outputs('Compose')",
                                                     "statusCode": 200
+                                                },
+                                                "runtimeConfiguration": {
+                                                    "secureData": {
+                                                        "properties": [
+                                                            "inputs"
+                                                        ]
+                                                    }
                                                 }
                                             }
                                         }
@@ -163,6 +193,14 @@
                                                 "queries": {
                                                     "$filter": "media_AssetContainer_SystemUser_SystemUse/any(o:o/azureactivedirectoryobjectid eq '@{triggerBody()?['userId']}') and media_assetcontainerid eq '@{triggerBody()?['showId']}'"
                                                 }
+                                            },
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs",
+                                                        "outputs"
+                                                    ]
+                                                }
                                             }
                                         },
                                         "If_Record_greater_than_0": {
@@ -177,6 +215,13 @@
                                                     "inputs": {
                                                         "sas": "@{body('Create_SAS_URI')}",
                                                         "weburi": "@{body('Create_SAS_URI')?['WebUrl']}"
+                                                    },
+                                                    "runtimeConfiguration": {
+                                                        "secureData": {
+                                                            "properties": [
+                                                                "inputs"
+                                                            ]
+                                                        }
                                                     }
                                                 },
                                                 "Create_SAS_URI": {
@@ -197,6 +242,14 @@
                                                         "queries": {
                                                             "path": "@{body('Fetch_user_show')?['value']?[0]?['media_containerpath']}"
                                                         }
+                                                    },
+                                                    "runtimeConfiguration": {
+                                                        "secureData": {
+                                                            "properties": [
+                                                                "inputs",
+                                                                "outputs"
+                                                            ]
+                                                        }
                                                     }
                                                 }
                                             },
@@ -213,6 +266,13 @@
                                                         "kind": "Http",
                                                         "inputs": {
                                                             "statusCode": 404
+                                                        },
+                                                        "runtimeConfiguration": {
+                                                            "secureData": {
+                                                                "properties": [
+                                                                    "inputs"
+                                                                ]
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -266,6 +326,13 @@
                                                 "Content-Type": "application/json; charset=utf-8"
                                             },
                                             "statusCode": 400
+                                        },
+                                        "runtimeConfiguration": {
+                                            "secureData": {
+                                                "properties": [
+                                                    "inputs"
+                                                ]
+                                            }
                                         }
                                     }
                                 }

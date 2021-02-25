@@ -80,6 +80,14 @@
 								"path": "[concat('/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_copyrequests'),'))}/onnewitemswebhook')]",
 								"queries": {
 									"scope": "Organization"
+                                }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
 								}
 							}
 						}
@@ -103,6 +111,14 @@
 										},
 										"method": "post",
 										"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
+                                    },
+                                    "runtimeConfiguration": {
+                                        "secureData": {
+                                            "properties": [
+                                                "inputs",
+                                                "outputs"
+                                            ]
+                                        }
 									}
 								}
 							},
@@ -135,6 +151,14 @@
 											},
 											"method": "post",
 											"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
+                                        },
+                                        "runtimeConfiguration": {
+                                            "secureData": {
+                                                "properties": [
+                                                    "inputs",
+                                                    "outputs"
+                                                ]
+                                            }
 										}
 									},
 									"Filter_error": {
@@ -143,6 +167,14 @@
 										"inputs": {
 											"from": "@result('Scope')",
 											"where": "@equals(item()['status'], 'Failed')"
+                                        },
+                                        "runtimeConfiguration": {
+                                            "secureData": {
+                                                "properties": [
+                                                    "inputs",
+                                                    "outputs"
+                                                ]
+                                            }
 										}
 									}
 								}
@@ -197,6 +229,13 @@
 										}
 									},
 									"type": "object"
+                                }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs"
+                                    ]
 								}
 							}
 						},
@@ -322,6 +361,14 @@
 									"workflow": {
 										"id": "[parameters('workflows_Logic_ReadAzureConfiguration')]"
 									}
+                                }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
 								}
 							}
 						},
@@ -410,6 +457,13 @@
 									},
 									"type": "object"
 								}
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs"
+                                    ]
+                                }
 							}
 						},
 						"Scope": {
@@ -430,7 +484,15 @@
 														"from": "@variables('UnrelatedFilesArray')",
 														"where": "@and(\nnot(equals(item()?['id'], string(items('For_each_ale_file')?['id']))),\nor(\nnot(equals(item()?['aleId'], string(items('For_each_ale_file')?['id']))),\nequals(empty(item()?['aleId']), true)\n)\n)"
 													},
-													"description": "Filter files which are not equal to ale Id, not related file of ale or ale Id is blank"
+                                                    "description": "Filter files which are not equal to ale Id, not related file of ale or ale Id is blank",
+                                                    "runtimeConfiguration": {
+                                                        "secureData": {
+                                                            "properties": [
+                                                                "inputs",
+                                                                "outputs"
+                                                            ]
+                                                        }
+                                                    }
 												},
 												"List_related_ale_records": {
 													"runAfter": {},
@@ -447,7 +509,15 @@
 															"$filter": "media_alefileid eq '@{items('For_each_ale_file')?['id']}' and statecode eq 0"
 														}
 													},
-													"description": "List related files of ale file"
+                                                    "description": "List related files of ale file",
+                                                    "runtimeConfiguration": {
+                                                        "secureData": {
+                                                            "properties": [
+                                                                "inputs",
+                                                                "outputs"
+                                                            ]
+                                                        }
+                                                    }
 												},
 												"Select_short_object": {
 													"runAfter": {
@@ -463,6 +533,14 @@
 															"id": "@item()?['media_assetfilesid']",
 															"name": "@item()?['media_name']",
 															"path": "@item()?['media_blobpath']"
+                                                        }
+                                                    },
+                                                    "runtimeConfiguration": {
+                                                        "secureData": {
+                                                            "properties": [
+                                                                "inputs",
+                                                                "outputs"
+                                                            ]
 														}
 													}
 												},
@@ -575,6 +653,14 @@
 									"inputs": {
 										"from": "@body('Parse_Request_JSON')?['source']",
 										"where": "@contains(item()?['name'], '.ale')"
+                                    },
+                                    "runtimeConfiguration": {
+                                        "secureData": {
+                                            "properties": [
+                                                "inputs",
+                                                "outputs"
+                                            ]
+                                        }
 									}
 								},
 								"For_each": {
@@ -583,7 +669,14 @@
 										"Compose_Input_Name": {
 											"runAfter": {},
 											"type": "Compose",
-											"inputs": "@concat(rand(1,100),'_',replace(items('For_each')?['id'],'-','|'))"
+                                            "inputs": "@concat(rand(1,100),'_',replace(items('For_each')?['id'],'-','|'))",
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs"
+                                                    ]
+                                                }
+                                            }
 										},
 										"For_each_2": {
 											"foreach": "@body('Parse_Request_JSON')?['destination']",
@@ -612,6 +705,14 @@
 														},
 														"retryPolicy": {
 															"type": "none"
+                                                        }
+                                                    },
+                                                    "runtimeConfiguration": {
+                                                        "secureData": {
+                                                            "properties": [
+                                                                "inputs",
+                                                                "outputs"
+                                                            ]
 														}
 													}
 												}
@@ -657,6 +758,14 @@
 												},
 												"method": "PUT",
 												"uri": "@{concat('https://management.azure.com/subscriptions/', variables('configurations')?['SubscriptionId'], '/resourceGroups/', variables('configurations')?['ResourceGroup'], '/providers/Microsoft.DataFactory/factories/', variables('configurations')?['FactoryName'], '/datasets/Input',outputs('Compose_Input_Name'), '?api-version=', variables('configurations')?['api-version'])}"
+                                            },
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs",
+                                                        "outputs"
+                                                    ]
+                                                }
 											}
 										}
 									},
@@ -682,6 +791,14 @@
 										},
 										"method": "POST",
 										"uri": "@{concat('https://login.microsoftonline.com/', variables('configurations')?['AadTenantDomain'], '/oauth2/token')}"
+                                    },
+                                    "runtimeConfiguration": {
+                                        "secureData": {
+                                            "properties": [
+                                                "inputs",
+                                                "outputs"
+                                            ]
+                                        }
 									}
 								},
 								"Set_variable_UnrelatedFilesArray": {
@@ -730,6 +847,14 @@
 															"name": "@item()?['name']",
 															"path": "@item()?['path']"
 														}
+                                                    },
+                                                    "runtimeConfiguration": {
+                                                        "secureData": {
+                                                            "properties": [
+                                                                "inputs",
+                                                                "outputs"
+                                                            ]
+                                                        }
 													}
 												},
 												"Set_variable_5": {
@@ -764,7 +889,14 @@
 														]
 													},
 													"type": "Compose",
-													"inputs": "@true"
+                                                    "inputs": "@true",
+                                                    "runtimeConfiguration": {
+                                                        "secureData": {
+                                                            "properties": [
+                                                                "inputs"
+                                                            ]
+                                                        }
+                                                    }
 												},
 												"Select": {
 													"runAfter": {
@@ -781,6 +913,14 @@
 															"id": "@item()?['id']",
 															"name": "@item()?['name']",
 															"path": "@join(take(split(item()?['path'],'/'),sub(length(split(item()?['path'],'/')),1)),'/')"
+                                                        }
+                                                    },
+                                                    "runtimeConfiguration": {
+                                                        "secureData": {
+                                                            "properties": [
+                                                                "inputs",
+                                                                "outputs"
+                                                            ]
 														}
 													}
 												},
@@ -824,6 +964,14 @@
 															"id": "@item()?['id']",
 															"name": "@item()?['name']",
 															"path": "@item()?['path']"
+                                                        }
+                                                    },
+                                                    "runtimeConfiguration": {
+                                                        "secureData": {
+                                                            "properties": [
+                                                                "inputs",
+                                                                "outputs"
+                                                            ]
 														}
 													}
 												},

@@ -32,6 +32,14 @@
                             "inputs": {
                                 "method": "POST",
                                 "schema": {}
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
                             }
                         }
                     },
@@ -69,6 +77,13 @@
                                                     "Message": "Email send successfully"
                                                 },
                                                 "statusCode": 200
+                                            },
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs"
+                                                    ]
+                                                }
                                             }
                                         },
                                         "Send_email": {
@@ -86,7 +101,18 @@
                                                     }
                                                 },
                                                 "method": "post",
-                                                "path": "/v2/Mail"
+                                                "path": "/v2/Mail",
+                                                "retryPolicy": {
+                                                    "type": "none"
+                                                }
+                                            },
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs",
+                                                        "outputs"
+                                                    ]
+                                                }
                                             }
                                         }
                                     },
@@ -106,6 +132,13 @@
                                                         "Message": "Recipiente mail address not found"
                                                     },
                                                     "statusCode": 412
+                                                },
+                                                "runtimeConfiguration": {
+                                                    "secureData": {
+                                                        "properties": [
+                                                            "inputs"
+                                                        ]
+                                                    }
                                                 }
                                             }
                                         }
@@ -140,6 +173,13 @@
                                                 }
                                             },
                                             "type": "object"
+                                        }
+                                    },
+                                    "runtimeConfiguration": {
+                                        "secureData": {
+                                            "properties": [
+                                                "inputs"
+                                            ]
                                         }
                                     }
                                 }

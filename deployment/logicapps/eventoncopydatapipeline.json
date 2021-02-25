@@ -70,9 +70,17 @@
 						"manual": {
 							"type": "Request",
 							"kind": "Http",
-							"inputs": {}
-					}
-				},
+							"inputs": {},
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
+                            }
+						}
+					},
 				"actions": {
 					"Compose_CopyStatusId": {
 						"runAfter": {
@@ -81,7 +89,14 @@
 							]
 						},
 						"type": "Compose",
-						"inputs": "@split(outputs('Compose_UniqueId'),'_')[0]"
+						"inputs": "@split(outputs('Compose_UniqueId'),'_')[0]",
+						"runtimeConfiguration": {
+							"secureData": {
+								"properties": [
+									"inputs"
+								]
+							}
+						}
 					},
 					"Compose_Input_Name": {
 						"runAfter": {
@@ -90,7 +105,14 @@
 							]
 						},
 						"type": "Compose",
-						"inputs": "@body('HTTP_Get_Pipeline')?['properties']?['activities'][0]?['inputs'][0]?['referenceName']"
+						"inputs": "@body('HTTP_Get_Pipeline')?['properties']?['activities'][0]?['inputs'][0]?['referenceName']",
+						"runtimeConfiguration": {
+							"secureData": {
+								"properties": [
+									"inputs"
+								]
+							}
+						}
 					},
 					"Compose_Source_Id": {
 						"runAfter": {
@@ -99,7 +121,14 @@
 							]
 						},
 						"type": "Compose",
-						"inputs": "@replace(last(split(outputs('Compose_Input_Name'),'_')),'|','-')"
+						"inputs": "@replace(last(split(outputs('Compose_Input_Name'),'_')),'|','-')",
+						"runtimeConfiguration": {
+							"secureData": {
+								"properties": [
+									"inputs"
+								]
+							}
+						}
 					},
 					"Compose_UniqueId": {
 						"runAfter": {
@@ -108,12 +137,26 @@
 							]
 						},
 						"type": "Compose",
-						"inputs": "@replace(body('Parse_JSON')?['pipelineName'],'pipe','')"
+						"inputs": "@replace(body('Parse_JSON')?['pipelineName'],'pipe','')",
+						"runtimeConfiguration": {
+							"secureData": {
+								"properties": [
+									"inputs"
+								]
+							}
+						}
 					},
 					"Compose_Valid_Body_To_Parse": {
 						"runAfter": {},
 						"type": "Compose",
-						"inputs": "@replace(string(triggerBody()),'\\','/')"
+						"inputs": "@replace(string(triggerBody()),'\\','/')",
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs"
+                                    ]
+                                }
+							}
 					},
 					"Constants": {
 						"runAfter": {
@@ -154,6 +197,13 @@
 								},
 								"type": "object"
 							}
+						},
+						"runtimeConfiguration": {
+							"secureData": {
+								"properties": [
+									"inputs"
+								]
+							}
 						}
 					},
 					"Create_error_log_record_for_after_run": {
@@ -178,7 +228,15 @@
 							},
 							"method": "post",
 							"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
-						}
+						},
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
+                            }
 					},
 					"HTTP_Get_Access_Token": {
 						"runAfter": {
@@ -195,7 +253,15 @@
 							},
 							"method": "POST",
 							"uri": "@{concat('https://login.microsoftonline.com/', variables('configurations')?['AadTenantDomain'], '/oauth2/token')}"
+						},
+						"runtimeConfiguration": {
+							"secureData": {
+								"properties": [
+									"inputs",
+									"outputs"
+								]
 						}
+					}
 					},
 					"HTTP_Get_Pipeline": {
 						"runAfter": {
@@ -212,7 +278,15 @@
 							},
 							"method": "GET",
 							"uri": "@{concat('https://management.azure.com/subscriptions/', variables('configurations')?['SubscriptionId'], '/resourceGroups/', variables('configurations')?['ResourceGroup'], '/providers/Microsoft.DataFactory/factories/', variables('configurations')?['FactoryName'], '/pipelines/pipe', outputs('Compose_UniqueId'), '?api-version=', variables('configurations')?['api-version'])}"
+						},
+						"runtimeConfiguration": {
+							"secureData": {
+								"properties": [
+									"inputs",
+									"outputs"
+								]
 						}
+					}
 					},
 					"Initialize_variable_SourceRecordId": {
 						"runAfter": {
@@ -261,8 +335,16 @@
 									"id": "[parameters('workflows_Logic_ReadAzureConfiguration')]"
 								}
 							}
-						}
-					},
+						},
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
+							}
+						},
 					"Parse_JSON": {
 						"runAfter": {
 							"Compose_Valid_Body_To_Parse": [
@@ -289,7 +371,14 @@
 								},
 								"type": "object"
 							}
-						}
+						},
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs"
+                                    ]
+                                }
+                            }
 					},
 					"Scope_cds_update": {
 						"actions": {
@@ -322,6 +411,14 @@
 													},
 													"method": "post",
 													"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
+												},
+												"runtimeConfiguration": {
+													"secureData": {
+														"properties": [
+															"inputs",
+															"outputs"
+														]
+													}
 												}
 											},
 											"Update_a_record_in_CopyStatusId_status_failed": {
@@ -339,9 +436,17 @@
 													},
 													"method": "patch",
 													"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_copystatuses'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_CopyStatusId'),')))}')]"
+												},
+												"runtimeConfiguration": {
+													"secureData": {
+														"properties": [
+															"inputs",
+															"outputs"
+														]
 												}
 											}
 										}
+									}
 									},
 									"Case_-_Succeeded": {
 										"case": "Succeeded",
@@ -353,7 +458,14 @@
 													]
 												},
 												"type": "Compose",
-												"inputs": "<p> Operation: Copy, </br>\nStatus: Succeeded, </br>\nSource Name: @{body('Update_a_record_in_CopyStatusId_status_succeeded')?['media_name']},  </br>\nSource Id: @{outputs('Compose_Source_Id')},   </br>\nDestination Name: @{body('Update_a_record_in_CopyStatusId_status_succeeded')?['media_destinationname']},   </br>\nRun Start: @{body('Update_a_record_in_CopyStatusId_status_succeeded')?['media_copystarttime']}, </br>\nRun End: @{body('Update_a_record_in_CopyStatusId_status_succeeded')?['media_copyendtime']}, </br>\nDuration:  @{body('Update_a_record_in_CopyStatusId_status_succeeded')?['media_copyduration']}\n</p>"
+												"inputs": "<p> Operation: Copy, </br>\nStatus: Succeeded, </br>\nSource Name: @{body('Update_a_record_in_CopyStatusId_status_succeeded')?['media_name']},  </br>\nSource Id: @{outputs('Compose_Source_Id')},   </br>\nDestination Name: @{body('Update_a_record_in_CopyStatusId_status_succeeded')?['media_destinationname']},   </br>\nRun Start: @{body('Update_a_record_in_CopyStatusId_status_succeeded')?['media_copystarttime']}, </br>\nRun End: @{body('Update_a_record_in_CopyStatusId_status_succeeded')?['media_copyendtime']}, </br>\nDuration:  @{body('Update_a_record_in_CopyStatusId_status_succeeded')?['media_copyduration']}\n</p>",
+												"runtimeConfiguration": {
+													"secureData": {
+														"properties": [
+															"inputs"
+														]
+													}
+												}
 											},
 											"Compose_subject": {
 												"runAfter": {
@@ -362,7 +474,14 @@
 													]
 												},
 												"type": "Compose",
-												"inputs": "Copy completed successfully for record: @{body('Update_a_record_in_CopyStatusId_status_succeeded')?['media_name']}"
+												"inputs": "Copy completed successfully for record: @{body('Update_a_record_in_CopyStatusId_status_succeeded')?['media_name']}",
+												"runtimeConfiguration": {
+													"secureData": {
+														"properties": [
+															"inputs"
+														]
+													}
+												}
 											},
 											"Get_destination_record": {
 												"runAfter": {
@@ -379,6 +498,14 @@
 													},
 													"method": "get",
 													"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(if(equals(body(',durin.wrapInQuote('Update_a_record_in_CopyStatusId_status_succeeded'),')?[',durin.wrapInQuote('media_destinantiontype'),'],body(',durin.wrapInQuote('Constants'),')?[',durin.wrapInQuote('vendorDropdownValue'),']),',durin.wrapInQuote('media_vendors'),',',durin.wrapInQuote('media_nexises'),')))}/items/@{encodeURIComponent(encodeURIComponent(body(',durin.wrapInQuote('Update_a_record_in_CopyStatusId_status_succeeded'),')?[',durin.wrapInQuote('media_destinationid'),']))}')]"
+												},
+												"runtimeConfiguration": {
+													"secureData": {
+														"properties": [
+															"inputs",
+															"outputs"
+														]
+													}
 												}
 											},
 											"HTTP_Delete_Pipeline": {
@@ -396,6 +523,14 @@
 													},
 													"method": "DELETE",
 													"uri": "@{concat('https://management.azure.com/subscriptions/', variables('configurations')?['SubscriptionId'], '/resourceGroups/', variables('configurations')?['ResourceGroup'], '/providers/Microsoft.DataFactory/factories/', variables('configurations')?['FactoryName'], '/pipelines/', body('Parse_JSON')?['pipelineName'], '?api-version=', variables('configurations')?['api-version'])}"
+												},
+												"runtimeConfiguration": {
+													"secureData": {
+														"properties": [
+															"inputs",
+															"outputs"
+														]
+													}
 												}
 											},
 											"HTTP_Delete_input_dataset": {
@@ -413,6 +548,14 @@
 													},
 													"method": "DELETE",
 													"uri": "@{concat('https://management.azure.com/subscriptions/', variables('configurations')?['SubscriptionId'], '/resourceGroups/', variables('configurations')?['ResourceGroup'], '/providers/Microsoft.DataFactory/factories/', variables('configurations')?['FactoryName'], '/datasets/','Input',outputs('Compose_Input_Name') ,'?api-version=', variables('configurations')?['api-version'])}"
+												},
+												"runtimeConfiguration": {
+													"secureData": {
+														"properties": [
+															"inputs",
+															"outputs"
+														]
+													}
 												}
 											},
 											"HTTP_delete_output_dataset": {
@@ -430,6 +573,14 @@
 													},
 													"method": "DELETE",
 													"uri": "@{concat('https://management.azure.com/subscriptions/', variables('configurations')?['SubscriptionId'], '/resourceGroups/', variables('configurations')?['ResourceGroup'], '/providers/Microsoft.DataFactory/factories/', variables('configurations')?['FactoryName'], '/datasets/output',outputs('Compose_UniqueId'),'?api-version=', variables('configurations')?['api-version'])}"
+												},
+												"runtimeConfiguration": {
+													"secureData": {
+														"properties": [
+															"inputs",
+															"outputs"
+														]
+													}
 												}
 											},
 											"Logic-SendEmail_2": {
@@ -451,6 +602,14 @@
 															"id": "[parameters('workflows_Logic_SendEmail')]"
 														}
 													}
+												},
+												"runtimeConfiguration": {
+													"secureData": {
+														"properties": [
+															"inputs",
+															"outputs"
+														]
+													}
 												}
 											},
 											"Update_a_record_in_CopyStatusId_status_succeeded": {
@@ -468,6 +627,14 @@
 													},
 													"method": "patch",
 													"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_copystatuses'),'))}/items/@{encodeURIComponent(encodeURIComponent(outputs(',durin.wrapInQuote('Compose_CopyStatusId'),')))}')]"
+												},
+												"runtimeConfiguration": {
+													"secureData": {
+														"properties": [
+															"inputs",
+															"outputs"
+														]
+													}
 												}
 											}
 										}

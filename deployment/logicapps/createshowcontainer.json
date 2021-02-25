@@ -76,6 +76,14 @@
                 "path": "[concat('/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetcontainers'),'))}/onnewitemswebhook')]",
                 "queries": {
                   "scope": "Organization"
+                                }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
                 }
               }
             }
@@ -87,6 +95,13 @@
               "inputs": {
                 "name": "@{triggerBody()?['media_name']}",
                 "type": "show"
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs"
+                                    ]
+                                }
               }
             },
             "Create_Show_Container": {
@@ -100,6 +115,14 @@
                 "body": "@outputs('Compose')",
                 "function": {
                   "id": "[concat(parameters('sites_MediaLakeFunction'), '/functions/CreateShowContainer')]"
+                                }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
                 }
               }
             },
@@ -123,6 +146,14 @@
                 },
                 "method": "post",
                 "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
               }
             },
             "Response_failure": {
@@ -138,6 +169,13 @@
                   "Message": "Failed to create Show container"
                 },
                 "statusCode": 500
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs"
+                                    ]
+                                }
               }
             },
             "Response_success": {
@@ -153,6 +191,13 @@
                   "Message": "Show container created successfully"
                 },
                 "statusCode": 200
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs"
+                                    ]
+                                }
               }
             },
             "Update_a_record": {
@@ -173,6 +218,14 @@
                 },
                 "method": "patch",
                 "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetcontainers'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('media_assetcontainerid'),']))}')]"
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
               }
             }
           },

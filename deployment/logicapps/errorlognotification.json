@@ -77,7 +77,15 @@
 								"queries": {
 									"scope": "Organization"
 								}
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
 							}
+						}
 						}
 					},
 					"actions": {
