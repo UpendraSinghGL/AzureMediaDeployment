@@ -65,10 +65,21 @@
                         </labels>
                         <control id="Show Nexis Mapping" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                           <parameters>
-                            <TargetEntityType>media_shownexismapping</TargetEntityType>
                             <ViewId>{AEC05693-8823-4826-AE6A-EB3B13B49701}</ViewId>
-                            <ViewIds>{AEC05693-8823-4826-AE6A-EB3B13B49701}</ViewIds>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>media_ShowNexisMapping_Nexis_media_Nexis</RelationshipName>
+                            <TargetEntityType>media_shownexismapping</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
                             <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{AEC05693-8823-4826-AE6A-EB3B13B49701}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
                           </parameters>
                         </control>
                       </cell>

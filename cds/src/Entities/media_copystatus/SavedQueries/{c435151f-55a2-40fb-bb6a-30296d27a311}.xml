@@ -12,13 +12,13 @@
         <row name="result" id="media_copystatusid">
           <cell name="media_destinantiontype" width="100" />
           <cell name="media_name" width="222" />
+          <cell name="media_sourcetype" width="100" />
           <cell name="media_show" width="100" />
+          <cell name="media_status" width="100" />
+          <cell name="media_copyduration" width="100" />
+          <cell name="media_destinationname" width="100" />
           <cell name="media_submittedby" width="114" />
           <cell name="createdon" width="125" />
-          <cell name="media_sourcerecord" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
-          <cell name="media_status" width="100" />
-          <cell name="media_destinationname" width="100" />
-          <cell name="media_copyduration" width="100" />
           <cell name="media_copystarttime" width="100" />
           <cell name="media_copyendtime" width="100" />
         </row>
@@ -34,7 +34,6 @@
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
           <attribute name="media_destinantiontype" />
-          <attribute name="media_sourcerecord" />
           <attribute name="media_status" />
           <attribute name="media_destinationname" />
           <attribute name="media_copystarttime" />
@@ -44,6 +43,7 @@
           <order attribute="createdon" descending="true" />
           <attribute name="media_show" />
           <attribute name="media_submittedby" />
+          <attribute name="media_sourcetype" />
         </entity>
       </fetch>
     </fetchxml>

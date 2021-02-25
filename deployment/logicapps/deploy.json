@@ -20,12 +20,6 @@
         "description": "description"
       }
     },
-    "eventHubName": {
-      "type": "string",
-      "metadata": {
-        "description": "description"
-      }
-    },
     "dataFactoryName": {
       "type": "string",
       "metadata": {
@@ -307,19 +301,18 @@
       ]
     },
     {
-      "name": "logicapp-geteventonpipelinerun-deployment",
+      "name": "logicapp-eventonpipelinerunhttp-deployment",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2019-10-01",
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/geteventonpipelinerun.json')]",
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/eventonpipelinerunhttp.json')]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-          "eventHubName": { "value": "[parameters('eventHubName')]" },
-          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
+          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
         }
       },
       "dependsOn": [

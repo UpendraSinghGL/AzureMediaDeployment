@@ -33,6 +33,7 @@
   <OrganizationSettings />
   <optionsets />
   <InteractionCentricDashboards />
+  <Dashboards/>
   <WebResources />
   <CustomControls />
   <SolutionPluginAssemblies />

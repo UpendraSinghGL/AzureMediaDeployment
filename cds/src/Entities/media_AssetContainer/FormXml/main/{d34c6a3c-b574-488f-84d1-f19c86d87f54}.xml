@@ -54,30 +54,11 @@
                         </labels>
                         <control id="media_studio" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="media_studio" disabled="false" />
                       </cell>
-                      <cell id="{6c7be667-ee0d-4d32-a56b-cb8b95a2b111}" locklevel="0">
+                      <cell id="{c2b94399-643d-4d36-86ed-5808d14cb8a7}" locklevel="0">
                         <labels>
-                          <label description="Shoot Day Format" languagecode="1033" />
+                          <label description="Notification Email" languagecode="1033" />
                         </labels>
-                        <control id="media_shootdayformat" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="media_shootdayformat" disabled="false" />
-                      </cell>
-                      <cell showlabel="false" locklevel="0" id="{5d8c22d7-ce5f-49ef-b7e2-45c3c5e343c3}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{c943f7b4-eb57-47df-ae7c-c495bc8ea314}" locklevel="0">
-                        <labels>
-                          <label description="Studio" languagecode="1033" />
-                        </labels>
-                        <control id="media_studio" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="media_studio" disabled="false" />
-                      </cell>
-                      <cell id="{a8206008-cb7a-4349-96fd-5de3d0184b35}" locklevel="0">
-                        <labels>
-                          <label description="Container Path" languagecode="1033" />
-                        </labels>
-                        <control id="media_containerpath" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="media_containerpath" disabled="true" />
+                        <control id="media_notificationemail" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="media_notificationemail" disabled="false" />
                       </cell>
                       <cell showlabel="false" locklevel="0" id="{5d8c22d7-ce5f-49ef-b7e2-45c3c5e343c3}">
                         <labels>
@@ -92,10 +73,11 @@
                         </labels>
                         <control id="statecode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
                       </cell>
-                      <cell locklevel="0" id="{828421aa-f00f-4c11-9619-446a59f61f33}">
+                      <cell id="{6c7be667-ee0d-4d32-a56b-cb8b95a2b111}" locklevel="0">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Shoot Day Format" languagecode="1033" />
                         </labels>
+                        <control id="media_shootdayformat" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="media_shootdayformat" disabled="false" />
                       </cell>
                       <cell showlabel="false" locklevel="0" id="{73280747-be5a-4551-9871-06ab16e2ffd8}">
                         <labels>
@@ -110,12 +92,13 @@
                         </labels>
                         <control id="media_enablechecksumcheck" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="media_enablechecksumcheck" disabled="false" />
                       </cell>
-                      <cell locklevel="0" id="{8bc5200a-c562-4fde-9d87-2c9d4dd80221}">
+                      <cell id="{a8206008-cb7a-4349-96fd-5de3d0184b35}" locklevel="0">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Container Path" languagecode="1033" />
                         </labels>
+                        <control id="media_containerpath" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="media_containerpath" disabled="true" />
                       </cell>
-                      <cell showlabel="false" locklevel="0" id="{6011a9c7-7bfa-4c8a-9c25-6242ce311b93}">
+                      <cell id="{2c881a0a-3894-31b9-03b6-1665a5d7c1a8}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
