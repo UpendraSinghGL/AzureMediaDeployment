@@ -350,7 +350,6 @@
         },
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-          "blobStorageAccount": { "value": "[parameters('storageName')]" },
           "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       }
@@ -382,8 +381,6 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
-          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       }
     }
