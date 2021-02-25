@@ -20,29 +20,7 @@
             if (selectedUser && selectedUser.length > 0) {
                 formContext.getAttribute('media_name').setValue(selectedUser[0].name);
             }
-            if (formContext.ui.getFormType() == 1) {
-                formContext.getAttribute('media_token').setValue(Math.random().toString(36).substr(2));
-            }
         }
 
-    }
-
-    Utility.RenewToken = function (context) {
-        context.getAttribute('media_token').setValue(Math.random().toString(36).substr(2));
-        context.data.refresh(true).then(()=>{
-            Xrm.App.addGlobalNotification({
-                type: 1,
-                level: 1,
-                message: "A new token renewed. "
-            }).then(
-                function success(result) {
-
-                },
-                function (error) {
-                    console.log(error.message);
-                    // handle error conditions
-                }
-            );
-        });
     }
 }(window.DurinMedia = window.DurinMedia || {}))

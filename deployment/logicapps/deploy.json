@@ -354,6 +354,38 @@
           "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       }
+    },
+    {
+      "name": "logicapp-generateotp-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/generateotp.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
+        }
+      }
+    },
+    {
+      "name": "logicapp-verifyotp-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/verifyotp.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
+        }
+      }
     }
   ],
   "outputs": {

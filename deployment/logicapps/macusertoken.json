@@ -8,12 +8,6 @@
                 "description": "description"
             }
         },
-        "blobStorageAccount": {
-            "type": "string",
-            "metadata": {
-                "description": "description"
-            }
-        },
         "crmIdentifier": {
             "type": "string",
             "metadata": {
@@ -105,26 +99,6 @@
                                 }
                             },
                             "type": "ApiConnectionWebhook"
-                        },
-                        "When_a_record_is_updated": {
-                            "inputs": {
-                                "body": {
-                                    "AttributeFilters": [
-                                        "media_token"
-                                    ],
-                                    "NotificationUrl": "@{listCallbackUrl()}"
-                                },
-                                "host": {
-                                    "connection": {
-                                        "name": "@parameters('$connections')['commondataservice']['connectionId']"
-                                    }
-                                },
-                                "path": "[concat('/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_macusers'),'))}/onupdateditemswebhook')]",
-                                "queries": {
-                                    "scope": "Organization"
-                                }
-                            },
-                            "type": "ApiConnectionWebhook"
                         }
                     },
                     "actions": {
@@ -140,17 +114,15 @@
                                         "method": "get",
                                         "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('systemusers'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('_media_user_value'),']))}')]"
                                     },
-                                    "runAfter": {
-                                    },
+                                    "runAfter": {},
                                     "type": "ApiConnection"
                                 },
                                 "Insert_or_Merge_Entity": {
                                     "inputs": {
                                         "body": {
+                                            "azureUserId": "@{body('Get_User')?['azureactivedirectoryobjectid']}",
                                             "cdsRecordId": "@{triggerBody()?['media_macuserid']}",
-                                            "token": "@{triggerBody()?['media_token']}",
-                                            "user": "@{triggerBody()?['_media_user_value']}",
-                                            "azureUserId": "@{body('Get_User')?['azureactivedirectoryobjectid']}"
+                                            "userId": "@{triggerBody()?['_media_user_value']}"
                                         },
                                         "host": {
                                             "connection": {
@@ -158,7 +130,7 @@
                                             }
                                         },
                                         "method": "patch",
-                                        "path": "/Tables/@{encodeURIComponent('MacAccessToken')}/entities(PartitionKey='@{encodeURIComponent(triggerBody()?['_media_user_value'])}',RowKey='@{encodeURIComponent(triggerBody()?['media_token'])}')"
+                                        "path": "/Tables/@{encodeURIComponent('MacAccessToken')}/entities(PartitionKey='@{encodeURIComponent(body('Get_User')?['azureactivedirectoryobjectid'])}',RowKey='@{encodeURIComponent(body('Get_User')?['azureactivedirectoryobjectid'])}')"
                                     },
                                     "runAfter": {
                                         "Get_User": [
@@ -170,7 +142,7 @@
                                 "Send_an_email_(V2)": {
                                     "inputs": {
                                         "body": {
-                                            "Body": "<p>Dear user,<br>\n<br>\nYou have been given access to Mac Client application. <strong>Use this token \"</strong><strong>@{triggerBody()?['media_token']}</strong><strong>\" in the Mac Client App to connect</strong>.<br>\n<br>\nPlease contact your organization administrator if you face any problem.<br>\n<br>\nThanks &amp; Regards,<br>\nAdmin</p>",
+                                            "Body": "<p>Dear user,<br>\n<br>\nYou have been given access to Mac Client application.<br>\n<br>\nPlease contact your organization administrator if you face any problem.<br>\n<br>\nThanks &amp; Regards,<br>\nAdmin</p>",
                                             "Subject": "Mac Client Access Granted !!!",
                                             "To": "@body('Get_User')?['internalemailaddress']"
                                         },
@@ -244,17 +216,15 @@
                                                     "method": "get",
                                                     "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('systemusers'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('_media_user_value'),']))}')]"
                                                 },
-                                                "runAfter": {
-                                                },
+                                                "runAfter": {},
                                                 "type": "ApiConnection"
                                             },
                                             "Insert_the_token_as_a_new_entity": {
                                                 "inputs": {
                                                     "body": {
+                                                        "azureUserId": "@{body('Get_record')?['azureactivedirectoryobjectid']}",
                                                         "cdsRecordId": "@{triggerBody()?['media_macuserid']}",
-                                                        "token": "@{triggerBody()?['media_token']}",
-                                                        "user": "@{triggerBody()?['_media_user_value']}",
-                                                        "azureUserId": "@{body('Get_record')?['azureactivedirectoryobjectid']}"
+                                                        "userId": "@{triggerBody()?['_media_user_value']}"
                                                     },
                                                     "host": {
                                                         "connection": {
@@ -262,32 +232,10 @@
                                                         }
                                                     },
                                                     "method": "patch",
-                                                    "path": "/Tables/@{encodeURIComponent('MacAccessToken')}/entities(PartitionKey='@{encodeURIComponent(triggerBody()?['_media_user_value'])}',RowKey='@{encodeURIComponent(triggerBody()?['media_token'])}')"
+                                                    "path": "/Tables/@{encodeURIComponent('MacAccessToken')}/entities(PartitionKey='@{encodeURIComponent(body('Get_record')?['azureactivedirectoryobjectid'])}',RowKey='@{encodeURIComponent(body('Get_record')?['azureactivedirectoryobjectid'])}')"
                                                 },
                                                 "runAfter": {
                                                     "Get_record": [
-                                                        "Succeeded"
-                                                    ]
-                                                },
-                                                "type": "ApiConnection"
-                                            },
-                                            "Send_an_email_(V2)_2": {
-                                                "inputs": {
-                                                    "body": {
-                                                        "Body": "<p>Dear @{body('Get_record')?['firstname']} @{body('Get_record')?['lastname']} ,<br>\n<br>\nYour Access token has been renewed. <strong>Please use this new token </strong><strong>@{triggerBody()?['media_token']}</strong><strong> for mac client application access.</strong><br>\n<br>\nThanks &amp; Regards,<br>\nAdmin</p>",
-                                                        "Subject": "Mac Client Access Token Renewed !!!",
-                                                        "To": "@body('Get_record')?['internalemailaddress']"
-                                                    },
-                                                    "host": {
-                                                        "connection": {
-                                                            "name": "@parameters('$connections')['office365']['connectionId']"
-                                                        }
-                                                    },
-                                                    "method": "post",
-                                                    "path": "/v2/Mail"
-                                                },
-                                                "runAfter": {
-                                                    "Insert_the_token_as_a_new_entity": [
                                                         "Succeeded"
                                                     ]
                                                 },

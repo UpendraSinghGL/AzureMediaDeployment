@@ -11,7 +11,7 @@
     "variables": {},
     "resources": [
         {
-            "name": "Logic-ValidateToken",
+            "name": "Logic-VerifyOTP",
             "type": "Microsoft.Logic/workflows",
             "apiVersion": "2017-07-01",
             "location": "[resourceGroup().location]",
@@ -30,7 +30,7 @@
                             "inputs": {
                                 "schema": {
                                     "properties": {
-                                        "token": {
+                                        "otp": {
                                             "type": "string"
                                         },
                                         "userId": {
@@ -47,24 +47,47 @@
                     "actions": {
                         "Condition": {
                             "actions": {
+                                "Insert_or_Merge_Entity": {
+                                    "inputs": {
+                                        "body": {
+                                            "otp": "",
+                                            "token": "@{variables('token')}"
+                                        },
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['azuretables']['connectionId']"
+                                            }
+                                        },
+                                        "method": "patch",
+                                        "path": "/Tables/@{encodeURIComponent('MacAccessToken')}/entities(PartitionKey='@{encodeURIComponent(triggerBody()?['userId'])}',RowKey='@{encodeURIComponent(triggerBody()?['userId'])}')"
+                                    },
+                                    "runAfter": {},
+                                    "type": "ApiConnection"
+                                },
                                 "Response": {
                                     "inputs": {
-                                        "body": "@first(body('Get_entities')?['value'])['userId']",
+                                        "body": {
+                                            "token": "@{variables('token')}"
+                                        },
                                         "statusCode": 200
                                     },
                                     "kind": "Http",
-                                    "runAfter": {},
+                                    "runAfter": {
+                                        "Insert_or_Merge_Entity": [
+                                            "Succeeded"
+                                        ]
+                                    },
                                     "type": "Response"
                                 }
                             },
                             "else": {
                                 "actions": {
-                                    "In_case_of_fail": {
+                                    "Response_2": {
                                         "inputs": {
                                             "body": {
-                                                "message": "Either invalid token or expired token supplied. Please contact the administrator for valid token."
+                                                "message": "Either wrong or expired OTP entered."
                                             },
-                                            "statusCode": 401
+                                            "statusCode": 404
                                         },
                                         "kind": "Http",
                                         "runAfter": {},
@@ -75,23 +98,27 @@
                             "expression": {
                                 "and": [
                                     {
-                                        "not": {
-                                            "equals": [
-                                                "@empty(body('Get_entities')?['value'])",
-                                                true
-                                            ]
-                                        }
+                                        "equals": [
+                                            "@body('Get_entity')?['otp']",
+                                            "@triggerBody()?['otp']"
+                                        ]
+                                    },
+                                    {
+                                        "equals": [
+                                            "@empty(triggerBody()?['otp'])",
+                                            false
+                                        ]
                                     }
                                 ]
                             },
                             "runAfter": {
-                                "Get_entities": [
+                                "Get_entity": [
                                     "Succeeded"
                                 ]
                             },
                             "type": "If"
                         },
-                        "Get_entities": {
+                        "Get_entity": {
                             "inputs": {
                                 "host": {
                                     "connection": {
@@ -99,13 +126,42 @@
                                     }
                                 },
                                 "method": "get",
-                                "path": "/Tables/@{encodeURIComponent('MacAccessToken')}/entities",
-                                "queries": {
-                                    "$filter": "RowKey eq '@{triggerBody()?['userId']}' and token eq '@{triggerBody()?['token']}'"
-                                }
+                                "path": "/Tables/@{encodeURIComponent('MacAccessToken')}/entities(PartitionKey='@{encodeURIComponent(triggerBody()?['userId'])}',RowKey='@{encodeURIComponent(triggerBody()?['userId'])}')"
+                            },
+                            "runAfter": {
+                                "Initialize_variable": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "ApiConnection"
+                        },
+                        "Initialize_variable": {
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "token",
+                                        "type": "string",
+                                        "value": "@{guid()}"
+                                    }
+                                ]
                             },
                             "runAfter": {},
-                            "type": "ApiConnection"
+                            "type": "InitializeVariable"
+                        },
+                        "Response_3": {
+                            "inputs": {
+                                "body": {
+                                    "message": "You have not been granted to use Mac Client. Please contact Administrator."
+                                },
+                                "statusCode": 401
+                            },
+                            "kind": "Http",
+                            "runAfter": {
+                                "Get_entity": [
+                                    "Failed"
+                                ]
+                            },
+                            "type": "Response"
                         }
                     },
                     "outputs": {
