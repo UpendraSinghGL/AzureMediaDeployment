@@ -96,14 +96,14 @@
 								]
 							},
 							"type": "Compose",
-                            "inputs": "@triggerBody()?['media_description']",
-                            "runtimeConfiguration": {
-                                "secureData": {
-                                    "properties": [
-                                        "inputs"
-                                    ]
-                                }
-                            }
+							"inputs": "@triggerBody()?['media_description']",
+							"runtimeConfiguration": {
+								"secureData": {
+									"properties": [
+										"inputs"
+									]
+								}
+							}
 						},
 						"Compose_ReferredRecordType_": {
 							"runAfter": {
@@ -111,15 +111,15 @@
 									"Succeeded"
 								]
 							},
-                            "type": "Compose",
-                            "inputs": "@if(equals(triggerBody()?['_media_assetfiles_value'],null),if(equals(triggerBody()?['_media_asset_value'],null),'','asset'),'assetfiles')",
-                            "runtimeConfiguration": {
-                                "secureData": {
-                                    "properties": [
-                                        "inputs"
-                                    ]
-                                }
-                            }
+							"type": "Compose",
+							"inputs": "@if(equals(triggerBody()?['_media_assetfiles_value'],null),if(equals(triggerBody()?['_media_asset_value'],null),'','asset'),'assetfiles')",
+							"runtimeConfiguration": {
+								"secureData": {
+									"properties": [
+										"inputs"
+									]
+								}
+							}
 						},
 						"Condition": {
 							"actions": {
@@ -134,14 +134,14 @@
 										},
 										"method": "get",
 										"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetcontainers'),'))}/items/@{encodeURIComponent(encodeURIComponent(variables(',durin.wrapInQuote('ShowId'),')))}')]"
-                                    },
-                                    "runtimeConfiguration": {
-                                        "secureData": {
-                                            "properties": [
-                                                "inputs",
-                                                "outputs"
-                                            ]
-                                        }
+									},
+									"runtimeConfiguration": {
+										"secureData": {
+											"properties": [
+												"inputs",
+												"outputs"
+											]
+										}
 									}
 								},
 								"Set_variable_RecipientList": {
@@ -175,23 +175,23 @@
 							"type": "If"
 						},
 						"Filter_RecipientList": {
-                            "runAfter": {
-                                "Switch_on_ReferredRecordType": [
-                                    "Succeeded"
+							"runAfter": {
+								"Switch_on_ReferredRecordType": [
+									"Succeeded"
 								]
 							},
 							"type": "Query",
 							"inputs": {
 								"from": "@variables('RecipientsList')",
 								"where": "@equals(empty(item()), false)"
-                            },
-                            "runtimeConfiguration": {
-                                "secureData": {
-                                    "properties": [
-                                        "inputs",
-                                        "outputs"
-                                    ]
-                                }
+							},
+							"runtimeConfiguration": {
+								"secureData": {
+									"properties": [
+										"inputs",
+										"outputs"
+									]
+								}
 							}
 						},
 						"Initialize_variable_-_DefaultNotificationEmail": {
@@ -224,10 +224,10 @@
 							}
 						},
 						"Initialize_variable_Show_Id": {
-                            "runAfter": {
-                                "Initialize_variable_RecipientsList": [
-                                    "Succeeded"
-                                ]
+							"runAfter": {
+								"Initialize_variable_RecipientsList": [
+									"Succeeded"
+								]
 							},
 							"type": "InitializeVariable",
 							"inputs": {
@@ -255,20 +255,20 @@
 								"host": {
 									"triggerName": "manual",
 									"workflow": {
-										"id": "[parameters('workflows_Logic_SendEmail_externalid')]"
+										"id": "[parameters('workflows_Logic_SendEmail')]"
 									}
 								},
 								"retryPolicy": {
 									"type": "none"
 								}
-                            },
-                            "runtimeConfiguration": {
-                                "secureData": {
-                                    "properties": [
-                                        "inputs",
-                                        "outputs"
-                                    ]
-                                }
+							},
+							"runtimeConfiguration": {
+								"secureData": {
+									"properties": [
+										"inputs",
+										"outputs"
+									]
+								}
 							}
 						},
 						"Switch_on_ReferredRecordType": {
@@ -304,14 +304,14 @@
 												},
 												"method": "get",
 												"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('_media_asset_value'),']))}')]"
-                                            },
-                                            "runtimeConfiguration": {
-                                                "secureData": {
-                                                    "properties": [
-                                                        "inputs",
-                                                        "outputs"
-                                                    ]
-                                                }
+											},
+											"runtimeConfiguration": {
+												"secureData": {
+													"properties": [
+														"inputs",
+														"outputs"
+													]
+												}
 											}
 										},
 										"Set_variable_ShowId": {
@@ -348,15 +348,15 @@
 												},
 												"Compose_asset": {
 													"runAfter": {},
-                                                    "type": "Compose",
-                                                    "inputs": "@json(items('For_each')?['media_Asset'])",
-                                                    "runtimeConfiguration": {
-                                                        "secureData": {
-                                                            "properties": [
-                                                                "inputs"
-                                                            ]
-                                                        }
-                                                    }
+													"type": "Compose",
+													"inputs": "@json(items('For_each')?['media_Asset'])",
+													"runtimeConfiguration": {
+														"secureData": {
+															"properties": [
+																"inputs"
+															]
+														}
+													}
 												},
 												"Set_variable_ShowId_1": {
 													"runAfter": {
@@ -392,14 +392,14 @@
 												"queries": {
 													"$expand": "media_Asset($select=media_name,media_notificationemailaddress,_media_assetcontainer_value)",
 													"$filter": "media_assetfilesid eq '@{triggerBody()?['_media_assetfiles_value']}'"
-                                                }
-                                            },
-                                            "runtimeConfiguration": {
-                                                "secureData": {
-                                                    "properties": [
-                                                        "inputs",
-                                                        "outputs"
-                                                    ]
+												}
+											},
+											"runtimeConfiguration": {
+												"secureData": {
+													"properties": [
+														"inputs",
+														"outputs"
+													]
 												}
 											}
 										}
