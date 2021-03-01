@@ -12,7 +12,10 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CrmSdk.CoreTools" Version="9.1.0.68" GeneratePathProperty="true" />
 	</ItemGroup>
-	<Target Name="BuildProject">
+	<Target Name="Restore" BeforeTargets="BuildProject" Condition="!Exists('$(PkgMicrosoft_CrmSdk_CoreTools)')">
+		<MSBuild Targets="restore"/>
+	</Target>
+	<Target Name="BuildProject" DependsOnTargets="Restore">
 		<Exec Command="$(PkgMicrosoft_CrmSdk_CoreTools)\content\bin\coretools\SolutionPackager.exe /action:Pack /z: $(MSBuildThisFileDirectory)$(OutDir)\$(SolutionName).zip  /p:Both /localize  /f:$(MSBuildThisFileDirectory)$(ProjectDir)"/>
 	</Target>
 	<Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
