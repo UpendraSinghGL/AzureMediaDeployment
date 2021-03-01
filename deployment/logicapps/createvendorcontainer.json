@@ -76,6 +76,14 @@
 								"path": "[concat('/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_vendors'),'))}/onnewitemswebhook')]",
 								"queries": {
 									"scope": "Organization"
+                                }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
 								}
 							}
 						}
@@ -87,6 +95,13 @@
 							"inputs": {
 								"name": "@{triggerBody()?['media_name']}",
 								"type": "vendor"
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs"
+                                    ]
+                                }
 							}
 						},
 						"CreateShowContainer": {
@@ -100,6 +115,14 @@
 								"body": "@outputs('Compose')",
 								"function": {
 									"id": "[concat(parameters('sites_MediaLakeFunction'), '/functions/CreateShowContainer')]"
+                                }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
 								}
 							}
 						},
@@ -124,6 +147,14 @@
 								},
 								"method": "post",
 								"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
 							}
 						},
 						"Response_failure": {
@@ -139,6 +170,13 @@
 									"Message": "Failed to create Vendor container and Update folder Path"
 								},
 								"statusCode": 500
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs"
+                                    ]
+                                }
 							}
 						},
 						"Response_success": {
@@ -154,6 +192,13 @@
 									"Message": "Vendor created and path updated successfully"
 								},
 								"statusCode": 200
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs"
+                                    ]
+                                }
 							}
 						},
 						"Update_vendor_path": {
@@ -175,6 +220,14 @@
 								},
 								"method": "patch",
 								"path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_vendors'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('media_vendorid'),']))}')]"
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
 							}
 						}
 					},

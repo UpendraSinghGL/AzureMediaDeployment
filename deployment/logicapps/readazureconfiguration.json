@@ -66,6 +66,14 @@
 							"kind": "Http",
 							"inputs": {
 								"schema": {}
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
 							}
 						}
 					},

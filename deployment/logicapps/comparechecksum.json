@@ -77,6 +77,14 @@
                                     },
                                     "type": "object"
                                 }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
                             }
                         }
                     },
@@ -101,6 +109,14 @@
                                                 },
                                                 "method": "post",
                                                 "path":  "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
+                                            },
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs",
+                                                        "outputs"
+                                                    ]
+                                                }
                                             }
                                         },
                                         "Response_failure": {
@@ -116,6 +132,13 @@
                                                     "Message": "CheckSumVerification Failed"
                                                 },
                                                 "statusCode": 500
+                                            },
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs"
+                                                    ]
+                                                }
                                             }
                                         }
                                     },
@@ -136,6 +159,13 @@
                                                         "Message": "CheckSum Verified and status updated Successfully"
                                                     },
                                                     "statusCode": 200
+                                                },
+                                                "runtimeConfiguration": {
+                                                    "secureData": {
+                                                        "properties": [
+                                                            "inputs"
+                                                        ]
+                                                    }
                                                 }
                                             }
                                         }
@@ -187,6 +217,14 @@
                                                                         },
                                                                         "method": "patch",
                                                                         "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('RecordId'),']))}')]"
+                                                                    },
+                                                                    "runtimeConfiguration": {
+                                                                        "secureData": {
+                                                                            "properties": [
+                                                                                "inputs",
+                                                                                "outputs"
+                                                                            ]
+                                                                        }
                                                                     }
                                                                 }
                                                             },
@@ -224,6 +262,14 @@
                                                                             },
                                                                             "method": "patch",
                                                                             "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('RecordId'),']))}')]"
+                                                                        },
+                                                                        "runtimeConfiguration": {
+                                                                            "secureData": {
+                                                                                "properties": [
+                                                                                    "inputs",
+                                                                                    "outputs"
+                                                                                ]
+                                                                            }
                                                                         }
                                                                     }
                                                                 }
@@ -253,6 +299,14 @@
                                                                 },
                                                                 "function": {
                                                                     "id": "[concat(parameters('sites_MediaLakeFunction'), '/functions/GetCheckSumValue')]"
+                                                                }
+                                                            },
+                                                            "runtimeConfiguration": {
+                                                                "secureData": {
+                                                                    "properties": [
+                                                                        "inputs",
+                                                                        "outputs"
+                                                                    ]
                                                                 }
                                                             }
                                                         },
@@ -299,6 +353,14 @@
                                                                     },
                                                                     "method": "patch",
                                                                     "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('RecordId'),']))}')]"
+                                                                },
+                                                                "runtimeConfiguration": {
+                                                                    "secureData": {
+                                                                        "properties": [
+                                                                            "inputs",
+                                                                            "outputs"
+                                                                        ]
+                                                                    }
                                                                 }
                                                             }
                                                         }
@@ -341,6 +403,13 @@
                                                                 }
                                                             },
                                                             "type": "object"
+                                                        }
+                                                    },
+                                                    "runtimeConfiguration": {
+                                                        "secureData": {
+                                                            "properties": [
+                                                                "inputs"
+                                                            ]
                                                         }
                                                     }
                                                 }
@@ -388,6 +457,14 @@
                                                 "queries": {
                                                     "$expand": "media_Asset($select=media_name;$expand=media_AssetContainer($select=media_enablechecksumcheck))",
                                                     "$filter": "media_assetfilesid eq '@{triggerBody()?['RecordId']}'"
+                                                }
+                                            },
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs",
+                                                        "outputs"
+                                                    ]
                                                 }
                                             }
                                         },
