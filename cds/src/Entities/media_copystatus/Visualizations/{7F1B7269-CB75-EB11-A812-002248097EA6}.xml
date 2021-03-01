@@ -42,7 +42,7 @@
   </presentationdescription>
   <isdefault>0</isdefault>
   <LocalizedNames>
-    <LocalizedName description="Asset Copy to Nexis mount Status" languagecode="1033" />
+    <LocalizedName description="Asset Copy To Nexis Mount Status" languagecode="1033" />
   </LocalizedNames>
   <IsCustomizable>1</IsCustomizable>
   <IntroducedVersion>1.0.0.1</IntroducedVersion>

@@ -31,12 +31,15 @@
           <attribute name="media_destinantiontype" />
           <attribute name="createdon" />
           <attribute name="media_copystatusid" />
+          <filter type="and">
+            <condition attribute="media_destinantiontype" operator="eq" value="207940000" />
+          </filter>
         </entity>
       </fetch>
     </fetchxml>
     <IntroducedVersion>1.0.0.1</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Nexis Copy Status" languagecode="1033" />
+      <LocalizedName description="Copy To Nexis Status" languagecode="1033" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

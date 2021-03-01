@@ -50,7 +50,7 @@
   </presentationdescription>
   <isdefault>0</isdefault>
   <LocalizedNames>
-    <LocalizedName description="CheckSum Verification" languagecode="1033" />
+    <LocalizedName description="Checksum Verification" languagecode="1033" />
   </LocalizedNames>
   <IsCustomizable>1</IsCustomizable>
   <IntroducedVersion>1.0.0.0</IntroducedVersion>
