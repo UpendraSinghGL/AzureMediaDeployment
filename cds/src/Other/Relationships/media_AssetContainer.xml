@@ -110,7 +110,7 @@
     <ReferencingEntityName>media_ShowNexisMapping</ReferencingEntityName>
     <ReferencedEntityName>media_AssetContainer</ReferencedEntityName>
     <CascadeAssign>NoCascade</CascadeAssign>
-    <CascadeDelete>RemoveLink</CascadeDelete>
+    <CascadeDelete>Cascade</CascadeDelete>
     <CascadeReparent>NoCascade</CascadeReparent>
     <CascadeShare>NoCascade</CascadeShare>
     <CascadeUnshare>NoCascade</CascadeUnshare>
@@ -144,7 +144,7 @@
     <ReferencingEntityName>media_ShowVendorMapping</ReferencingEntityName>
     <ReferencedEntityName>media_AssetContainer</ReferencedEntityName>
     <CascadeAssign>NoCascade</CascadeAssign>
-    <CascadeDelete>RemoveLink</CascadeDelete>
+    <CascadeDelete>Cascade</CascadeDelete>
     <CascadeReparent>NoCascade</CascadeReparent>
     <CascadeShare>NoCascade</CascadeShare>
     <CascadeUnshare>NoCascade</CascadeUnshare>

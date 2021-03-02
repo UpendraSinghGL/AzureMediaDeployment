@@ -70,6 +70,14 @@
                                     },
                                     "type": "object"
                                 }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
                             }
                         }
                     },
@@ -85,6 +93,13 @@
                                             "inputs": {
                                                 "body": "@body('Fetch_User_Show')?['value']",
                                                 "statusCode": 200
+                                            },
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs"
+                                                    ]
+                                                }
                                             }
                                         }
                                     },
@@ -104,6 +119,13 @@
                                                         "Message": "No show has assigned to this user"
                                                     },
                                                     "statusCode": 200
+                                                },
+                                                "runtimeConfiguration": {
+                                                    "secureData": {
+                                                        "properties": [
+                                                            "inputs"
+                                                        ]
+                                                    }
                                                 }
                                             }
                                         }
@@ -132,8 +154,16 @@
                                         "method": "get",
                                         "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetcontainers'),'))}/items')]",
                                         "queries": {
-                                            "$expand": "media_Studio($select=media_name),media_AssetTemplate($select=media_name;$expand=media_AssetFolderLayout($select=media_layout))",
-                                            "$filter": "media_AssetContainer_SystemUser_SystemUse/any(o:o/azureactivedirectoryobjectid eq '@{triggerBody()?['userId']}')"
+                                            "$expand": "media_Studio($select=media_name)",
+                                            "$filter": "media_AssetContainer_SystemUser_SystemUse/any(o:o/azureactivedirectoryobjectid eq '@{triggerBody()?['userId']}') and statecode eq 0"
+                                        }
+                                    },
+                                    "runtimeConfiguration": {
+                                        "secureData": {
+                                            "properties": [
+                                                "inputs",
+                                                "outputs"
+                                            ]
                                         }
                                     }
                                 },
@@ -151,6 +181,13 @@
                                             "Message": "Failed to fetch show for this user"
                                         },
                                         "statusCode": 500
+                                    },
+                                    "runtimeConfiguration": {
+                                        "secureData": {
+                                            "properties": [
+                                                "inputs"
+                                            ]
+                                        }
                                     }
                                 }
                             },
@@ -169,6 +206,13 @@
                                                 "Content-Type": "application/json; charset=utf-8"
                                             },
                                             "statusCode": 400
+                                        },
+                                        "runtimeConfiguration": {
+                                            "secureData": {
+                                                "properties": [
+                                                    "inputs"
+                                                ]
+                                            }
                                         }
                                     }
                                 }

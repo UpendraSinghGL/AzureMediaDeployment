@@ -77,6 +77,14 @@
                                     },
                                     "type": "object"
                                 }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
                             }
                         }
                     },
@@ -106,6 +114,14 @@
                                                 },
                                                 "method": "post",
                                                 "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
+                                            },
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs",
+                                                        "outputs"
+                                                    ]
+                                                }
                                             }
                                         },
                                         "Response_failure": {
@@ -122,6 +138,13 @@
                                                     "Message": "AntiVirus Scan Failed"
                                                 },
                                                 "statusCode": 500
+                                            },
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs"
+                                                    ]
+                                                }
                                             }
                                         },
                                         "Update_asset_file_record_status_Virus_Scan_Failed": {
@@ -138,6 +161,14 @@
                                                 },
                                                 "method": "patch",
                                                 "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('RecordId'),']))}')]"
+                                            },
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs",
+                                                        "outputs"
+                                                    ]
+                                                }
                                             }
                                         }
                                     },
@@ -158,6 +189,13 @@
                                                         "Message": "AntiVirus Scan completed Successfully"
                                                     },
                                                     "statusCode": 200
+                                                },
+                                                "runtimeConfiguration": {
+                                                    "secureData": {
+                                                        "properties": [
+                                                            "inputs"
+                                                        ]
+                                                    }
                                                 }
                                             }
                                         }
@@ -198,6 +236,14 @@
                                                 },
                                                 "method": "post",
                                                 "path": "/api/v3/urls"
+                                            },
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs",
+                                                        "outputs"
+                                                    ]
+                                                }
                                             }
                                         },
                                         "Condition_if_file_is_malacious": {
@@ -229,6 +275,14 @@
                                                         },
                                                         "method": "patch",
                                                         "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('RecordId'),']))}')]"
+                                                    },
+                                                    "runtimeConfiguration": {
+                                                        "secureData": {
+                                                            "properties": [
+                                                                "inputs",
+                                                                "outputs"
+                                                            ]
+                                                        }
                                                     }
                                                 }
                                             },
@@ -266,6 +320,14 @@
                                                             },
                                                             "method": "patch",
                                                             "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('RecordId'),']))}')]"
+                                                        },
+                                                        "runtimeConfiguration": {
+                                                            "secureData": {
+                                                                "properties": [
+                                                                    "inputs",
+                                                                    "outputs"
+                                                                ]
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -311,6 +373,13 @@
                                                     },
                                                     "type": "object"
                                                 }
+                                            },
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs"
+                                                    ]
+                                                }
                                             }
                                         },
                                         "Retrieve_information_about_a_file_or_URL_analysis": {
@@ -328,6 +397,14 @@
                                                 },
                                                 "method": "get",
                                                 "path": "/api/v3/analyses/@{encodeURIComponent(body('Analyse_an_URL')?['data']?['id'])}"
+                                            },
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs",
+                                                        "outputs"
+                                                    ]
+                                                }
                                             }
                                         },
                                         "Set_variable_-_Analyse_URL_-_ErrorMessage": {
@@ -367,6 +444,13 @@
                                                 "Content-Type": "application/json; charset=utf-8"
                                             },
                                             "statusCode": 400
+                                        },
+                                        "runtimeConfiguration": {
+                                            "secureData": {
+                                                "properties": [
+                                                    "inputs"
+                                                ]
+                                            }
                                         }
                                     }
                                 }

@@ -101,6 +101,14 @@
                                     },
                                     "type": "object"
                                 }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
                             }
                         }
                     },
@@ -123,6 +131,14 @@
                                         },
                                         "method": "post",
                                         "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
+                                    },
+                                    "runtimeConfiguration": {
+                                        "secureData": {
+                                            "properties": [
+                                                "inputs",
+                                                "outputs"
+                                            ]
+                                        }
                                     }
                                 }
                             },
@@ -200,6 +216,13 @@
                                     "Message": "Asset status updated successfully"
                                 },
                                 "statusCode": 200
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs"
+                                    ]
+                                }
                             }
                         },
                         "Scope": {
@@ -235,6 +258,14 @@
                                                         },
                                                         "method": "patch",
                                                         "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(variables(',durin.wrapInQuote('AssetId'),')))}')]"
+                                                    },
+                                                    "runtimeConfiguration": {
+                                                        "secureData": {
+                                                            "properties": [
+                                                                "inputs",
+                                                                "outputs"
+                                                            ]
+                                                        }
                                                     }
                                                 }
                                             },
@@ -272,6 +303,14 @@
                                                             },
                                                             "method": "patch",
                                                             "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(variables(',durin.wrapInQuote('AssetId'),')))}')]"
+                                                        },
+                                                        "runtimeConfiguration": {
+                                                            "secureData": {
+                                                                "properties": [
+                                                                    "inputs",
+                                                                    "outputs"
+                                                                ]
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -359,6 +398,14 @@
                                         "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items')]",
                                         "queries": {
                                             "$filter": "media_shootday eq '@{triggerBody()?['shootDay']}' and media_unit eq '@{triggerBody()?['unit']}' and media_batch eq '@{triggerBody()?['batch']}' and _media_episode_value eq '@{triggerBody()?['episodeId']}' "
+                                        }
+                                    },
+                                    "runtimeConfiguration": {
+                                        "secureData": {
+                                            "properties": [
+                                                "inputs",
+                                                "outputs"
+                                            ]
                                         }
                                     }
                                 }

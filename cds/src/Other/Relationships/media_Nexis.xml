@@ -8,7 +8,7 @@
     <ReferencingEntityName>media_ShowNexisMapping</ReferencingEntityName>
     <ReferencedEntityName>media_Nexis</ReferencedEntityName>
     <CascadeAssign>NoCascade</CascadeAssign>
-    <CascadeDelete>RemoveLink</CascadeDelete>
+    <CascadeDelete>Cascade</CascadeDelete>
     <CascadeReparent>NoCascade</CascadeReparent>
     <CascadeShare>NoCascade</CascadeShare>
     <CascadeUnshare>NoCascade</CascadeUnshare>
