@@ -55,6 +55,10 @@
                     {
                         mediasset.Attributes[MediaAssetConstants.AssetStatus] = new OptionSetValue(UploadStatus.Completed);
                     }
+                    else
+                    {
+                        mediasset.Attributes[MediaAssetConstants.AssetStatus] = new OptionSetValue(UploadStatus.PartiallyUpload);
+                    }
                     this.OrganizationService.Update(mediasset);
                 }
             }

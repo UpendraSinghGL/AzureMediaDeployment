@@ -20,6 +20,7 @@
     {
         public const int Completed = 207940001;
         public const int Started = 207940000;
+        public const int PartiallyUpload = 207940003;
     }
 
     public class MediaAssetConstants
