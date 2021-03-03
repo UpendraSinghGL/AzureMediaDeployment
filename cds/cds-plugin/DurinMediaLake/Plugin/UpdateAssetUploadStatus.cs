@@ -54,12 +54,14 @@
                     if (AssetFolderFileCount == Convert.ToInt32(response.Entity.Attributes[MediaAssetConstants.UploadedFile]))
                     {
                         mediasset.Attributes[MediaAssetConstants.AssetStatus] = new OptionSetValue(UploadStatus.Completed);
+                        this.OrganizationService.Update(mediasset);
                     }
-                    else
+                    else if(uploadStatus!= UploadStatus.PartiallyUpload)
                     {
                         mediasset.Attributes[MediaAssetConstants.AssetStatus] = new OptionSetValue(UploadStatus.PartiallyUpload);
+                        this.OrganizationService.Update(mediasset);
                     }
-                    this.OrganizationService.Update(mediasset);
+                    
                 }
             }
         }
