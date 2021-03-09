@@ -41,6 +41,10 @@
                         var assetFiles = this.OrganizationService.RetrieveMultiple(query).Entities; 
 
                         mediasset.Attributes[MediaAssetConstants.FolderFileCount] = assetFiles?.Count;
+                        if(Convert.ToInt32(response.Entity.Attributes[MediaAssetConstants.UploadedFile]) == 0)
+                        {
+                            mediasset.Attributes[MediaAssetConstants.AssetStatus] = new OptionSetValue(UploadStatus.Started);
+                        }
                         this.OrganizationService.Update(mediasset);
                     }
                 }   
