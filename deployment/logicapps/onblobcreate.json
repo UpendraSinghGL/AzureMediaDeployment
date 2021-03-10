@@ -424,7 +424,7 @@
                                                                                 "_media_season_value": "@body('Parse_JSON')?['seasonId']",
                                                                                 "media_assetstatus": 207940000,
                                                                                 "media_batch": "@body('Parse_JSON')?['batch']",
-                                                                                "media_blobpath": "@{replace(outputs('Compose'),'metadata.json','')}",
+                                                                                "media_blobpath": "@{concat(variables('DirectoryPath'),'/')}",
                                                                                 "media_description": "@body('Parse_JSON')?['description']",
                                                                                 "media_folderfilecount": "@length(body('Parse_JSON')?['files'])",
                                                                                 "media_info": "@body('Parse_JSON')?['info']",
