@@ -13,7 +13,7 @@
   <mxswa:Workflow>
     <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.ConditionSequence, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="ConditionStep1">
       <mxswa:ActivityReference.Arguments>
-        <InArgument x:TypeArguments="x:Boolean" x:Key="Wait">False</InArgument>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="Wait">True</InArgument>
       </mxswa:ActivityReference.Arguments>
       <mxswa:ActivityReference.Properties>
         <sco:Collection x:TypeArguments="Variable" x:Key="Variables">
