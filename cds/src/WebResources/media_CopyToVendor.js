@@ -92,12 +92,12 @@
 
     CopyVendorUtility.GetVendorList = function () {
         var showId = parent.Xrm.Page.getAttribute('media_showId').getValue();
-        return fetch(Xrm.Utility.getGlobalContext().getClientUrl() + `/api/data/v9.1/media_showvendormappings?$select=media_name&$expand=media_Vendor($select=media_name,media_folderpath)&$filter=_media_show_value eq ${showId}`).then(res => res.json())
+        return fetch(parent.Xrm.Utility.getGlobalContext().getClientUrl() + `/api/data/v9.1/media_showvendormappings?$select=media_name&$expand=media_Vendor($select=media_name,media_folderpath)&$filter=_media_show_value eq ${showId}`).then(res => res.json())
     }
 
     CopyVendorUtility.GetNexisList = function () {
         var showId = parent.Xrm.Page.getAttribute('media_showId').getValue();
-        return fetch(Xrm.Utility.getGlobalContext().getClientUrl() + `/api/data/v9.1/media_shownexismappings?$select=media_name&$expand=media_Nexis($select=media_name,media_linkedservicename)&$filter=_media_show_value eq ${showId}`).then(res => res.json())
+        return fetch(parent.Xrm.Utility.getGlobalContext().getClientUrl() + `/api/data/v9.1/media_shownexismappings?$select=media_name&$expand=media_Nexis($select=media_name,media_linkedservicename)&$filter=_media_show_value eq ${showId}`).then(res => res.json())
     }
 
     CopyVendorUtility.OnDialogOk = function (formContext) {
