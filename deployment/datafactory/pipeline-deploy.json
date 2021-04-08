@@ -32,13 +32,13 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"url": "[listCallbackUrl(concat(resourceId('Microsoft.Logic/workflows','Logic-EventOnPipelineRunHttp'),'/triggers/manual'),'2017-07-01').value]",
+							"url": "[listCallbackUrl(concat(resourceId('Microsoft.Logic/workflows','Logic-EventOnCopyDataPipeline'),'/triggers/manual'),'2017-07-01').value]",
 							"method": "POST",
 							"headers": {
 								"Content-Type": "application/json"
 							},
 							"body": {
-								"value": "{\n   \"pipelineName\": \"@{pipeline().parameters.pipelineName}\",\n   \"pipelineRunId\": \"@{pipeline().parameters.runId}\",\n \"status\": \"@{pipeline().parameters.status}\",\n}",
+								"value": "{\n   \"pipelineName\": \"@{pipeline().parameters.pipelineName}\",\n   \"pipelineRunId\": \"@{pipeline().parameters.runId}\",\n \"status\": \"@{pipeline().parameters.status}\",\n\"message\": \"@{pipeline().parameters.message}\"\n}",
 								"type": "Expression"
 							}
 						}
@@ -52,6 +52,9 @@
 						"type": "string"
 					},
 					"pipelineName": {
+						"type": "string"
+					},
+					"message": {
 						"type": "string"
 					}
 				},

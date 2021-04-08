@@ -101,6 +101,14 @@
                                     },
                                     "type": "object"
                                 }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
                             }
                         }
                     },
@@ -123,6 +131,14 @@
                                         },
                                         "method": "post",
                                         "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
+                                    },
+                                    "runtimeConfiguration": {
+                                        "secureData": {
+                                            "properties": [
+                                                "inputs",
+                                                "outputs"
+                                            ]
+                                        }
                                     }
                                 }
                             },
@@ -187,6 +203,57 @@
                                 ]
                             }
                         },
+                        "Initialize_variable_-_BlockIdAttr": {
+                            "runAfter": {
+                                "Initialize_variable_-_EpisodeIdAttr": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "blockidattr",
+                                        "type": "string",
+                                        "value": "_media_block_value eq '@{triggerBody()?['blockId']}'"
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_variable_-_EpisodeIdAttr": {
+                            "runAfter": {
+                                "Initialize_variable-UploadedFile": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "episodeidattr",
+                                        "type": "string",
+                                        "value": "_media_episode_value eq '@{triggerBody()?['episodeId']}'"
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_variable_-_FilterAttributes": {
+                            "runAfter": {
+                                "Initialize_variable_-_BlockIdAttr": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "FilterAttrributes",
+                                        "type": "string",
+                                        "value": "@{if(equals(triggerBody()?['episodeId'],''),variables('blockidattr'),variables('episodeidattr'))}"
+                                    }
+                                ]
+                            }
+                        },
                         "Response": {
                             "runAfter": {
                                 "Check_assetid_is_not_empty": [
@@ -200,6 +267,13 @@
                                     "Message": "Asset status updated successfully"
                                 },
                                 "statusCode": 200
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs"
+                                    ]
+                                }
                             }
                         },
                         "Scope": {
@@ -235,6 +309,14 @@
                                                         },
                                                         "method": "patch",
                                                         "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(variables(',durin.wrapInQuote('AssetId'),')))}')]"
+                                                    },
+                                                    "runtimeConfiguration": {
+                                                        "secureData": {
+                                                            "properties": [
+                                                                "inputs",
+                                                                "outputs"
+                                                            ]
+                                                        }
                                                     }
                                                 }
                                             },
@@ -272,6 +354,14 @@
                                                             },
                                                             "method": "patch",
                                                             "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items/@{encodeURIComponent(encodeURIComponent(variables(',durin.wrapInQuote('AssetId'),')))}')]"
+                                                        },
+                                                        "runtimeConfiguration": {
+                                                            "secureData": {
+                                                                "properties": [
+                                                                    "inputs",
+                                                                    "outputs"
+                                                                ]
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -358,13 +448,21 @@
                                         "method": "get",
                                         "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items')]",
                                         "queries": {
-                                            "$filter": "media_shootday eq '@{triggerBody()?['shootDay']}' and media_unit eq '@{triggerBody()?['unit']}' and media_batch eq '@{triggerBody()?['batch']}' and _media_episode_value eq '@{triggerBody()?['episodeId']}' "
+                                            "$filter": "media_shootday eq '@{triggerBody()?['shootDay']}' and media_unit eq '@{triggerBody()?['unit']}' and media_batch eq '@{triggerBody()?['batch']}' and @{variables('FilterAttrributes')}"
+                                        }
+                                    },
+                                    "runtimeConfiguration": {
+                                        "secureData": {
+                                            "properties": [
+                                                "inputs",
+                                                "outputs"
+                                            ]
                                         }
                                     }
                                 }
                             },
                             "runAfter": {
-                                "Initialize_variable-UploadedFile": [
+                                "Initialize_variable_-_FilterAttributes": [
                                     "Succeeded"
                                 ]
                             },

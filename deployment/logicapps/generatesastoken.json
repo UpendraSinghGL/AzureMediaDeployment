@@ -77,6 +77,14 @@
                                     },
                                     "type": "object"
                                 }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
                             }
                         }
                     },
@@ -100,7 +108,15 @@
                                                 "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
                                             },
                                             "runAfter": {},
-                                            "type": "ApiConnection"
+                                            "type": "ApiConnection",
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs",
+                                                        "outputs"
+                                                    ]
+                                                }
+                                            }
                                         },
                                         "Response_failure": {
                                             "inputs": {
@@ -112,8 +128,15 @@
                                                 "Create_error_log_record": [
                                                     "Succeeded"
                                                 ]
-                                            },
-                                            "type": "Response"
+                                            },                                            
+                                            "type": "Response",
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs"
+                                                    ]
+                                                }
+                                            }
                                         }
                                     },
                                     "else": {
@@ -125,7 +148,14 @@
                                                 },
                                                 "kind": "Http",
                                                 "runAfter": {},
-                                                "type": "Response"
+                                                "type": "Response",
+                                                "runtimeConfiguration": {
+                                                    "secureData": {
+                                                        "properties": [
+                                                            "inputs"
+                                                        ]
+                                                    }
+                                                }
                                             }
                                         }
                                     },
@@ -163,7 +193,15 @@
                                                 }
                                             },
                                             "runAfter": {},
-                                            "type": "ApiConnection"
+                                            "type": "ApiConnection",
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs",
+                                                        "outputs"
+                                                    ]
+                                                }
+                                            }
                                         },
                                         "If_Record_greater_than_0": {
                                             "actions": {
@@ -177,7 +215,14 @@
                                                             "Succeeded"
                                                         ]
                                                     },
-                                                    "type": "Compose"
+                                                    "type": "Compose",                                                 
+                                                    "runtimeConfiguration": {
+                                                        "secureData": {
+                                                            "properties": [
+                                                                "inputs"
+                                                            ]
+                                                        }
+                                                    }
                                                 },
                                                 "Create_SAS_URI": {
                                                     "inputs": {
@@ -197,7 +242,15 @@
                                                         }
                                                     },
                                                     "runAfter": {},
-                                                    "type": "ApiConnection"
+                                                    "type": "ApiConnection",
+                                                    "runtimeConfiguration": {
+                                                        "secureData": {
+                                                            "properties": [
+                                                                "inputs",
+                                                                "outputs"
+                                                            ]
+                                                        }
+                                                    }
                                                 }
                                             },
                                             "else": {
@@ -208,7 +261,14 @@
                                                         },
                                                         "kind": "Http",
                                                         "runAfter": {},
-                                                        "type": "Response"
+                                                        "type": "Response",
+                                                        "runtimeConfiguration": {
+                                                            "secureData": {
+                                                                "properties": [
+                                                                    "inputs"
+                                                                ]
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             },
@@ -261,7 +321,14 @@
                                         },
                                         "kind": "Http",
                                         "runAfter": {},
-                                        "type": "Response"
+                                        "type": "Response",
+                                        "runtimeConfiguration": {
+                                            "secureData": {
+                                                "properties": [
+                                                    "inputs"
+                                                ]
+                                            }
+                                        }
                                     }
                                 }
                             },

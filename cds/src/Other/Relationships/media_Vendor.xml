@@ -42,7 +42,7 @@
     <ReferencingEntityName>media_ShowVendorMapping</ReferencingEntityName>
     <ReferencedEntityName>media_Vendor</ReferencedEntityName>
     <CascadeAssign>NoCascade</CascadeAssign>
-    <CascadeDelete>RemoveLink</CascadeDelete>
+    <CascadeDelete>Cascade</CascadeDelete>
     <CascadeReparent>NoCascade</CascadeReparent>
     <CascadeShare>NoCascade</CascadeShare>
     <CascadeUnshare>NoCascade</CascadeUnshare>

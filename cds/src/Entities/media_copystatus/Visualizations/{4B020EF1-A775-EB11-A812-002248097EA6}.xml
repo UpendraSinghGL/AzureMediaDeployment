@@ -50,7 +50,7 @@
   </presentationdescription>
   <isdefault>0</isdefault>
   <LocalizedNames>
-    <LocalizedName description="Copy Asset to Vendor" languagecode="1033" />
+    <LocalizedName description="Copy Asset To Vendor Location" languagecode="1033" />
   </LocalizedNames>
   <IsCustomizable>1</IsCustomizable>
   <IntroducedVersion>1.0.0.1</IntroducedVersion>

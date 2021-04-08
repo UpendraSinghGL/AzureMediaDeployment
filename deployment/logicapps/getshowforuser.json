@@ -70,6 +70,14 @@
                                     },
                                     "type": "object"
                                 }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
                             }
                         }
                     },
@@ -85,6 +93,13 @@
                                             "inputs": {
                                                 "body": "@body('Fetch_User_Show')?['value']",
                                                 "statusCode": 200
+                                            },
+                                            "runtimeConfiguration": {
+                                                "secureData": {
+                                                    "properties": [
+                                                        "inputs"
+                                                    ]
+                                                }
                                             }
                                         }
                                     },
@@ -104,6 +119,13 @@
                                                         "Message": "No show has assigned to this user"
                                                     },
                                                     "statusCode": 200
+                                                },
+                                                "runtimeConfiguration": {
+                                                    "secureData": {
+                                                        "properties": [
+                                                            "inputs"
+                                                        ]
+                                                    }
                                                 }
                                             }
                                         }
@@ -138,6 +160,14 @@
                                         "queries": {
                                             "$expand": "media_Studio($select=media_name)",
                                             "$filter": "media_AssetContainer_media_MacUser_media_/any(o:o/_media_user_value eq ' @{body('Logic-ValidateToken')}')"
+                                        }
+                                    },
+                                    "runtimeConfiguration": {
+                                        "secureData": {
+                                            "properties": [
+                                                "inputs",
+                                                "outputs"
+                                            ]
                                         }
                                     }
                                 },
@@ -184,6 +214,13 @@
                                             "Message": "Failed to fetch show for this user"
                                         },
                                         "statusCode": 500
+                                    },
+                                    "runtimeConfiguration": {
+                                        "secureData": {
+                                            "properties": [
+                                                "inputs"
+                                            ]
+                                        }
                                     }
                                 }
                             },
@@ -202,6 +239,13 @@
                                                 "Content-Type": "application/json; charset=utf-8"
                                             },
                                             "statusCode": 400
+                                        },
+                                        "runtimeConfiguration": {
+                                            "secureData": {
+                                                "properties": [
+                                                    "inputs"
+                                                ]
+                                            }
                                         }
                                     }
                                 }

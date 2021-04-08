@@ -247,6 +247,26 @@
       ]
     },
     {
+      "name": "logicapp-onblobdelete-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/onblobdelete.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "storageName": { "value": "[parameters('storageName')]" },
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'logicapp-onblobcreate-deployment')]"
+      ]
+    },
+    {
       "name": "logicapp-createvendorcontainer-deployment",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2019-10-01",
@@ -263,13 +283,13 @@
       }
     },
     {
-      "name": "logicapp-copyblobtoanotherblobstorage-deployment",
+      "name": "logicapp-createpipelineforeachdestination-deployment",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2019-10-01",
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/copyblobtoanotherblobstorage.json')]",
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/createpipelineforeachdestination.json')]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -282,13 +302,13 @@
       ]
     },
     {
-      "name": "logicapp-copyblobtoonprem-deployment",
+      "name": "logicapp-copysourcetodestination-deployment",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2019-10-01",
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/copyblobtoonprem.json')]",
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/copysourcetodestination.json')]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -297,22 +317,23 @@
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Resources/deployments', 'logicapp-readazureconfiguration-deployment')]"
+        "[resourceId('Microsoft.Resources/deployments', 'logicapp-readazureconfiguration-deployment')]",
+        "[resourceId('Microsoft.Resources/deployments', 'logicapp-createpipelineforeachdestination-deployment')]"
       ]
     },
     {
-      "name": "logicapp-eventonpipelinerunhttp-deployment",
+      "name": "logicapp-eventoncopydatapipeline-deployment",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2019-10-01",
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/eventonpipelinerunhttp.json')]",
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/eventoncopydatapipeline.json')]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
           "crmOrgName": { "value": "[parameters('crmOrgName')]" },
-          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       },
       "dependsOn": [

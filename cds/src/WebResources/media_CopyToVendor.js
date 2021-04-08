@@ -62,7 +62,7 @@
                 } break;
             }
 
-            fetch(apiUrl).then((response) => response.json()).then(data => {
+            fetch(Xrm.Utility.getGlobalContext().getClientUrl() + apiUrl).then((response) => response.json()).then(data => {
                 var showid = '';
                 var isMultipleShowSelected = false;
                 var selectedSources = [];
@@ -92,12 +92,12 @@
 
     CopyVendorUtility.GetVendorList = function () {
         var showId = parent.Xrm.Page.getAttribute('media_showId').getValue();
-        return fetch(`/api/data/v9.1/media_showvendormappings?$select=media_name&$expand=media_Vendor($select=media_name,media_folderpath)&$filter=_media_show_value eq ${showId}`).then(res => res.json())
+        return fetch(parent.Xrm.Utility.getGlobalContext().getClientUrl() + `/api/data/v9.1/media_showvendormappings?$select=media_name&$expand=media_Vendor($select=media_name,media_folderpath)&$filter=_media_show_value eq ${showId}`).then(res => res.json())
     }
 
     CopyVendorUtility.GetNexisList = function () {
         var showId = parent.Xrm.Page.getAttribute('media_showId').getValue();
-        return fetch(`/api/data/v9.1/media_shownexismappings?$select=media_name&$expand=media_Nexis($select=media_name,media_linkedservicename)&$filter=_media_show_value eq ${showId}`).then(res => res.json())
+        return fetch(parent.Xrm.Utility.getGlobalContext().getClientUrl() + `/api/data/v9.1/media_shownexismappings?$select=media_name&$expand=media_Nexis($select=media_name,media_linkedservicename)&$filter=_media_show_value eq ${showId}`).then(res => res.json())
     }
 
     CopyVendorUtility.OnDialogOk = function (formContext) {
@@ -112,9 +112,10 @@
         if (source && destination) {
             source = JSON.parse(source);
             destination = JSON.parse(destination);
+            var orgUrl = Xrm.Utility.getGlobalContext().getClientUrl();
             Promise.all([
-                fetch(`/api/data/v9.1/media_assetcontainers(${showId})/media_containerpath`).then(res => res.json()),
-                fetch(`/api/data/v9.1/systemusers(${userId})/internalemailaddress`).then(res => res.json())
+                fetch(orgUrl + `/api/data/v9.1/media_assetcontainers(${showId})/media_containerpath`).then(res => res.json()),
+                fetch(orgUrl + `/api/data/v9.1/systemusers(${userId})/internalemailaddress`).then(res => res.json())
             ]).then((responses) => {
                 var containerName = responses[0].value;
                 if (entityName == 'media_season') {

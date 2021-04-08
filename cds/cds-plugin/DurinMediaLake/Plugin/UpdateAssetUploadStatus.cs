@@ -41,6 +41,10 @@
                         var assetFiles = this.OrganizationService.RetrieveMultiple(query).Entities; 
 
                         mediasset.Attributes[MediaAssetConstants.FolderFileCount] = assetFiles?.Count;
+                        if(Convert.ToInt32(response.Entity.Attributes[MediaAssetConstants.UploadedFile]) == 0)
+                        {
+                            mediasset.Attributes[MediaAssetConstants.AssetStatus] = new OptionSetValue(UploadStatus.Started);
+                        }
                         this.OrganizationService.Update(mediasset);
                     }
                 }   
@@ -54,8 +58,14 @@
                     if (AssetFolderFileCount == Convert.ToInt32(response.Entity.Attributes[MediaAssetConstants.UploadedFile]))
                     {
                         mediasset.Attributes[MediaAssetConstants.AssetStatus] = new OptionSetValue(UploadStatus.Completed);
+                        this.OrganizationService.Update(mediasset);
                     }
-                    this.OrganizationService.Update(mediasset);
+                    else if(uploadStatus!= UploadStatus.PartiallyUpload)
+                    {
+                        mediasset.Attributes[MediaAssetConstants.AssetStatus] = new OptionSetValue(UploadStatus.PartiallyUpload);
+                        this.OrganizationService.Update(mediasset);
+                    }
+                    
                 }
             }
         }
