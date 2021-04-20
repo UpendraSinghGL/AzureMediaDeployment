@@ -102,6 +102,23 @@
       }
     },
     {
+      "name": "logicapp-sendemailmac-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/sendemailmac.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'logicapp-sendemail-deployment')]"
+      ]
+    },
+    {
       "name": "logicapp-assetuploadfailure-deployment",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2019-10-01",

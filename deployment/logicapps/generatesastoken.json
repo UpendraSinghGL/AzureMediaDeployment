@@ -94,6 +94,8 @@
                                 "Condition_-_Check_for_ErrorMessage": {
                                     "actions": {
                                         "Create_error_log_record": {
+                                            "runAfter": {},
+                                            "type": "ApiConnection",
                                             "inputs": {
                                                 "body": {
                                                     "_media_assetcontainer_value": "@triggerBody()?['showId']",
@@ -107,8 +109,6 @@
                                                 "method": "post",
                                                 "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
                                             },
-                                            "runAfter": {},
-                                            "type": "ApiConnection",
                                             "runtimeConfiguration": {
                                                 "secureData": {
                                                     "properties": [
@@ -119,17 +119,17 @@
                                             }
                                         },
                                         "Response_failure": {
-                                            "inputs": {
-                                                "body": "Failed to generate SAS Token",
-                                                "statusCode": 500
-                                            },
-                                            "kind": "Http",
                                             "runAfter": {
                                                 "Create_error_log_record": [
                                                     "Succeeded"
                                                 ]
-                                            },                                            
+                                            },
                                             "type": "Response",
+                                            "kind": "Http",
+                                            "inputs": {
+                                                "body": "Failed to generate SAS Token",
+                                                "statusCode": 500
+                                            },
                                             "runtimeConfiguration": {
                                                 "secureData": {
                                                     "properties": [
@@ -139,16 +139,22 @@
                                             }
                                         }
                                     },
+                                    "runAfter": {
+                                        "Scope": [
+                                            "Succeeded",
+                                            "Failed"
+                                        ]
+                                    },
                                     "else": {
                                         "actions": {
                                             "Response_success": {
+                                                "runAfter": {},
+                                                "type": "Response",
+                                                "kind": "Http",
                                                 "inputs": {
                                                     "body": "@outputs('Compose')",
                                                     "statusCode": 200
                                                 },
-                                                "kind": "Http",
-                                                "runAfter": {},
-                                                "type": "Response",
                                                 "runtimeConfiguration": {
                                                     "secureData": {
                                                         "properties": [
@@ -169,17 +175,33 @@
                                             }
                                         ]
                                     },
-                                    "runAfter": {
-                                        "Scope": [
-                                            "Succeeded",
-                                            "Failed"
-                                        ]
-                                    },
                                     "type": "If"
                                 },
                                 "Scope": {
                                     "actions": {
+                                        "Fetch_Teams": {
+                                            "runAfter": {},
+                                            "type": "ApiConnection",
+                                            "inputs": {
+                                                "host": {
+                                                    "connection": {
+                                                        "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                                    }
+                                                },
+                                                "method": "get",
+                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('teams'),'))}/items')]",
+                                                "queries": {
+                                                    "$filter": "media_Team_media_MacUser_media_MacUser/any(o:o/_media_user_value eq @{body('Logic-ValidateToken')})"
+                                                }
+                                            }
+                                        },
                                         "Fetch_user_show": {
+                                            "runAfter": {
+                                                "For_each": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "ApiConnection",
                                             "inputs": {
                                                 "host": {
                                                     "connection": {
@@ -189,33 +211,42 @@
                                                 "method": "get",
                                                 "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetcontainers'),'))}/items')]",
                                                 "queries": {
-                                                    "$filter": "media_AssetContainer_media_MacUser_media_/any(o:o/_media_user_value eq @{body('Logic-ValidateToken')}) and media_assetcontainerid eq '@{triggerBody()?['showId']}'"
-                                                }
-                                            },
-                                            "runAfter": {},
-                                            "type": "ApiConnection",
-                                            "runtimeConfiguration": {
-                                                "secureData": {
-                                                    "properties": [
-                                                        "inputs",
-                                                        "outputs"
-                                                    ]
+                                                    "$filter": "media_AssetContainer_media_MacUser_media_/any(o:o/_media_user_value eq @{body('Logic-ValidateToken')}) and media_assetcontainerid eq '@{triggerBody()?['showId']}' @{if(empty(variables('Teams')),'',concat(' or media_AssetContainer_Team_Team/any(o:',join(variables('Teams'),' or '),')'))}"
                                                 }
                                             }
+                                        },
+                                        "For_each": {
+                                            "foreach": "@body('Fetch_Teams')?['value']",
+                                            "actions": {
+                                                "Append_to_array_variable": {
+                                                    "runAfter": {},
+                                                    "type": "AppendToArrayVariable",
+                                                    "inputs": {
+                                                        "name": "Teams",
+                                                        "value": "@concat('(o/teamid eq ',items('For_each')?['teamid'],')')"
+                                                    }
+                                                }
+                                            },
+                                            "runAfter": {
+                                                "Fetch_Teams": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "Foreach"
                                         },
                                         "If_Record_greater_than_0": {
                                             "actions": {
                                                 "Compose": {
-                                                    "inputs": {
-                                                        "sas": "@{body('Create_SAS_URI')}",
-                                                        "weburi": "@{body('Create_SAS_URI')?['WebUrl']}"
-                                                    },
                                                     "runAfter": {
                                                         "Create_SAS_URI": [
                                                             "Succeeded"
                                                         ]
                                                     },
-                                                    "type": "Compose",                                                 
+                                                    "type": "Compose",
+                                                    "inputs": {
+                                                        "sas": "@{body('Create_SAS_URI')}",
+                                                        "weburi": "@{body('Create_SAS_URI')?['WebUrl']}"
+                                                    },
                                                     "runtimeConfiguration": {
                                                         "secureData": {
                                                             "properties": [
@@ -225,6 +256,8 @@
                                                     }
                                                 },
                                                 "Create_SAS_URI": {
+                                                    "runAfter": {},
+                                                    "type": "ApiConnection",
                                                     "inputs": {
                                                         "body": {
                                                             "ExpiryTime": "@{addHours(utcNow(),6)}",
@@ -241,8 +274,6 @@
                                                             "path": "@{body('Fetch_user_show')?['value']?[0]?['media_containerpath']}"
                                                         }
                                                     },
-                                                    "runAfter": {},
-                                                    "type": "ApiConnection",
                                                     "runtimeConfiguration": {
                                                         "secureData": {
                                                             "properties": [
@@ -253,15 +284,20 @@
                                                     }
                                                 }
                                             },
+                                            "runAfter": {
+                                                "Fetch_user_show": [
+                                                    "Succeeded"
+                                                ]
+                                            },
                                             "else": {
                                                 "actions": {
                                                     "Not_Found_Response": {
+                                                        "runAfter": {},
+                                                        "type": "Response",
+                                                        "kind": "Http",
                                                         "inputs": {
                                                             "statusCode": 404
                                                         },
-                                                        "kind": "Http",
-                                                        "runAfter": {},
-                                                        "type": "Response",
                                                         "runtimeConfiguration": {
                                                             "secureData": {
                                                                 "properties": [
@@ -282,34 +318,38 @@
                                                     }
                                                 ]
                                             },
-                                            "runAfter": {
-                                                "Fetch_user_show": [
-                                                    "Succeeded"
-                                                ]
-                                            },
                                             "type": "If"
                                         },
                                         "Set_variable_-_Get_User_Assosciated_Show_-_ErrorMessage": {
-                                            "inputs": {
-                                                "name": "ErrorMessage",
-                                                "value": "Failed to fetch associated user for showId: @{triggerBody()?['showId']}"
-                                            },
                                             "runAfter": {
                                                 "Fetch_user_show": [
                                                     "Failed",
+                                                    "Skipped",
                                                     "TimedOut"
                                                 ]
                                             },
-                                            "type": "SetVariable"
+                                            "type": "SetVariable",
+                                            "inputs": {
+                                                "name": "ErrorMessage",
+                                                "value": "Failed to fetch associated user for showId: @{triggerBody()?['showId']}"
+                                            }
                                         }
                                     },
                                     "runAfter": {},
                                     "type": "Scope"
                                 }
                             },
+                            "runAfter": {
+                                "Initialize_variable_-_ErrorMessage": [
+                                    "Succeeded"
+                                ]
+                            },
                             "else": {
                                 "actions": {
                                     "Response": {
+                                        "runAfter": {},
+                                        "type": "Response",
+                                        "kind": "Http",
                                         "inputs": {
                                             "body": {
                                                 "message": "ShowId and UserId Required"
@@ -319,9 +359,6 @@
                                             },
                                             "statusCode": 400
                                         },
-                                        "kind": "Http",
-                                        "runAfter": {},
-                                        "type": "Response",
                                         "runtimeConfiguration": {
                                             "secureData": {
                                                 "properties": [
@@ -348,14 +385,28 @@
                                     }
                                 ]
                             },
+                            "type": "If"
+                        },
+                        "Initialize_variable": {
+                            "runAfter": {},
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "Teams",
+                                        "type": "array",
+                                        "value": []
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_variable_-_ErrorMessage": {
                             "runAfter": {
-                                "Initialize_variable_-_ErrorMessage": [
+                                "Logic-ValidateToken": [
                                     "Succeeded"
                                 ]
                             },
-                            "type": "If"
-                        },
-                        "Initialize_variable_-_ErrorMessage": {
+                            "type": "InitializeVariable",
                             "inputs": {
                                 "variables": [
                                     {
@@ -363,15 +414,15 @@
                                         "type": "string"
                                     }
                                 ]
-                            },
+                            }
+                        },
+                        "Logic-ValidateToken": {
                             "runAfter": {
-                                "Logic-ValidateToken": [
+                                "Initialize_variable": [
                                     "Succeeded"
                                 ]
                             },
-                            "type": "InitializeVariable"
-                        },
-                        "Logic-ValidateToken": {
+                            "type": "Workflow",
                             "inputs": {
                                 "body": {
                                     "token": "@{triggerOutputs()['headers']['x-auth-token']}",
@@ -383,22 +434,20 @@
                                         "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Logic/workflows/Logic-ValidateToken')]"
                                     }
                                 }
-                            },
-                            "runAfter": {},
-                            "type": "Workflow"
+                            }
                         },
                         "unathorized_response": {
-                            "inputs": {
-                                "body": "@body('Logic-ValidateToken')",
-                                "statusCode": 401
-                            },
-                            "kind": "Http",
                             "runAfter": {
                                 "Logic-ValidateToken": [
                                     "Failed"
                                 ]
                             },
-                            "type": "Response"
+                            "type": "Response",
+                            "kind": "Http",
+                            "inputs": {
+                                "body": "@body('Logic-ValidateToken')",
+                                "statusCode": 401
+                            }
                         }
                     },
                     "outputs": {

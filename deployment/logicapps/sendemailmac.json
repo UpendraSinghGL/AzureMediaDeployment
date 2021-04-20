@@ -1,0 +1,126 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workflows_Logic_SendEmail_externalid": {
+            "defaultValue": "[concat( subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Logic/workflows/Logic-SendEmail')]",
+            "type": "String"
+        },
+        "workflows_Logic_ValidateToken_externalid": {
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Logic/workflows/Logic-ValidateToken')]",
+            "type": "String"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2017-07-01",
+            "name": "Logic-SendEmailMac",
+            "location": "eastus",
+            "properties": {
+                "state": "Enabled",
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {},
+                    "triggers": {
+                        "manual": {
+                            "type": "Request",
+                            "kind": "Http",
+                            "inputs": {
+                                "schema": {
+                                    "properties": {
+                                        "emailBody": {
+                                            "type": "string"
+                                        },
+                                        "recipient": {
+                                            "type": "string"
+                                        },
+                                        "subject": {
+                                            "type": "string"
+                                        },
+                                        "userId": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "actions": {
+                        "Logic-SendEmail": {
+                            "runAfter": {
+                                "Logic-ValidateToken": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "Workflow",
+                            "inputs": {
+                                "body": "@triggerBody()",
+                                "host": {
+                                    "triggerName": "manual",
+                                    "workflow": {
+                                        "id": "[parameters('workflows_Logic_SendEmail_externalid')]"
+                                    }
+                                }
+                            }
+                        },
+                        "Logic-ValidateToken": {
+                            "runAfter": {},
+                            "type": "Workflow",
+                            "inputs": {
+                                "body": {
+                                    "token": "@{triggerOutputs()['headers']['x-auth-token']}",
+                                    "userId": "@triggerBody()?['userId']"
+                                },
+                                "host": {
+                                    "triggerName": "manual",
+                                    "workflow": {
+                                        "id": "[parameters('workflows_Logic_ValidateToken_externalid')]"
+                                    }
+                                }
+                            }
+                        },
+                        "Response": {
+                            "runAfter": {
+                                "Logic-ValidateToken": [
+                                    "Failed",
+                                    "Skipped",
+                                    "TimedOut"
+                                ]
+                            },
+                            "type": "Response",
+                            "kind": "Http",
+                            "inputs": {
+                                "body": "@body('Logic-ValidateToken')",
+                                "statusCode": 401
+                            }
+                        },
+                        "Response_2": {
+                            "runAfter": {
+                                "Logic-SendEmail": [
+                                    "Succeeded",
+                                    "Failed",
+                                    "Skipped",
+                                    "TimedOut"
+                                ]
+                            },
+                            "type": "Response",
+                            "kind": "Http",
+                            "inputs": {
+                                "body": "@body('Logic-SendEmail')",
+                                "statusCode": 200
+                            }
+                        }
+                    },
+                    "outputs": {}
+                },
+                "parameters": {}
+            }
+        }
+    ],
+    "outputs": {}
+}

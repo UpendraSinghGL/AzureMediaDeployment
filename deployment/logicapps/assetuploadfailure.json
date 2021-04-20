@@ -17,6 +17,10 @@
             "metadata": {
                 "description": "crmIdentifier"
             }
+        },
+         "workflows_Logic_ValidateToken_externalid": {
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Logic/workflows/Logic-ValidateToken')]",
+            "type": "String"
         }
     },
     "functions": [
@@ -97,6 +101,9 @@
                                         },
                                         "unit": {
                                             "type": "string"
+                                        },
+                                        "userId": {
+                                            "type": "string"
                                         }
                                     },
                                     "type": "object"
@@ -160,7 +167,11 @@
                             "type": "If"
                         },
                         "Initialize_variable-ErrorMessage": {
-                            "runAfter": {},
+                            "runAfter": {
+                                "Logic-ValidateToken": [
+                                    "Succeeded"
+                                ]
+                            },
                             "type": "InitializeVariable",
                             "inputs": {
                                 "variables": [
@@ -274,6 +285,37 @@
                                         "inputs"
                                     ]
                                 }
+                            }
+                        },
+                        "Logic-ValidateToken": {
+                            "runAfter": {},
+                            "type": "Workflow",
+                            "inputs": {
+                                "body": {
+                                    "token": "@{triggerOutputs()['Headers']['x-auth-token']}",
+                                    "userId": "@triggerBody()?['userId']"
+                                },
+                                "host": {
+                                    "triggerName": "manual",
+                                    "workflow": {
+                                        "id": "[parameters('workflows_Logic_ValidateToken_externalid')]"
+                                    }
+                                }
+                            }
+                        },
+                        "Response_2": {
+                            "runAfter": {
+                                "Logic-ValidateToken": [
+                                    "Skipped",
+                                    "Failed",
+                                    "TimedOut"
+                                ]
+                            },
+                            "type": "Response",
+                            "kind": "Http",
+                            "inputs": {
+                                "body": "@body('Logic-ValidateToken')",
+                                "statusCode": 401
                             }
                         },
                         "Scope": {

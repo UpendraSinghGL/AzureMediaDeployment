@@ -81,7 +81,7 @@
                             }
                         }
                     },
-                    "actions": {
+                        "actions": {
                         "Condition_-_Check_UserId": {
                             "actions": {
                                 "Check_show_found_or_not": {
@@ -93,13 +93,6 @@
                                             "inputs": {
                                                 "body": "@body('Fetch_User_Show')?['value']",
                                                 "statusCode": 200
-                                            },
-                                            "runtimeConfiguration": {
-                                                "secureData": {
-                                                    "properties": [
-                                                        "inputs"
-                                                    ]
-                                                }
                                             }
                                         }
                                     },
@@ -142,9 +135,29 @@
                                     },
                                     "type": "If"
                                 },
-                                "Fetch_User_Show": {
+                                "Fetch_Teams": {
                                     "runAfter": {
                                         "Logic-ValidateToken": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "ApiConnection",
+                                    "inputs": {
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                            }
+                                        },
+                                        "method": "get",
+                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('teams'),'))}/items')]",
+                                        "queries": {
+                                            "$filter": "media_Team_media_MacUser_media_MacUser/any(o:o/_media_user_value eq @{body('Logic-ValidateToken')})"
+                                        }
+                                    }
+                                },
+                                "Fetch_User_Show": {
+                                    "runAfter": {
+                                        "For_each": [
                                             "Succeeded"
                                         ]
                                     },
@@ -159,19 +172,32 @@
                                         "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetcontainers'),'))}/items')]",
                                         "queries": {
                                             "$expand": "media_Studio($select=media_name)",
-                                            "$filter": "media_AssetContainer_media_MacUser_media_/any(o:o/_media_user_value eq ' @{body('Logic-ValidateToken')}')"
-                                        }
-                                    },
-                                    "runtimeConfiguration": {
-                                        "secureData": {
-                                            "properties": [
-                                                "inputs",
-                                                "outputs"
-                                            ]
+                                            "$filter": "media_AssetContainer_media_MacUser_media_/any(o:o/_media_user_value eq ' @{body('Logic-ValidateToken')}') @{if(empty(variables('Teams')),'',concat(' or media_AssetContainer_Team_Team/any(o:',join(variables('Teams'),' or '),')'))}"
                                         }
                                     }
                                 },
+                                "For_each": {
+                                    "foreach": "@body('Fetch_Teams')?['value']",
+                                    "actions": {
+                                        "Append_to_array_variable": {
+                                            "runAfter": {},
+                                            "type": "AppendToArrayVariable",
+                                            "inputs": {
+                                                "name": "Teams",
+                                                "value": "@concat('(o/teamid eq ',items('For_each')?['teamid'],')')"
+                                            }
+                                        }
+                                    },
+                                    "runAfter": {
+                                        "Fetch_Teams": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "Foreach"
+                                },
                                 "Logic-ValidateToken": {
+                                    "runAfter": {},
+                                    "type": "Workflow",
                                     "inputs": {
                                         "body": {
                                             "token": "@{triggerOutputs()['headers']['x-auth-token']}",
@@ -180,30 +206,29 @@
                                         "host": {
                                             "triggerName": "manual",
                                             "workflow": {
-                                                "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Logic/workflows/Logic-ValidateToken')]"
+                                                 "id": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Logic/workflows/Logic-ValidateToken')]"
                                             }
                                         }
-                                    },
-                                    "runAfter": {},
-                                    "type": "Workflow"
+                                    }
                                 },
                                 "Response_2": {
-                                    "inputs": {
-                                        "body": "@body('Logic-ValidateToken')",
-                                        "statusCode": 401
-                                    },
-                                    "kind": "Http",
                                     "runAfter": {
                                         "Logic-ValidateToken": [
                                             "Failed"
                                         ]
                                     },
-                                    "type": "Response"
+                                    "type": "Response",
+                                    "kind": "Http",
+                                    "inputs": {
+                                        "body": "@body('Logic-ValidateToken')",
+                                        "statusCode": 401
+                                    }
                                 },
                                 "Response_failure": {
                                     "runAfter": {
                                         "Fetch_User_Show": [
                                             "Failed",
+                                            "Skipped",
                                             "TimedOut"
                                         ]
                                     },
@@ -224,7 +249,11 @@
                                     }
                                 }
                             },
-                            "runAfter": {},
+                            "runAfter": {
+                                "Initialize_variable": [
+                                    "Succeeded"
+                                ]
+                            },
                             "else": {
                                 "actions": {
                                     "Response": {
@@ -261,6 +290,19 @@
                                 ]
                             },
                             "type": "If"
+                        },
+                        "Initialize_variable": {
+                            "runAfter": {},
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "Teams",
+                                        "type": "array",
+                                        "value": []
+                                    }
+                                ]
+                            }
                         }
                     },
                     "outputs": {
