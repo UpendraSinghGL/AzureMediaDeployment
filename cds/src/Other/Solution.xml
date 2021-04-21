@@ -79,6 +79,7 @@
       </Addresses>
     </Publisher>
     <RootComponents>
+      <RootComponent type="1" schemaName="team" behavior="0" />
       <RootComponent type="1" schemaName="media_asset" behavior="0" />
       <RootComponent type="1" schemaName="media_assetcontainer" behavior="0" />
       <RootComponent type="1" schemaName="media_asseterrorlog" behavior="0" />
@@ -115,6 +116,8 @@
       <RootComponent type="29" id="{a1cd3315-2f71-eb11-a812-000d3a173290}" behavior="0" />
       <RootComponent type="29" id="{76bc9a4d-7167-eb11-a812-0022480855c2}" behavior="0" />
       <RootComponent type="29" id="{e20e4144-ff74-eb11-a812-002248097e89}" behavior="0" />
+      <RootComponent type="60" id="{7ba7fac1-1418-4335-935f-f7f8dfd73fcc}" behavior="0" />
+      <RootComponent type="60" id="{c0dec8b9-f39c-eb11-b1ac-00224802944a}" behavior="0" />
       <RootComponent type="60" id="{19ac851e-c3c4-446a-8659-220b0bdc2340}" behavior="0" />
       <RootComponent type="60" id="{531ec6d7-9bd6-4a66-a48b-4f5231529bc4}" behavior="0" />
       <RootComponent type="60" id="{596be284-371e-4638-a5af-3fd22be03810}" behavior="0" />
@@ -147,6 +150,7 @@
       <RootComponent type="61" schemaName="media_studio_icon.png" behavior="0" />
       <RootComponent type="61" schemaName="media_vendor_16x16.png" behavior="0" />
       <RootComponent type="61" schemaName="media_details_16x16.png" behavior="0" />
+      <RootComponent type="61" schemaName="media_macuser.png" behavior="0" />
       <RootComponent type="61" schemaName="media_NexisIcon" behavior="0" />
       <RootComponent type="62" schemaName="media_DurinMediaLake" behavior="0" />
       <RootComponent type="80" schemaName="media_DurinMediaLake" behavior="0" />

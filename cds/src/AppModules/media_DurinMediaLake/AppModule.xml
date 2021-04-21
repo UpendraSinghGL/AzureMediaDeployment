@@ -27,6 +27,13 @@
     <AppModuleComponent type="1" schemaName="media_track" />
     <AppModuleComponent type="1" schemaName="systemuser" />
     <AppModuleComponent type="1" schemaName="media_vendor" />
+
+    <AppModuleComponent type="1" schemaName="team" />
+    <AppModuleComponent type="60" id="{c0dec8b9-f39c-eb11-b1ac-00224802944a}" />
+    <AppModuleComponent type="26" id="{00000000-0000-0000-00aa-000010001026}" />
+    <AppModuleComponent type="26" id="{00000000-0000-0000-00aa-000010001205}" />
+    <AppModuleComponent type="26" id="{7e24e807-9f95-4546-94c9-c4f29ec812ba}" />
+    <AppModuleComponent type="26" id="{57e39843-404c-48e5-b1d9-1889098fb65c}" />
   </AppModuleComponents>
   <AppModuleRoleMaps>
     <Role id="{627090ff-40a3-4053-8790-584edc5be201}" />

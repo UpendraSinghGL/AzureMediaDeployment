@@ -863,6 +863,7 @@
       <CanChangeTrackingBeEnabled>1</CanChangeTrackingBeEnabled>
       <IsEnabledForExternalChannels>0</IsEnabledForExternalChannels>
       <IsSolutionAware>0</IsSolutionAware>
+      <IconVectorName>media_macuser.png</IconVectorName>
     </entity>
   </EntityInfo>
   <FormXml />

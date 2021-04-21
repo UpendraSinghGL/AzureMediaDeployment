@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{c0dec8b9-f39c-eb11-b1ac-00224802944a}</formid>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <ancestor id="{7ba7fac1-1418-4335-935f-f7f8dfd73fcc}" />
+      <hiddencontrols>
+        <data id="isdefault" datafieldname="isdefault" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" />
+      </hiddencontrols>
+      <tabs>
+        <tab name="general" verticallayout="true" id="{0840971E-E63D-4FD3-825F-44A6203D7B28}" IsUserDefined="0" expanded="true" showlabel="true" labelid="{1c8f6cdb-325a-481d-b4d0-dbd6cb1f2450}">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="34%">
+              <sections>
+                <section name="General" showlabel="false" showbar="false" id="{DC61780B-91D3-43C4-90F8-BE6F1EACD317}" IsUserDefined="0" labelwidth="100" labelid="{75454b41-98a8-4757-87c8-36cb1db7ac29}">
+                  <labels>
+                    <label description="GENERAL" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{6727C94D-0CD6-4003-AE6D-484652C0A578}" labelid="{c824035c-4475-44a8-a992-a8b5aaa68039}">
+                        <labels>
+                          <label description="Team Name" languagecode="1033" />
+                        </labels>
+                        <control id="name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="name" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell visible="false" id="{BF695E55-85F5-4534-8980-8932A4D18263}" labelid="{f1dbf4b3-d320-442c-ab68-726516b70548}">
+                        <labels>
+                          <label description="Business Unit" languagecode="1033" />
+                        </labels>
+                        <control id="businessunitid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="businessunitid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell visible="false" id="{2248D866-7813-404D-8479-2210483745D9}" labelid="{5bef0eb3-9677-4a58-9bfa-6c55e6c6a5dc}">
+                        <labels>
+                          <label description="Administrator" languagecode="1033" />
+                        </labels>
+                        <control id="administratorid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="administratorid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell visible="false" id="{e3dca6c4-ae67-419b-93c7-41d574042dfd}" labelid="{54ab1257-09d5-4857-a42b-a5c43521854a}">
+                        <labels>
+                          <label description="Team Type" languagecode="1033" />
+                        </labels>
+                        <control id="teamtype" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="teamtype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1d2365b3-98c5-4b3a-93fd-f0acbc13ff88}" labelid="{4ceab2f6-06b3-447f-a331-a7e1a08b7483}">
+                        <labels>
+                          <label description="Azure AD Object Id for a group" languagecode="1033" />
+                        </labels>
+                        <control id="azureactivedirectoryobjectid" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="azureactivedirectoryobjectid" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{19c6d20a-099d-8cd8-1465-0440147b0218}" labelid="{fa55abb7-bd0e-441a-bd55-4c9b8cb6937a}">
+                        <labels>
+                          <label description="Membership Type" languagecode="1033" />
+                        </labels>
+                        <control id="membershiptype" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="membershiptype" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="Description" showlabel="false" showbar="false" locklevel="0" id="{510EDF68-06A4-4C18-8DE1-150251BD0A19}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Top" labelid="{2627685a-4f65-43c6-a020-41bff5822d09}">
+                  <labels>
+                    <label description="DESCRIPTION" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{BD50EAB1-25F3-464D-ADAB-FEFAE73F6F96}" showlabel="true" locklevel="0" labelid="{66be7c8c-bb1d-4913-9b35-42975bfe0ea3}">
+                        <labels>
+                          <label description="Description" languagecode="1033" />
+                        </labels>
+                        <control id="description" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="description" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="66%">
+              <sections>
+                <section name="TeamMembers" showlabel="false" showbar="false" locklevel="0" id="{D5F76F10-BA8B-4309-8FED-5B6B0238533D}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Top" labelid="{e2bf471b-113a-499b-9bff-b40eaf51bb10}">
+                  <labels>
+                    <label description="TEAM MEMBERS" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{bb5f8cf2-5e72-419c-ab32-22ff723234e5}" rowspan="1" colspan="1" labelid="{8506a13d-54f1-4dc4-b0c5-9f26a7a56032}">
+                        <labels>
+                          <label description="Mac Members" languagecode="1033" />
+                        </labels>
+                        <control id="Subgrid_macusers" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <TargetEntityType>media_macuser</TargetEntityType>
+                            <ViewId>{F587EA2B-4CE8-488D-948A-4D2F1FE0E057}</ViewId>
+                            <ViewIds>{F587EA2B-4CE8-488D-948A-4D2F1FE0E057}</ViewIds>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <RelationshipName>media_Team_media_MacUser_media_MacUser</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <clientresources>
+        <internalresources>
+          <clientincludes>
+            <internaljscriptfile src="/_static/Biz/Teams/TeamRecord.js" />
+            <internaljscriptfile src="$webresource:Team_main_system_library.js" />
+          </clientincludes>
+        </internalresources>
+      </clientresources>
+      <header id="{C4057CC3-270C-40D8-BAB7-4418CB323D2C}" columns="111">
+        <rows>
+          <row>
+            <cell id="{93BCC9EF-6750-4BFE-BB32-BB56C6BC0CE8}" showlabel="false" labelid="{b4171c19-efb8-4b4b-b02e-91e7e4f09f0d}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{1DCAD190-7FDE-4F7D-870A-BA20127DACE9}" showlabel="false" labelid="{02da5f3b-1abb-45f9-b4cc-88235eeae393}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{C0079CB8-5922-43C9-93ED-A52C51847C3F}" showlabel="true" locklevel="0" labelid="{8a66856e-832e-4ef6-a496-bb28ce7025a2}">
+              <labels>
+                <label description="Default Queue" languagecode="1033" />
+              </labels>
+              <control id="header_queueid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="queueid" disabled="false" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <DisplayConditions FallbackForm="true" Order="4">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
+      <events>
+        <event name="onload" application="true" active="true">
+          <InternalHandlers>
+            <Handler functionName="Mscrm.Form_onload" libraryName="Team_main_system_library.js" handlerUniqueId="06131746-007C-4094-9C39-683554194748" enabled="true" />
+          </InternalHandlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="teamtype">
+          <InternalHandlers>
+            <Handler functionName="Mscrm.teamtype_onchange" libraryName="Team_main_system_library.js" handlerUniqueId="3BAEE412-4718-4EC5-992E-0769C108749B" enabled="true" passExecutionContext="true" />
+          </InternalHandlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="membershiptype">
+          <InternalHandlers>
+            <Handler functionName="Mscrm.membershiptype_onchange" libraryName="Team_main_system_library.js" handlerUniqueId="3BAEE412-4718-4EC5-992E-0769C1087491" enabled="true" passExecutionContext="true" />
+          </InternalHandlers>
+        </event>
+      </events>
+      <footer id="{5f6dbfc0-c7f4-447e-a667-879214b5177a}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{11309d8b-3c25-4ea3-8e92-b59f39456fcd}" showlabel="false" labelid="{04f6437e-1d34-4ae7-b94b-db1b022abe7b}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{288c45e4-515d-43ea-84fc-f2336d6c2629}" showlabel="false" labelid="{c314390c-d492-4cfc-9034-02049ea004a3}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{8a524060-008d-46e3-9bcf-361d4b87e0bc}" showlabel="false" labelid="{0548f24b-c519-4b42-b63a-416d50884b10}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <formLibraries>
+        <Library name="media_durinutility.js" libraryUniqueId="{10182b7d-e522-4f38-b39f-ac99fd9fc4a9}" />
+      </formLibraries>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Mac User Team" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Updated default Team form" languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>

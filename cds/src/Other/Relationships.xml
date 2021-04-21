@@ -98,4 +98,9 @@
   <EntityRelationship Name="media_MacUser_User_SystemUser" />
   <EntityRelationship Name="user_media_macuser" />
   <EntityRelationship Name="media_copystatus_Show_media_AssetContaine" />
+    <!-- <EntityRelationship Name="business_unit_media_macuser" /> -->
+  <EntityRelationship Name="media_AssetContainer_Team_Team" />
+  <EntityRelationship Name="media_Team_media_MacUser_media_MacUser" />
+  <!-- <EntityRelationship Name="owner_media_macuser" /> -->
+  <EntityRelationship Name="team_media_macuser" />
 </EntityRelationships>
