@@ -30,7 +30,7 @@ namespace Sample.Mediainfo.FxnApp.Functions
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
             BlobPath = BlobPath ?? data?.BlobPath;
-            int exists = 0;
+            bool exists = false;
 
             if (!string.IsNullOrEmpty(connectionString) && !string.IsNullOrEmpty(BlobPath))
             {
@@ -44,9 +44,13 @@ namespace Sample.Mediainfo.FxnApp.Functions
                 BlobClient blobClient = blobCont.GetBlobClient(blobName);
                 BlobProperties properties = await blobClient.GetPropertiesAsync();
 
-                if(properties.Metadata.ContainsKey("Filetype") && properties.Metadata.ContainsKey("Source"))
+                if (properties.Metadata.TryGetValue("Filetype", out string value1) && properties.Metadata.TryGetValue("Source", out string value2))
                 {
-                    exists = 1;
+                    if ((value1 == "raw file") && (value2 == "mac client"))
+                    {
+                        exists = true;
+                    }
+
                 }
 
                 return new OkObjectResult(exists);
