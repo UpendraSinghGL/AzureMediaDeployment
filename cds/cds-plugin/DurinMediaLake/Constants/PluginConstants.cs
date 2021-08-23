@@ -30,6 +30,11 @@
         public const string AssetStatus = "media_assetstatus";
         public const string UploadedFile = "media_uploadedfile";
         public const string FolderFileCount = "media_folderfilecount";
+        public const string Blobpath = "media_blobpath";
+        public const string RefShow = "media_assetcontainer";
+        public const string RefSeason = "media_season";
+        public const string RefEpisode = "media_episode";
+        public const string RefBlock = "media_block";
     }
 
     public class MediaTrackConstants
@@ -65,4 +70,21 @@
         Other = 207940003,
         Script = 207940004,
     };
+
+    public enum BlobPathPositions
+    {
+        VendorUpload = 0,
+        Show = 1,
+        Season = 2,
+        EpisodeBlock = 3,
+        Asset = 4,
+    };
+
+    public class Show
+    {
+        public const string EntityLogicalName = "media_assetcontainer";
+        public const string NameColumn = "media_name";
+        public const string IdColumn = "media_assetcontainerid";
+        public const string LookupColumn = "_media_show_value";
+    }
 }
