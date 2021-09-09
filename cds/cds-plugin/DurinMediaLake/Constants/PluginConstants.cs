@@ -32,6 +32,7 @@
         public const string FolderFileCount = "media_folderfilecount";
         public const string Blobpath = "media_blobpath";
         public const string RefShow = "media_assetcontainer";
+        public const string isVendorUploaded = "media_isvendorupload";
         public const string RefSeason = "media_season";
         public const string RefEpisode = "media_episode";
         public const string RefBlock = "media_block";
@@ -86,5 +87,12 @@
         public const string NameColumn = "media_name";
         public const string IdColumn = "media_assetcontainerid";
         public const string LookupColumn = "_media_show_value";
+    }
+    public class Vendor
+    {
+        public const string EntityLogicalName = "media_vendor";
+        public const string NameColumn = "media_name";
+        public const string UploadedPath = "media_uploadpath";
+        public const string VendorId = "media_vendorid";
     }
 }

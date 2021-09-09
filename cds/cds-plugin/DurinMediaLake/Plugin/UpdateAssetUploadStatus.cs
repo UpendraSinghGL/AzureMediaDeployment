@@ -23,7 +23,7 @@
 
                 Entity mediaassetfile = this.OrganizationService.Retrieve(MediaAssetFileConstants.EntityLogicalName, fileEntity.Id, new ColumnSet(true));
                 EntityReference accountRef = mediaassetfile.GetAttributeValue<EntityReference>(MediaAssetConstants.EntityLogicalName);
-                Entity mediasset = this.OrganizationService.Retrieve(MediaAssetConstants.EntityLogicalName, accountRef.Id, new ColumnSet(MediaAssetConstants.FolderFileCount));
+                Entity mediasset = this.OrganizationService.Retrieve(MediaAssetConstants.EntityLogicalName, accountRef.Id, new ColumnSet(MediaAssetConstants.FolderFileCount, MediaAssetConstants.isVendorUploaded));
 
                 CalculateRollupFieldRequest rollupRequest = new CalculateRollupFieldRequest { Target = new EntityReference(MediaAssetConstants.EntityLogicalName, mediasset.Id), FieldName = MediaAssetConstants.UploadedFile };
                 CalculateRollupFieldResponse response = (CalculateRollupFieldResponse)this.OrganizationService.Execute(rollupRequest);
@@ -52,15 +52,17 @@
                 if (fileEntity.Contains(MediaAssetFileConstants.UploadStatus))
                 {
                     var uploadStatus = ((Microsoft.Xrm.Sdk.OptionSetValue)fileEntity.Attributes[MediaAssetFileConstants.UploadStatus]).Value;
+                    
                     //Get count of Uploaded Asset files in an Asset
                     int AssetFolderFileCount = Convert.ToInt32((mediasset.Attributes[MediaAssetConstants.FolderFileCount]));
+                    bool isVendorUpload = Convert.ToBoolean((mediasset.Attributes[MediaAssetConstants.isVendorUploaded]));
 
                     if (AssetFolderFileCount == Convert.ToInt32(response.Entity.Attributes[MediaAssetConstants.UploadedFile]))
                     {
                         mediasset.Attributes[MediaAssetConstants.AssetStatus] = new OptionSetValue(UploadStatus.Completed);
                         this.OrganizationService.Update(mediasset);
                     }
-                    else if(uploadStatus!= UploadStatus.PartiallyUpload)
+                    else if(uploadStatus!= UploadStatus.PartiallyUpload && isVendorUpload==false)
                     {
                         mediasset.Attributes[MediaAssetConstants.AssetStatus] = new OptionSetValue(UploadStatus.PartiallyUpload);
                         this.OrganizationService.Update(mediasset);
