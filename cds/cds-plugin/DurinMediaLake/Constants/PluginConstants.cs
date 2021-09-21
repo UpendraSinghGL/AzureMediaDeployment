@@ -10,6 +10,8 @@
         public const string EntityLogicalName = "media_assetfiles";
         public const string MediaInfoMetadata = "media_mediainfometadata";
         public const string UploadStatus = "media_uploadstatus";
+        public const string MetadataStatus = "media_metadatastatus";
+        public const string VendorMetadataStatus = "media_vendormetadatastatus";
         public const string AlefileContent = "media_alefilecontent";
         public const string BlobPath = "media_blobpath";
         public const string miscInfo = "media_miscinfo";
@@ -81,12 +83,22 @@
         Asset = 4,
     };
 
+    public enum Operator
+    {
+        Max = 207940000,
+        Min = 207940001,
+        Equals = 207940002,
+        In = 207940003,
+    };
+
     public class Show
     {
         public const string EntityLogicalName = "media_assetcontainer";
         public const string NameColumn = "media_name";
         public const string IdColumn = "media_assetcontainerid";
         public const string LookupColumn = "_media_show_value";
+        public const string EnableTranscoding = "media_enabletranscoding";
+        public const string EnableTranscription = "media_enabletranscription";
     }
     public class Vendor
     {
@@ -94,5 +106,34 @@
         public const string NameColumn = "media_name";
         public const string UploadedPath = "media_uploadpath";
         public const string VendorId = "media_vendorid";
+    }
+
+    public class ValidationRules
+    {
+        public string FieldName { get; set; }
+        public string Tracks { get; set; }
+        public int Operator { get;set; }
+        public string Value { get; set; }
+    }
+    public class VendorRules
+    {
+        public const string EntityLogicalName = "media_validationrule";
+        public const string FieldName = "media_fieldname";
+        public const string Tracks = "media_tracks";
+        public const string Operator = "media_operator";
+        public const string Value = "media_value";
+    }
+    public class VendorMetadataStatus
+    {
+        public const int Matched = 207940000;
+        public const int NotMatched = 207940001;
+        public const int TranscodingRequired = 207940003;
+        public const int MatchFailed = 207940002;
+    }
+    public class MetadataExtractStatus
+    {
+        public const int Extracted = 207940000;
+        public const int NotExtracted = 207940001;
+        public const int ExtractFailed = 207940002;
     }
 }

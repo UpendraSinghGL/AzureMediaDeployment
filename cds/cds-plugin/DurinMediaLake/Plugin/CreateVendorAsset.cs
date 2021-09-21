@@ -56,12 +56,18 @@
 
                         var showquery = new QueryExpression();
                         showquery.EntityName = Show.EntityLogicalName;
-                        showquery.ColumnSet = new ColumnSet("media_assetcontainerid");
+                        showquery.ColumnSet = new ColumnSet(Show.IdColumn, Show.EnableTranscoding, Show.EnableTranscription);
                         showquery.Criteria.AddCondition(Show.NameColumn, ConditionOperator.Equal, blobPathArr[(int)BlobPathPositions.Show]);
                         var show = this.OrganizationService.RetrieveMultiple(showquery).Entities;
 
-                        Entity showEntity = show.FirstOrDefault();
-                        showID = (Guid)showEntity?.Attributes["media_assetcontainerid"];
+                        if(show.Count>0)
+                        {
+                            Entity showEntity = show.FirstOrDefault();
+                            showID = (Guid)showEntity?.Attributes["media_assetcontainerid"];
+                            assetfiles["media_enablefortranscoding"] = showEntity.Attributes[Show.EnableTranscoding];
+                            assetfiles["media_enablefortranscription"] = showEntity.Attributes[Show.EnableTranscription];
+                        }
+
                     }
                     //Check if Show is assigned to Vendor only then create Asset
                     if (vendorshowID == showID)
@@ -99,9 +105,9 @@
                         Entity retrievedEntity = asset.FirstOrDefault();
                         assetid = (Guid)retrievedEntity?.Attributes["media_assetid"];
                     }
-                    if (assetid != Guid.Empty)
+                    if (assetid != Guid.Empty && showID !=Guid.Empty)
                     {
-                        assetfiles[MediaAssetConstants.EntityLogicalName] = new EntityReference(MediaAssetFileConstants.EntityLogicalName, assetid);
+                        assetfiles[MediaAssetConstants.EntityLogicalName] = new EntityReference(MediaAssetFileConstants.EntityLogicalName, assetid);    
                     }
                     this.OrganizationService.Update(assetfiles);
                 }
