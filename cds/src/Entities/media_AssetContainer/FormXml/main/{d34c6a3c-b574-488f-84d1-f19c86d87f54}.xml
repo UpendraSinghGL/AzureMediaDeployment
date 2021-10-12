@@ -98,7 +98,43 @@
                         </labels>
                         <control id="media_containerpath" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="media_containerpath" disabled="true" />
                       </cell>
-                      <cell id="{2c881a0a-3894-31b9-03b6-1665a5d7c1a8}" showlabel="false">
+                      <cell locklevel="0" id="{79e68fe8-fe79-4e2b-b93f-c92656d9cb72}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ed75535e-a244-448d-a6d7-85ece9d5becb}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Enable Transcoding" languagecode="1033" />
+                        </labels>
+                        <control id="media_enabletranscoding" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="media_enabletranscoding" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{5b2f78fc-90a2-4af1-8901-01a7cfcaf034}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{af165289-588f-446a-91e3-7fda0f322516}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{500a4ca6-32d1-4704-84c7-939e4932db9a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Enable Transcription" languagecode="1033" />
+                        </labels>
+                        <control id="media_enabletranscription" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="media_enabletranscription" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{5f0d5cca-7940-4378-bfa1-1f47ff309231}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell locklevel="0" id="{9c974109-ada5-4baa-8173-462548239edd}">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>

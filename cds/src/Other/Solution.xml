@@ -97,6 +97,8 @@
       <RootComponent type="1" schemaName="media_vendor" behavior="0" />
       <RootComponent type="1" schemaName="media_shownexismapping" behavior="0" />
       <RootComponent type="1" schemaName="media_copystatus" behavior="0" />
+      <RootComponent type="1" schemaName="media_validationrule" behavior="0" />
+      <RootComponent type="1" schemaName="media_vendortemplate" behavior="0" />
       <RootComponent type="1" schemaName="systemuser" behavior="0" />
       <RootComponent type="9" schemaName="media_assetstatus" behavior="0" />
       <RootComponent type="9" schemaName="media_checksumstatus" behavior="0" />
