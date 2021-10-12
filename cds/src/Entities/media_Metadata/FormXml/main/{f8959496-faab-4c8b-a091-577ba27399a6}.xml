@@ -20,27 +20,36 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{897e7d90-ffa3-4609-9c5e-5374ea863822}">
+                      <cell id="{8dcc873e-6336-4515-8ee3-7c18d71a360f}" locklevel="0" showlabel="true" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Track" languagecode="1033" />
+                        </labels>
+                        <control id="media_track" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="media_track" disabled="false" uniqueid="{52ca132e-2254-7632-0497-d115279b67ec}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{B6D81AF4-4915-EC11-B6E6-000D3A4F49EB}</DefaultViewId>
+                            <AvailableViewIds>{48021F83-6314-EC11-B6E6-000D3A4F49EB},{B6D81AF4-4915-EC11-B6E6-000D3A4F49EB}</AvailableViewIds>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell locklevel="0" id="{cb49e4a1-37d1-4f9f-8646-fab056ca5328}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{897e7d90-ffa3-4609-9c5e-5374ea863822}" colspan="1" rowspan="1">
                         <labels>
                           <label description="Key Name" languagecode="1033" />
                         </labels>
                         <control id="media_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="media_name" />
                       </cell>
-                      <cell id="{671a9ae1-2aa8-409e-8a0d-a4ac0f049140}" locklevel="0">
-                        <labels>
-                          <label description="KeyValue" languagecode="1033" />
-                        </labels>
-                        <control id="media_keyvalue" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="media_keyvalue" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{8dcc873e-6336-4515-8ee3-7c18d71a360f}" locklevel="0">
-                        <labels>
-                          <label description="Track" languagecode="1033" />
-                        </labels>
-                        <control id="media_track" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="media_track" disabled="false" />
-                      </cell>
-                      <cell locklevel="0" id="{cb49e4a1-37d1-4f9f-8646-fab056ca5328}">
+                      <cell id="{8c9a0bc2-17cb-3261-91ad-285874216259}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -95,6 +104,37 @@
           </row>
         </rows>
       </footer>
+      <Navigation>
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions />
       <DisplayConditions Order="0" FallbackForm="true">
         <Everyone />
       </DisplayConditions>

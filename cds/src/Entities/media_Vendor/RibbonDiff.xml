@@ -1,14 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <CustomActions />
+  <CustomActions>
+    <CustomAction Id="media.media_vendor.Button2.Button.CustomAction" Location="Mscrm.Form.media_vendor.MainTab.Save.Controls._children" Sequence="38">
+      <CommandUIDefinition>
+        <Button Command="media.media_vendor.Command0.Command" Id="media.media_vendor.Button2.Button" LabelText="$LocLabels:media.media_vendor.Button2.Button.LabelText" Sequence="38" TemplateAlias="o1" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
-  <CommandDefinitions />
+  <CommandDefinitions>
+    <CommandDefinition Id="media.media_vendor.Command0.Command">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="Media.resetPassword" Library="$webresource:media_VendorResetPasswordjs">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
     <DisplayRules />
     <EnableRules />
   </RuleDefinitions>
-  <LocLabels />
+  <LocLabels>
+    <LocLabel Id="media.media_vendor.Button2.Button.LabelText">
+      <Titles>
+        <Title description="Reset Password" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
 </RibbonDiffXml>

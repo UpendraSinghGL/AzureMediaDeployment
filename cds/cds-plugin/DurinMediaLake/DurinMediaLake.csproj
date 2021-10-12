@@ -71,6 +71,10 @@
     <Compile Include="Constants\PluginConstants.cs" />
     <Compile Include="Models\MediaInfoMetadata.cs" />
     <Compile Include="PluginBase.cs" />
+    <Compile Include="Plugin\CreatePreValidation.cs" />
+    <Compile Include="Plugin\AddAssetRelatedRecords.cs" />
+    <Compile Include="Plugin\CompareTemplate.cs" />
+    <Compile Include="Plugin\CreateVendorAsset.cs" />
     <Compile Include="Plugin\CameraMetadataExtraction.cs" />
     <Compile Include="Plugin\MediaInfoMetadataExtract.cs" />
     <Compile Include="Plugin\UpdateAssetUploadStatus.cs" />

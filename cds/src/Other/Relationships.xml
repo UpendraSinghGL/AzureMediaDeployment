@@ -93,5 +93,21 @@
   <EntityRelationship Name="media_ShowNexisMapping_Nexis_media_Nexis" />
   <EntityRelationship Name="media_ShowNexisMapping_Show_media_AssetCo" />
   <EntityRelationship Name="media_copystatus_SubmittedBy_SystemUser" />
-   <EntityRelationship Name="media_copystatus_Show_media_AssetContaine" />
+  <EntityRelationship Name="media_copystatus_Show_media_AssetContaine" />
+  <EntityRelationship Name="business_unit_media_validationrule" />
+  <EntityRelationship Name="business_unit_media_vendortemplate" />
+  <EntityRelationship Name="lk_media_validationrule_createdby" />
+  <EntityRelationship Name="lk_media_validationrule_modifiedby" />
+  <EntityRelationship Name="lk_media_vendortemplate_createdby" />
+  <EntityRelationship Name="lk_media_vendortemplate_modifiedby" />
+  <EntityRelationship Name="media_media_metadata_media_validationrule_fieldname" />
+  <EntityRelationship Name="media_media_track_media_validationrule_tracks" />
+  <EntityRelationship Name="media_media_vendortemplate_media_validationrule_validationtemplate" />
+  <EntityRelationship Name="media_vendortemplate_media_Vendor_media_V" />
+  <EntityRelationship Name="owner_media_validationrule" />
+  <EntityRelationship Name="owner_media_vendortemplate" />
+  <EntityRelationship Name="team_media_validationrule" />
+  <EntityRelationship Name="team_media_vendortemplate" />
+  <EntityRelationship Name="user_media_validationrule" />
+  <EntityRelationship Name="user_media_vendortemplate" />
 </EntityRelationships>

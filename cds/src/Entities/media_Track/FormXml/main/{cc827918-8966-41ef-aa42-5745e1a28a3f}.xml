@@ -28,7 +28,7 @@
                       </cell>
                       <cell locklevel="0" id="{ab1611fb-cdf9-47d4-962b-9934a6f9877b}" rowspan="1" colspan="1" showlabel="false">
                         <labels>
-                          <label description="New SG control 1606381942904" languagecode="1033" />
+                          <label description="Metadata Attributes" languagecode="1033" />
                         </labels>
                         <control id="Subgrid_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                           <parameters>
@@ -41,26 +41,13 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{06ea4342-e413-42e5-bc24-2eb75002daf7}" locklevel="0">
+                      <cell id="{d6733f53-eb0e-4add-8a9b-9e3a1817353c}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
-                          <label description="Format" languagecode="1033" />
+                          <label description="IsDefault Track" languagecode="1033" />
                         </labels>
-                        <control id="media_format" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="media_format" disabled="false" />
+                        <control id="media_isdefaulttrack" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="media_isdefaulttrack" disabled="false" />
                       </cell>
-                      <cell showlabel="false" locklevel="0" id="{e0d23df2-82e7-4532-87b1-624a0cd9f1f4}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{5e9a459d-08b0-490a-9b11-43e4f3fa5367}" locklevel="0">
-                        <labels>
-                          <label description="Asset File" languagecode="1033" />
-                        </labels>
-                        <control id="media_assetfile" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="media_assetfile" disabled="false" />
-                      </cell>
-                      <cell showlabel="false" locklevel="0" id="{5646488a-1ce8-4755-838a-ccfabb08566d}">
+                      <cell locklevel="0" id="{c230c4a8-b94b-4591-9e67-1b6d78b321ca}">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -73,7 +60,7 @@
                         </labels>
                         <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
                       </cell>
-                      <cell showlabel="false" locklevel="0" id="{2dac89c2-63ab-40ce-8c9f-9e988bca9cee}">
+                      <cell locklevel="0" id="{64de8c60-ab49-47c7-9a87-71b2c36ccc49}">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -128,6 +115,36 @@
           </row>
         </rows>
       </footer>
+      <Navigation>
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
       <DisplayConditions Order="0" FallbackForm="true">
         <Everyone />
       </DisplayConditions>

@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form headerdensity="HighWithControls">
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
         <tab verticallayout="true" id="{3e503e6b-5402-477a-8f89-f89083a98fbe}" IsUserDefined="1">
           <labels>
@@ -14,7 +14,7 @@
           <columns>
             <column width="100%">
               <sections>
-                <section showlabel="false" showbar="false" IsUserDefined="0" id="{a0789c71-e786-4845-b990-52f224b06501}">
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{a0789c71-e786-4845-b990-52f224b06501}" name="{a0789c71-e786-4845-b990-52f224b06501}" columns="11" locklevel="0" labelwidth="130" celllabelalignment="Left" celllabelposition="Left">
                   <labels>
                     <label description="General" languagecode="1033" />
                   </labels>
@@ -26,6 +26,30 @@
                         </labels>
                         <control id="media_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="media_name" />
                       </cell>
+                      <cell locklevel="0" id="{246119fc-efda-4cf0-a09b-4c8f0416a8cd}" rowspan="6" colspan="1" showlabel="false" auto="false">
+                        <labels>
+                          <label description="Shows" languagecode="1033" />
+                        </labels>
+                        <control id="Shows" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{52e0c345-58ab-6927-c98d-d1d13196a59d}">
+                          <parameters>
+                            <TargetEntityType>media_showvendormapping</TargetEntityType>
+                            <ViewId>{5FD173FD-4957-4D5D-8862-4011118FAB61}</ViewId>
+                            <ViewIds>{5FD173FD-4957-4D5D-8862-4011118FAB61}</ViewIds>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <RelationshipName>media_ShowVendorMapping_Vendor_media_Vend</RelationshipName>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <IsUserView>false</IsUserView>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                          </parameters>
+                        </control>
+                      </cell>
                     </row>
                     <row>
                       <cell id="{708423c6-49c3-43d9-be14-f70b5dd0462d}" locklevel="0">
@@ -36,11 +60,61 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{c7376c1b-e214-3583-6d53-c7addb99251b}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="User Name" languagecode="1033" />
+                        </labels>
+                        <control id="media_username" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="media_username" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{45950ce9-189d-435f-8d21-58f83f0dc9c4}" locklevel="0">
+                        <labels>
+                          <label description="Allow Upload" languagecode="1033" />
+                        </labels>
+                        <control id="media_allowupload" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="media_allowupload" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{94407649-263d-4c94-b1b9-715a884a19c1}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="User Principal Name" languagecode="1033" />
+                        </labels>
+                        <control id="media_userprincipalname" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="media_userprincipalname" disabled="true" uniqueid="{559bd660-62c8-a285-5968-956d87dd0181}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{64d27d08-d255-a7b5-9356-c12c5e7d7533}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Object Id" languagecode="1033" />
+                        </labels>
+                        <control id="media_objectid" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="media_objectid" disabled="true" uniqueid="{58d346cb-0009-d626-d1a8-0753614a7863}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9e25060e-3df4-4163-bf43-d6e71b96c35b}" locklevel="0">
+                        <labels>
+                          <label description="Upload Path" languagecode="1033" />
+                        </labels>
+                        <control id="media_uploadpath" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="media_uploadpath" disabled="true" />
+                      </cell>
+                      <cell id="{d1718626-ddb2-a482-b8a6-3834ba06a8b3}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{8b74c55f-1e64-4d04-b118-791bb3df74a1}" visible="false">
                         <labels>
                           <label description="Owner" languagecode="1033" />
                         </labels>
                         <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                      <cell id="{12b112b7-9643-a1de-493c-65ad29698c53}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
                       </cell>
                     </row>
                     <row>
@@ -48,32 +122,53 @@
                         <labels>
                           <label description="Owner Email" languagecode="1033" />
                         </labels>
-                        <control id="media_owneremail" classid="{ADA2203E-B4CD-49BE-9DDF-234642B43B52}" datafieldname="media_owneremail" disabled="false" />
+                        <control id="media_owneremail" classid="{ADA2203E-B4CD-49BE-9DDF-234642B43B52}" datafieldname="media_owneremail" disabled="false" uniqueid="{71666563-7490-09ac-04be-d009099b6402}" />
+                      </cell>
+                      <cell id="{dba64b5c-3476-283c-97d6-49be03d4132a}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
                       </cell>
                     </row>
                   </rows>
                 </section>
-                <section name="Shows" id="95ac3689-32c5-4260-b54c-60dccc4a0f41" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                <section name="Uploaded Assets" id="95ac3689-32c5-4260-b54c-60dccc4a0f41" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
                   <labels>
-                    <label description="Shows" languagecode="1033" />
+                    <label description="Uploaded Assets" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
-                      <cell locklevel="0" id="{246119fc-efda-4cf0-a09b-4c8f0416a8cd}" rowspan="1" colspan="1" showlabel="false">
+                      <cell id="{8ddc355a-d8b3-8a6e-1dec-10b9a4867a0a}" showlabel="true" colspan="1" auto="false" rowspan="7">
                         <labels>
-                          <label description="New SG control 1608094539243" languagecode="1033" />
+                          <label description="Assets (Vendor)" languagecode="1033" />
                         </labels>
-                        <control id="Shows" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                        <control id="Assets" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{d1525629-b03c-e573-ab4d-4b01ece70e86}">
                           <parameters>
-                            <TargetEntityType>media_showvendormapping</TargetEntityType>
-                            <ViewId>{5FD173FD-4957-4D5D-8862-4011118FAB61}</ViewId>
-                            <ViewIds>{5FD173FD-4957-4D5D-8862-4011118FAB61}</ViewIds>
-                            <EnableViewPicker>false</EnableViewPicker>
-                            <RelationshipName>media_ShowVendorMapping_Vendor_media_Vend</RelationshipName>
+                            <ViewId>{D6D61040-29FF-EB11-94EF-002248243BFF}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>media_Asset_Vendor_media_Vendor</RelationshipName>
+                            <TargetEntityType>media_asset</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>true</EnableViewPicker>
+                            <ViewIds>{D6D61040-29FF-EB11-94EF-002248243BFF}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId>{2B413AA2-BB5B-EB11-A812-0022480917A6}</VisualizationId>
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
                           </parameters>
                         </control>
                       </cell>
                     </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
                   </rows>
                 </section>
               </sections>
@@ -129,6 +224,37 @@
           </row>
         </rows>
       </footer>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions />
       <DisplayConditions Order="0" FallbackForm="true">
         <Everyone />
       </DisplayConditions>
