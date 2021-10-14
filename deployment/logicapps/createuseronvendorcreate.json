@@ -1,0 +1,186 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "connections_azuread": {
+            "defaultValue":"[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/azuread')]",
+            "type": "String"
+        },
+        "connections_commondataservice": {
+            "defaultValue":"[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/commondataservice')]",
+            "type": "String"
+        },
+        "connections_office365users": {
+            "defaultValue":"[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/office365users')]",
+            "type": "String"
+        },
+        "crmOrgName": {
+			"type": "string",
+			"metadata": {
+				"description": "description"
+			}
+		},
+		"crmIdentifier": {
+			"type": "string",
+			"metadata": {
+				"description": "crmIdentifier"
+			}
+		}
+    },
+    "variables": {
+        "org": "[durin.wrapInQuote(concat(parameters('crmOrgName'),'.',parameters('crmIdentifier')))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2017-07-01",
+            "name": "Logic-CreateUserOnVendorCreate",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "state": "Enabled",
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "$connections": {
+                            "defaultValue": {},
+                            "type": "Object"
+                        }
+                    },
+                    "triggers": {
+                        "When_a_row_is_added": {
+                            "type": "ApiConnectionWebhook",
+                            "inputs": {
+                                "body": {
+                                    "NotificationUrl": "@{listCallbackUrl()}"
+                                },
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                    }
+                                },
+								"path": "[concat('/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_vendors'),'))}/onnewitemswebhook')]",
+                                "queries": {
+                                    "scope": "Organization"
+                                }
+                            }
+                        }
+                    },
+                    "actions": {
+                        "Create_Error_Log": {
+                            "runAfter": {
+                                "Scope": [
+                                    "TimedOut",
+                                    "Failed"
+                                ]
+                            },
+                            "type": "ApiConnection",
+                            "inputs": {
+                                "body": {
+                                    "media_description": "@{result('Scope')}",
+                                    "media_name": "@{result('Scope')[0]?['outputs']['body']['error']['message']}"
+                                },
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                    }
+                                },
+                                "method": "post",
+                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
+                            }
+                        },
+                        "Scope": {
+                            "actions": {
+                                "Create_user": {
+                                    "runAfter": {
+                                        "Get_my_profile_(V2)_2": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "ApiConnection",
+                                    "inputs": {
+                                        "body": {
+                                            "accountEnabled": true,
+                                            "displayName": "@{first(split(triggerBody()?['media_username'],'@'))}",
+                                            "mailNickname": "@{first(split(triggerBody()?['media_username'],'@'))}",
+                                            "passwordProfile": {
+                                                "password": "password@123"
+                                            },
+                                            "userPrincipalName": "@{concat(replace(triggerBody()?['media_name'],' ',''),'@',last(split(body('Get_my_profile_(V2)_2')?['userPrincipalName'],'@')))}"
+                                        },
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['azuread']['connectionId']"
+                                            }
+                                        },
+                                        "method": "post",
+                                        "path": "/v1.0/users"
+                                    }
+                                },
+                                "Get_my_profile_(V2)_2": {
+                                    "runAfter": {},
+                                    "type": "ApiConnection",
+                                    "inputs": {
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['office365users']['connectionId']"
+                                            }
+                                        },
+                                        "method": "get",
+                                        "path": "/codeless/v1.0/me"
+                                    }
+                                },
+                                "Update_UPN_and_Object_Id_of_User": {
+                                    "runAfter": {
+                                        "Create_user": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "ApiConnection",
+                                    "inputs": {
+                                        "body": {
+                                            "_ownerid_type": "",
+                                            "media_objectid": "@body('Create_user')?['id']",
+                                            "media_userprincipalname": "@body('Create_user')?['userPrincipalName']"
+                                        },
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                            }
+                                        },
+                                        "method": "patch",
+                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_vendors'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('media_vendorid'),']))}')]"
+                                    }
+                                }
+                            },
+                            "runAfter": {},
+                            "type": "Scope"
+                        }
+                    },
+                    "outputs": {}
+                },
+                "parameters": {
+                    "$connections": {
+                        "value": {
+                            "azuread": {
+                                "connectionId": "[parameters('connections_azuread')]",
+                                "connectionName": "azuread",
+                                "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/azuread')]"
+                            },
+                            "commondataservice": {
+                                "connectionId": "[parameters('connections_commondataservice')]",
+                                "connectionName": "commondataservice",
+                                "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/commondataservice')]"
+                            },
+                            "office365users": {
+                                "connectionId": "[parameters('connections_office365users')]",
+                                "connectionName": "office365users",
+                                "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/office365users')]"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

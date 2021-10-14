@@ -83,7 +83,8 @@
           "crmOrgName": { "value": "[parameters('cdsOrgUniqueName')]" },
           "storageName": { "value": "[variables('blobStorageAccount')]" },
           "dataFactoryName": { "value": "[variables('dataFactoryName')]" },
-          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"}
+          "crmIdentifier":{"value":"[parameters('crmIdentifier')]"},
+          "vendorStorageName": { "value": "[variables('vendorblobStorageAccount')]" }
         }
       },
       "dependsOn": [

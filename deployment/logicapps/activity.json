@@ -1,0 +1,323 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workflows_Logic_ResetPassword": {
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Logic/workflows/Logic-ResetPassword')]",
+            "type": "String"
+        },
+        "connections_commondataservice": {
+            "defaultValue":"[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/commondataservice')]",
+            "type": "String"
+        },
+        "crmOrgName": {
+			"type": "string",
+			"metadata": {
+				"description": "description"
+			}
+		},
+		"crmIdentifier": {
+			"type": "string",
+			"metadata": {
+				"description": "crmIdentifier"
+			}
+		}
+    },
+    "variables": {
+        "org": "[durin.wrapInQuote(concat(parameters('crmOrgName'),'.',parameters('crmIdentifier')))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2017-07-01",
+            "name": "Logic-Activity",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "state": "Enabled",
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "$connections": {
+                            "defaultValue": {},
+                            "type": "Object"
+                        }
+                    },
+                    "triggers": {
+                        "When_a_row_is_added": {
+                            "type": "ApiConnectionWebhook",
+                            "inputs": {
+                                "body": {
+                                    "NotificationUrl": "@{listCallbackUrl()}"
+                                },
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                    }
+                                },
+								"path": "[concat('/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('tasks'),'))}/onnewitemswebhook')]",
+                                "queries": {
+                                    "scope": "Organization"
+                                }
+                            }
+                        }
+                    },
+                    "actions": {
+                        "Condition_-_Regarding_Type_Vendor": {
+                            "actions": {
+                                "Get_Vendor": {
+                                    "runAfter": {},
+                                    "type": "ApiConnection",
+                                    "inputs": {
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                            }
+                                        },
+                                        "method": "get",
+                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_vendors'),'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?[',durin.wrapInQuote('_regardingobjectid_value'),']))}')]"
+                                    }
+                                },
+                                "Logic-ResetPassword": {
+                                    "runAfter": {
+                                        "Until": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "Workflow",
+                                    "inputs": {
+                                        "body": {
+                                            "newPassword": "@variables('Password')",
+                                            "userName": "@body('Get_Vendor')?['media_username']"
+                                        },
+                                        "host": {
+                                            "triggerName": "manual",
+                                            "workflow": {
+                                                "id": "[parameters('workflows_Logic_ResetPassword')]"
+                                            }
+                                        }
+                                    }
+                                },
+                                "Until": {
+                                    "actions": {
+                                        "Set_variable_-_PasswordLength": {
+                                            "runAfter": {
+                                                "Switch": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "SetVariable",
+                                            "inputs": {
+                                                "name": "PasswordLength",
+                                                "value": "@length(variables('Password'))"
+                                            }
+                                        },
+                                        "Switch": {
+                                            "runAfter": {},
+                                            "cases": {
+                                                "Case": {
+                                                    "case": 0,
+                                                    "actions": {
+                                                        "Append_to_string_variable_2": {
+                                                            "runAfter": {},
+                                                            "type": "AppendToStringVariable",
+                                                            "inputs": {
+                                                                "name": "Password",
+                                                                "value": "@variables('PasswordArray')[rand(0,25)]"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "Case_2": {
+                                                    "case": 4,
+                                                    "actions": {
+                                                        "Append_to_string_variable": {
+                                                            "runAfter": {},
+                                                            "type": "AppendToStringVariable",
+                                                            "inputs": {
+                                                                "name": "Password",
+                                                                "value": "@rand(1000,9999)"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "default": {
+                                                "actions": {
+                                                    "Append_to_string_variable_3": {
+                                                        "runAfter": {},
+                                                        "type": "AppendToStringVariable",
+                                                        "inputs": {
+                                                            "name": "Password",
+                                                            "value": "@variables('PasswordArray')[rand(26,51)]"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "expression": "@variables('PasswordLength')",
+                                            "type": "Switch"
+                                        }
+                                    },
+                                    "runAfter": {
+                                        "Get_Vendor": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "expression": "@equals(variables('PasswordLength'), 8)",
+                                    "limit": {
+                                        "count": 60,
+                                        "timeout": "PT1H"
+                                    },
+                                    "type": "Until"
+                                }
+                            },
+                            "runAfter": {
+                                "Initialize_variable": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "expression": {
+                                "and": [
+                                    {
+                                        "equals": [
+                                            "@triggerBody()?['_regardingobjectid_type']",
+                                            "media_vendors"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "If"
+                        },
+                        "Initialize_variable": {
+                            "runAfter": {
+                                "Initialize_variable_-_PasswordLength": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "test",
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_variable_-_Password": {
+                            "runAfter": {},
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "Password",
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_variable_-_PasswordArray": {
+                            "runAfter": {
+                                "Initialize_variable_-_Password": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "PasswordArray",
+                                        "type": "array",
+                                        "value": [
+                                            "A",
+                                            "B",
+                                            "C",
+                                            "D",
+                                            "E",
+                                            "F",
+                                            "G",
+                                            "H",
+                                            "I",
+                                            "J",
+                                            "K",
+                                            "L",
+                                            "M",
+                                            "N",
+                                            "O",
+                                            "P",
+                                            "Q",
+                                            "R",
+                                            "S",
+                                            "T",
+                                            "U",
+                                            "V",
+                                            "W",
+                                            "X",
+                                            "Y",
+                                            "Z",
+                                            "a",
+                                            "b",
+                                            "c",
+                                            "d",
+                                            "e",
+                                            "f",
+                                            "g",
+                                            "h",
+                                            "i",
+                                            "j",
+                                            "k",
+                                            "l",
+                                            "m",
+                                            "n",
+                                            "o",
+                                            "p",
+                                            "q",
+                                            "r",
+                                            "s",
+                                            "t",
+                                            "u",
+                                            "v",
+                                            "w",
+                                            "x",
+                                            "y",
+                                            "z"
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_variable_-_PasswordLength": {
+                            "runAfter": {
+                                "Initialize_variable_-_PasswordArray": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "PasswordLength",
+                                        "type": "integer",
+                                        "value": 0
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "outputs": {}
+                },
+                "parameters": {
+                    "$connections": {
+                        "value": {
+                            "commondataservice": {
+                                "connectionId": "[parameters('connections_commondataservice')]",
+                                "connectionName": "commondataservice",
+                                "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/commondataservice')]"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

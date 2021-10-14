@@ -31,6 +31,12 @@
       "metadata": {
         "description": "crmIdentifier"
       }
+    },
+    "vendorStorageName": {
+      "type": "string",
+      "metadata": {
+        "description": "vendorStorageAccountName"
+      }
     }
   },
     "functions": [],
@@ -335,6 +341,84 @@
           "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
         }
       }
+    },
+    {
+      "name": "logicapp-onvendorupload-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/onvendorupload.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "vendorStorageName": { "value": "[parameters('vendorStorageName')]" },
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'logicapp-sendemail-deployment')]",
+      ]
+    },
+    {
+      "name": "logicapp-createuseronvendorcreate-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/createuseronvendorcreate.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'logicapp-sendemail-deployment')]"
+      ]
+    },
+    {
+      "name": "logicapp-resetpassword-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/resetpassword.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'logicapp-sendemail-deployment')]"
+      ]
+    },
+    {
+      "name": "logicapp-activity-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2019-10-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[uri(parameters('baseTemplatePath'), 'logicapps/activity.json')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "crmOrgName": { "value": "[parameters('crmOrgName')]" },
+          "crmIdentifier": { "value": "[parameters('crmIdentifier')]" }
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'logicapp-sendemail-deployment')]",
+        "[resourceId('Microsoft.Resources/deployments', 'logicapp-resetpassword-deployment')]"
+      ]
     }
   ],
     "outputs": {

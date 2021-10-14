@@ -1,0 +1,666 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vendorStorageName": {
+          "type": "string",
+          "metadata": {
+            "description": "vendorStorageAccountName"
+          }
+        },
+        "storageAccounts_vendordurinstorage": {
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Storage/storageAccounts/',parameters('vendorStorageName'))]",
+            "type": "String"
+        },
+        "workflows_Logic_AntiVirusScan": {
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Logic/workflows/Logic-AntiVirusScan')]",
+            "type": "String"
+        },
+        "workflows_Logic_ExtractAndSaveMetadata": {
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Logic/workflows/Logic-ExtractAndSaveMetadata')]",
+            "type": "String"
+        },
+        "connections_azureeventgrid_1": {
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/azureeventgrid-1')]",
+            "type": "String"
+        },
+        "connection_commondataservice": {
+           "type": "String",
+           "defaultValue":"[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/commondataservice')]"
+        },
+        "crmOrgName": {
+			"type": "string",
+			"metadata": {
+				"description": "description"
+			}
+		},
+		"crmIdentifier": {
+			"type": "string",
+			"metadata": {
+				"description": "crmIdentifier"
+			}
+		}
+    },
+    "variables": {
+        "org": "[durin.wrapInQuote(concat(parameters('crmOrgName'),'.',parameters('crmIdentifier')))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2017-07-01",
+            "name": "Logic-OnVendorUpload",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "state": "Enabled",
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "$connections": {
+                            "defaultValue": {},
+                            "type": "Object"
+                        }
+                    },
+                    "triggers": {
+                        "When_a_resource_event_occurs": {
+                            "splitOn": "@triggerBody()",
+                            "type": "ApiConnectionWebhook",
+                            "inputs": {
+                                "body": {
+                                    "properties": {
+                                        "destination": {
+                                            "endpointType": "webhook",
+                                            "properties": {
+                                                "endpointUrl": "@{listCallbackUrl()}"
+                                            }
+                                        },
+                                        "filter": {
+                                            "includedEventTypes": [
+                                                "Microsoft.Storage.BlobCreated"
+                                            ]
+                                        },
+                                        "topic": "[parameters('storageAccounts_vendordurinstorage')]"
+                                    }
+                                },
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['azureeventgrid_1']['connectionId']"
+                                    }
+                                },
+                                "path": "[concat(subscription().id,'/providers/@{encodeURIComponent(',durin.wrapInQuote('Microsoft.Storage.StorageAccounts'),')}/resource/eventSubscriptions')]",
+                                "queries": {
+                                    "x-ms-api-version": "2017-06-15-preview"
+                                }
+                            },
+                            "runtimeConfiguration": {
+                                "secureData": {
+                                    "properties": [
+                                        "inputs",
+                                        "outputs"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "actions": {
+                        "Condition_-_Check_for_ErrorMessage": {
+                            "actions": {
+                                "Add_a_new_row": {
+                                    "runAfter": {},
+                                    "type": "ApiConnection",
+                                    "inputs": {
+                                        "body": {
+                                            "_media_vendor_value": "@variables('VendorId')",
+                                            "media_name": "@variables('ErrorMessage')"
+                                        },
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                            }
+                                        },
+                                        "method": "post",
+                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_asseterrorlogs'),'))}/items')]"
+                                    }
+                                }
+                            },
+                            "runAfter": {
+                                "Condition_if_Blob_Created": [
+                                    "TimedOut",
+                                    "Failed"
+                                ]
+                            },
+                            "expression": {
+                                "and": [
+                                    {
+                                        "greater": [
+                                            "@length(variables('ErrorMessage'))",
+                                            0
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "If"
+                        },
+                        "Condition_if_Blob_Created": {
+                            "actions": {
+                                "Compose": {
+                                    "runAfter": {},
+                                    "type": "Compose",
+                                    "inputs": "@replace(substring(triggerBody()?['subject'],add(indexOf(triggerBody()?['subject'],'/containers/'),12)),'/blobs','')"
+                                },
+                                "Compose_Asset_Path": {
+                                    "runAfter": {
+                                        "Set_variable_-_Shootday": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "Compose",
+                                    "inputs": "@substring(outputs('Compose'),0,indexOf(outputs('Compose'),variables('PathArray')[5]))"
+                                },
+                                "Condition_-_if_asset_exists": {
+                                    "actions": {
+                                        "Compose_assetid": {
+                                            "runAfter": {},
+                                            "type": "Compose",
+                                            "inputs": "@body('List_records_matching_asset')?['value']?[0]?['media_assetid']"
+                                        },
+                                        "Condition_-_if_asset_file_exists": {
+                                            "actions": {},
+                                            "runAfter": {
+                                                "List_records_matching_Asset_files": [
+                                                    "Succeeded",
+                                                    "TimedOut",
+                                                    "Failed"
+                                                ]
+                                            },
+                                            "else": {
+                                                "actions": {
+                                                    "Create_Asset_files": {
+                                                        "runAfter": {},
+                                                        "type": "ApiConnection",
+                                                        "inputs": {
+                                                            "body": {
+                                                                "_media_asset_value": "@{outputs('Compose_assetid')}",
+                                                                "media_blobpath": "@{outputs('Compose')}",
+                                                                "media_checksumstatus": 207940002,
+                                                                "media_filesizemb": "@if(greater(triggerBody()?['data']?['contentLength'],0),div(div(triggerBody()?['data']?['contentLength'],1024.00),1024.00),0)",
+                                                                "media_filetype": 207940005,
+                                                                "media_isvendorupload": true,
+                                                                "media_name": "@{last(variables('PathArray'))}",
+                                                                "media_uploadstatus": 207940000
+                                                            },
+                                                            "host": {
+                                                                "connection": {
+                                                                    "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                                                }
+                                                            },
+                                                            "method": "post",
+                                                            "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items')]"
+                                                        }
+                                                    },
+                                                    "Set_variable_-_AssetfilesId": {
+                                                        "runAfter": {
+                                                            "Create_Asset_files": [
+                                                                "Succeeded"
+                                                            ]
+                                                        },
+                                                        "type": "SetVariable",
+                                                        "inputs": {
+                                                            "name": "AssetfileId",
+                                                            "value": "@body('Create_Asset_files')?['media_assetfilesid']"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "expression": {
+                                                "and": [
+                                                    {
+                                                        "greater": [
+                                                            -1,
+                                                            0
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            "type": "If"
+                                        },
+                                        "List_records_matching_Asset_files": {
+                                            "runAfter": {
+                                                "Compose_assetid": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "ApiConnection",
+                                            "inputs": {
+                                                "host": {
+                                                    "connection": {
+                                                        "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                                    }
+                                                },
+                                                "method": "get",
+                                                "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items')]",
+                                                "queries": {
+                                                    "$filter": "_media_asset_value eq '@{outputs('Compose_assetid')}' and statecode eq 0 and media_blobpath eq '@{outputs('Compose')}'"
+                                                }
+                                            }
+                                        },
+                                        "Set_variable_-_List_Asset_Files_ErrorMessage": {
+                                            "runAfter": {
+                                                "List_records_matching_Asset_files": [
+                                                    "TimedOut",
+                                                    "Failed"
+                                                ]
+                                            },
+                                            "type": "SetVariable",
+                                            "inputs": {
+                                                "name": "ErrorMessage",
+                                                "value": "Failed to retrieve Asset files with Path @{outputs('Compose')}"
+                                            }
+                                        }
+                                    },
+                                    "runAfter": {
+                                        "List_records_matching_asset": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "else": {
+                                        "actions": {
+                                            "Create_Asset_file": {
+                                                "runAfter": {
+                                                    "Create_Vendor_Asset": [
+                                                        "Succeeded"
+                                                    ]
+                                                },
+                                                "type": "ApiConnection",
+                                                "inputs": {
+                                                    "body": {
+                                                        "_media_asset_value": "@body('Create_Vendor_Asset')?['media_assetid']",
+                                                        "media_blobpath": "@{outputs('Compose')}",
+                                                        "media_checksumstatus": 207940002,
+                                                        "media_filesizemb": "@if(greater(triggerBody()?['data']?['contentLength'],0),div(div(triggerBody()?['data']?['contentLength'],1024.00),1024.00),0)",
+                                                        "media_filetype": 207940005,
+                                                        "media_isvendorupload": true,
+                                                        "media_name": "@{last(variables('PathArray'))}",
+                                                        "media_uploadstatus": 207940000
+                                                    },
+                                                    "host": {
+                                                        "connection": {
+                                                            "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                                        }
+                                                    },
+                                                    "method": "post",
+                                                    "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assetfileses'),'))}/items')]"
+
+                                                }
+                                            },
+                                            "Create_Vendor_Asset": {
+                                                "runAfter": {},
+                                                "type": "ApiConnection",
+                                                "inputs": {
+                                                    "body": {
+                                                        "_media_assetcontainer_value": " ",
+                                                        "_media_vendor_value": "@variables('VendorId')",
+                                                        "media_assetstatus": 207940000,
+                                                        "media_blobpath": "@{outputs('Compose_Asset_Path')}",
+                                                        "media_folderfilecount": 0,
+                                                        "media_isvendorupload": true,
+                                                        "media_name": "@variables('shootday')",
+                                                        "media_shootday": "@variables('shootday')"
+                                                    },
+                                                    "host": {
+                                                        "connection": {
+                                                            "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                                        }
+                                                    },
+                                                    "method": "post",
+                                                    "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items')]"
+                                                }
+                                            },
+                                            "Set_variable_-_AssetfileId": {
+                                                "runAfter": {
+                                                    "Create_Asset_file": [
+                                                        "Succeeded"
+                                                    ]
+                                                },
+                                                "type": "SetVariable",
+                                                "inputs": {
+                                                    "name": "AssetfileId",
+                                                    "value": "@body('Create_Asset_file')?['media_assetfilesid']"
+                                                }
+                                            },
+                                            "Set_variable_-_Create_Vendor_Asset_ErrorMessage": {
+                                                "runAfter": {
+                                                    "Create_Vendor_Asset": [
+                                                        "TimedOut",
+                                                        "Failed"
+                                                    ]
+                                                },
+                                                "type": "SetVariable",
+                                                "inputs": {
+                                                    "name": "ErrorMessage",
+                                                    "value": "Failed to create Vandor Asset with Path @{outputs('Compose_Asset_Path')}"
+                                                }
+                                            },
+                                            "Set_variable_-_Failed_to_create_Asset_file_ErrorMessage": {
+                                                "runAfter": {
+                                                    "Create_Asset_file": [
+                                                        "TimedOut",
+                                                        "Failed"
+                                                    ]
+                                                },
+                                                "type": "SetVariable",
+                                                "inputs": {
+                                                    "name": "ErrorMessage",
+                                                    "value": "Failed to create Asset file with Path @{outputs('Compose')}"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "expression": {
+                                        "and": [
+                                            {
+                                                "greater": [
+                                                    1,
+                                                    0
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "type": "If"
+                                },
+                                "For_each": {
+                                    "foreach": "@body('Get_Vendor_Id')?['value']",
+                                    "actions": {
+                                        "Set_variable_-_VendorId": {
+                                            "runAfter": {},
+                                            "type": "SetVariable",
+                                            "inputs": {
+                                                "name": "VendorId",
+                                                "value": "@items('For_each')?['media_vendorid']"
+                                            }
+                                        }
+                                    },
+                                    "runAfter": {
+                                        "Get_Vendor_Id": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "Foreach"
+                                },
+                                "Get_Vendor_Id": {
+                                    "runAfter": {
+                                        "Set_variable_-_ContainerName": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "ApiConnection",
+                                    "inputs": {
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                            }
+                                        },
+                                        "method": "get",
+                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_vendors'),'))}/items')]",
+                                        "queries": {
+                                            "$filter": "media_uploadpath eq '@{variables('ContainerName')}'"
+                                        }
+                                    }
+                                },
+                                "List_records_matching_asset": {
+                                    "runAfter": {
+                                        "Compose_Asset_Path": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "ApiConnection",
+                                    "inputs": {
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                            }
+                                        },
+                                        "method": "get",
+                                        "path": "[concat('/v2/datasets/@{encodeURIComponent(encodeURIComponent(',variables('org'),'))}/tables/@{encodeURIComponent(encodeURIComponent(',durin.wrapInQuote('media_assets'),'))}/items')]",
+                                        "queries": {
+                                            "$filter": "media_shootday eq '@{variables('shootday')}' and media_blobpath eq '@{outputs('Compose_Asset_Path')}' "
+                                        }
+                                    }
+                                },
+                                "Logic-AntiVirusScan": {
+                                    "runAfter": {
+                                        "Condition_-_if_asset_exists": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "Workflow",
+                                    "inputs": {
+                                        "body": {
+                                            "BlobUri": "@{triggerBody()?['data']?['url']}",
+                                            "RecordId": "@variables('AssetfileId')"
+                                        },
+                                        "host": {
+                                            "triggerName": "manual",
+                                            "workflow": {
+                                                "id": "[parameters('workflows_Logic_AntiVirusScan')]"
+                                            }
+                                        }
+                                    }
+                                },
+                                "Logic-ExtractAndSaveMetadata": {
+                                    "runAfter": {
+                                        "Condition_-_if_asset_exists": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "Workflow",
+                                    "inputs": {
+                                        "body": {
+                                            "BlobUri": "@triggerBody()?['data']?['url']",
+                                            "RecordId": "@variables('AssetfileId')"
+                                        },
+                                        "host": {
+                                            "triggerName": "manual",
+                                            "workflow": {
+                                                "id": "[parameters('workflows_Logic_ExtractAndSaveMetadata')]"
+                                            }
+                                        }
+                                    }
+                                },
+                                "Set_variable_-_ContainerName": {
+                                    "runAfter": {
+                                        "Compose": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "SetVariable",
+                                    "inputs": {
+                                        "name": "ContainerName",
+                                        "value": "@{substring(outputs('Compose'),0,indexOf(outputs('Compose'),'/'))}"
+                                    }
+                                },
+                                "Set_variable_-_DirectoryPath": {
+                                    "runAfter": {
+                                        "For_each": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "SetVariable",
+                                    "inputs": {
+                                        "name": "DirectoryPath",
+                                        "value": "@{substring(outputs('Compose'),0,lastIndexOf(outputs('Compose'),'/'))}"
+                                    }
+                                },
+                                "Set_variable_-_Shootday": {
+                                    "runAfter": {
+                                        "Set_variable_PathArray": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "SetVariable",
+                                    "inputs": {
+                                        "name": "shootday",
+                                        "value": "@{variables('PathArray')[4]}"
+                                    }
+                                },
+                                "Set_variable_PathArray": {
+                                    "runAfter": {
+                                        "Set_variable_-_DirectoryPath": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "SetVariable",
+                                    "inputs": {
+                                        "name": "PathArray",
+                                        "value": "@split(outputs('Compose'),'/')"
+                                    }
+                                }
+                            },
+                            "runAfter": {
+                                "Initialize_variable_-_AssetfileId": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "expression": {
+                                "and": [
+                                    {
+                                        "equals": [
+                                            "@triggerBody()?['eventType']",
+                                            "Microsoft.Storage.BlobCreated"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "type": "If"
+                        },
+                        "Initialize_variable_-_AssetfileId": {
+                            "runAfter": {
+                                "Initialize_variable_-_vendorId": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "AssetfileId",
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_variable_-_Directory_Path": {
+                            "runAfter": {
+                                "Initialize_variable_Container_Name": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "DirectoryPath",
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_variable_-_ErrorMessage": {
+                            "runAfter": {
+                                "Initialize_variable_-_PathArray": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "ErrorMessage",
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_variable_-_PathArray": {
+                            "runAfter": {
+                                "Initialize_variable_-_shootday": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "PathArray",
+                                        "type": "array"
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_variable_-_shootday": {
+                            "runAfter": {
+                                "Initialize_variable_-_Directory_Path": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "shootday",
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_variable_-_vendorId": {
+                            "runAfter": {
+                                "Initialize_variable_-_ErrorMessage": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "VendorId",
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        },
+                        "Initialize_variable_Container_Name": {
+                            "runAfter": {},
+                            "type": "InitializeVariable",
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "ContainerName",
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "outputs": {}
+                },
+                "parameters": {
+                    "$connections": {
+                        "value": {
+                            "azureeventgrid_1": {
+                                "connectionId": "[parameters('connections_azureeventgrid_1')]",
+                                "connectionName": "azureeventgrid-1",
+                                "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/azureeventgrid')]"
+                            },
+                            "commondataservice": {
+                                "connectionId": "[parameters('connections_commondataservice')]",
+                                "connectionName": "commondataservice",
+                                "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/commondataservice')]"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}
