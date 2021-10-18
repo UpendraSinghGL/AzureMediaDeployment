@@ -20,8 +20,8 @@
             "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Logic/workflows/Logic-ExtractAndSaveMetadata')]",
             "type": "String"
         },
-        "connections_azureeventgrid_1": {
-            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/azureeventgrid-1')]",
+        "connections_azureeventgrid": {
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/azureeventgrid')]",
             "type": "String"
         },
         "connections_commondataservice": {
@@ -103,7 +103,7 @@
                                 },
                                 "host": {
                                     "connection": {
-                                        "name": "@parameters('$connections')['azureeventgrid_1']['connectionId']"
+                                        "name": "@parameters('$connections')['azureeventgrid']['connectionId']"
                                     }
                                 },
                                 "path": "[concat(subscription().id,'/providers/@{encodeURIComponent(',durin.wrapInQuote('Microsoft.Storage.StorageAccounts'),')}/resource/eventSubscriptions')]",
@@ -667,8 +667,8 @@
                     "$connections": {
                         "value": {
                             "azureeventgrid_1": {
-                                "connectionId": "[parameters('connections_azureeventgrid_1')]",
-                                "connectionName": "azureeventgrid-1",
+                                "connectionId": "[parameters('connections_azureeventgrid')]",
+                                "connectionName": "azureeventgrid",
                                 "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/azureeventgrid')]"
                             },
                             "commondataservice": {
