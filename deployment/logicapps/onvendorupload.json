@@ -24,7 +24,7 @@
             "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/azureeventgrid-1')]",
             "type": "String"
         },
-        "connection_commondataservice": {
+        "connections_commondataservice": {
            "type": "String",
            "defaultValue":"[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/commondataservice')]"
         },
