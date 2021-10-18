@@ -133,6 +133,11 @@
       <RootComponent type="60" id="{e7da96d4-414f-4763-9417-09c3b34730ff}" behavior="0" />
       <RootComponent type="60" id="{f7bc7d25-6852-441d-a98e-92dd1fcd1646}" behavior="0" />
       <RootComponent type="60" id="{f8959496-faab-4c8b-a091-577ba27399a6}" behavior="0" />
+      <RootComponent type="60" id="{c074db67-1d58-4bf6-ad58-246a6e28ba63}" behavior="0" />
+      <RootComponent type="60" id="{dea2d740-e85b-eb11-a812-0022480918d2}" behavior="0" />
+      <RootComponent type="60" id="{2a11c560-0275-eb11-a812-002248097e89}" behavior="0" />
+      <RootComponent type="60" id="{0314cb1e-4577-eb11-a812-002248097ea6}" behavior="0" />
+      <RootComponent type="60" id="{5a6c1043-4477-eb11-a812-002248097ea6}" behavior="0" />
       <RootComponent type="61" schemaName="media_AppLogo" behavior="0" />
       <RootComponent type="61" schemaName="media_assetfile_16x16.png" behavior="0" />
       <RootComponent type="61" schemaName="media_asset_16x16.png" behavior="0" />
@@ -148,22 +153,22 @@
       <RootComponent type="61" schemaName="media_vendor_16x16.png" behavior="0" />
       <RootComponent type="61" schemaName="media_details_16x16.png" behavior="0" />
       <RootComponent type="61" schemaName="media_NexisIcon" behavior="0" />
+      <RootComponent type="61" schemaName="media_VendorResetPasswordjs" behavior="0" />
+      <RootComponent type="61" schemaName="media_copyVendorLocation.html" behavior="0" />
       <RootComponent type="62" schemaName="media_DurinMediaLake" behavior="0" />
       <RootComponent type="80" schemaName="media_DurinMediaLake" behavior="0" />
       <RootComponent type="91" id="{e7c9341c-a5f5-4120-ba12-bd62a5096e00}" schemaName="Microsoft.Media.DurinMediaLake, Version=1.0.0.0, Culture=neutral, PublicKeyToken=809b50fade28e4c2" behavior="0" />
       <RootComponent type="92" id="{73670712-026a-eb11-a812-000d3a3b10f8}" behavior="0" />
       <RootComponent type="92" id="{9d4de34a-026a-eb11-a812-000d3a3b10f8}" behavior="0" />
       <RootComponent type="92" id="{b9a4642a-026a-eb11-a812-000d3a3b10f8}" behavior="0" />
+      <RootComponent type="92" id="{03cecf5a-590a-ec11-b6e6-000d3a132ae5}" behavior="0" />
+      <RootComponent type="92" id="{1eeb5a54-5a0a-ec11-b6e6-000d3a132ae5}" behavior="0" />
+      <RootComponent type="92" id="{e7c97a7a-5a0a-ec11-b6e6-000d3a132ae5}" behavior="0" />
+      <RootComponent type="92" id="{e8a0a1c2-a10c-ec11-b6e6-000d3a132ae5}" behavior="0" />
       <RootComponent type="431" schemaName="media_assetcontainer media_logo" behavior="0" />
       <RootComponent type="431" schemaName="media_studio media_logo" behavior="0" />
       <RootComponent type="432" schemaName="media_assetcontainer" behavior="0" />
       <RootComponent type="432" schemaName="media_studio" behavior="0" />
-      <RootComponent type="61" schemaName="media_copyVendorLocation.html" behavior="0" />
-      <RootComponent type="60" id="{c074db67-1d58-4bf6-ad58-246a6e28ba63}" behavior="0" />
-      <RootComponent type="60" id="{dea2d740-e85b-eb11-a812-0022480918d2}" behavior="0" />
-      <RootComponent type="60" id="{2a11c560-0275-eb11-a812-002248097e89}" behavior="0" />
-      <RootComponent type="60" id="{0314cb1e-4577-eb11-a812-002248097ea6}" behavior="0" />
-      <RootComponent type="60" id="{5a6c1043-4477-eb11-a812-002248097ea6}" behavior="0" />
     </RootComponents>
     <MissingDependencies>
       <MissingDependency>
