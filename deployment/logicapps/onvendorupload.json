@@ -666,7 +666,7 @@
                 "parameters": {
                     "$connections": {
                         "value": {
-                            "azureeventgrid_1": {
+                            "azureeventgrid": {
                                 "connectionId": "[parameters('connections_azureeventgrid')]",
                                 "connectionName": "azureeventgrid",
                                 "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/azureeventgrid')]"
