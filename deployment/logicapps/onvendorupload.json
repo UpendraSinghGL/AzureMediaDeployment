@@ -20,11 +20,11 @@
             "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Logic/workflows/Logic-ExtractAndSaveMetadata')]",
             "type": "String"
         },
-        "connections_azureeventgrid_1": {
-            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/azureeventgrid-1')]",
+        "connections_azureeventgrid": {
+            "defaultValue": "[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/azureeventgrid')]",
             "type": "String"
         },
-        "connection_commondataservice": {
+        "connections_commondataservice": {
            "type": "String",
            "defaultValue":"[concat(subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Web/connections/commondataservice')]"
         },
@@ -41,6 +41,25 @@
 			}
 		}
     },
+    "functions": [
+		{
+			"namespace": "durin",
+			"members": {
+				"wrapInQuote": {
+					"parameters": [
+						{
+							"name": "text",
+							"type": "string"
+						}
+					],
+					"output": {
+						"value": "[concat('''', parameters('text'),'''')]",
+						"type": "string"
+					}
+				}
+			}
+		}
+	],
     "variables": {
         "org": "[durin.wrapInQuote(concat(parameters('crmOrgName'),'.',parameters('crmIdentifier')))]"
     },
@@ -84,7 +103,7 @@
                                 },
                                 "host": {
                                     "connection": {
-                                        "name": "@parameters('$connections')['azureeventgrid_1']['connectionId']"
+                                        "name": "@parameters('$connections')['azureeventgrid']['connectionId']"
                                     }
                                 },
                                 "path": "[concat(subscription().id,'/providers/@{encodeURIComponent(',durin.wrapInQuote('Microsoft.Storage.StorageAccounts'),')}/resource/eventSubscriptions')]",
@@ -647,9 +666,9 @@
                 "parameters": {
                     "$connections": {
                         "value": {
-                            "azureeventgrid_1": {
-                                "connectionId": "[parameters('connections_azureeventgrid_1')]",
-                                "connectionName": "azureeventgrid-1",
+                            "azureeventgrid": {
+                                "connectionId": "[parameters('connections_azureeventgrid')]",
+                                "connectionName": "azureeventgrid",
                                 "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/azureeventgrid')]"
                             },
                             "commondataservice": {

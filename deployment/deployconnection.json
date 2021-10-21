@@ -68,6 +68,41 @@
             }
         },
         {
+            "name": "office365users",
+            "type": "Microsoft.Web/connections",
+            "apiVersion": "2016-06-01",
+            "location": "[resourceGroup().location]",
+            "tags": {
+            },
+            "properties": {
+                "displayName": "",
+                "parameterValues": {
+                },
+                "customParameterValues": {
+                },
+                "api": {
+                    "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/office365users')]"
+                }
+            }
+        },{
+            "name": "azuread",
+            "type": "Microsoft.Web/connections",
+            "apiVersion": "2016-06-01",
+            "location": "[resourceGroup().location]",
+            "tags": {
+            },
+            "properties": {
+                "displayName": "",
+                "parameterValues": {
+                },
+                "customParameterValues": {
+                },
+                "api": {
+                    "id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', resourceGroup().location, '/managedApis/azuread')]"
+                }
+            }
+        },
+        {
             "name": "storage",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2019-10-01",
