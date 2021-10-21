@@ -129,12 +129,50 @@
                         </labels>
                         <control id="media_blobpath" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="media_blobpath" disabled="true" />
                       </cell>
-                      <cell locklevel="0" id="{a0c785bc-b960-417b-a05b-a40cdcdec963}">
+                      <cell id="{281a76d1-a1c5-75c1-ca95-7d9dd513b163}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Is Vendor Upload" languagecode="1033" />
+                        </labels>
+                        <control id="media_isvendorupload" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="media_isvendorupload" disabled="true" uniqueid="{e4ed8937-79d7-8b83-81d5-b5d37a774468}" />
+                      </cell>
+                      <cell locklevel="0" id="{05ae1a3a-9476-41b2-9802-96840f4e6c4a}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
                       </cell>
-                      <cell locklevel="0" id="{05ae1a3a-9476-41b2-9802-96840f4e6c4a}">
+                    </row>
+                    <row>
+                      <cell id="{455ae70a-920b-4937-943b-414d87abb0c9}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Vendor Metadata Status" languagecode="1033" />
+                        </labels>
+                        <control id="media_vendormetadatastatus" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="media_vendormetadatastatus" disabled="false" />
+                      </cell>
+                      <cell id="{ebe3bd30-0d5c-6d6c-c6b8-45a58ea13543}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Enable for Transcoding" languagecode="1033" />
+                        </labels>
+                        <control id="media_enablefortranscoding" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="media_enablefortranscoding" disabled="false" />
+                      </cell>
+                      <cell id="{6620d67e-676e-44c5-656d-8b2abdc5287b}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5b4bb7d4-b870-28e9-58dc-d171b1dbae72}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{dadd997a-c4c6-4884-0208-32678d6be15e}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Enable for Transcription" languagecode="1033" />
+                        </labels>
+                        <control id="media_enablefortranscription" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="media_enablefortranscription" disabled="false" />
+                      </cell>
+                      <cell id="{0dd06625-b7c8-8e6a-1997-876e13c22a19}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>

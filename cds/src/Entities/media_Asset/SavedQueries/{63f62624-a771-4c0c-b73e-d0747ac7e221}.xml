@@ -25,14 +25,10 @@
     </layoutxml>
     <querytype>0</querytype>
     <fetchxml>
-      <fetch version="1.0" mapping="logical">
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
         <entity name="media_asset">
-          <attribute name="media_assetid" />
           <attribute name="media_name" />
           <attribute name="createdon" />
-          <filter type="and">
-            <condition attribute="statecode" operator="eq" value="0" />
-          </filter>
           <attribute name="media_assetcontainer" />
           <attribute name="media_assetstatus" />
           <attribute name="media_episode" />
@@ -40,9 +36,13 @@
           <attribute name="media_batch" />
           <attribute name="media_unit" />
           <attribute name="media_season" />
-          <order attribute="createdon" descending="true" />
           <attribute name="media_block" />
-          <attribute name="media_blobpath" />
+          <order attribute="createdon" descending="true" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+            <condition attribute="media_isvendorupload" operator="eq" value="0" />
+          </filter>
+          <attribute name="media_assetid" />
         </entity>
       </fetch>
     </fetchxml>

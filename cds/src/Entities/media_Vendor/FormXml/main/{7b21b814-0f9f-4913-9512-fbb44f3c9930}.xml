@@ -137,7 +137,7 @@
                     <label description="Uploaded Assets" languagecode="1033" />
                   </labels>
                   <rows>
-                    <row>
+                      <!-- <row>
                       <cell id="{8ddc355a-d8b3-8a6e-1dec-10b9a4867a0a}" showlabel="true" colspan="1" auto="false" rowspan="7">
                         <labels>
                           <label description="Assets (Vendor)" languagecode="1033" />
@@ -162,7 +162,7 @@
                           </parameters>
                         </control>
                       </cell>
-                    </row>
+                    </row> -->
                     <row />
                     <row />
                     <row />

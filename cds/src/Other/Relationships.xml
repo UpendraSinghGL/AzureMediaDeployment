@@ -43,6 +43,7 @@
   <EntityRelationship Name="media_Asset_media_AssetType_media_AssetTy" />
   <EntityRelationship Name="media_Asset_media_Episode_media_Episode" />
   <EntityRelationship Name="media_Asset_Season_media_Season" />
+  <!-- <EntityRelationship Name="media_Asset_Vendor_media_Vendor" /> -->
   <EntityRelationship Name="media_AssetContainer_Studio_media_Studio" />
   <EntityRelationship Name="media_AssetContainer_SystemUser_SystemUse" />
   <EntityRelationship Name="media_AssetErrorLog_media_Asset_media_Ass" />
