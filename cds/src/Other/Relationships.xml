@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <EntityRelationships xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <EntityRelationship Name="business_unit_media_block" />
   <EntityRelationship Name="business_unit_media_camerarawfilemetadata" />
@@ -48,6 +48,7 @@
   <EntityRelationship Name="media_AssetErrorLog_media_Asset_media_Ass" />
   <EntityRelationship Name="media_AssetErrorLog_media_AssetContainer_" />
   <EntityRelationship Name="media_AssetErrorLog_media_AssetFiles_medi" />
+  <EntityRelationship Name="media_AssetErrorLog_season_media_Season" />
   <EntityRelationship Name="media_AssetFiles_media_Asset_media_Asset" />
   <EntityRelationship Name="media_AssetMetadata_media_AssetFiles_medi" />
   <EntityRelationship Name="media_Block_Season_media_Season" />
